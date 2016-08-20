@@ -35,7 +35,7 @@ There are mainly two ways of creating an instance of `Identicon`:
   Creates an instance with a hash value. You can either provide a byte array containing the hash, or 
   provide a hexadecimally encoded hash as a string.
   
-* `Identicon.FromValue(value, hashAlgorithmName)`
+* `Identicon.FromValue(value[, hashAlgorithmName])`
 
   Jdenticon-net will create a hash for you using the specified hash algorithm. If no hash algorithm is 
   specified SHA1 will be used. You can input any object, even null, as argument. Jdenticon will use 
@@ -60,7 +60,7 @@ There are multiple methods on Identicon for generating an icon:
   Generates an icon as a Bitmap object for later usage. Remember that you are responsible for 
   disposing the returned object.
   
-* `ToSvg(size, fragment)`
+* `ToSvg(size[, fragment])`
 
   Generates an icon as an SVG string. Note that if you want to create an SVG file the Save method 
   is prefered over the ToSvg method.
