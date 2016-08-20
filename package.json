@@ -1,6 +1,6 @@
 {
   "name": "jdenticon-net",
-  "version": "0.0.0",
+  "version": "0.9.0",
   "devDependencies": {
     "del": "^2.2.2",
     "gulp": "^3.9.0",
