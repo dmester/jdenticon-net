@@ -54,12 +54,13 @@ namespace Jdenticon
         }
         
         /// <summary>
-        /// Creates a hexadecimal string representation of this byte array. Alphabetical characters will be lowercase.
+        /// Converts a hexadecimal string to a byte array.
         /// </summary>
+        /// <param name="hexString">Hexadecimal string to convert.</param>
         public static byte[] ToArray(string hexString)
         {
             if (hexString == null) throw new ArgumentNullException("hexString");
-            if (hexString.Length % 2 == 1) goto ThrowFormatException;
+            if (hexString.Length % 2 == 1) throw new FormatException("The hexadecimal string had an unexpected length.");
 
             var bytes = new byte[hexString.Length / 2];
 
@@ -73,16 +74,13 @@ namespace Jdenticon
 
                 if (upperIndex < 0 || lowerIndex < 0)
                 {
-                    goto ThrowFormatException;
+                    throw new FormatException("Invalid characters were found in the hexadecimal string.");
                 }
 
                 bytes[i / 2] = (byte)((upperIndex << 4) | lowerIndex);
             }
 
             return bytes;
-
-        ThrowFormatException:
-            throw new FormatException("");
         }
     }
 }
