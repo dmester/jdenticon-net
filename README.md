@@ -58,13 +58,46 @@ There are multiple methods in the `Identicon` class for generating icons:
   
 * `ToBitmap(size)`
 
-  Generates an icon as a `Bitmap` object for later usage. Remember that you are responsible for 
-  disposing the returned object when you don't need it anymore.
+  Generates an icon as a [Bitmap](https://msdn.microsoft.com/en-us/library/system.drawing.bitmap(v=vs.110).aspx)
+  object for later usage. Remember that you are responsible for disposing the returned object when you don't 
+  need it anymore.
 
 * `ToSvg(size[, fragment])`
 
   Generates an SVG string containing an icon. This can be useful for embedding icons in other SVG files or
   inlining SVG icons on your website. For creating SVG files, please use `Save`.
+  
+### Change icon appearance
+There are properties on `Identicon` that can be used to customize the look of the generated icons.
+
+* `Padding` (default 0.08)
+
+  The padding between the outer bounds of the icon and the content. Specified as percent in the range
+  [0.0, 0.4].
+
+* `Style.BackColor` (default white)
+
+  Specifies the background color of the generated icon. Set to `Color.Transparent` to not render any 
+  background behind the identicon shapes.
+  
+* `Style.Saturation` (default 0.5)
+  
+  Saturation of colored shapes in the range [0.0, 1.0].
+  
+* `Style.ColorLightness` (default [0.4, 0.8])
+
+  Lightness range of colored shapes in the range [0.0, 1.0]. The lightness of the shapes can be inverted by
+  specifying a range where `Range.From` is greater than `Range.To`.
+  
+* `Style.GrayscaleLightness` (default [0.3, 0.9])
+
+  Lightness range of grayscale shapes in the range [0.0, 1.0]. The lightness of the shapes can be inverted by
+  specifying a range where `Range.From` is greater than `Range.To`.
+  
+### Advanced customizations
+By subclassing `Jdenticon.IconGenerator` you can completely override the look of your icons. Set the
+`Identicon.IconGenerator` property to an instance of your own generator to make use of the customized 
+icon generator.
 
 ## License
 Jdenticon-net is released under the [zlib license](https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt).
