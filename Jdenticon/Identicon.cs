@@ -89,7 +89,7 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Gets or sets the padding between the edge of the image and the bounds of the rendered icon. The value is specified in percent in the range 0 to 0.4.
+        /// Gets or sets the padding between the edge of the image and the bounds of the rendered icon. The value is specified in percent in the range [0.0, 0.4].
         /// </summary>
         public float Padding
         {
