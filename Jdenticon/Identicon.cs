@@ -55,7 +55,7 @@ namespace Jdenticon
         public Identicon(byte[] hash)
         {
             if (hash == null) throw new ArgumentNullException("hash");
-            if (hash.Length < 11) throw new ArgumentException("hash", "The hash array was too short. At least 11 bytes are required.");
+            if (hash.Length < 6) throw new ArgumentException("hash", "The hash array was too short. At least 6 bytes are required.");
 
             this.hash = hash;
         }
