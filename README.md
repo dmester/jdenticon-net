@@ -27,7 +27,7 @@ icon.Save(100, "johndoe.svg");
 ```
 
 ## Reference
-### Create an instance of Identicon.
+### Create an instance of Identicon
 There are mainly two ways of creating an instance of `Identicon`:
 
 * `Identicon.FromHash(hash)`
@@ -60,11 +60,11 @@ There are multiple methods in the `Identicon` class for generating icons:
 
   Generates an icon as a `Bitmap` object for later usage. Remember that you are responsible for 
   disposing the returned object when you don't need it anymore.
-  
+
 * `ToSvg(size[, fragment])`
 
-  Generates an SVG string containing an icon. Note that if you want to create an SVG file the `Save` method 
-  is prefered over the `ToSvg` method.
+  Generates an SVG string containing an icon. This can be useful for embedding icons in other SVG files or
+  inlining SVG icons on your website. For creating SVG files, please use `Save`.
 
 ## License
 Jdenticon-net is released under the [zlib license](https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt).
