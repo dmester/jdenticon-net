@@ -153,6 +153,8 @@ namespace Jdenticon
         /// <param name="size">The size of the generated bitmap in pixels.</param>
         public Bitmap ToBitmap(int size)
         {
+            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
+
             var iconBounds = GetIconBounds(size);     
             var img = new Bitmap(size, size);
             try
@@ -205,6 +207,9 @@ namespace Jdenticon
         /// <param name="format">The image format of the generated icon.</param>
         public void Save(int size, Stream stream, ExportImageFormat format)
         {
+            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
+            if (stream == null) throw new ArgumentNullException("stream");
+
             if (format == ExportImageFormat.Png)
             {
                 using (var img = ToBitmap(size))
@@ -233,6 +238,9 @@ namespace Jdenticon
         /// <param name="format">The image format of the generated icon.</param>
         public void Save(int size, string path, ExportImageFormat format)
         {
+            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
+            if (path == null) throw new ArgumentNullException("path");
+
             using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
             {
                 Save(size, stream, format);
@@ -246,20 +254,30 @@ namespace Jdenticon
         /// <param name="path">The path to the file to which the icon will be written.</param>
         public void Save(int size, string path)
         {
-            var format = ExportImageFormat.Png;
+            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
+            if (path == null) throw new ArgumentNullException("path");
+
+            ExportImageFormat format;
 
             var extension = Path.GetExtension(path);
-            if (extension != null)
+            if (string.IsNullOrEmpty(path))
             {
-                switch (extension.ToLowerInvariant())
-                {
-                    case ".svg":
-                        format = ExportImageFormat.Svg;
-                        break;
-                    case ".emf":
-                        format = ExportImageFormat.Emf;
-                        break;
-                }
+                throw new ArgumentException("Could not automatically determine a file format. No file name extension was specified.", "path");
+            }
+
+            switch (extension.ToLowerInvariant())
+            {
+                case ".svg":
+                    format = ExportImageFormat.Svg;
+                    break;
+                case ".emf":
+                    format = ExportImageFormat.Emf;
+                    break;
+                case ".png":
+                    format = ExportImageFormat.Png;
+                    break;
+                default:
+                    throw new ArgumentException("Could not automatically determine a file format for the extension '" + extension + "'.", "path");
             }
 
             using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
@@ -274,7 +292,7 @@ namespace Jdenticon
         /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
-        /// it suitable to be embedded in aother SVG.
+        /// it suitable to be embedded in another SVG.
         /// </param>
         public string ToSvg(int size, bool fragment)
         {
