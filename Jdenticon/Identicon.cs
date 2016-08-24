@@ -24,6 +24,7 @@
 //
 #endregion
 
+using Jdenticon.IO;
 using Jdenticon.Rendering;
 using Jdenticon.Rendering.GdiPlus;
 using Jdenticon.Rendering.Svg;
@@ -223,9 +224,15 @@ namespace Jdenticon
             }
             else 
             {
-                using (var writer = new StreamWriter(stream, Encoding.UTF8))
+                // The LeaveOpenStream wrapper is needed for .NET 4.0 compatibility, since the
+                // .NET 4.0 version of StreamWriter does not have an option for keeping the
+                // stream open when the writer itself is disposed.
+                using (var leaveOpenStream = new LeaveOpenStream(stream))
                 {
-                    GenerateSvg(size, writer, format == ExportImageFormat.SvgFragment);
+                    using (var writer = new StreamWriter(leaveOpenStream, Encoding.UTF8))
+                    {
+                        GenerateSvg(size, writer, format == ExportImageFormat.SvgFragment);
+                    }
                 }
             }
         }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="HashUtils.cs" />
     <Compile Include="HexString.cs" />
+    <Compile Include="IO\LeaveOpenStream.cs" />
     <Compile Include="Rendering\ActionDisposable.cs" />
     <Compile Include="ColorUtils.cs" />
     <Compile Include="Rendering\ColorTheme.cs" />
