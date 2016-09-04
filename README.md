@@ -14,7 +14,11 @@ Jdenticon-net is a .NET port of the JavaScript library [Jdenticon](https://githu
 Using Jdenticon-net is simple. Follow the steps below to integrate Jdenticon-net into your solution.
 
 ### 1. Install Jdenticon-net
-Open NuGet package manager and install the package `Jdenticon-net`.
+Install the [NuGet package](https://www.nuget.org/packages/Jdenticon-net/).
+
+```
+PM> Install-Package Jdenticon-net
+```
 
 ### 2. Use the class `Identicon`
 Create an instance of the class `Identicon` to generate identicons.
@@ -93,6 +97,28 @@ There are properties on `Identicon` that can be used to customize the look of th
 
   Lightness range of grayscale shapes in the range [0.0, 1.0]. The lightness of the shapes can be inverted by
   specifying a range where `Range.From` is greater than `Range.To`.
+  
+Example
+
+```csharp
+using Jdenticon;
+using System.Drawing;
+----
+var iconStyle = new IdenticonStyle
+{
+    BackColor = Color.Transparent,
+    Saturation = 0.4f,
+    ColorLightness = Range.Create(0.4f, 0.9f),
+    GrayscaleLightness = Range.Create(0.3f, 0.9f)
+};
+
+var icon = Identicon.FromValue("john.doe@example.faux");
+
+icon.Padding = 0.10f;
+icon.Style = iconStyle;
+
+icon.Save(100, "johndoe.svg");
+```
   
 ### Advanced customizations
 By subclassing `Jdenticon.IconGenerator` you can completely override the look of your icons. Set the
