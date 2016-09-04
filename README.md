@@ -13,16 +13,12 @@ Jdenticon-net is a .NET port of the JavaScript library [Jdenticon](https://githu
 ## Getting started
 Using Jdenticon-net is simple. Follow the steps below to integrate Jdenticon-net into your solution.
 
-### 1. Install Jdenticon-net
-Install the [NuGet package](https://www.nuget.org/packages/Jdenticon-net/).
-
+### 1. Install the [NuGet package](https://www.nuget.org/packages/Jdenticon-net/)
 ```
 PM> Install-Package Jdenticon-net
 ```
 
-### 2. Use the class `Identicon`
-Create an instance of the class `Identicon` to generate identicons.
-
+### 2. Use `Identicon` to generate icons
 ```csharp
 using Jdenticon;
 ----
