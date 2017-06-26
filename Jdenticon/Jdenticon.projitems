@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\HashGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\MD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\SHA1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Bitmap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\ColorRange.cs" />

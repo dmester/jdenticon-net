@@ -36,6 +36,8 @@ namespace Jdenticon.Cryptography
     /// </summary>
     internal static class SHA1
     {
+        // Implementation based on FIPS 180-4.
+
         private static IEnumerable<uint[]> EnumerateBlocks(byte[] message)
         {
             const int BlockSizeBytes = 64;
@@ -75,12 +77,13 @@ namespace Jdenticon.Cryptography
             {
                 // Message size goes in next block
                 yield return extendedBlock;
-                Array.Clear(extendedBlock, 0, BlockSizeBytes);
+                Array.Clear(extendedBlock, 0, BlockSizeWords);
             }
             
             // Append message size to the last block
             unchecked
             {
+                // SHA1 uses big-endian
                 var messageSize = (ulong)(message.Length * 8);
                 extendedBlock[BlockSizeWords - 2] = (uint)(messageSize >> 32);
                 extendedBlock[BlockSizeWords - 1] = (uint)(messageSize);
@@ -91,6 +94,7 @@ namespace Jdenticon.Cryptography
 
         private static void ByteToWord(uint[] destination, byte[] source, int sourceOffset, int wordCount)
         {
+            // SHA1 uses big-endian
             for (var i = 0; i < wordCount; i++)
             {
                 destination[i] =
@@ -103,6 +107,7 @@ namespace Jdenticon.Cryptography
 
         private static void WordToByte(byte[] destination, uint[] source)
         {
+            // SHA1 uses big-endian
             unchecked
             {
                 for (var i = 0; i < source.Length; i++)

@@ -55,11 +55,49 @@ namespace Jdenticon.Cryptography
         /// </para>
         /// <para>
         /// The hash algorithms available to be used as <paramref name="hashAlgorithmName"/> depends
-        /// on the platform. For .NET Framework, please see the documentation for 
-        /// <see cref="System.Security.Cryptography.HashAlgorithm.Create"/> for a complete list
-        /// of available hash algorithms. For .NET Standard 1.0 only SHA1 is supported. For .NET
-        /// Standard 1.3 SHA1, MD5 and SHA256 can be used as <paramref name="hashAlgorithmName"/>.
+        /// on the platform. Avoid using sensitive information as base for an icon, especially in 
+        /// combination with a weak hash algorithm like MD5 and SHA1. Consider using public information
+        /// instead, like an id or a user name.
         /// </para>
+        /// <list type="table">
+        ///     <title>Supported hash algorithms per platform.</title>
+        ///     <listheader>
+        ///         <term>Hash algorithm</term>
+        ///         <term>.NET Standard 1.0</term>
+        ///         <term>.NET Standard 1.3</term>
+        ///         <term>.NET Framework</term>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>SHA1</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>SHA256</term>
+        ///         <term>-</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>SHA384</term>
+        ///         <term>-</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>SHA512</term>
+        ///         <term>-</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>MD5</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        /// </list>
         /// </remarks>
         public static byte[] ComputeHash(object value, string hashAlgorithmName)
         {
@@ -91,11 +129,12 @@ namespace Jdenticon.Cryptography
                 return hashAlgorithm.ComputeHash(value);
             }
 #else
-            if (hashAlgorithmName != "SHA1")
+            switch (hashAlgorithmName)
             {
-                throw new ArgumentException($"Unknown hash algorithm '{hashAlgorithmName}'.", nameof(hashAlgorithmName));
+                case "SHA1": return SHA1.ComputeHash(value);
+                case "MD5": return MD5.ComputeHash(value);
+                default: throw new ArgumentException($"Unknown hash algorithm '{hashAlgorithmName}'.", nameof(hashAlgorithmName));
             }
-            return SHA1.ComputeHash(value);
 #endif
         }
 

@@ -152,7 +152,7 @@ namespace Jdenticon
         ///     </item>
         ///     <item>
         ///         <term>MD5</term>
-        ///         <term>-</term>
+        ///         <term>Yes</term>
         ///         <term>Yes</term>
         ///         <term>Yes</term>
         ///     </item>

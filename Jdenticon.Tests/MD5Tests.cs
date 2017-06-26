@@ -6,7 +6,7 @@ using System.Linq;
 namespace Jdenticon.Tests
 {
     [TestClass]
-    public class SHA1Tests
+    public class MD5Tests
     {
         private static byte[] GenerateMessage(int size)
         {
@@ -17,17 +17,17 @@ namespace Jdenticon.Tests
         }
 
         [TestMethod]
-        public void SHA1_ComputeHash()
+        public void MD5_ComputeHash()
         {
             // Compare result with .NET implementation
             var sizesToTest = new[] { 0, 1, 2, 3, 4, 60, 61, 62, 63, 64, 65, 66, 127, 128, 129, 45123, 1 << 20 };
-            var sha1 = new SHA1Managed();
+            var md5 = MD5.Create();
 
             foreach (var sizeToTest in sizesToTest)
             {
                 var message = GenerateMessage(sizeToTest);
-                var hash1 = sha1.ComputeHash(message);
-                var hash2 = Jdenticon.Cryptography.SHA1.ComputeHash(message);
+                var hash1 = md5.ComputeHash(message);
+                var hash2 = Jdenticon.Cryptography.MD5.ComputeHash(message);
 
                 Assert.IsTrue(hash1.SequenceEqual(hash2));
             }
