@@ -53,7 +53,7 @@ namespace Jdenticon
             if (hash == null) throw new ArgumentNullException(nameof(hash));
             if (hash.Length < 6) throw new ArgumentException(nameof(hash), 
                 "The hash array was too short. At least 6 bytes are required.");
-
+            
             // Remove parts of hash that should not be used, as
             // some of the extensions want to keep the size of the 
             // hash down.
@@ -66,7 +66,7 @@ namespace Jdenticon
             {
                 this.hash = new byte[10];
                 Buffer.BlockCopy(hash, 0, this.hash, 0, 6);
-                Buffer.BlockCopy(hash, 0, this.hash, this.hash.Length - 4, 4);
+                Buffer.BlockCopy(hash, hash.Length - 4, this.hash, this.hash.Length - 4, 4);
             }
         }
 
