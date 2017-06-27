@@ -35,6 +35,29 @@ namespace Jdenticon
     /// <summary>
     /// Represents an identicon for a specific hash.
     /// </summary>
+    /// <remarks>
+    /// <note type="note">
+    ///     <para>
+    ///     The operations to save and export the icon are implemented as extension methods
+    ///     located in the <see cref="Jdenticon"/> namespace.
+    ///     </para>
+    /// </note>
+    /// </remarks>
+    /// <example>
+    /// <para>
+    /// The following code illustrates how to use Jdenticon to generate an icon from a string 
+    /// and save it as a PNG image. Note that all save operations are implemented as
+    /// extension methods, which means a using for the <see cref="Jdenticon"/> namespace
+    /// is required.
+    /// </para>
+    /// <code language="cs" title="Generate identicon as PNG">
+    /// using Jdenticon;
+    /// // ...
+    /// Identicon
+    ///     .FromValue("string to hash", size: 160)
+    ///     .SaveAsPng("test.png");
+    /// </code>
+    /// </example>
     public class Identicon
     {
         private byte[] hash;

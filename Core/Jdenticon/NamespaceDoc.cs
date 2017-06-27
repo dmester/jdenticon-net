@@ -37,18 +37,7 @@ namespace Jdenticon
     /// since all save operations are implemented as extension methods for the
     /// <see cref="Identicon"/> class.
     /// </summary>
-    /// <example>
-    /// This code illustrates how to use Jdenticon to generate an icon from a string 
-    /// and save it as a PNG image. Note that all save operations are implemented as
-    /// extension methods, which means a using for the <see cref="Jdenticon"/> namespace
-    /// is required.
-    /// <code language="cs">
-    /// using Jdenticon;
-    /// // ...
-    /// var icon = Identicon.FromValue("string to hash");
-    /// icon.SaveAsPng("test.png", 160);
-    /// </code>
-    /// </example>
+    /// <inheritdoc cref="Identicon" select="example" />
     [CompilerGenerated]
     internal static class NamespaceDoc
     {
