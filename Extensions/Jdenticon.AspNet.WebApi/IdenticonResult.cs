@@ -45,12 +45,10 @@ namespace Jdenticon.AspNet.WebApi
     {
         private Identicon icon;
         private ExportImageFormat format;
-        private int size;
 
-        private IdenticonResult(Identicon icon, int size, ExportImageFormat format = ExportImageFormat.Png)
+        private IdenticonResult(Identicon icon, ExportImageFormat format = ExportImageFormat.Png)
         {
             this.icon = icon;
-            this.size = size;
             this.format = format;
         }
         
@@ -58,11 +56,10 @@ namespace Jdenticon.AspNet.WebApi
         /// Creates an <see cref="Identicon"/> instance with the specified hash.
         /// </summary>
         /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
-        /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
         public static IdenticonResult FromHash(byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png)
         {
-            return new IdenticonResult(Identicon.FromHash(hash), size, format);
+            return new IdenticonResult(Identicon.FromHash(hash, size), format);
         }
 
         /// <summary>
@@ -73,7 +70,7 @@ namespace Jdenticon.AspNet.WebApi
         /// <param name="format">The format of the generated icon.</param>
         public static IdenticonResult FromHash(string hash, int size, ExportImageFormat format = ExportImageFormat.Png)
         {
-            return new IdenticonResult(Identicon.FromHash(hash), size, format);
+            return new IdenticonResult(Identicon.FromHash(hash, size), format);
         }
 
         /// <summary>
@@ -85,18 +82,17 @@ namespace Jdenticon.AspNet.WebApi
         /// <param name="hashAlgorithmName">The name of the hash algorithm to use for hashing.</param>
         public static IdenticonResult FromValue(object value, int size, ExportImageFormat format = ExportImageFormat.Png, string hashAlgorithmName = "SHA1")
         {
-            return new IdenticonResult(Identicon.FromValue(value, hashAlgorithmName), size, format);
+            return new IdenticonResult(Identicon.FromValue(value, size, hashAlgorithmName), format);
         }
 
         /// <summary>
         /// Creates an <see cref="Identicon"/> instance with a hash of the specified object.
         /// </summary>
         /// <param name="icon">The <see cref="Identicon"/> to be rendered.</param>
-        /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
-        public static IdenticonResult FromIcon(Identicon icon, int size, ExportImageFormat format = ExportImageFormat.Png)
+        public static IdenticonResult FromIcon(Identicon icon, ExportImageFormat format = ExportImageFormat.Png)
         {
-            return new IdenticonResult(icon, size, format);
+            return new IdenticonResult(icon, format);
         }
 
         /// <inheritdoc />
@@ -108,11 +104,11 @@ namespace Jdenticon.AspNet.WebApi
             switch (format)
             {
                 case ExportImageFormat.Png:
-                    response.Content = new StreamContent(icon.SaveAsPng(size));
+                    response.Content = new StreamContent(icon.SaveAsPng());
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
                     break;
                 case ExportImageFormat.Svg:
-                    response.Content = new StreamContent(icon.SaveAsSvg(size));
+                    response.Content = new StreamContent(icon.SaveAsSvg());
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/svg+xml");
                     break;
                 default:

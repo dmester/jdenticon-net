@@ -94,7 +94,7 @@ namespace Jdenticon.Wpf
             using (var context = visual.RenderOpen())
             {
                 var rect = new Rectangle(0, 0, (int)ActualWidth, (int)ActualHeight);
-                Identicon.FromValue(Value).Draw(context,rect);
+                Identicon.FromValue(Value, Math.Min(rect.Width, rect.Height)).Draw(context, rect);
             }
         }
 

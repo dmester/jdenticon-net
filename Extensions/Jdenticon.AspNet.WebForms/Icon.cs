@@ -253,7 +253,7 @@ namespace Jdenticon.AspNet.WebForms
                 }
                 else
                 {
-                    compressedHash = Identicon.FromHash(value).Hash;
+                    compressedHash = Identicon.FromHash(value, 100).Hash;
                     ViewState["Hash"] = Convert.ToBase64String(compressedHash);
                 }
             }

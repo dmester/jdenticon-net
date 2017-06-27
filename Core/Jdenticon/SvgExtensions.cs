@@ -37,10 +37,10 @@ namespace Jdenticon
     /// </summary>
     public static class SvgExtensions
     {
-        private static void GenerateSvg(this Identicon icon, TextWriter writer, int size, bool fragment)
+        private static void GenerateSvg(this Identicon icon, TextWriter writer, bool fragment)
         {
-            var iconBounds = icon.GetIconBounds(size);
-            var renderer = new SvgRenderer(size, size);
+            var iconBounds = icon.GetIconBounds();
+            var renderer = new SvgRenderer(icon.Size, icon.Size);
             icon.Draw(renderer, iconBounds);
             renderer.Save(writer, fragment);
         }
@@ -49,43 +49,37 @@ namespace Jdenticon
         /// Creates a string containing an SVG version of this icon.
         /// </summary>
         /// <param name="icon">Icon instance.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        public static string ToSvg(this Identicon icon, int size)
+        public static string ToSvg(this Identicon icon)
         {
-            return icon.ToSvg(size, false);
+            return icon.ToSvg(false);
         }
 
         /// <summary>
         /// Creates a string containing an SVG version of this icon.
         /// </summary>
         /// <param name="icon">Icon instance.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
         /// </param>
-        public static string ToSvg(this Identicon icon, int size, bool fragment)
+        public static string ToSvg(this Identicon icon, bool fragment)
         {
             using (var writer = new StringWriter())
             {
-                icon.GenerateSvg(writer, size, fragment);
+                icon.GenerateSvg(writer, fragment);
                 return writer.ToString();
             }
         }
-
-
-
+        
         /// <summary>
         /// Saves this icon as an SVG file.
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="writer">The <see cref="TextWriter"/> to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <exception cref="ArgumentNullException"><paramref name="writer"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsSvg(this Identicon icon, TextWriter writer, int size)
+        public static void SaveAsSvg(this Identicon icon, TextWriter writer)
         {
-            icon.SaveAsSvg(writer, size, false);
+            icon.SaveAsSvg(writer, false);
         }
 
         /// <summary>
@@ -93,12 +87,10 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="stream">The stream to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsSvg(this Identicon icon, Stream stream, int size)
+        public static void SaveAsSvg(this Identicon icon, Stream stream)
         {
-            icon.SaveAsSvg(stream, size, false);
+            icon.SaveAsSvg(stream, false);
         }
 
 #if HAVE_FILE_STREAM
@@ -107,34 +99,27 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="path">The path to the file to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsSvg(this Identicon icon, string path, int size)
+        public static void SaveAsSvg(this Identicon icon, string path)
         {
-            icon.SaveAsSvg(path, size, false);
+            icon.SaveAsSvg(path, false);
         }
 #endif
-
-
+        
         /// <summary>
         /// Saves this icon as an SVG file.
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="writer">The <see cref="TextWriter"/> to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
         /// </param>
         /// <exception cref="ArgumentNullException"><paramref name="writer"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsSvg(this Identicon icon, TextWriter writer, int size, bool fragment)
+        public static void SaveAsSvg(this Identicon icon, TextWriter writer, bool fragment)
         {
-            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger.");
             if (writer == null) throw new ArgumentNullException(nameof(writer));
-
-            icon.GenerateSvg(writer, size, fragment);
+            icon.GenerateSvg(writer, fragment);
         }
 
         /// <summary>
@@ -142,21 +127,18 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="stream">The stream to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
         /// </param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsSvg(this Identicon icon, Stream stream, int size, bool fragment)
+        public static void SaveAsSvg(this Identicon icon, Stream stream, bool fragment)
         {
-            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger.");
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
             using (var writer = new StreamWriter(stream, Encoding.UTF8))
             {
-                icon.SaveAsSvg(writer, size, fragment);
+                icon.SaveAsSvg(writer, fragment);
             }
         }
 
@@ -164,16 +146,14 @@ namespace Jdenticon
         /// Saves this icon as an SVG file.
         /// </summary>
         /// <param name="icon">Icon instance.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
         /// </param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static Stream SaveAsSvg(this Identicon icon, int size, bool fragment)
+        public static Stream SaveAsSvg(this Identicon icon, bool fragment)
         {
             var memoryStream = new MemoryStream();
-            icon.SaveAsSvg(memoryStream, size, fragment);
+            icon.SaveAsSvg(memoryStream, fragment);
             memoryStream.Position = 0;
             return memoryStream;
         }
@@ -182,11 +162,9 @@ namespace Jdenticon
         /// Saves this icon as an SVG file.
         /// </summary>
         /// <param name="icon">Icon instance.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static Stream SaveAsSvg(this Identicon icon, int size)
+        public static Stream SaveAsSvg(this Identicon icon)
         {
-            return SaveAsSvg(icon, size, false);
+            return SaveAsSvg(icon, false);
         }
 
 #if HAVE_FILE_STREAM
@@ -195,21 +173,18 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="path">The path to the file to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
         /// </param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsSvg(this Identicon icon, string path, int size, bool fragment)
+        public static void SaveAsSvg(this Identicon icon, string path, bool fragment)
         {
-            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger.");
             if (path == null) throw new ArgumentNullException("path");
 
             using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
             {
-                icon.SaveAsSvg(stream, size, fragment);
+                icon.SaveAsSvg(stream, fragment);
             }
         }
 #endif

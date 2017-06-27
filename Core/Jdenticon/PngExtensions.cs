@@ -42,16 +42,13 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="stream">The stream to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsPng(this Identicon icon, Stream stream, int size)
+        public static void SaveAsPng(this Identicon icon, Stream stream)
         {
-            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger.");
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
-            var renderer = new PngRenderer(size, size);
-            var iconBounds = icon.GetIconBounds(size);
+            var renderer = new PngRenderer(icon.Size, icon.Size);
+            var iconBounds = icon.GetIconBounds();
             icon.Draw(renderer, iconBounds);
             renderer.SavePng(stream);
         }
@@ -60,12 +57,10 @@ namespace Jdenticon
         /// Saves this icon as a PNG file.
         /// </summary>
         /// <param name="icon">Icon instance.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static Stream SaveAsPng(this Identicon icon, int size)
+        public static Stream SaveAsPng(this Identicon icon)
         {
             var memoryStream = new MemoryStream();
-            icon.SaveAsPng(memoryStream, size);
+            icon.SaveAsPng(memoryStream);
             memoryStream.Position = 0;
             return memoryStream;
         }
@@ -76,17 +71,14 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="path">The path to the file to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsPng(this Identicon icon, string path, int size)
+        public static void SaveAsPng(this Identicon icon, string path)
         {
-            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger.");
             if (path == null) throw new ArgumentNullException("path");
             
             using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
             {
-                icon.SaveAsPng(stream, size);
+                icon.SaveAsPng(stream);
             }
         }
 #endif

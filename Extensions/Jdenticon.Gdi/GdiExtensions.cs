@@ -65,13 +65,10 @@ namespace Jdenticon
         /// <summary>
         /// Creates a bitmap icon.
         /// </summary>
-        /// <param name="size">The size of the generated bitmap in pixels.</param>
-        public static Bitmap ToBitmap(this Identicon icon, int size)
+        public static Bitmap ToBitmap(this Identicon icon)
         {
-            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
-
-            var iconBounds = icon.GetIconBounds(size);
-            var img = new Bitmap(size, size);
+            var iconBounds = icon.GetIconBounds();
+            var img = new Bitmap(icon.Size, icon.Size);
             try
             {
                 using (var g = Graphics.FromImage(img))
@@ -88,9 +85,9 @@ namespace Jdenticon
             }
         }
 
-        private static void ToMetafile(Identicon icon, Stream stream, int size)
+        private static void ToMetafile(Identicon icon, Stream stream)
         {
-            var iconBounds = icon.GetIconBounds(size);
+            var iconBounds = icon.GetIconBounds();
 
             using (var desktopGraphics = Graphics.FromHwnd(IntPtr.Zero))
             {
@@ -98,7 +95,7 @@ namespace Jdenticon
                 try
                 {
                     using (var img = new Metafile(stream, hdc,
-                        new System.Drawing.Rectangle(0, 0, size, size), MetafileFrameUnit.Pixel,
+                        new System.Drawing.Rectangle(0, 0, icon.Size, icon.Size), MetafileFrameUnit.Pixel,
                         EmfType.EmfPlusDual))
                     {
                         using (var graphics = Graphics.FromImage(img))
@@ -118,12 +115,10 @@ namespace Jdenticon
         /// Saves this icon as an Enhanced Metafile (.emf).
         /// </summary>
         /// <param name="icon">Icon instance.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static Stream SaveAsEmf(this Identicon icon, int size)
+        public static Stream SaveAsEmf(this Identicon icon)
         {
             var memoryStream = new MemoryStream();
-            icon.SaveAsEmf(memoryStream, size);
+            icon.SaveAsEmf(memoryStream);
             memoryStream.Position = 0;
             return memoryStream;
         }
@@ -133,15 +128,11 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="stream">The stream to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsEmf(this Identicon icon, Stream stream, int size)
+        public static void SaveAsEmf(this Identicon icon, Stream stream)
         {
-            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger.");
             if (stream == null) throw new ArgumentNullException(nameof(stream));
-
-            ToMetafile(icon, stream, size);
+            ToMetafile(icon, stream);
         }
 
         /// <summary>
@@ -149,17 +140,14 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">Icon instance.</param>
         /// <param name="path">The path to the file to which the icon will be written.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> less than 1 pixel.</exception>
-        public static void SaveAsEmf(this Identicon icon, string path, int size)
+        public static void SaveAsEmf(this Identicon icon, string path)
         {
-            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger.");
             if (path == null) throw new ArgumentNullException(nameof(path));
 
             using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
             {
-                icon.SaveAsEmf(stream, size);
+                icon.SaveAsEmf(stream);
             }
         }
     }

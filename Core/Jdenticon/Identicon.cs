@@ -38,6 +38,7 @@ namespace Jdenticon
     public class Identicon
     {
         private byte[] hash;
+        private int size;
         private float padding = 0.08f;
         private IconGenerator iconGenerator;
         private IdenticonStyle style;
@@ -46,14 +47,18 @@ namespace Jdenticon
         /// Creates an <see cref="Identicon"/> instance with the specified hash.
         /// </summary>
         /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
+        /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
         /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="hash"/> is null.</exception>
-        public Identicon(byte[] hash)
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> is less than 1 pixel.</exception>
+        public Identicon(byte[] hash, int size)
         {
             if (hash == null) throw new ArgumentNullException(nameof(hash));
             if (hash.Length < 6) throw new ArgumentException(nameof(hash), 
                 "The hash array was too short. At least 6 bytes are required.");
-            
+            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, 
+                "The size should be 1 pixel or larger.");
+
             // Remove parts of hash that should not be used, as
             // some of the extensions want to keep the size of the 
             // hash down.
@@ -74,35 +79,42 @@ namespace Jdenticon
         /// Creates an <see cref="Identicon"/> instance with a specified hash.
         /// </summary>
         /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
+        /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
         /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="hash"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> is less than 1 pixel.</exception>
         /// <returns>An <see cref="Identicon"/> instance for the specified hash.</returns>
-        public static Identicon FromHash(byte[] hash)
+        public static Identicon FromHash(byte[] hash, int size)
         {
-            return new Identicon(hash);
+            return new Identicon(hash, size);
         }
 
         /// <summary>
         /// Creates an <see cref="Identicon"/> instance from a hexadecimal hash string.
         /// </summary>
         /// <param name="hash">The hex encoded hash that will be used as base for this icon. The hash string must contain at least 12 characters.</param>
+        /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
         /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="hash"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> is less than 1 pixel.</exception>
         /// <exception cref="FormatException"><paramref name="hash"/> is not a hexadecimal string.</exception>
         /// <returns>An <see cref="Identicon"/> instance for the specified hash.</returns>
-        public static Identicon FromHash(string hash)
+        public static Identicon FromHash(string hash, int size)
         {
             if (hash == null) throw new ArgumentNullException(nameof(hash));
-            return new Identicon(HexString.ToArray(hash));
+            return new Identicon(HexString.ToArray(hash), size);
         }
 
         /// <inheritdoc cref="HashGenerator.ComputeHash(object, string)" />
         /// <summary>
         /// Generates a hash for a specified value and creates an <see cref="Identicon"/> instance from the generated hash.
         /// </summary>
-        public static Identicon FromValue(object value, string hashAlgorithmName = "SHA1")
+        /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> is less than 1 pixel.</exception>
+        /// <returns>An <see cref="Identicon"/> instance for the hash of <paramref name="value"/>.</returns>
+        public static Identicon FromValue(object value, int size, string hashAlgorithmName = "SHA1")
         {
-            return new Identicon(HashGenerator.ComputeHash(value, hashAlgorithmName));
+            return new Identicon(HashGenerator.ComputeHash(value, hashAlgorithmName), size);
         }
 
         /// <summary>
@@ -116,9 +128,27 @@ namespace Jdenticon
                 if (padding < 0f || padding > 0.4f)
                 {
                     throw new ArgumentOutOfRangeException(nameof(Padding),
-                        "Only padding values in the range [0.0, 0.4] are valid.");
+                        value, "Only padding values in the range [0.0, 0.4] are valid.");
                 }
                 padding = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the size of the icon.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">The value is less than 1 pixel.</exception>
+        public int Size
+        {
+            get { return size; }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Size), 
+                        value, "The size should be 1 pixel or larger.");
+                }
+                size = value;
             }
         }
         
@@ -180,19 +210,15 @@ namespace Jdenticon
                 return clone;
             }
         }
-        
+
         /// <summary>
-        /// Gets the bounds of the icon excluding its padding given a size.
+        /// Gets the bounds of the icon excluding its padding.
         /// </summary>
-        /// <param name="size">The size of the output image in pixels.</param>
-        public Rectangle GetIconBounds(int size)
-        {
-            return new Rectangle(
-                (int)(padding * size),
-                (int)(padding * size),
-                size - (int)(padding * size) * 2,
-                size - (int)(padding * size) * 2);
-        }
+        public Rectangle GetIconBounds() => new Rectangle(
+            (int)(padding * size),
+            (int)(padding * size),
+            size - (int)(padding * size) * 2,
+            size - (int)(padding * size) * 2);
 
         /// <summary>
         /// Gets a string representation of this <see cref="Identicon"/>.

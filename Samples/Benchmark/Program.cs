@@ -12,13 +12,12 @@ namespace Benchmark
     {
         static void Main(string[] args)
         {
-            var icon = Identicon.FromValue("df");
+            var icon = Identicon.FromValue("df", 160);
             icon.Style.BackColor = Jdenticon.Rendering.Color.Transparent;
-            const int size = 160;
+            
+            icon.SaveAsPng("M:\\test1509-own.png");
 
-            icon.SaveAsPng("M:\\test1509-own.png", size);
-
-            using (var bmp = icon.ToBitmap(size))
+            using (var bmp = icon.ToBitmap())
             {
                 bmp.Save("M:\\test1509-gdi.png", System.Drawing.Imaging.ImageFormat.Png);
             }
@@ -29,14 +28,14 @@ namespace Benchmark
             {
                 using (var stream = new MemoryStream())
                 {
-                    icon.SaveAsPng(stream, size);
+                    icon.SaveAsPng(stream);
                 }
             }, 200);
             Benchmarker.Run("Gdi", () =>
             {
                 using (var stream = new MemoryStream())
                 {
-                    icon.ToBitmap(size).Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    icon.ToBitmap().Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                 }
             }, 200);
 
@@ -44,14 +43,14 @@ namespace Benchmark
             {
                 using (var stream = new MemoryStream())
                 {
-                    icon.SaveAsPng(stream, size);
+                    icon.SaveAsPng(stream);
                 }
             }, 200);
             Benchmarker.Run("Gdi", () =>
             {
                 using (var stream = new MemoryStream())
                 {
-                    icon.ToBitmap(size).Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    icon.ToBitmap().Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                 }
             }, 200);
         }

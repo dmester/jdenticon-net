@@ -38,12 +38,10 @@ namespace Jdenticon.AspNet.Mvc
     {
         private Identicon icon;
         private ExportImageFormat format;
-        private int size;
-
-        private IdenticonResult(Identicon icon, int size, ExportImageFormat format = ExportImageFormat.Png)
+        
+        private IdenticonResult(Identicon icon, ExportImageFormat format = ExportImageFormat.Png)
         {
             this.icon = icon;
-            this.size = size;
             this.format = format;
         }
 
@@ -55,7 +53,7 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="format">The format of the generated icon.</param>
         public static IdenticonResult FromHash(byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png)
         {
-            return new IdenticonResult(Identicon.FromHash(hash), size, format);
+            return new IdenticonResult(Identicon.FromHash(hash, size), format);
         }
 
         /// <summary>
@@ -66,7 +64,7 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="format">The format of the generated icon.</param>
         public static IdenticonResult FromHash(string hash, int size, ExportImageFormat format = ExportImageFormat.Png)
         {
-            return new IdenticonResult(Identicon.FromHash(hash), size, format);
+            return new IdenticonResult(Identicon.FromHash(hash, size), format);
         }
 
         /// <summary>
@@ -78,18 +76,17 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="hashAlgorithmName">The name of the hash algorithm to use for hashing.</param>
         public static IdenticonResult FromValue(object value, int size, ExportImageFormat format = ExportImageFormat.Png, string hashAlgorithmName = "SHA1")
         {
-            return new IdenticonResult(Identicon.FromValue(value, hashAlgorithmName), size, format);
+            return new IdenticonResult(Identicon.FromValue(value, size, hashAlgorithmName), format);
         }
 
         /// <summary>
         /// Creates an <see cref="Identicon"/> instance with a hash of the specified object.
         /// </summary>
         /// <param name="icon">The <see cref="Identicon"/> to be rendered.</param>
-        /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
-        public static IdenticonResult FromIcon(Identicon icon, int size, ExportImageFormat format = ExportImageFormat.Png)
+        public static IdenticonResult FromIcon(Identicon icon, ExportImageFormat format = ExportImageFormat.Png)
         {
-            return new IdenticonResult(icon, size, format);
+            return new IdenticonResult(icon, format);
         }
 
         /// <inheritdoc />
@@ -101,11 +98,11 @@ namespace Jdenticon.AspNet.Mvc
             {
                 case ExportImageFormat.Png:
                     response.ContentType = "image/png";
-                    icon.SaveAsPng(response.OutputStream, size);
+                    icon.SaveAsPng(response.OutputStream);
                     break;
                 case ExportImageFormat.Svg:
                     response.ContentType = "image/svg+xml";
-                    icon.SaveAsSvg(response.OutputStream, size);
+                    icon.SaveAsSvg(response.OutputStream);
                     break;
                 default:
                     throw new NotSupportedException($"The image format '{format}' is not supported by {nameof(IdenticonResult)}.");

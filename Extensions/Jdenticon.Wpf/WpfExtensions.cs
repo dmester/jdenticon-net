@@ -43,13 +43,13 @@ namespace Jdenticon
         /// Renders the icon as a WPF <see cref="Visual"/>.
         /// </summary>
         /// <param name="size">The size of the generated bitmap in pixels.</param>
-        public static Visual ToVisual(this Identicon icon, int size)
+        public static Visual ToVisual(this Identicon icon)
         {
             var visual = new DrawingVisual();
             
             using (var context = visual.RenderOpen())
             {
-                var iconBounds = icon.GetIconBounds(size);
+                var iconBounds = icon.GetIconBounds();
                 icon.Draw(context, iconBounds);
             }
 

@@ -63,18 +63,18 @@ namespace Jdenticon.AspNet.WebForms
                 context.Response.Cache.SetCacheability(HttpCacheability.Public);
                 context.Response.Cache.SetMaxAge(TimeSpan.FromDays(365));
 
-                var icon = Identicon.FromHash(request.Hash);
+                var icon = Identicon.FromHash(request.Hash, request.Size);
                 icon.Style = request.Style;
 
                 switch (request.Format)
                 {
                     case ExportImageFormat.Png:
                         context.Response.ContentType = "image/png";
-                        icon.SaveAsPng(context.Response.OutputStream, request.Size);
+                        icon.SaveAsPng(context.Response.OutputStream);
                         break;
                     case ExportImageFormat.Svg:
                         context.Response.ContentType = "image/svg+xml";
-                        icon.SaveAsSvg(context.Response.OutputStream, request.Size);
+                        icon.SaveAsSvg(context.Response.OutputStream);
                         break;
                     default:
                         throw new NotSupportedException($"The image format '{request.Format}' is not supported by {nameof(IdenticonHttpHandler)}.");
