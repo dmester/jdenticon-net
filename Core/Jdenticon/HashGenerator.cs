@@ -56,11 +56,16 @@ namespace Jdenticon
         /// the specified algorithm. If <paramref name="value"/> is <c>null</c> an empty byte array
         /// is hashed.
         /// </para>
+        /// <note type="security">
+        ///     <para>
+        ///     Avoid using sensitive information as base for an icon, especially in combination with 
+        ///     a weak hash algorithm like MD5 and SHA1. Consider using public information instead, 
+        ///     like an id or a user name. 
+        ///     </para>
+        /// </note>
         /// <para>
-        /// The hash algorithms available to be used as <paramref name="hashAlgorithmName"/> depends
-        /// on the platform. Avoid using sensitive information as base for an icon, especially in 
-        /// combination with a weak hash algorithm like MD5 and SHA1. Consider using public information
-        /// instead, like an id or a user name.
+        /// Hash algorithms available as <paramref name="hashAlgorithmName"/> depends on the platform. 
+        /// The table below lists the possible values and on what platforms they are supported.
         /// </para>
         /// <list type="table">
         ///     <title>Supported hash algorithms per platform.</title>
@@ -70,6 +75,12 @@ namespace Jdenticon
         ///         <term>.NET Standard 1.3</term>
         ///         <term>.NET Framework</term>
         ///     </listheader>
+        ///     <item>
+        ///         <term>MD5</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
         ///     <item>
         ///         <term>SHA1</term>
         ///         <term>Yes</term>
@@ -91,12 +102,6 @@ namespace Jdenticon
         ///     <item>
         ///         <term>SHA512</term>
         ///         <term>-</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///     </item>
-        ///     <item>
-        ///         <term>MD5</term>
-        ///         <term>Yes</term>
         ///         <term>Yes</term>
         ///         <term>Yes</term>
         ///     </item>

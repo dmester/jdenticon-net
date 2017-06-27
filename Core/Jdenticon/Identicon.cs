@@ -96,66 +96,10 @@ namespace Jdenticon
             return new Identicon(HexString.ToArray(hash));
         }
 
+        /// <inheritdoc cref="HashGenerator.ComputeHash(object, string)" />
         /// <summary>
         /// Generates a hash for a specified value and creates an <see cref="Identicon"/> instance from the generated hash.
         /// </summary>
-        /// <param name="value">The object that will be hashed and used as base for this icon.</param>
-        /// <param name="hashAlgorithmName">The name of the hash algorithm to use for hashing.</param>
-        /// <exception cref="System.ArgumentException">The specified <paramref name="hashAlgorithmName"/> is not supported.</exception>
-        /// <returns>An <see cref="Identicon"/> instance for the specified hash.</returns>
-        /// <remarks>
-        /// <para>
-        /// This method will use <see cref="Object.ToString"/> to generate a string representation of 
-        /// <paramref name="value"/> and then hash the UTF8 representation of the string using
-        /// the specified algorithm. If <paramref name="value"/> is <c>null</c> an empty byte array
-        /// is hashed.
-        /// </para>
-        /// <para>
-        /// The hash algorithms available to be used as <paramref name="hashAlgorithmName"/> depends
-        /// on the platform. Avoid using sensitive information as base for an icon, especially in 
-        /// combination with a weak hash algorithm like MD5 and SHA1. Consider using public information
-        /// instead, like an id or a user name.
-        /// </para>
-        /// <list type="table">
-        ///     <title>Supported hash algorithms per platform.</title>
-        ///     <listheader>
-        ///         <term>Hash algorithm</term>
-        ///         <term>.NET Standard 1.0</term>
-        ///         <term>.NET Standard 1.3</term>
-        ///         <term>.NET Framework</term>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>SHA1</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///     </item>
-        ///     <item>
-        ///         <term>SHA256</term>
-        ///         <term>-</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///     </item>
-        ///     <item>
-        ///         <term>SHA384</term>
-        ///         <term>-</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///     </item>
-        ///     <item>
-        ///         <term>SHA512</term>
-        ///         <term>-</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///     </item>
-        ///     <item>
-        ///         <term>MD5</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///         <term>Yes</term>
-        ///     </item>
-        /// </list>
-        /// </remarks>
         public static Identicon FromValue(object value, string hashAlgorithmName = "SHA1")
         {
             return new Identicon(HashGenerator.ComputeHash(value, hashAlgorithmName));

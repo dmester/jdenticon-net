@@ -152,9 +152,6 @@ namespace Jdenticon.AspNet.WebForms
         /// <summary>
         /// Gets or sets the value whose hash will be used as base for the icon. 
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <example>
         /// In this example a static identicon is displayed on the page.
         /// <code language="html">
