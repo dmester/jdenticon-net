@@ -43,6 +43,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Jdenticon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3fcf9f6e3475a4f8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Jdenticon-net.1.0.3\lib\net45\Jdenticon.dll</HintPath>
+    </Reference>
+    <Reference Include="Jdenticon.AspNet.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3fcf9f6e3475a4f8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Jdenticon.AspNet.WebApi.1.0.3\lib\net45\Jdenticon.AspNet.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -109,7 +115,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MvcController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\IconController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
