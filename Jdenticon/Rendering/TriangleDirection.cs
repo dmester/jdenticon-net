@@ -26,17 +26,30 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon.Rendering
 {
+    /// <summary>
+    /// Specifies in what direction the right angle corner of the triangle is pointing.
+    /// </summary>
     public enum TriangleDirection
     {
+        /// <summary>
+        /// The right angle corner is pointing to South West.
+        /// </summary>
         SouthWest = 0,
+        /// <summary>
+        /// The right angle corner is pointing to North West.
+        /// </summary>
         NorthWest = 1,
+        /// <summary>
+        /// The right angle corner is pointing to North East.
+        /// </summary>
         NorthEast = 2,
+        /// <summary>
+        /// The right angle corner is pointing to South East.
+        /// </summary>
         SouthEast = 3,
     }
 }

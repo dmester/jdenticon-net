@@ -30,3 +30,7 @@ _ReSharper*/
 .vs
 Visual Studio 2015
 node_modules
+*.vspx
+*.vsp
+*.psess
+packages

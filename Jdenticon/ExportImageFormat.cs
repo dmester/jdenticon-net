@@ -26,12 +26,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon
 {
+    /// <summary>
+    /// Specifies the file format for an identicon.
+    /// </summary>
     public enum ExportImageFormat
     {
         /// <summary>
@@ -41,14 +42,6 @@ namespace Jdenticon
         /// <summary>
         /// Generates an SVG vector image.
         /// </summary>
-        Svg,
-        /// <summary>
-        /// Generates an SVG fragment that can be included in an existing SVG file.
-        /// </summary>
-        SvgFragment,
-        /// <summary>
-        /// Generates an EMF vector image.
-        /// </summary>
-        Emf
+        Svg
     }
 }

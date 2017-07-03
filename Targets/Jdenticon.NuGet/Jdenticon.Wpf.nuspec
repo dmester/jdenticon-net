@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jdenticon.Wpf</id>
+    <version>$version$</version>
+    <title>Jdenticon.Wpf</title>
+    <authors>Daniel Mester Pirttijärvi</authors>
+    <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
+    <projectUrl>http://jdenticon.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Jdenticon-net is a .NET library for generating highly recogizable identicons. Jdenticon-net generates the same icon as its JavaScript counterpart for the same hash input.</description>
+    <summary>.NET identicon generator.</summary>
+    <tags>identicon avatar library</tags>
+    <dependencies>
+      <dependency id="Jdenticon-net" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Jdenticon.Wpf.Net40\bin\$configuration$\Jdenticon.Wpf.dll" target="lib\net40\Jdenticon.Wpf.dll" />
+    <file src="..\Jdenticon.Wpf.Net40\bin\$configuration$\Jdenticon.Wpf.xml" target="lib\net40\Jdenticon.Wpf.xml" />
+    <file src="..\Jdenticon.Wpf.Net45\bin\$configuration$\Jdenticon.Wpf.dll" target="lib\net45\Jdenticon.Wpf.dll" />
+    <file src="..\Jdenticon.Wpf.Net45\bin\$configuration$\Jdenticon.Wpf.xml" target="lib\net45\Jdenticon.Wpf.xml" />
+  </files>
+</package>

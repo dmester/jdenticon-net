@@ -27,11 +27,7 @@
 using Jdenticon.Shapes;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon.Rendering
 {
@@ -109,7 +105,7 @@ namespace Jdenticon.Rendering
         /// </summary>
         private static bool IsDuplicate(ICollection<int> source, int newValue, params int[] duplicateValues)
         {
-            if (duplicateValues.Contains(newValue))
+            if (((ICollection<int>)duplicateValues).Contains(newValue))
             {
                 for (var i = 0; i < duplicateValues.Length; i++)
                 {

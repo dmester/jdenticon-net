@@ -27,24 +27,30 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon
 {
     /// <summary>
-    /// Provides a static class for creating <see cref="Range{TValue}"/> instances.
+    /// Provides helper methods for creating <see cref="Range{TValue}"/> values.
     /// </summary>
+    /// <example>
+    /// This class is used to create <see cref="Range{TValue}"/> values without explicitly 
+    /// specifying the type of the range. The following examples are equivalent.
+    /// <code lang="cs">
+    /// Range.Create(0f, 1f);
+    /// new Range&lt;float&gt;(0f, 1f);
+    /// </code>
+    /// </example>
     public static class Range
     {
         /// <summary>
-        /// Creates a new <see cref="Range{TValue}"/> instance.
+        /// Creates a new <see cref="Range{TValue}"/> with the specified values.
         /// </summary>
         /// <typeparam name="TValue">The type of the range bounds.</typeparam>
         /// <param name="from">The lower bound of the range.</param>
         /// <param name="to">The upper bound of the range.</param>
-        public static Range<TValue> Create<TValue>(TValue from, TValue to)
+        public static Range<TValue> Create<TValue>(TValue from, TValue to) where TValue : struct
         {
             return new Range<TValue>(from, to);
         }
@@ -54,7 +60,7 @@ namespace Jdenticon
     /// Represents a range between two values.
     /// </summary>
     /// <typeparam name="TValue">The type of the range bounds.</typeparam>
-    public struct Range<TValue>
+    public struct Range<TValue> : IEquatable<Range<TValue>> where TValue : struct
     {
         private TValue from;
         private TValue to;
@@ -84,6 +90,49 @@ namespace Jdenticon
         public TValue To
         {
             get { return to; }
+        }
+
+        /// <summary>
+        /// Gets a hash code for this range.
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return from.GetHashCode() ^ to.GetHashCode();
+        }
+
+        /// <summary>
+        /// Checks if this is range is equal to another range.
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            return obj is Range<TValue> && Equals((Range<TValue>)obj);
+        }
+
+        /// <summary>
+        /// Checks if this is range is equal to another range.
+        /// </summary>
+        public bool Equals(Range<TValue> other)
+        {
+            var comparer = EqualityComparer<TValue>.Default;
+            return
+                comparer.Equals(other.from, from) &&
+                comparer.Equals(other.to, to);
+        }
+
+        /// <summary>
+        /// Checks if two ranges are equal.
+        /// </summary>
+        public static bool operator ==(Range<TValue> a, Range<TValue> b)
+        {
+            return a.Equals(b);
+        }
+
+        /// <summary>
+        /// Checks if two ranges are not equal.
+        /// </summary>
+        public static bool operator !=(Range<TValue> a, Range<TValue> b)
+        {
+            return !a.Equals(b);
         }
 
         /// <summary>

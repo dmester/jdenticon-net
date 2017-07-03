@@ -24,21 +24,42 @@
 //
 #endregion
 
+using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon
 {
-    public class IdenticonStyle
+    /// <summary>
+    /// Specifies the color style of an identicon.
+    /// </summary>
+    public class IdenticonStyle : IEquatable<IdenticonStyle>
     {
-        private Color backColor = Color.White;
-        private float saturation = 0.5f;
-        private Range<float> colorLightness = Range.Create(0.4f, 0.8f);
-        private Range<float> grayscaleLightness = Range.Create(0.3f, 0.9f);
+        private Color backColor = DefaultBackColor;
+        private float saturation = DefaultSaturation;
+        private Range<float> colorLightness = DefaultColorLightness;
+        private Range<float> grayscaleLightness = DefaultGrayscaleLightness;
+
+        /// <summary>
+        /// Gets the default value of the <see cref="ColorLightness"/> property.
+        /// </summary>
+        public static Range<float> DefaultColorLightness => Range.Create(0.4f, 0.8f);
+
+        /// <summary>
+        /// Gets the default value of the <see cref="GrayscaleLightness"/> property.
+        /// </summary>
+        public static Range<float> DefaultGrayscaleLightness => Range.Create(0.3f, 0.9f);
+
+        /// <summary>
+        /// Gets the default value of the <see cref="Saturation"/> property.
+        /// </summary>
+        public static float DefaultSaturation => 0.5f;
+
+        /// <summary>
+        /// Gets the default value of the <see cref="BackColor"/> property.
+        /// </summary>
+        public static Color DefaultBackColor => Color.White;
         
         /// <summary>
         /// The background color of the icon. Set to <see cref="Color.Transparent"/> to remove the background.
@@ -106,6 +127,27 @@ namespace Jdenticon
                 }
                 grayscaleLightness = value;
             }
+        }
+
+        /// <summary>
+        /// Checks if this style is identical to another style.
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IdenticonStyle);
+        }
+
+        /// <summary>
+        /// Checks if this style is identical to another style.
+        /// </summary>
+        public bool Equals(IdenticonStyle other)
+        {
+            return
+                other != null &&
+                other.backColor == backColor &&
+                other.colorLightness == colorLightness &&
+                other.grayscaleLightness == grayscaleLightness &
+                other.saturation == saturation;
         }
     }
 }

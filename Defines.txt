@@ -1,0 +1,18 @@
+
+HAVE_ASSEMBLY_ATTRIBUTES
+Support for assembly attributes.
+
+HAVE_COMPRESSION_LEVEL 
+The DeflateStream has a CompressionLevel parameter.
+
+HAVE_CRYPTO_CONFIG
+The CryptoConfig class is available.
+
+HAVE_FILE_STREAM
+The FileStream class is available.
+
+HAVE_HASH_ALGORITHMS
+Hash agorithms are available in the platform.
+
+USE_SHARP_COMPRESS
+Use SharpCompress for Deflate compression.

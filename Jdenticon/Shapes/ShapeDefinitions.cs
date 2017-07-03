@@ -27,10 +27,7 @@
 using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon.Shapes
 {
@@ -89,8 +86,19 @@ namespace Jdenticon.Shapes
                 },
                 (renderer, cell, index) =>
                 {
-                    var inner = (int)(cell * 0.1);
-                    var outer = (int)(cell * 0.25);
+                    var tmp = cell * 0.1f;
+
+                    var inner =
+                        tmp > 1 ? (int)tmp : // large icon => truncate decimals
+                        tmp > 0.5 ? 1 :      // medium size icon => fixed width
+                        tmp;                 // small icon => anti-aliased border
+
+                    // Use fixed outer border widths in small icons to ensure the border is drawn
+                    var outer =
+                        cell < 6 ? 1 :
+                        cell < 8 ? 2 :
+                        cell / 4;
+
                     renderer.AddRectangle(outer, outer, cell - inner - outer, cell - inner - outer);
                 },
                 (renderer, cell, index) =>
@@ -141,8 +149,17 @@ namespace Jdenticon.Shapes
                 },
                 (renderer, cell, index) =>
                 {
-                    var inner = (int)(cell * 0.14f);
-                    var outer = (int) (cell * 0.35f);
+                    var tmp = cell * 0.14f;
+                    var inner =
+                         cell < 8 ? tmp : // small icon => anti-aliased border
+                         (int)tmp;        // large icon => truncate decimals
+ 
+                     // Use fixed outer border widths in small icons to ensure the border is drawn
+                     var outer =
+                         cell < 4 ? 1 :
+                         cell < 6 ? 2 :
+                         (int)(cell * 0.35f);
+
                     renderer.AddRectangle(0, 0, cell, cell);
                     renderer.AddRectangle(outer, outer, cell - outer - inner, cell - outer - inner, true);
                 },
@@ -178,8 +195,14 @@ namespace Jdenticon.Shapes
             };
         }
 
+        /// <summary>
+        /// Gets the definition of the shapes that are placed in the center of the icon.
+        /// </summary>
         public static IList<ShapeDefinition> CenterShapes { get; private set; }
 
+        /// <summary>
+        /// Gets the definition of the shapes that are placed around the center of the icon.
+        /// </summary>
         public static IList<ShapeDefinition> OuterShapes { get; private set; }
     }
 }

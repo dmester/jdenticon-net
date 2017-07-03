@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jdenticon.AspNet.Mvc</id>
+    <version>$version$</version>
+    <title>Jdenticon.AspNet.Mvc</title>
+    <authors>Daniel Mester Pirttijärvi</authors>
+    <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
+    <projectUrl>http://jdenticon.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Jdenticon-net is a .NET library for generating highly recogizable identicons. Jdenticon-net generates the same icon as its JavaScript counterpart for the same hash input.</description>
+    <summary>.NET identicon generator.</summary>
+    <tags>identicon avatar library</tags>
+    <dependencies>
+      <dependency id="Jdenticon-net" version="1.0.0" />
+      <dependency id="Microsoft.AspNet.Mvc" version="[4.0,)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Jdenticon.AspNet.Mvc.Net40\bin\$configuration$\Jdenticon.AspNet.Mvc.dll" target="lib\net40\Jdenticon.AspNet.Mvc.dll" />
+    <file src="..\Jdenticon.AspNet.Mvc.Net40\bin\$configuration$\Jdenticon.AspNet.Mvc.xml" target="lib\net40\Jdenticon.AspNet.Mvc.xml" />
+    <file src="..\Jdenticon.AspNet.Mvc.Net45\bin\$configuration$\Jdenticon.AspNet.Mvc.dll" target="lib\net45\Jdenticon.AspNet.Mvc.dll" />
+    <file src="..\Jdenticon.AspNet.Mvc.Net45\bin\$configuration$\Jdenticon.AspNet.Mvc.xml" target="lib\net45\Jdenticon.AspNet.Mvc.xml" />
+    <file src="Web.config.Mvc.transform" target="Content\Web.config.transform" />
+  </files>
+</package>

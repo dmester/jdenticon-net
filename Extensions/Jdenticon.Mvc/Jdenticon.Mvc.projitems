@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>cbc73b22-177f-4c0a-87bb-e16e7fdef1b5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Jdenticon.Mvc</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonUrl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UrlHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HtmlHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonHttpHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonResult.cs" />
+  </ItemGroup>
+</Project>

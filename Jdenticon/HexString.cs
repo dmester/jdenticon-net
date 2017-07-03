@@ -26,7 +26,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Jdenticon
@@ -34,7 +33,7 @@ namespace Jdenticon
     internal static class HexString
     {
         private const string HexCharacters = "0123456789abcdef";
-
+        
         /// <summary>
         /// Creates a hexadecimal string representation of a byte array. Alphabetical characters will be lowercase.
         /// </summary>

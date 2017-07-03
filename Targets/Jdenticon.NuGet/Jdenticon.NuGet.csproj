@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0BCADE58-DD80-4ABB-A193-499ABE5DF34F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Jdenticon.NuGet</RootNamespace>
+    <AssemblyName>Jdenticon.NuGet</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Jdenticon.Gdi.nuspec" />
+    <None Include="Jdenticon.Wpf.nuspec" />
+    <None Include="Jdenticon.WebApi.nuspec" />
+    <None Include="Jdenticon.AspNet.Mvc.nuspec" />
+    <None Include="Jdenticon.AspNet.WebForms.nuspec" />
+    <None Include="jdenticon-net.nuspec" />
+    <None Include="Web.config.WebForms.transform" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.config.Mvc.transform" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)jdenticon-net.nuspec" -Properties "version=1.0.1;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.Mvc.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.WebForms.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.WebApi.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Wpf.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Gdi.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

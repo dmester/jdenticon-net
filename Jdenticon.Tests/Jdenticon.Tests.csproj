@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Jdenticon.Tests</RootNamespace>
     <AssemblyName>Jdenticon.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,13 +57,24 @@
   </Choose>
   <ItemGroup>
     <Compile Include="HexStringTests.cs" />
+    <Compile Include="MachineKeyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HashUtilsTests.cs" />
+    <Compile Include="ColorTests.cs" />
+    <Compile Include="SHA1Tests.cs" />
+    <Compile Include="IdenticonRequestTests.cs" />
+    <Compile Include="RangeTests.cs" />
+    <Compile Include="EdgeTableTests.cs" />
+    <Compile Include="SuperSampleRangeListTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Jdenticon\Jdenticon.csproj">
-      <Project>{8bfd77e5-5082-47f5-8f5c-4181b22739af}</Project>
-      <Name>Jdenticon</Name>
+    <ProjectReference Include="..\Targets\Jdenticon.AspNet.Mvc.Net45\Jdenticon.AspNet.Mvc.Net45.csproj">
+      <Project>{631529fa-2c0a-4792-b2bd-f273fb80e610}</Project>
+      <Name>Jdenticon.AspNet.Mvc.Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Targets\Jdenticon.Net45\Jdenticon.Net45.csproj">
+      <Project>{0b04331d-7c41-4312-8032-c7ecb447f051}</Project>
+      <Name>Jdenticon.Net45</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -26,11 +26,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon.Rendering.Svg
 {
@@ -39,8 +36,11 @@ namespace Jdenticon.Rendering.Svg
     /// </summary>
     public class SvgPath
     {
-        List<string> dataString = new List<string>();
+        private readonly List<string> dataString = new List<string>();
 
+        /// <summary>
+        /// Adds a circle to the SVG.
+        /// </summary>
         public void AddCircle(PointF location, float diameter, bool counterClockwise)
         {
             var sweepFlag = counterClockwise ? '0' : '1';
@@ -54,6 +54,9 @@ namespace Jdenticon.Rendering.Svg
                 "a" + radiusAsString + "," + radiusAsString + " 0 1," + sweepFlag + " " + (-diameter).ToString(invariant) + ",0");
         }
 
+        /// <summary>
+        /// Adds a polygon to the SVG.
+        /// </summary>
         public void AddPolygon(PointF[] points)
         {
             var invariant = CultureInfo.InvariantCulture;
@@ -68,6 +71,9 @@ namespace Jdenticon.Rendering.Svg
             dataString.Add("Z");
         }
 
+        /// <summary>
+        /// Gets the path as a SVG path string.
+        /// </summary>
         public override string ToString()
         {
             return string.Concat(dataString);

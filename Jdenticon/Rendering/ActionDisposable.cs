@@ -26,10 +26,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Jdenticon.Rendering
 {
@@ -37,27 +35,33 @@ namespace Jdenticon.Rendering
     /// An <see cref="IDisposable"/> implementation that executes an <see cref="Action"/>
     /// upon disposal.
     /// </summary>
-    internal class ActionDisposable : IDisposable
+    public class ActionDisposable : IDisposable
     {
         Action action;
 
+        /// <summary>
+        /// Creates an instance of <see cref="ActionDisposable"/>.
+        /// </summary>
+        /// <param name="action">The action that will be invoked when the <see cref="ActionDisposable"/> is disposed.</param>
         public ActionDisposable(Action action)
         {
             this.action = action;
         }
 
+        /// <summary>
+        /// Gets an <see cref="ActionDisposable"/> that does nothing when it is disposed.
+        /// </summary>
         public static ActionDisposable Empty
         {
             get { return new ActionDisposable(null); }
         }
 
+        /// <summary>
+        /// Calls the dispose action of this <see cref="ActionDisposable"/>.
+        /// </summary>
         public void Dispose()
         {
-            var action = Interlocked.Exchange(ref this.action, null);
-            if (action != null)
-            {
-                action();
-            }
+            Interlocked.Exchange(ref action, null)?.Invoke();
         }
     }
 }

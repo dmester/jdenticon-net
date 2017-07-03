@@ -26,12 +26,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon.Rendering.Svg
 {
@@ -45,27 +42,36 @@ namespace Jdenticon.Rendering.Svg
         private int width, height;
         private Color backColor;
 
+        /// <summary>
+        /// Creates an instance of <see cref="SvgRenderer"/>.
+        /// </summary>
+        /// <param name="width">The width of the icon in pixels.</param>
+        /// <param name="height">The height of the icon in pixels.</param>
         public SvgRenderer(int width, int height)
         {
             this.width = width;
             this.height = height;
         }
 
+        /// <inheritdoc />
         protected override void AddCircleNoTransform(PointF location, float diameter, bool counterClockwise)
         {
             path.AddCircle(location, diameter, counterClockwise);
         }
 
+        /// <inheritdoc />
         protected override void AddPolygonNoTransform(PointF[] points)
         {
             path.AddPolygon(points);
         }
 
+        /// <inheritdoc />
         public override void SetBackground(Color color)
         {
             backColor = color;
         }
 
+        /// <inheritdoc />
         public override IDisposable BeginShape(Color color)
         {
             if (!pathsByColor.TryGetValue(color, out path))
@@ -76,12 +82,17 @@ namespace Jdenticon.Rendering.Svg
             return ActionDisposable.Empty;
         }
         
+        /// <summary>
+        /// Writes the SVG to the specified <see cref="TextWriter"/>.
+        /// </summary>
+        /// <param name="writer">The output writer to which the SVG will be written.</param>
+        /// <param name="fragment">If <c>true</c> an SVG string without the root svg element will be rendered.</param>
         public void Save(TextWriter writer, bool fragment)
         {
             var invariantCulture = CultureInfo.InvariantCulture;
             var widthAsString = width.ToString(invariantCulture);
             var heightAsString = height.ToString(invariantCulture);
-
+            
             if (!fragment)
             {
                 writer.Write("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" +

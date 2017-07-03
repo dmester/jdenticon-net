@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a3807953-1974-4f93-891b-6d1e0efe7a27</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Jdenticon</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\HashGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\SHA1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Bitmap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\ColorRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Path.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Png\PngChunkIdentifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Png\PngColorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Png\PngKeyword.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Png\PngPalette.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExportImageFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\ZlibStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Adler32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\Crc32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Png\PngChunkStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Png\PngEncoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\StreamExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\ArrayUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\AverageColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\BitmapWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\Buffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\Edge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\EdgeIntersectionRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\EdgeTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\Intersection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\IntersectionList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\LayerManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\PolygonFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\SuperSampleBuffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\SuperSampleRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\SuperSampleRangeList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\Rasterization\SuperSampling.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HexString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Identicon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NamespaceDoc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PngExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SvgExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\LeaveOpenStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\ActionDisposable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\ColorTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\ColorUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\IconGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Png\PngRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\PointF.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Rectangle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Renderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Svg\SvgPath.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Svg\SvgRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Transform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\TriangleDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\Shape.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\ShapeCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\ShapeDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\ShapeDefinitions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\ShapePosition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\ShapePositionCollection.cs" />
+  </ItemGroup>
+</Project>

@@ -24,18 +24,13 @@
 //
 #endregion
 
+using Jdenticon.Cryptography;
 using Jdenticon.IO;
 using Jdenticon.Rendering;
-using Jdenticon.Rendering.GdiPlus;
-using Jdenticon.Rendering.Svg;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Jdenticon
 {
@@ -46,47 +41,126 @@ namespace Jdenticon
     {
         private byte[] hash;
         private float padding = 0.08f;
-        private IconGenerator iconGenerator = new IconGenerator();
-        private IdenticonStyle style = new IdenticonStyle();
-        
+        private IconGenerator iconGenerator;
+        private IdenticonStyle style;
+
         /// <summary>
         /// Creates an <see cref="Identicon"/> instance with the specified hash.
         /// </summary>
-        /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 11 bytes.</param>
+        /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
+        /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hash"/> is null.</exception>
         public Identicon(byte[] hash)
         {
-            if (hash == null) throw new ArgumentNullException("hash");
-            if (hash.Length < 6) throw new ArgumentException("hash", "The hash array was too short. At least 6 bytes are required.");
+            if (hash == null) throw new ArgumentNullException(nameof(hash));
+            if (hash.Length < 6) throw new ArgumentException(nameof(hash), 
+                "The hash array was too short. At least 6 bytes are required.");
 
-            this.hash = hash;
+            // Remove parts of hash that should not be used, as
+            // some of the extensions want to keep the size of the 
+            // hash down.
+            if (hash.Length <= 10)
+            {
+                this.hash = new byte[hash.Length];
+                Buffer.BlockCopy(hash, 0, this.hash, 0, hash.Length);
+            }
+            else
+            {
+                this.hash = new byte[10];
+                Buffer.BlockCopy(hash, 0, this.hash, 0, 6);
+                Buffer.BlockCopy(hash, 0, this.hash, this.hash.Length - 4, 4);
+            }
         }
 
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with the specified hash.
+        /// Creates an <see cref="Identicon"/> instance with a specified hash.
         /// </summary>
-        /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 11 bytes.</param>
+        /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
+        /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hash"/> is null.</exception>
+        /// <returns>An <see cref="Identicon"/> instance for the specified hash.</returns>
         public static Identicon FromHash(byte[] hash)
         {
             return new Identicon(hash);
         }
 
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with the specified hash.
+        /// Creates an <see cref="Identicon"/> instance from a hexadecimal hash string.
         /// </summary>
-        /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 11 bytes.</param>
+        /// <param name="hash">The hex encoded hash that will be used as base for this icon. The hash string must contain at least 12 characters.</param>
+        /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hash"/> is null.</exception>
+        /// <exception cref="FormatException"><paramref name="hash"/> is not a hexadecimal string.</exception>
+        /// <returns>An <see cref="Identicon"/> instance for the specified hash.</returns>
         public static Identicon FromHash(string hash)
         {
+            if (hash == null) throw new ArgumentNullException(nameof(hash));
             return new Identicon(HexString.ToArray(hash));
         }
-        
+
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with a hash of the specified object.
+        /// Generates a hash for a specified value and creates an <see cref="Identicon"/> instance from the generated hash.
         /// </summary>
-        /// <param name="value">The string representation of this object will be hashed and used as base for this icon.</param>
+        /// <param name="value">The object that will be hashed and used as base for this icon.</param>
         /// <param name="hashAlgorithmName">The name of the hash algorithm to use for hashing.</param>
+        /// <exception cref="System.ArgumentException">The specified <paramref name="hashAlgorithmName"/> is not supported.</exception>
+        /// <returns>An <see cref="Identicon"/> instance for the specified hash.</returns>
+        /// <remarks>
+        /// <para>
+        /// This method will use <see cref="Object.ToString"/> to generate a string representation of 
+        /// <paramref name="value"/> and then hash the UTF8 representation of the string using
+        /// the specified algorithm. If <paramref name="value"/> is <c>null</c> an empty byte array
+        /// is hashed.
+        /// </para>
+        /// <para>
+        /// The hash algorithms available to be used as <paramref name="hashAlgorithmName"/> depends
+        /// on the platform. Avoid using sensitive information as base for an icon, especially in 
+        /// combination with a weak hash algorithm like MD5 and SHA1. Consider using public information
+        /// instead, like an id or a user name.
+        /// </para>
+        /// <list type="table">
+        ///     <title>Supported hash algorithms per platform.</title>
+        ///     <listheader>
+        ///         <term>Hash algorithm</term>
+        ///         <term>.NET Standard 1.0</term>
+        ///         <term>.NET Standard 1.3</term>
+        ///         <term>.NET Framework</term>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>SHA1</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>SHA256</term>
+        ///         <term>-</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>SHA384</term>
+        ///         <term>-</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>SHA512</term>
+        ///         <term>-</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>MD5</term>
+        ///         <term>-</term>
+        ///         <term>Yes</term>
+        ///         <term>Yes</term>
+        ///     </item>
+        /// </list>
+        /// </remarks>
         public static Identicon FromValue(object value, string hashAlgorithmName = "SHA1")
         {
-            return new Identicon(HashUtils.ComputeHash(value, hashAlgorithmName));
+            return new Identicon(HashGenerator.ComputeHash(value, hashAlgorithmName));
         }
 
         /// <summary>
@@ -97,7 +171,11 @@ namespace Jdenticon
             get { return padding; }
             set
             {
-                if (padding < 0f || padding > 0.4f) throw new ArgumentOutOfRangeException("Padding", "Only padding values in the range [0.0, 0.4] are valid.");
+                if (padding < 0f || padding > 0.4f)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Padding),
+                        "Only padding values in the range [0.0, 0.4] are valid.");
+                }
                 padding = value;
             }
         }
@@ -107,8 +185,12 @@ namespace Jdenticon
         /// </summary>
         public IconGenerator IconGenerator
         {
-            get { return iconGenerator; }
-            set { iconGenerator = value ?? new IconGenerator(); }
+            get
+            {
+                if (iconGenerator == null) iconGenerator = new IconGenerator();
+                return iconGenerator;
+            }
+            set { iconGenerator = value; }
         }
         
         /// <summary>
@@ -116,30 +198,43 @@ namespace Jdenticon
         /// </summary>
         public IdenticonStyle Style
         {
-            get { return style; }
-            set { style = value ?? new IdenticonStyle(); }
+            get
+            {
+                if (style == null) style = new IdenticonStyle();
+                return style;
+            }
+            set { style = value; }
+        }
+
+        /// <summary>
+        /// Draws this icon using a specified renderer.
+        /// </summary>
+        /// <param name="renderer">The renderer used to render this icon.</param>
+        /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
+        public void Draw(Renderer renderer, Rectangle rect)
+        {
+            IconGenerator.Generate(renderer, rect, Style, hash);
+        }
+
+        /// <summary>
+        /// Gets the hash that is the base of this icon. This property always returns a copy of the internal hash.
+        /// Note that the hash will be compressed to 10 byte if the source hash was longer than 10 byte.
+        /// </summary>
+        public byte[] Hash
+        {
+            get
+            {
+                var clone = new byte[hash.Length];
+                Buffer.BlockCopy(hash, 0, clone, 0, hash.Length);
+                return clone;
+            }
         }
         
         /// <summary>
-        /// Draws this icon in the specified drawing context.
+        /// Gets the bounds of the icon excluding its padding given an output size.
         /// </summary>
-        /// <param name="g">Drawing context in which the icon will be rendered.</param>
-        /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
-        public void Draw(Graphics g, Rectangle rect)
-        {
-            var renderer = new GdiPlusRenderer(g);
-            iconGenerator.Generate(renderer, rect, Style, hash);
-        }
-
-        private void GenerateSvg(int size, TextWriter writer, bool fragment)
-        {
-            var iconBounds = GetIconBounds(size);
-            var renderer = new SvgRenderer(size, size);
-            iconGenerator.Generate(renderer, iconBounds, Style, hash);
-            renderer.Save(writer, fragment);
-        }
-
-        private Rectangle GetIconBounds(int size)
+        /// <param name="size">The size of the output image in pixels.</param>
+        public Rectangle GetIconBounds(int size)
         {
             return new Rectangle(
                 (int)(padding * size),
@@ -148,177 +243,6 @@ namespace Jdenticon
                 size - (int)(padding * size) * 2);
         }
 
-        /// <summary>
-        /// Creates a bitmap icon.
-        /// </summary>
-        /// <param name="size">The size of the generated bitmap in pixels.</param>
-        public Bitmap ToBitmap(int size)
-        {
-            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
-
-            var iconBounds = GetIconBounds(size);     
-            var img = new Bitmap(size, size);
-            try
-            {
-                using (var g = Graphics.FromImage(img))
-                {
-                    Draw(g, iconBounds);
-                }
-
-                return img;
-            }
-            catch
-            {
-                img.Dispose();
-                throw;
-            }
-        }
-
-        private void ToMetafile(Stream stream, int size)
-        {
-            var iconBounds = GetIconBounds(size);
-
-            using (var desktopGraphics = Graphics.FromHwnd(IntPtr.Zero))
-            {
-                var hdc = desktopGraphics.GetHdc();
-                try
-                {
-                    using (var img = new Metafile(stream, hdc, 
-                        new Rectangle(0, 0, size, size), MetafileFrameUnit.Pixel, 
-                        EmfType.EmfPlusDual))
-                    {
-                        using (var graphics = Graphics.FromImage(img))
-                        {
-                            Draw(graphics, iconBounds);
-                        }
-                    }
-                }
-                finally
-                {
-                    desktopGraphics.ReleaseHdc(hdc);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Saves this icon to the specified stream.
-        /// </summary>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <param name="stream">The stream to which the icon is written.</param>
-        /// <param name="format">The image format of the generated icon.</param>
-        public void Save(int size, Stream stream, ExportImageFormat format)
-        {
-            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
-            if (stream == null) throw new ArgumentNullException("stream");
-
-            if (format == ExportImageFormat.Png)
-            {
-                using (var img = ToBitmap(size))
-                {
-                    img.Save(stream, ImageFormat.Png);
-                }
-            }
-            else if (format == ExportImageFormat.Emf)
-            {
-                ToMetafile(stream, size);
-            }
-            else 
-            {
-                // The LeaveOpenStream wrapper is needed for .NET 4.0 compatibility, since the
-                // .NET 4.0 version of StreamWriter does not have an option for keeping the
-                // stream open when the writer itself is disposed.
-                using (var leaveOpenStream = new LeaveOpenStream(stream))
-                {
-                    using (var writer = new StreamWriter(leaveOpenStream, Encoding.UTF8))
-                    {
-                        GenerateSvg(size, writer, format == ExportImageFormat.SvgFragment);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Saves this icon to a specified file.
-        /// </summary>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <param name="path">The path to the file to which the icon will be written.</param>
-        /// <param name="format">The image format of the generated icon.</param>
-        public void Save(int size, string path, ExportImageFormat format)
-        {
-            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
-            if (path == null) throw new ArgumentNullException("path");
-
-            using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
-            {
-                Save(size, stream, format);
-            }
-        }
-
-        /// <summary>
-        /// Saves this icon to a specified file. The format is automatically determined from the file name extension.
-        /// </summary>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <param name="path">The path to the file to which the icon will be written.</param>
-        public void Save(int size, string path)
-        {
-            if (size < 30) throw new ArgumentOutOfRangeException("size", size, "The size was too small. Only sizes greater than or equal to 30 pixels are supported.");
-            if (path == null) throw new ArgumentNullException("path");
-
-            ExportImageFormat format;
-
-            var extension = Path.GetExtension(path);
-            if (string.IsNullOrEmpty(path))
-            {
-                throw new ArgumentException("Could not automatically determine a file format. No file name extension was specified.", "path");
-            }
-
-            switch (extension.ToLowerInvariant())
-            {
-                case ".svg":
-                    format = ExportImageFormat.Svg;
-                    break;
-                case ".emf":
-                    format = ExportImageFormat.Emf;
-                    break;
-                case ".png":
-                    format = ExportImageFormat.Png;
-                    break;
-                default:
-                    throw new ArgumentException("Could not automatically determine a file format for the extension '" + extension + "'.", "path");
-            }
-
-            using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
-            {
-                Save(size, stream, format);
-            }
-        }
-
-        /// <summary>
-        /// Creates a string containing an SVG version of this icon.
-        /// </summary>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <param name="fragment">
-        /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
-        /// it suitable to be embedded in another SVG.
-        /// </param>
-        public string ToSvg(int size, bool fragment)
-        {
-            using (var writer = new StringWriter())
-            {
-                GenerateSvg(size, writer, fragment);
-                return writer.ToString();
-            }
-        }
-
-        /// <summary>
-        /// Creates a string containing an SVG version of this icon.
-        /// </summary>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        public string ToSvg(int size)
-        {
-            return ToSvg(size, false);
-        }
-        
         /// <summary>
         /// Gets a string representation of this <see cref="Identicon"/> .
         /// </summary>

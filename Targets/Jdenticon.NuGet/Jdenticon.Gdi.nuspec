@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jdenticon.Gdi</id>
+    <version>$version$</version>
+    <title>Jdenticon.Gdi</title>
+    <authors>Daniel Mester Pirttijärvi</authors>
+    <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
+    <projectUrl>http://jdenticon.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Jdenticon-net is a .NET library for generating highly recogizable identicons. Jdenticon-net generates the same icon as its JavaScript counterpart for the same hash input.</description>
+    <summary>.NET identicon generator.</summary>
+    <tags>identicon avatar library</tags>
+    <dependencies>
+      <dependency id="Jdenticon-net" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Jdenticon.Gdi.Net40\bin\$configuration$\Jdenticon.Gdi.dll" target="lib\net40\Jdenticon.Gdi.dll" />
+    <file src="..\Jdenticon.Gdi.Net40\bin\$configuration$\Jdenticon.Gdi.xml" target="lib\net40\Jdenticon.Gdi.xml" />
+    <file src="..\Jdenticon.Gdi.Net45\bin\$configuration$\Jdenticon.Gdi.dll" target="lib\net45\Jdenticon.Gdi.dll" />
+    <file src="..\Jdenticon.Gdi.Net45\bin\$configuration$\Jdenticon.Gdi.xml" target="lib\net45\Jdenticon.Gdi.xml" />
+  </files>
+</package>
