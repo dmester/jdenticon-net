@@ -39,6 +39,8 @@
     <Compile Include="ExtensionAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\..\Jdenticon\Jdenticon.projitems" Label="Shared" />
+  <Import Project="..\..\Core\Jdenticon\Jdenticon.projitems" Label="Shared" />
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\Build\Common.props" />
 </Project>

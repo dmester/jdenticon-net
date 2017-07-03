@@ -47,6 +47,7 @@
   <ItemGroup>
     <None Include="Web.config.Mvc.transform" />
   </ItemGroup>
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)jdenticon-net.nuspec" -Properties "version=1.0.1;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"

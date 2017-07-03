@@ -9,7 +9,6 @@
     <Import_RootNamespace>Jdenticon</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashAlgorithms\MD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashAlgorithms\SHA1.cs" />

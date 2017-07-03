@@ -32,17 +32,13 @@
     <DocumentationFile>bin\Release\Jdenticon.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="..\..\Jdenticon\Jdenticon.projitems" Label="Shared" />
+  <Import Project="..\..\Core\Jdenticon\Jdenticon.projitems" Label="Shared" />
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\Build\Common.props" />
 </Project>

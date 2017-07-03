@@ -9,7 +9,6 @@
     <Import_RootNamespace>Jdenticon.AspNet.WebApi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IdenticonResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NamespaceDoc.cs" />
   </ItemGroup>

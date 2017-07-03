@@ -5,6 +5,7 @@
     <AssemblyName>Jdenticon</AssemblyName>
     <RootNamespace>Jdenticon</RootNamespace>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -21,7 +22,10 @@
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
-  <Import Project="..\..\Jdenticon\Jdenticon.projitems" Label="Shared" />
+  <Import Project="..\..\Core\Jdenticon\Jdenticon.projitems" Label="Shared" />
+
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
+  <Import Project="$(SolutionDir)\Build\Common.props" />
 
   <ItemGroup>
     <PackageReference Include="SharpCompress" Version="0.13.0" />

@@ -69,11 +69,11 @@
     <Compile Include="SuperSampleRangeListTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Targets\Jdenticon.AspNet.Mvc.Net45\Jdenticon.AspNet.Mvc.Net45.csproj">
+    <ProjectReference Include="..\..\Targets\Jdenticon.AspNet.Mvc.Net45\Jdenticon.AspNet.Mvc.Net45.csproj">
       <Project>{631529fa-2c0a-4792-b2bd-f273fb80e610}</Project>
       <Name>Jdenticon.AspNet.Mvc.Net45</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Targets\Jdenticon.Net45\Jdenticon.Net45.csproj">
+    <ProjectReference Include="..\..\Targets\Jdenticon.Net45\Jdenticon.Net45.csproj">
       <Project>{0b04331d-7c41-4312-8032-c7ecb447f051}</Project>
       <Name>Jdenticon.Net45</Name>
     </ProjectReference>
@@ -98,11 +98,5 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(SolutionDir)\Build\Common.props" />
 </Project>
