@@ -3,7 +3,7 @@
   <metadata>
     <id>Jdenticon-net</id>
     <version>$version$</version>
-    <title>Jdenticon-net</title>
+    <title>Jdenticon.Net</title>
     <authors>Daniel Mester Pirttijärvi</authors>
     <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
     <projectUrl>http://jdenticon.com/</projectUrl>
@@ -25,16 +25,16 @@
   </metadata>
   <files>
     <file src="..\Jdenticon.Net20\bin\$configuration$\Jdenticon.dll" target="lib\net20\Jdenticon.dll" />
-    <file src="..\Jdenticon.Net20\bin\$configuration$\Jdenticon.xml" target="lib\net20\Jdenticon.xml" />
     <file src="..\Jdenticon.Net35\bin\$configuration$\Jdenticon.dll" target="lib\net35\Jdenticon.dll" />
-    <file src="..\Jdenticon.Net35\bin\$configuration$\Jdenticon.xml" target="lib\net35\Jdenticon.xml" />
     <file src="..\Jdenticon.Net40\bin\$configuration$\Jdenticon.dll" target="lib\net40\Jdenticon.dll" />
-    <file src="..\Jdenticon.Net40\bin\$configuration$\Jdenticon.xml" target="lib\net40\Jdenticon.xml" />
     <file src="..\Jdenticon.Net45\bin\$configuration$\Jdenticon.dll" target="lib\net45\Jdenticon.dll" />
-    <file src="..\Jdenticon.Net45\bin\$configuration$\Jdenticon.xml" target="lib\net45\Jdenticon.xml" />
     <file src="..\Jdenticon.NetStandard10\bin\$configuration$\netstandard1.0\Jdenticon.dll" target="lib\netstandard1.0\Jdenticon.dll" />
-    <file src="..\Jdenticon.NetStandard10\bin\$configuration$\netstandard1.0\Jdenticon.xml" target="lib\netstandard1.0\Jdenticon.xml" />
     <file src="..\Jdenticon.NetStandard13\bin\$configuration$\netstandard1.3\Jdenticon.dll" target="lib\netstandard1.3\Jdenticon.dll" />
-    <file src="..\Jdenticon.NetStandard13\bin\$configuration$\netstandard1.3\Jdenticon.xml" target="lib\netstandard1.3\Jdenticon.xml" />
+    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.xml" target="lib\net20\Jdenticon.xml" />
+    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.xml" target="lib\net35\Jdenticon.xml" />
+    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.xml" target="lib\net40\Jdenticon.xml" />
+    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.xml" target="lib\net45\Jdenticon.xml" />
+    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.xml" target="lib\netstandard1.0\Jdenticon.xml" />
+    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.xml" target="lib\netstandard1.3\Jdenticon.xml" />
   </files>
 </package>
