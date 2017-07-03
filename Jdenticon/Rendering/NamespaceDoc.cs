@@ -26,23 +26,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
-using JdenticonColor = Jdenticon.Rendering.Color;
-using WpfColor = System.Windows.Media.Color;
 
-namespace Jdenticon.Rendering.Wpf
+namespace Jdenticon.Rendering
 {
-    internal static class WpfExtensions
+    /// <summary>
+    /// Classes that are responsible for generating and rendering icons.
+    /// </summary>
+    [CompilerGenerated]
+    internal static class NamespaceDoc
     {
-        public static WpfColor ToWpfColor(this JdenticonColor color)
-        {
-            return WpfColor.FromArgb((byte)color.A, (byte)color.R, (byte)color.G, (byte)color.B);
-        }
-
-        public static Rectangle ToJdenticon(this System.Windows.Rect rect)
-        {
-            return new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height);
-        }
     }
 }

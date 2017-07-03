@@ -24,7 +24,6 @@
 //
 #endregion
 
-using Jdenticon.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,8 +34,39 @@ using System.Web.UI.WebControls;
 namespace Jdenticon.AspNet.WebForms
 {
     /// <summary>
-    /// Rendered as an identicon.
+    /// Renders and displays an identicon on a web page.
     /// </summary>
+    /// <example>
+    /// In this example a static identicon is displayed on the page.
+    /// <code language="html">
+    /// &lt;jdenticon:Icon runat="server" StringValue="Example" Size="60" /&gt;
+    /// </code>
+    /// </example>
+    /// <example>
+    /// This example shows how to bind to the <see cref="Value"/> property in a 
+    /// <see cref="Repeater"/>.
+    /// <code language="html" title="ASPX file">
+    /// &lt;asp:Repeater ID="repeater" runat="server"&gt;
+    ///     &lt;ItemTemplate&gt;
+    ///         Value: &lt;asp:Literal runat="server" Text='&lt;%# Container.DataItem %&gt;' /&gt;: &lt;br/&gt;
+    ///         &lt;jdenticon:Icon runat="server" Value='&lt;%# Container.DataItem %&gt;' Size="60" /&gt; &lt;br/&gt;&lt;br/&gt;
+    ///     &lt;/ItemTemplate&gt;
+    /// &lt;/asp:Repeater&gt;
+    /// </code>
+    /// <code language="cs" title="Code-behind file">
+    /// protected void Page_Load(object sender, EventArgs e)
+    /// {
+    ///     repeater.DataSource = new object[]
+    ///     {
+    ///         123,
+    ///         124,
+    ///         "Item3",
+    ///         "Item4"
+    ///     };
+    ///     repeater.DataBind();
+    /// }
+    /// </code>
+    /// </example>
     public class Icon : Image
     {
         private byte[] compressedHash;
@@ -45,7 +75,8 @@ namespace Jdenticon.AspNet.WebForms
         private int size;
         
         /// <summary>
-        /// Gets or sets the format in which the icon will be generated. Default is PNG.
+        /// Gets or sets the format in which the icon will be generated. If no format is
+        /// specified a PNG file is generated.
         /// </summary>
         public ExportImageFormat Format
         {
@@ -54,7 +85,8 @@ namespace Jdenticon.AspNet.WebForms
         }
         
         /// <summary>
-        /// Gets or sets the size of the generated icon in pixels. Default is 64 pixels.
+        /// Gets or sets the size of the generated icon in pixels. If no size is specified 
+        /// a 64 pixel icon is generated.
         /// </summary>
         public virtual int Size
         {
@@ -102,6 +134,13 @@ namespace Jdenticon.AspNet.WebForms
                     Format = Format
                 };
 
+                var backColor = BackColor;
+                if (!backColor.IsEmpty)
+                {
+                    parameters.Style.BackColor = Rendering.Color.FromArgb(
+                        backColor.A, backColor.R, backColor.G, backColor.B);
+                }
+
                 return Page.Response.ApplyAppPathModifier("~/identicon.axd?" + parameters);
             }
             set
@@ -111,9 +150,17 @@ namespace Jdenticon.AspNet.WebForms
         }
 
         /// <summary>
-        /// Gets or sets the value whose hash will be used as base for the icon. This property
-        /// can be used from the aspx code editor as object properties cannot be set that way.
+        /// Gets or sets the value whose hash will be used as base for the icon. 
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <example>
+        /// In this example a static identicon is displayed on the page.
+        /// <code language="html">
+        /// &lt;jdenticon:Icon runat="server" StringValue="Example" Size="60" /&gt;
+        /// </code>
+        /// </example>
         public string StringValue
         {
             get => Value as string;
@@ -123,6 +170,38 @@ namespace Jdenticon.AspNet.WebForms
         /// <summary>
         /// Gets or sets the value whose hash will be used as base for the icon. 
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// It is not possible to assign this property a literal on the control markup. However
+        /// it is possible to bind to it via the control markup, or use it from the code-behind 
+        /// file. It is possible to assign a string literal in the control markup by using the
+        /// <see cref="StringValue"/> property.
+        /// </para>
+        /// </remarks>
+        /// <example>
+        /// This example shows how to bind to the <see cref="Value"/> property in a 
+        /// <see cref="Repeater"/>.
+        /// <code language="html" title="ASPX file">
+        /// &lt;asp:Repeater ID="repeater" runat="server"&gt;
+        ///     &lt;ItemTemplate&gt;
+        ///         &lt;jdenticon:Icon runat="server" Value='&lt;%# Container.DataItem %&gt;' Size="60" /&gt;
+        ///     &lt;/ItemTemplate&gt;
+        /// &lt;/asp:Repeater&gt;
+        /// </code>
+        /// <code language="cs" title="Code-behind file">
+        /// protected void Page_Load(object sender, EventArgs e)
+        /// {
+        ///     repeater.DataSource = new object[]
+        ///     {
+        ///         123,
+        ///         124,
+        ///         "Item3",
+        ///         "Item4"
+        ///     };
+        ///     repeater.DataBind();
+        /// }
+        /// </code>
+        /// </example>
         public virtual object Value
         {
             get { return value; }
@@ -136,6 +215,13 @@ namespace Jdenticon.AspNet.WebForms
         /// <summary>
         /// Gets or sets the hash that the icon will be based on.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The hash is stored in a compacted form in view state and is thus not 
+        /// available on a postback. The compacted hash is enough to render the icon
+        /// which will render also on postbacks.
+        /// </para>
+        /// </remarks>
         public virtual byte[] Hash
         {
             // Don't load the hash from view state as it might have been compressed. 
@@ -145,7 +231,7 @@ namespace Jdenticon.AspNet.WebForms
         }
 
         /// <summary>
-        /// Gets or sets the compressed hash.
+        /// Gets or sets the compacted hash.
         /// </summary>
         protected virtual byte[] HashCore
         {
@@ -176,6 +262,9 @@ namespace Jdenticon.AspNet.WebForms
             }
         }
 
+        /// <summary>
+        /// This is the SHA1 hash of an empty string.
+        /// </summary>
         private static byte[] EmptyStringHash
         {
             get => new byte[] 

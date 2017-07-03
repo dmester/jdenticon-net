@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Jdenticon.Cryptography;
+using Jdenticon.HashAlgorithms;
 
 namespace Jdenticon.Tests
 {

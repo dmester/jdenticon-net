@@ -31,8 +31,11 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Jdenticon
+namespace Jdenticon.Wpf
 {
+    /// <summary>
+    /// Element that renders and displays an identicon.
+    /// </summary>
     public class IdenticonElement : FrameworkElement
     {
         private DrawingVisual visual = new DrawingVisual();

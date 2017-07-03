@@ -24,7 +24,6 @@
 //
 #endregion
 
-using Jdenticon.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,49 +33,48 @@ using System.Web.Mvc;
 namespace Jdenticon.AspNet.Mvc
 {
     /// <summary>
-    /// <see cref="HtmlHelper"/> extension methods for Jdenticon.
+    /// <see cref="UrlHelper"/> extension methods for Jdenticon.
     /// </summary>
-    public static class HtmlHelperExtensions
+    public static class UrlHelperExtensions
     {
         /// <summary>
-        /// Renders an identicon as an IMG tag.
+        /// Generates an URL to an identicon.
         /// </summary>
-        /// <param name="helper">The <see cref="HtmlHelper"/>.</param>
+        /// <param name="helper">The <see cref="UrlHelper"/>.</param>
         /// <param name="value">The value that will be hashed and used as base for the icon.</param>
         /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="style">The icon style.</param>
         /// <param name="format">The file format of the generated icon.</param>
-        public static MvcHtmlString Identicon(this HtmlHelper helper, object value, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
+        public static string Identicon(this UrlHelper helper, object value, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
         {
             var hash = HashGenerator.ComputeHash(value, "SHA1");
             return helper.Identicon(hash, size, format, style);
         }
 
         /// <summary>
-        /// Renders an identicon as an IMG tag.
+        /// Generates an URL to an identicon.
         /// </summary>
-        /// <param name="helper">The <see cref="HtmlHelper"/>.</param>
-        /// <param name="icon">The icon that will be rendered.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
-        /// <param name="format">The file format of the generated icon.</param>
-        public static MvcHtmlString Identicon(this HtmlHelper helper, Identicon icon, int size, ExportImageFormat format = ExportImageFormat.Png)
-        {
-            return helper.Identicon(icon.Hash, size, format, icon.Style);
-        }
-
-        /// <summary>
-        /// Renders an identicon as an IMG tag.
-        /// </summary>
-        /// <param name="helper">The <see cref="HtmlHelper"/>.</param>
+        /// <param name="helper">The <see cref="UrlHelper"/>.</param>
         /// <param name="hash">The hash that will be used as base for the icon.</param>
         /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="style">The icon style.</param>
         /// <param name="format">The file format of the generated icon.</param>
-        public static MvcHtmlString Identicon(this HtmlHelper helper, byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
+        public static string Identicon(this UrlHelper helper, byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
         {
-            var url = IdenticonUrl.Create(helper.ViewContext.HttpContext.Response, hash, size, format, style);
-            var html = "<img src=\"" + HttpUtility.HtmlAttributeEncode(url) + "\" width=\"" + size + "\" height=\"" + size + "\">";
-            return new MvcHtmlString(html);
+            return IdenticonUrl.Create(helper.RequestContext.HttpContext.Response, hash, size, format, style);
+        }
+
+        /// <summary>
+        /// Generates an URL to an identicon.
+        /// </summary>
+        /// <param name="helper">The <see cref="UrlHelper"/>.</param>
+        /// <param name="icon">The icon that will be rendered.</param>
+        /// <param name="size">The size of the generated icon in pixels.</param>
+        /// <param name="format">The file format of the generated icon.</param>
+        public static string Identicon(this UrlHelper helper, Identicon icon, int size, ExportImageFormat format = ExportImageFormat.Png)
+        {
+            if (icon == null) throw new ArgumentNullException(nameof(icon));
+            return helper.Identicon(icon.Hash, size, format, icon.Style);
         }
     }
 }

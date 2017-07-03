@@ -11,7 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GdiExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Rendering\GdiPlus\GdiPlusRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\GdiRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ConversionExtensions.cs" />
   </ItemGroup>
 </Project>

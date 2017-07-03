@@ -27,7 +27,7 @@ namespace Jdenticon.Tests
             {
                 var message = GenerateMessage(sizeToTest);
                 var hash1 = md5.ComputeHash(message);
-                var hash2 = Jdenticon.Cryptography.MD5.ComputeHash(message);
+                var hash2 = Jdenticon.HashAlgorithms.MD5.ComputeHash(message);
 
                 Assert.IsTrue(hash1.SequenceEqual(hash2));
             }

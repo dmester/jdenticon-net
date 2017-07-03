@@ -24,32 +24,26 @@
 //
 #endregion
 
+using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using JdenticonColor = Jdenticon.Rendering.Color;
+using WpfColor = System.Windows.Media.Color;
 
-namespace Jdenticon.Rendering
+namespace Jdenticon.Wpf.Extensions
 {
-    /// <summary>
-    /// Specifies in what direction the 90 degree angle of a triangle is pointing.
-    /// </summary>
-    public enum TriangleDirection
+    internal static class ConversionExtensions
     {
-        /// <summary>
-        /// The 90 degree angle is pointing to South West.
-        /// </summary>
-        SouthWest = 0,
-        /// <summary>
-        /// The 90 degree angle is pointing to North West.
-        /// </summary>
-        NorthWest = 1,
-        /// <summary>
-        /// The 90 degree angle is pointing to North East.
-        /// </summary>
-        NorthEast = 2,
-        /// <summary>
-        /// The 90 degree angle is pointing to South East.
-        /// </summary>
-        SouthEast = 3,
+        public static WpfColor ToWpfColor(this JdenticonColor color)
+        {
+            return WpfColor.FromArgb((byte)color.A, (byte)color.R, (byte)color.G, (byte)color.B);
+        }
+
+        public static Rectangle ToJdenticon(this System.Windows.Rect rect)
+        {
+            return new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height);
+        }
     }
 }

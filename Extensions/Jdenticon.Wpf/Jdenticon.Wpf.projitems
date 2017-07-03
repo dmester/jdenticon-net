@@ -11,8 +11,12 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IdenticonElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NamespaceDoc.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WpfExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Wpf\WpfExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Wpf\WpfRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ConversionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\WpfRenderer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
   </ItemGroup>
 </Project>

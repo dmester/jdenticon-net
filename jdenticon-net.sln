@@ -23,10 +23,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Jdenticon.Gdi", "Extensions
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Jdenticon.Wpf", "Extensions\Jdenticon.Wpf\Jdenticon.Wpf.shproj", "{A35AB996-73CB-4B80-B85E-DE531147C476}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Jdenticon.WebApi", "Extensions\Jdenticon.WebApi\Jdenticon.WebApi.shproj", "{5666EE2A-CACC-48B2-9249-82658985D3E9}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Jdenticon.AspNet.Mvc", "Extensions\Jdenticon.Mvc\Jdenticon.AspNet.Mvc.shproj", "{CBC73B22-177F-4C0A-87BB-E16E7FDEF1B5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Gdi.Net40", "Targets\Jdenticon.Gdi.Net40\Jdenticon.Gdi.Net40.csproj", "{172BE500-E675-4491-8169-6CEC51409B34}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Gdi.Net45", "Targets\Jdenticon.Gdi.Net45\Jdenticon.Gdi.Net45.csproj", "{6B54783A-AAD1-4F6C-B77A-4D37B233D7E2}"
@@ -42,8 +38,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.AspNet.WebForms.Net40", "Targets\Jdenticon.AspNet.WebForms.Net40\Jdenticon.AspNet.WebForms.Net40.csproj", "{18390B98-D7A0-4DED-B808-B59EF0452919}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.AspNet.WebForms.Net45", "Targets\Jdenticon.AspNet.WebForms.Net45\Jdenticon.AspNet.WebForms.Net45.csproj", "{1C7AF3BD-BA4B-4EC9-8443-86D726AAF8DF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.WebApi.Net45", "Targets\Jdenticon.WebApi.Net45\Jdenticon.WebApi.Net45.csproj", "{51D5BB3D-498D-4A3D-8D92-305BE6737C97}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jdenticon.NetStandard13", "Targets\Jdenticon.NetStandard13\Jdenticon.NetStandard13.csproj", "{D2E2F878-98C3-4138-B177-F6287AF83909}"
 EndProject
@@ -91,6 +85,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.AspNet.WebForms.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.AspNet.Mvc.Sample", "Samples\Jdenticon.AspNet.Mvc.Sample\Jdenticon.AspNet.Mvc.Sample.csproj", "{DAEAF999-BDDC-41C4-A8A5-895F05A5D82E}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Jdenticon.AspNet.Mvc", "Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.shproj", "{CBC73B22-177F-4C0A-87BB-E16E7FDEF1B5}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Jdenticon.AspNet.WebApi", "Extensions\Jdenticon.AspNet.WebApi\Jdenticon.AspNet.WebApi.shproj", "{5666EE2A-CACC-48B2-9249-82658985D3E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.AspNet.WebApi.Net45", "Targets\Jdenticon.AspNet.WebApi.Net45\Jdenticon.AspNet.WebApi.Net45.csproj", "{51D5BB3D-498D-4A3D-8D92-305BE6737C97}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Jdenticon\Jdenticon.projitems*{0b04331d-7c41-4312-8032-c7ecb447f051}*SharedItemsImports = 4
@@ -101,17 +101,17 @@ Global
 		Extensions\Jdenticon.AspNet.WebForms\Jdenticon.AspNet.WebForms.projitems*{1c7af3bd-ba4b-4ec9-8443-86d726aaf8df}*SharedItemsImports = 4
 		Jdenticon\Jdenticon.projitems*{376df6d0-72b0-441e-a265-60574a314bb0}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNet.WebForms\Jdenticon.AspNet.WebForms.projitems*{3ae16ddb-0ecb-4c73-9f8f-373274d82d3e}*SharedItemsImports = 13
-		Extensions\Jdenticon.WebApi\Jdenticon.WebApi.projitems*{51d5bb3d-498d-4a3d-8d92-305be6737c97}*SharedItemsImports = 4
-		Extensions\Jdenticon.WebApi\Jdenticon.WebApi.projitems*{5666ee2a-cacc-48b2-9249-82658985d3e9}*SharedItemsImports = 13
-		Extensions\Jdenticon.Mvc\Jdenticon.Mvc.projitems*{631529fa-2c0a-4792-b2bd-f273fb80e610}*SharedItemsImports = 4
+		Extensions\Jdenticon.AspNet.WebApi\Jdenticon.AspNet.WebApi.projitems*{51d5bb3d-498d-4a3d-8d92-305be6737c97}*SharedItemsImports = 4
+		Extensions\Jdenticon.AspNet.WebApi\Jdenticon.AspNet.WebApi.projitems*{5666ee2a-cacc-48b2-9249-82658985d3e9}*SharedItemsImports = 13
+		Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems*{631529fa-2c0a-4792-b2bd-f273fb80e610}*SharedItemsImports = 4
 		Extensions\Jdenticon.Gdi\Jdenticon.Gdi.projitems*{6b54783a-aad1-4f6c-b77a-4d37b233d7e2}*SharedItemsImports = 4
 		Extensions\Jdenticon.Gdi\Jdenticon.Gdi.projitems*{891a1f69-047b-4125-96ea-44a5945aedb5}*SharedItemsImports = 13
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{90e670eb-1a82-44d9-bc76-336cab3b555a}*SharedItemsImports = 4
-		Extensions\Jdenticon.Mvc\Jdenticon.Mvc.projitems*{925d23fd-ef96-460d-9585-80aa08cd5bee}*SharedItemsImports = 4
+		Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems*{925d23fd-ef96-460d-9585-80aa08cd5bee}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{a35ab996-73cb-4b80-b85e-de531147c476}*SharedItemsImports = 13
 		Jdenticon\Jdenticon.projitems*{a3807953-1974-4f93-891b-6d1e0efe7a27}*SharedItemsImports = 13
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
-		Extensions\Jdenticon.Mvc\Jdenticon.Mvc.projitems*{cbc73b22-177f-4c0a-87bb-e16e7fdef1b5}*SharedItemsImports = 13
+		Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems*{cbc73b22-177f-4c0a-87bb-e16e7fdef1b5}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -166,10 +166,6 @@ Global
 		{1C7AF3BD-BA4B-4EC9-8443-86D726AAF8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C7AF3BD-BA4B-4EC9-8443-86D726AAF8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C7AF3BD-BA4B-4EC9-8443-86D726AAF8DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2E2F878-98C3-4138-B177-F6287AF83909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2E2F878-98C3-4138-B177-F6287AF83909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2E2F878-98C3-4138-B177-F6287AF83909}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -209,6 +205,10 @@ Global
 		{DAEAF999-BDDC-41C4-A8A5-895F05A5D82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAEAF999-BDDC-41C4-A8A5-895F05A5D82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAEAF999-BDDC-41C4-A8A5-895F05A5D82E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D5BB3D-498D-4A3D-8D92-305BE6737C97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,8 +221,6 @@ Global
 		{0B04331D-7C41-4312-8032-C7ECB447F051} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{891A1F69-047B-4125-96EA-44A5945AEDB5} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
 		{A35AB996-73CB-4B80-B85E-DE531147C476} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
-		{5666EE2A-CACC-48B2-9249-82658985D3E9} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
-		{CBC73B22-177F-4C0A-87BB-E16E7FDEF1B5} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
 		{172BE500-E675-4491-8169-6CEC51409B34} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{6B54783A-AAD1-4F6C-B77A-4D37B233D7E2} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{90E670EB-1A82-44D9-BC76-336CAB3B555A} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
@@ -231,7 +229,6 @@ Global
 		{631529FA-2C0A-4792-B2BD-F273FB80E610} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{18390B98-D7A0-4DED-B808-B59EF0452919} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{1C7AF3BD-BA4B-4EC9-8443-86D726AAF8DF} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
-		{51D5BB3D-498D-4A3D-8D92-305BE6737C97} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{D2E2F878-98C3-4138-B177-F6287AF83909} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{887BF1AB-E9D3-4A07-BFAF-7BCEA2A4294E} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{376DF6D0-72B0-441E-A265-60574A314BB0} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
@@ -243,6 +240,9 @@ Global
 		{3AE16DDB-0ECB-4C73-9F8F-373274D82D3E} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
 		{52C87DE8-C9AE-40D7-A6C9-DABB4A02B8F3} = {282CBC54-5EFF-443F-8CF8-AD8A688576BD}
 		{DAEAF999-BDDC-41C4-A8A5-895F05A5D82E} = {282CBC54-5EFF-443F-8CF8-AD8A688576BD}
+		{CBC73B22-177F-4C0A-87BB-E16E7FDEF1B5} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
+		{5666EE2A-CACC-48B2-9249-82658985D3E9} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
+		{51D5BB3D-498D-4A3D-8D92-305BE6737C97} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

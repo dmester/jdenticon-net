@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyDescription("Jdenticon extension library to be used with WebApi.")]
+[assembly: AssemblyDescription("Jdenticon extension library to be used with ASP.NET WebApi.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Jdenticon")]

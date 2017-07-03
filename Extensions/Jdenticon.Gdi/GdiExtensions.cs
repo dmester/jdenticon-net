@@ -24,8 +24,8 @@
 //
 #endregion
 
-using Jdenticon.Rendering.GdiPlus;
-using Jdenticon.Extensions;
+using Jdenticon.Gdi.Extensions;
+using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -48,7 +48,7 @@ namespace Jdenticon
         /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
         public static void Draw(this Identicon icon, Graphics g, Rendering.Rectangle rect)
         {
-            var renderer = new GdiPlusRenderer(g);
+            var renderer = new GdiRenderer(g);
             icon.Draw(renderer, rect);
         }
 
@@ -57,7 +57,7 @@ namespace Jdenticon
         /// </summary>
         /// <param name="g">Drawing context in which the icon will be rendered.</param>
         /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
-        public static void Draw(this Identicon icon, Graphics g, Rectangle rect)
+        public static void Draw(this Identicon icon, Graphics g, System.Drawing.Rectangle rect)
         {
             icon.Draw(g, rect.ToJdenticon());
         }
@@ -98,7 +98,7 @@ namespace Jdenticon
                 try
                 {
                     using (var img = new Metafile(stream, hdc,
-                        new Rectangle(0, 0, size, size), MetafileFrameUnit.Pixel,
+                        new System.Drawing.Rectangle(0, 0, size, size), MetafileFrameUnit.Pixel,
                         EmfType.EmfPlusDual))
                     {
                         using (var graphics = Graphics.FromImage(img))

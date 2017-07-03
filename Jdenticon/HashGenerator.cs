@@ -28,12 +28,15 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-#if HAVE_HASH_ALGORITHMS
-using System.Security.Cryptography;
-#endif
 using System.Text;
 
-namespace Jdenticon.Cryptography
+#if HAVE_HASH_ALGORITHMS
+using System.Security.Cryptography;
+#else
+using Jdenticon.HashAlgorithms;
+#endif
+
+namespace Jdenticon
 {
     /// <summary>
     /// Helper class for generating hashes for any values.

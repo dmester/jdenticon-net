@@ -37,7 +37,7 @@ namespace Jdenticon
     /// <example>
     /// This class is used to create <see cref="Range{TValue}"/> values without explicitly 
     /// specifying the type of the range. The following examples are equivalent.
-    /// <code lang="cs">
+    /// <code language="cs">
     /// Range.Create(0f, 1f);
     /// new Range&lt;float&gt;(0f, 1f);
     /// </code>

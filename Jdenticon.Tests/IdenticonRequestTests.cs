@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jdenticon.AspNet.Mvc;
 using Jdenticon.Rendering;
-using Jdenticon.Cryptography;
 
 namespace Jdenticon.Tests
 {

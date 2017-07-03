@@ -37,7 +37,7 @@ namespace Jdenticon.Drawing
     /// <summary>
     /// A canvas where vector graphics can be rasterized.
     /// </summary>
-    public class Bitmap
+    internal class Bitmap
     {
         private EdgeTable edges;
         private int width;

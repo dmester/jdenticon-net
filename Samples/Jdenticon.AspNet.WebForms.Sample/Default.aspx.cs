@@ -11,7 +11,14 @@ namespace Jdenticon.AspNet.WebForms.Sample
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            repeater.DataSource = new object[]
+            {
+                123,
+                124,
+                "Item3",
+                "Item4"
+            };
+            repeater.DataBind();
         }
     }
 }

@@ -10,9 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\HashGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\MD5.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\SHA1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HashGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HashAlgorithms\MD5.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HashAlgorithms\SHA1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Bitmap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\ColorRange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Path.cs" />
@@ -48,6 +48,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)NamespaceDoc.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PngExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IdenticonStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\NamespaceDoc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shapes\NamespaceDoc.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SvgExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\LeaveOpenStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Range.cs" />
@@ -57,12 +59,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\ColorTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\ColorUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\IconGenerator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Png\PngRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\PngRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\PointF.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Rectangle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Renderer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Svg\SvgPath.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Svg\SvgRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\SvgPath.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\SvgRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Transform.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\TriangleDirection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shapes\Shape.cs" />

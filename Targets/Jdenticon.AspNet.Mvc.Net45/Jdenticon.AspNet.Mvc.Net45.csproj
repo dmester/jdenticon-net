@@ -69,6 +69,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\..\Extensions\Jdenticon.Mvc\Jdenticon.Mvc.projitems" Label="Shared" />
+  <Import Project="..\..\Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

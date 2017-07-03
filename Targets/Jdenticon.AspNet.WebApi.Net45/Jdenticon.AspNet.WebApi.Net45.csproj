@@ -7,8 +7,8 @@
     <ProjectGuid>{51D5BB3D-498D-4A3D-8D92-305BE6737C97}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jdenticon.WebApi</RootNamespace>
-    <AssemblyName>Jdenticon.WebApi</AssemblyName>
+    <RootNamespace>Jdenticon.AspNet.WebApi</RootNamespace>
+    <AssemblyName>Jdenticon.AspNet.WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -29,7 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Jdenticon.WebApi.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Jdenticon.AspNet.WebApi.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -56,6 +56,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\..\Extensions\Jdenticon.WebApi\Jdenticon.WebApi.projitems" Label="Shared" />
+  <Import Project="..\..\Extensions\Jdenticon.AspNet.WebApi\Jdenticon.AspNet.WebApi.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

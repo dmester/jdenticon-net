@@ -33,14 +33,16 @@ namespace Jdenticon
 {
     /// <summary>
     /// Contains all you need to generate icons with no or very basic
-    /// customization.
+    /// customization. Import this namespace to be able to render identicons
+    /// since all save operations are implemented as extension methods for the
+    /// <see cref="Identicon"/> class.
     /// </summary>
     /// <example>
     /// This code illustrates how to use Jdenticon to generate an icon from a string 
     /// and save it as a PNG image. Note that all save operations are implemented as
     /// extension methods, which means a using for the <see cref="Jdenticon"/> namespace
     /// is required.
-    /// <code lang="cs">
+    /// <code language="cs">
     /// using Jdenticon;
     /// // ...
     /// var icon = Identicon.FromValue("string to hash");

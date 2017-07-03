@@ -24,6 +24,7 @@
 //
 #endregion
 
+using Jdenticon.Wpf.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,10 +35,10 @@ using System.Windows.Shapes;
 using JdenticonColor = Jdenticon.Rendering.Color;
 using WpfColor = System.Windows.Media.Color;
 
-namespace Jdenticon.Rendering.Wpf
+namespace Jdenticon.Rendering
 {
     /// <summary>
-    /// Renders icons to a Wpf <see cref="DrawingContext"/>.
+    /// Renders icons to a WPF <see cref="DrawingContext"/>.
     /// </summary>
     public class WpfRenderer : Renderer
     {

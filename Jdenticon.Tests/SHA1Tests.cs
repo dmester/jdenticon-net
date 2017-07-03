@@ -27,7 +27,7 @@ namespace Jdenticon.Tests
             {
                 var message = GenerateMessage(sizeToTest);
                 var hash1 = sha1.ComputeHash(message);
-                var hash2 = Jdenticon.Cryptography.SHA1.ComputeHash(message);
+                var hash2 = Jdenticon.HashAlgorithms.SHA1.ComputeHash(message);
 
                 Assert.IsTrue(hash1.SequenceEqual(hash2));
             }

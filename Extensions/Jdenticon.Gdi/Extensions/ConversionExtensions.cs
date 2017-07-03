@@ -29,12 +29,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jdenticon.Extensions
+namespace Jdenticon.Gdi.Extensions
 {
     /// <summary>
     /// Extension methods for converting structs between GDI and Jdenticon.
     /// </summary>
-    public static class ConversionExtensions
+    internal static class ConversionExtensions
     {
         public static Rendering.Rectangle ToJdenticon(this System.Drawing.Rectangle rect)
         {

@@ -38,7 +38,7 @@
   <ItemGroup>
     <None Include="Jdenticon.Gdi.nuspec" />
     <None Include="Jdenticon.Wpf.nuspec" />
-    <None Include="Jdenticon.WebApi.nuspec" />
+    <None Include="Jdenticon.AspNet.WebApi.nuspec" />
     <None Include="Jdenticon.AspNet.Mvc.nuspec" />
     <None Include="Jdenticon.AspNet.WebForms.nuspec" />
     <None Include="jdenticon-net.nuspec" />

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:jd="clr-namespace:Jdenticon;assembly=Jdenticon.Wpf"
+        xmlns:jd="clr-namespace:Jdenticon.Wpf;assembly=Jdenticon.Wpf"
         mc:Ignorable="d"
         Title="Jdenticon WPF Sample" Height="530" Width="450">
     <Grid Margin="25">

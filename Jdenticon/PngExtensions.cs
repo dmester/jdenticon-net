@@ -24,7 +24,7 @@
 //
 #endregion
 
-using Jdenticon.Rendering.Png;
+using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;

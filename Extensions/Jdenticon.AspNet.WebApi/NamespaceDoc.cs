@@ -26,30 +26,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Jdenticon.Rendering
+namespace Jdenticon.AspNet.WebApi
 {
     /// <summary>
-    /// Specifies in what direction the 90 degree angle of a triangle is pointing.
+    /// Classes for using Jdenticon from WebApi.
     /// </summary>
-    public enum TriangleDirection
+    [CompilerGenerated]
+    internal static class NamespaceDoc
     {
-        /// <summary>
-        /// The 90 degree angle is pointing to South West.
-        /// </summary>
-        SouthWest = 0,
-        /// <summary>
-        /// The 90 degree angle is pointing to North West.
-        /// </summary>
-        NorthWest = 1,
-        /// <summary>
-        /// The 90 degree angle is pointing to North East.
-        /// </summary>
-        NorthEast = 2,
-        /// <summary>
-        /// The 90 degree angle is pointing to South East.
-        /// </summary>
-        SouthEast = 3,
     }
 }

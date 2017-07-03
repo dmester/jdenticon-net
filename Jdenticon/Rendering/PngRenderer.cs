@@ -30,7 +30,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Jdenticon.Rendering.Png
+namespace Jdenticon.Rendering
 {
     /// <summary>
     /// Renders icons as PNG using the internal vector rasterizer.

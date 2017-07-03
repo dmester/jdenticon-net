@@ -6,10 +6,11 @@
     <SharedGUID>5666ee2a-cacc-48b2-9249-82658985d3e9</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Jdenticon.WebApi</Import_RootNamespace>
+    <Import_RootNamespace>Jdenticon.AspNet.WebApi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IdenticonResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NamespaceDoc.cs" />
   </ItemGroup>
 </Project>

@@ -34,6 +34,12 @@ namespace Jdenticon.AspNet.WebForms
     /// <summary>
     /// <see cref="IHttpHandler"/> implementation used to serve icons.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    /// <see cref="IdenticonRequest"/> is used to generate a parameter string that is passed as
+    /// query string to the handler without any key, e.g. <c>Identicon.axd?1gMA84z~Li~s84z~Lg--</c>.
+    /// </para>
+    /// </remarks>
     public class IdenticonHttpHandler : IHttpHandler
     {
         /// <summary>

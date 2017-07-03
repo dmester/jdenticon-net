@@ -36,7 +36,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Jdenticon.WebApi
+namespace Jdenticon.AspNet.WebApi
 {
     /// <summary>
     /// Defines a result that will render and return an identicon.

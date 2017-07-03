@@ -24,8 +24,6 @@
 //
 #endregion
 
-using Jdenticon.Cryptography;
-using Jdenticon.IO;
 using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
@@ -194,7 +192,7 @@ namespace Jdenticon
         }
         
         /// <summary>
-        /// Gets or sets the style of the generated icon.
+        /// Gets or sets the style of the icon.
         /// </summary>
         public IdenticonStyle Style
         {
@@ -217,9 +215,18 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Gets the hash that is the base of this icon. This property always returns a copy of the internal hash.
-        /// Note that the hash will be compressed to 10 byte if the source hash was longer than 10 byte.
+        /// Gets the hash that is used as base for this icon.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The <see cref="Hash"/> property always returns a copy of its internal byte array to avoid accidental 
+        /// changes to the icon.
+        /// </para>
+        /// <para>
+        /// This property exposes the internally stored compacted hash. If the hash that was used to construct the
+        /// <see cref="Identicon"/> was longer than 10 byte, it has been shortened to 10 byte.
+        /// </para>
+        /// </remarks>
         public byte[] Hash
         {
             get
@@ -231,7 +238,7 @@ namespace Jdenticon
         }
         
         /// <summary>
-        /// Gets the bounds of the icon excluding its padding given an output size.
+        /// Gets the bounds of the icon excluding its padding given a size.
         /// </summary>
         /// <param name="size">The size of the output image in pixels.</param>
         public Rectangle GetIconBounds(int size)
@@ -244,7 +251,7 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Gets a string representation of this <see cref="Identicon"/> .
+        /// Gets a string representation of this <see cref="Identicon"/>.
         /// </summary>
         public override string ToString()
         {

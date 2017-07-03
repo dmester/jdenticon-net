@@ -35,7 +35,7 @@ namespace Jdenticon.Drawing
     /// <summary>
     /// A set of polygons and circles that will be rendered as a single entity.
     /// </summary>
-    public class Path
+    internal class Path
     {
         private Buffer<PointF[]> polygons = new Buffer<PointF[]>(10);
 

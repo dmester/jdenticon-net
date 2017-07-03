@@ -29,12 +29,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Jdenticon.Rendering.Svg
+namespace Jdenticon.Rendering
 {
     /// <summary>
     /// Represents a SVG path element.
     /// </summary>
-    public class SvgPath
+    internal class SvgPath
     {
         private readonly List<string> dataString = new List<string>();
 

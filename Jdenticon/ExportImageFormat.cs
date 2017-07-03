@@ -31,7 +31,7 @@ using System.Text;
 namespace Jdenticon
 {
     /// <summary>
-    /// Specifies the file format for an identicon.
+    /// Specifies the file format of an identicon.
     /// </summary>
     public enum ExportImageFormat
     {

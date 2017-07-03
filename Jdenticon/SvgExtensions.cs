@@ -24,7 +24,7 @@
 //
 #endregion
 
-using Jdenticon.Rendering.Svg;
+using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;

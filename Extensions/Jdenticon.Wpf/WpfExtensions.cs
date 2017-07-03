@@ -24,7 +24,8 @@
 //
 #endregion
 
-using Jdenticon.Rendering.Wpf;
+using Jdenticon.Rendering;
+using Jdenticon.Wpf.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,9 +40,9 @@ namespace Jdenticon
     public static class WpfExtensions
     {
         /// <summary>
-        /// Creates a Wpf <see cref="Visual"/> icon.
+        /// Renders the icon as a WPF <see cref="Visual"/>.
         /// </summary>
-        /// <param name="size">The sizeof the generated bitmap in pixels.</param>
+        /// <param name="size">The size of the generated bitmap in pixels.</param>
         public static Visual ToVisual(this Identicon icon, int size)
         {
             var visual = new DrawingVisual();

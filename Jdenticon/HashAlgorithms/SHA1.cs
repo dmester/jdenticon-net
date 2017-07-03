@@ -28,7 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jdenticon.Cryptography
+namespace Jdenticon.HashAlgorithms
 {
     /// <summary>
     /// Computes SHA1 hashes on platforms where the <see cref="System.Security.Cryptography"/> namespace

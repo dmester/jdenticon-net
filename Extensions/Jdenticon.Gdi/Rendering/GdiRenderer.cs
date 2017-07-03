@@ -24,7 +24,8 @@
 //
 #endregion
 
-using Jdenticon.Extensions;
+using Jdenticon.Gdi.Extensions;
+using Jdenticon.Gdi.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -33,21 +34,21 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace Jdenticon.Rendering.GdiPlus
+namespace Jdenticon.Rendering
 {
     /// <summary>
     /// Renders icons to a GDI+ <see cref="Graphics"/> drawing context.
     /// </summary>
-    public class GdiPlusRenderer : Renderer
+    public class GdiRenderer : Renderer
     {
         private GraphicsPath path;
         private Graphics graphics;
 
         /// <summary>
-        /// Creates an instance of the class <see cref="GdiPlusRenderer"/>.
+        /// Creates an instance of the class <see cref="GdiRenderer"/>.
         /// </summary>
         /// <param name="graphics">GDI+ drawing context to which the icon will be rendered.</param>
-        public GdiPlusRenderer(Graphics graphics)
+        public GdiRenderer(Graphics graphics)
         {
             this.graphics = graphics;
         }

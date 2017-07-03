@@ -71,8 +71,9 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// The saturation of the icon in the range [0.0, 1.0].
+        /// The saturation of the icon in the range [0.0f, 1.0f].
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">The value was less than 0.0f or greater than 1.0f.</exception>
         public float Saturation
         {
             get { return saturation; }
@@ -80,7 +81,8 @@ namespace Jdenticon
             {
                 if (value < 0 || value > 1)
                 {
-                    throw new ArgumentOutOfRangeException("Saturation", value, "Only saturation values in the range [0.0, 1.0] are allowed.");
+                    throw new ArgumentOutOfRangeException(nameof(Saturation), value,
+                        "Only saturation values in the range [0.0, 1.0] are allowed.");
                 }
 
                 saturation = value;
@@ -88,9 +90,18 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// The lightness range of the colored shapes in the icon. The lightness of the shapes can be inverted by
-        /// specifying a range where <see cref="Range{TValue}.From"/> is greater than <see cref="Range{TValue}.To"/>.
+        /// The lightness range of the colored shapes in the icon.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The lightness of the shapes can be inverted by specifying a range where <see cref="Range{TValue}.From"/> 
+        /// is greater than <see cref="Range{TValue}.To"/>. The normally darker shapes will then be lighter than 
+        /// the normally lighter ones.
+        /// </para>
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// One or both range bounds were less than 0.0f or greater than 1.0f.
+        /// </exception>
         public Range<float> ColorLightness
         {
             get { return colorLightness; }
@@ -98,20 +109,31 @@ namespace Jdenticon
             {
                 if (value.From < 0 || value.From > 1)
                 {
-                    throw new ArgumentOutOfRangeException("ColorLightness.From", value.From, "Only lightness values in the range [0.0, 1.0] are allowed.");
+                    throw new ArgumentOutOfRangeException("ColorLightness.From", value.From, 
+                        "Only lightness values in the range [0.0, 1.0] are allowed.");
                 }
                 if (value.To < 0 || value.To > 1)
                 {
-                    throw new ArgumentOutOfRangeException("ColorLightness.To", value.To, "Only lightness values in the range [0.0, 1.0] are allowed.");
+                    throw new ArgumentOutOfRangeException("ColorLightness.To", value.To, 
+                        "Only lightness values in the range [0.0, 1.0] are allowed.");
                 }
                 colorLightness = value;
             }
         }
 
         /// <summary>
-        /// The lightness range of the grayscale shapes in the icon. The lightness of the shapes can be inverted by
-        /// specifying a range where <see cref="Range{TValue}.From"/> is greater than <see cref="Range{TValue}.To"/>.
+        /// The lightness range of the grayscale shapes in the icon. 
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The lightness of the shapes can be inverted by specifying a range where <see cref="Range{TValue}.From"/> 
+        /// is greater than <see cref="Range{TValue}.To"/>. The normally darker shapes will then be lighter than 
+        /// the normally lighter ones.
+        /// </para>
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// One or both range bounds were less than 0.0f or greater than 1.0f.
+        /// </exception>
         public Range<float> GrayscaleLightness
         {
             get { return grayscaleLightness; }
