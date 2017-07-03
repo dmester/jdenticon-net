@@ -3,13 +3,13 @@
   <metadata>
     <id>Jdenticon-net</id>
     <version>$version$</version>
-    <title>Jdenticon.Net</title>
+    <title>Jdenticon-net</title>
     <authors>Daniel Mester Pirttijärvi</authors>
     <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
     <projectUrl>http://jdenticon.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Jdenticon-net is a .NET library for generating highly recogizable identicons. Jdenticon-net generates the same icon as its JavaScript counterpart for the same hash input.</description>
-    <summary>.NET identicon generator.</summary>
+    <description>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.</description>
+    <summary>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
       <group targetFramework="netstandard1.0">

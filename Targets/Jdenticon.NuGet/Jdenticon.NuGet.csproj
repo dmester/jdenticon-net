@@ -50,11 +50,11 @@
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)jdenticon-net.nuspec" -Properties "version=1.0.1;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.Mvc.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.WebForms.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.WebApi.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Wpf.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Gdi.nuspec" -Properties "version=1.0.0;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"</PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)jdenticon-net.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.Mvc.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.WebForms.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.WebApi.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Wpf.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
+"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Gdi.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -8,11 +8,11 @@
     <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
     <projectUrl>http://jdenticon.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Jdenticon-net is a .NET library for generating highly recogizable identicons. Jdenticon-net generates the same icon as its JavaScript counterpart for the same hash input.</description>
-    <summary>.NET identicon generator.</summary>
+    <description>Extends Jdenticon-net with features to use Jdenticon with ASP.NET MVC.</description>
+    <summary>Extends Jdenticon-net with features to use Jdenticon with ASP.NET MVC.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
-      <dependency id="Jdenticon-net" version="1.0.0" />
+      <dependency id="Jdenticon-net" version="$version$" />
       <dependency id="Microsoft.AspNet.Mvc" version="[4.0,)" />
     </dependencies>
   </metadata>
