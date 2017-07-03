@@ -34,6 +34,27 @@ namespace Jdenticon.AspNet.WebApi
     /// <summary>
     /// Classes for using Jdenticon from WebApi.
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To use Jdenticon from ASP.NET WebApi, install the <c>Jdenticon.AspNet.WebApi</c> NuGet package.
+    /// </para>
+    /// <code language="bat" title="NuGet Package Manager">
+    /// PM&gt; Install-Package Jdenticon.AspNet.WebApi
+    /// </code>
+    /// <para>
+    /// The <see cref="IdenticonResult"/> class is then available to return an identicon
+    /// from a WebApi controller action.
+    /// </para>
+    /// <code language="cs" title="Api controller">
+    /// public class IdenticonController : ApiController
+    /// {
+    ///     public IdenticonResult Get(string name, int size)
+    ///     {
+    ///         return IdenticonResult.FromValue(name, size);
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
     [CompilerGenerated]
     internal static class NamespaceDoc
     {

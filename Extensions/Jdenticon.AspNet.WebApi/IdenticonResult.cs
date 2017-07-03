@@ -51,11 +51,12 @@ namespace Jdenticon.AspNet.WebApi
             this.icon = icon;
             this.format = format;
         }
-        
+
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with the specified hash.
+        /// Creates an <see cref="IdenticonResult"/> instance with the specified hash.
         /// </summary>
         /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
+        /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
         public static IdenticonResult FromHash(byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png)
         {
@@ -63,7 +64,7 @@ namespace Jdenticon.AspNet.WebApi
         }
 
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with the specified hash.
+        /// Creates an <see cref="IdenticonResult"/> instance with the specified hash.
         /// </summary>
         /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
         /// <param name="size">The size of the icon in pixels.</param>
@@ -74,7 +75,7 @@ namespace Jdenticon.AspNet.WebApi
         }
 
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with a hash of the specified object.
+        /// Creates an <see cref="IdenticonResult"/> instance with a hash of the specified object.
         /// </summary>
         /// <param name="value">The string representation of this object will be hashed and used as base for this icon.</param>
         /// <param name="size">The size of the icon in pixels.</param>
@@ -86,7 +87,7 @@ namespace Jdenticon.AspNet.WebApi
         }
 
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with a hash of the specified object.
+        /// Creates an <see cref="IdenticonResult"/> instance with a hash of the specified object.
         /// </summary>
         /// <param name="icon">The <see cref="Identicon"/> to be rendered.</param>
         /// <param name="format">The format of the generated icon.</param>
@@ -95,7 +96,10 @@ namespace Jdenticon.AspNet.WebApi
             return new IdenticonResult(icon, format);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Creates an <see cref="HttpResponseMessage"/> containing an identicon.
+        /// </summary>
+        /// <param name="cancellationToken">Not supported by Jdenticon.</param>
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK);

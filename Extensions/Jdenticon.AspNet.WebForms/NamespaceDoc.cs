@@ -39,9 +39,17 @@ namespace Jdenticon.AspNet.WebForms
     /// that serves icons.
     /// </summary>
     /// <example>
-    /// The Jdenticon.AspNet.WebForms assembly contains the <see cref="Icon"/> web control that 
-    /// can be used on web pages. This example shows a web page where an <see cref="Icon"/> 
+    /// <para>
+    /// The <c>Jdenticon.AspNet.WebForms</c> assembly contains the <see cref="Icon"/> web control that 
+    /// can be used on web pages. Install the assembly by using NuGet Package Manager.
+    /// </para>
+    /// <code language="bat" title="NuGet Package Manager">
+    /// PM&gt; Install-Package Jdenticon.AspNet.WebForms
+    /// </code>
+    /// <para>
+    /// This example shows a web page where an <see cref="Icon"/> 
     /// is data bound in a <see cref="Repeater"/>.
+    /// </para>
     /// <code language="html" title="ASPX file">
     /// &lt;asp:Repeater ID="repeater" runat="server"&gt;
     ///     &lt;ItemTemplate&gt;

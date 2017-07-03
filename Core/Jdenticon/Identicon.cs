@@ -45,6 +45,13 @@ namespace Jdenticon
     /// </remarks>
     /// <example>
     /// <para>
+    /// Before using <see cref="Identicon"/> the <c>Jdenticon-net</c> package needs to be added to 
+    /// the project. Use the NuGet Package Manager to add a reference.
+    /// </para>
+    /// <code language="bat" title="NuGet Package Manager">
+    /// PM&gt; Install-Package Jdenticon-net
+    /// </code>
+    /// <para>
     /// The following code illustrates how to use Jdenticon to generate an icon from a string 
     /// and save it as a PNG image. Note that all save operations are implemented as
     /// extension methods, which means a using for the <see cref="Jdenticon"/> namespace

@@ -37,6 +37,12 @@ namespace Jdenticon.AspNet.Mvc
     /// </summary>
     /// <example>
     /// <para>
+    /// To use Jdenticon from ASP.NET MVC, install the <c>Jdenticon.AspNet.Mvc</c> NuGet package.
+    /// </para>
+    /// <code language="bat" title="NuGet Package Manager">
+    /// PM&gt; Install-Package Jdenticon.AspNet.Mvc
+    /// </code>
+    /// <para>
     /// Jdenticon can be used in multiple ways in ASP.NET MVC. The first example shows how 
     /// to use the <see cref="HtmlHelper"/> extension methods to render an IMG element
     /// on the page.
