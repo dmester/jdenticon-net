@@ -6,9 +6,11 @@
 ## Features
 Jdenticon-net is a .NET port of the JavaScript library [Jdenticon](https://github.com/dmester/jdenticon).
 
-* Render icons as PNG, EMF or SVG files.
-* Render icons directly on screen using GDI+.
+* Runs on .NET Framework 2.x, 3.x, 4.x, .NET Standard 1.x and .NET Core 1.x.
+* Render icons as PNG and SVG files with no dependencies to System.Drawing or WPF.
+* Integration package available for ASP.NET WebForms, MVC and WebApi.
 * Generate SVG fragments to be used inline on websites.
+* Render icons directly on screen using GDI+.
 
 ## Getting started
 Using Jdenticon-net is simple. Follow the steps below to integrate Jdenticon-net into your solution.
@@ -22,21 +24,30 @@ PM> Install-Package Jdenticon-net
 ```csharp
 using Jdenticon;
 ----
-var icon = Identicon.FromValue("john.doe@example.faux");
-icon.Save(100, "johndoe.svg");
+var icon = Identicon.FromValue("john.doe@example.faux", size: 100);
+icon.SaveAsPng("johndoe.png");
 ```
 
-## Reference
+### ASP.NET
+To get started using Jdenticon for ASP.NET, please see:
+
+* [Code examples for ASP.NET WebForms](https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_WebForms.htm)
+* [Code examples for ASP.NET MVC](https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_Mvc.htm)
+* [Code examples for ASP.NET WebApi](https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_WebApi.htm)
+
+## Quick Reference
+For full documentation, please see https://dmester.github.io/jdenticon-net-docs/.
+
 ### Create an instance of Identicon
 There are mainly two ways of creating an instance of `Identicon`:
 
-* `Identicon.FromHash(hash)`
+* `Identicon.FromHash(hash, size)`
 
   Creates an instance with a hash value. You can either provide a byte array containing the hash, or 
   provide a hexadecimal hash string. At least 6 bytes are required in byte arrays and 12 characters 
   in hash strings.
   
-* `Identicon.FromValue(value[, hashAlgorithmName])`
+* `Identicon.FromValue(value, size[, hashAlgorithmName])`
 
   Jdenticon-net will create a hash for you using the specified hash algorithm. You can provide any 
   object, even null, as argument. Jdenticon will use `ToString` to get a string representation of the 
@@ -46,23 +57,26 @@ There are mainly two ways of creating an instance of `Identicon`:
 ### Generate an icon
 There are multiple methods in the `Identicon` class for generating icons:
 
-* `Save(size, path|stream[, format])`
+* `SaveAsPng(path|stream)`
 
-  Generates an icon with the specified size and saves it to the specified file path or stream. If a path
-  is specified, the format is determined from the filename extension if not explicitly specified.
+  Generates an icon and saves it as a PNG image.
+  
+* `SaveAsSvg(path|stream|TextWriter)`
+
+  Generates an icon and saves it as an SVG image.
   
 * `Draw(graphics, rectangle)`
 
   Generates an icon and draws it in the specified GDI+ drawing context. Suitable if you want to 
   display the icon on the screen without first saving it to a file.
   
-* `ToBitmap(size)`
+* `ToBitmap()`
 
   Generates an icon as a [Bitmap](https://msdn.microsoft.com/en-us/library/system.drawing.bitmap(v=vs.110).aspx)
   object for later usage. Remember that you are responsible for disposing the returned object when you don't 
   need it anymore.
 
-* `ToSvg(size[, fragment])`
+* `ToSvg([fragment])`
 
   Generates an SVG string containing an icon. This can be useful for embedding icons in other SVG files or
   inlining SVG icons on your website. For creating SVG files, please use `Save`.
