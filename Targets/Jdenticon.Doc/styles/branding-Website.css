@@ -64,6 +64,8 @@ div#tocNav > div > a, div#tocNav > div > a:link, div#tocNav > div > a:visited {
 	display: block;
 	margin-left: 18px;
 	overflow: hidden;
+	text-indent: -0.5em;
+	padding-left: 0.5em;
 }
 div#tocNav > div.current > a, div#tocNav > div.current > a:link, div#tocNav > div.current > a:visited {
 	color: #000;

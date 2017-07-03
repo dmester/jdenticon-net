@@ -36,11 +36,8 @@ h4, .subHeading {
 	font-family: Enriqueta, Arial, Helvetica, sans-serif;
 	font-size: 1.077em;
 	font-weight: normal;
-	margin: 0;
+	margin: 1em 0 0.5em;
 	color: #000;
-}
-.subHeading {
-	margin-top: 5px;
 }
 h5, h6 {
 	font-family: Arial, Helvetica, sans-serif;
@@ -169,9 +166,6 @@ dl {
 dd {
   margin-bottom: 1em;
 }
-dt {
-	font-weight: 600;
-}
 pre {
 	font-family: Consolas, Courier, monospace;
 	overflow: hidden;
@@ -279,7 +273,8 @@ div.caption {
 /* Syntax and code snippet styles */
 .codeSnippetContainer {
 	min-width: 260px;
-	margin-top: 10px;
+	margin-top: 4px;
+	margin-bottom: 20px;
 }
 .codeSnippetContainerTabs {
 	z-index: 1;
@@ -499,6 +494,7 @@ span.keyword {
 }
 span.parameter {
 	font-style: italic;
+	margin-right: 0.4em;
 }
 dt span.parameter {
 	font-weight: normal;
