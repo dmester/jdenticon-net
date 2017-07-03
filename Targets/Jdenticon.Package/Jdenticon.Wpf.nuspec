@@ -16,9 +16,9 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\Jdenticon.Wpf.Net40\bin\$configuration$\Jdenticon.Wpf.dll" target="lib\net40\Jdenticon.Wpf.dll" />
-    <file src="..\Jdenticon.Wpf.Net45\bin\$configuration$\Jdenticon.Wpf.dll" target="lib\net45\Jdenticon.Wpf.dll" />
-    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.Wpf.xml" target="lib\net40\Jdenticon.Wpf.xml" />
-    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.Wpf.xml" target="lib\net45\Jdenticon.Wpf.xml" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.Wpf.dll" target="lib\net40\Jdenticon.Wpf.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Wpf.dll" target="lib\net45\Jdenticon.Wpf.dll" />
+    <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net40\Jdenticon.Wpf.xml" />
+    <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net45\Jdenticon.Wpf.xml" />
   </files>
 </package>

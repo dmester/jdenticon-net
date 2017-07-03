@@ -14,7 +14,7 @@
     <Name>Documentation</Name>
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
-    <OutputPath>.\bin\$(Configuration)\</OutputPath>
+    <OutputPath>$(SolutionDir)\releases\help\</OutputPath>
     <HtmlHelpName>Documentation</HtmlHelpName>
     <Language>en-US</Language>
     <ComponentPath>$(SolutionDir)\packages\EWSoftware.SHFB.NETFramework.4.7</ComponentPath>
@@ -40,7 +40,7 @@
     <KeepLogFile>True</KeepLogFile>
     <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
     <CleanIntermediates>True</CleanIntermediates>
-    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <HelpFileVersion>$(AssemblyVersion)</HelpFileVersion>
     <MaximumGroupParts>2</MaximumGroupParts>
     <NamespaceGrouping>False</NamespaceGrouping>
     <SyntaxFilters>C#, Visual Basic</SyntaxFilters>
@@ -49,10 +49,10 @@
     <PresentationStyle>VS2013</PresentationStyle>
     <Preliminary>False</Preliminary>
     <NamingMethod>MemberName</NamingMethod>
-    <HelpTitle>Jdenticon documentation</HelpTitle>
+    <HelpTitle>Jdenticon-net documentation</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <MissingTags>Summary, Parameter, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
-    <CopyrightText>Copyright &amp;#169%3b Daniel Mester Pirttij&amp;#228%3brvi 2017</CopyrightText>
+    <CopyrightText>Copyright &amp;#169%3b Daniel Mester Pirttij&amp;#228%3brvi $([System.DateTime]::Now.Year)</CopyrightText>
     <CopyrightHref>http://jdenticon.com/</CopyrightHref>
     <ComponentConfigurations>
       <ComponentConfig id="IntelliSense Component" enabled="True">
@@ -105,6 +105,7 @@
   </PropertyGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+  <Import Project="$(SolutionDir)\Build\Common.props" />
   <!-- The pre-build and post-build event properties must appear *after* the targets file import in order to be
 			 evaluated correctly. -->
   <PropertyGroup>

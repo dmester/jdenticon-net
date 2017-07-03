@@ -5,4 +5,9 @@
     <AssemblyOriginatorKeyFile>M:\Repos\Keys\Jdenticon.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup>
+    <GlobalAssemblyInfo>$([System.IO.File]::ReadAllText('$(SolutionDir)\Core\AssemblyInfo\GlobalAssemblyInfo.cs'))</GlobalAssemblyInfo>
+    <AssemblyVersionPattern>^\s*\[assembly: AssemblyVersion\(\D*(\d+\.\d+\.\d+)\.</AssemblyVersionPattern>
+    <AssemblyVersion>$([System.Text.RegularExpressions.Regex]::Match($(GlobalAssemblyInfo), $(AssemblyVersionPattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyVersion>
+  </PropertyGroup>
 </Project>

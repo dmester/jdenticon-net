@@ -36,25 +36,32 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Jdenticon.Gdi.nuspec" />
-    <None Include="Jdenticon.Wpf.nuspec" />
-    <None Include="Jdenticon.AspNet.WebApi.nuspec" />
-    <None Include="Jdenticon.AspNet.Mvc.nuspec" />
-    <None Include="Jdenticon.AspNet.WebForms.nuspec" />
-    <None Include="jdenticon-net.nuspec" />
+    <CreatePackage Include="jdenticon-net.nuspec">
+      <SubType>Designer</SubType>
+    </CreatePackage>
+    <CreatePackage Include="Jdenticon.Gdi.nuspec" />
+    <CreatePackage Include="Jdenticon.Wpf.nuspec" />
+    <CreatePackage Include="Jdenticon.AspNet.WebApi.nuspec" />
+    <CreatePackage Include="Jdenticon.AspNet.Mvc.nuspec" />
+    <CreatePackage Include="Jdenticon.AspNet.WebForms.nuspec" />
     <None Include="Web.config.WebForms.transform" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Web.config.Mvc.transform" />
   </ItemGroup>
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\Build\Common.props" />
+  <Target Name="CreatePackages">
+    <Exec Command="&quot;$(SolutionDir)Utils\NuGet\NuGet.exe&quot; pack &quot;$(MSBuildProjectDirectory)\%(CreatePackage.Identity)&quot; -Properties &quot;version=$(AssemblyVersion);configuration=$(Configuration)&quot; -OutputDirectory &quot;$(SolutionDir)releases&quot;" />
+  </Target>
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)jdenticon-net.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.Mvc.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.WebForms.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.AspNet.WebApi.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Wpf.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"
-"$(SolutionDir)Utils\NuGet\NuGet.exe" pack "$(ProjectDir)Jdenticon.Gdi.nuspec" -Properties "version=1.0.4;configuration=$(ConfigurationName)" -OutputDirectory "$(SolutionDir)releases"</PostBuildEvent>
+    <CreateZipCommand>
+cd /D $(SolutionDir)\releases\Jdenticon.$(AssemblyVersion)
+for /R "." %%f in (*.dll) do (
+  copy /Y "$(SolutionDir)\releases\help\%%~nf.xml" "%%~pf"
+)
+"$(SolutionDir)\Utils\7zip\7za.exe" a "$(SolutionDir)\releases\Jdenticon.$(AssemblyVersion).zip" "$(SolutionDir)\releases\Jdenticon.$(AssemblyVersion)\*"
+</CreateZipCommand>
   </PropertyGroup>
+  <Target Name="CreateZip" AfterTargets="CreatePackages">
+    <Exec Command="$(CreateZipCommand)" />
+  </Target>
 </Project>

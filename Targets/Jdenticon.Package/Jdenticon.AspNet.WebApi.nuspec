@@ -17,7 +17,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\Jdenticon.AspNet.WebApi.Net45\bin\$configuration$\Jdenticon.AspNet.WebApi.dll" target="lib\net45\Jdenticon.AspNet.WebApi.dll" />
-    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.AspNet.WebApi.xml" target="lib\net45\Jdenticon.AspNet.WebApi.xml" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.AspNet.WebApi.dll" target="lib\net45\Jdenticon.AspNet.WebApi.dll" />
+    <file src="..\..\releases\help\Jdenticon.AspNet.WebApi.xml" target="lib\net45\Jdenticon.AspNet.WebApi.xml" />
   </files>
 </package>

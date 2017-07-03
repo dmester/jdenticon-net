@@ -16,10 +16,10 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\Jdenticon.AspNet.WebForms.Net40\bin\$configuration$\Jdenticon.AspNet.WebForms.dll" target="lib\net40\Jdenticon.AspNet.WebForms.dll" />
-    <file src="..\Jdenticon.AspNet.WebForms.Net45\bin\$configuration$\Jdenticon.AspNet.WebForms.dll" target="lib\net45\Jdenticon.AspNet.WebForms.dll" />
-    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.AspNet.WebForms.xml" target="lib\net40\Jdenticon.AspNet.WebForms.xml" />
-    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.AspNet.WebForms.xml" target="lib\net45\Jdenticon.AspNet.WebForms.xml" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.AspNet.WebForms.dll" target="lib\net40\Jdenticon.AspNet.WebForms.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.AspNet.WebForms.dll" target="lib\net45\Jdenticon.AspNet.WebForms.dll" />
+    <file src="..\..\releases\help\Jdenticon.AspNet.WebForms.xml" target="lib\net40\Jdenticon.AspNet.WebForms.xml" />
+    <file src="..\..\releases\help\Jdenticon.AspNet.WebForms.xml" target="lib\net45\Jdenticon.AspNet.WebForms.xml" />
     <file src="Web.config.WebForms.transform" target="Content\Web.config.transform" />
   </files>
 </package>

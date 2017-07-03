@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jdenticon-net</id>
+    <version>$version$</version>
+    <title>Jdenticon-net</title>
+    <authors>Daniel Mester Pirttijärvi</authors>
+    <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
+    <projectUrl>http://jdenticon.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.</description>
+    <summary>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.</summary>
+    <tags>identicon avatar library</tags>
+    <dependencies>
+      <group targetFramework="netstandard1.0">  
+        <dependency id="NETStandard.Library" version="1.6" />
+        <dependency id="SharpCompress" version="0.13.0" />
+      </group>
+      <group targetFramework="netstandard1.3">
+        <dependency id="NETStandard.Library" version="1.6" />
+      </group>
+      <group targetFramework="net">
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\releases\Jdenticon.$version$\net20\Jdenticon.dll" target="lib\net20\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net35\Jdenticon.dll" target="lib\net35\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.dll" target="lib\net40\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.dll" target="lib\net45\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard10\Jdenticon.dll" target="lib\netstandard1.0\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard13\Jdenticon.dll" target="lib\netstandard1.3\Jdenticon.dll" />
+    <file src="..\..\releases\help\Jdenticon.xml" target="lib\net20\Jdenticon.xml" />
+    <file src="..\..\releases\help\Jdenticon.xml" target="lib\net35\Jdenticon.xml" />
+    <file src="..\..\releases\help\Jdenticon.xml" target="lib\net40\Jdenticon.xml" />
+    <file src="..\..\releases\help\Jdenticon.xml" target="lib\net45\Jdenticon.xml" />
+    <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard1.0\Jdenticon.xml" />
+    <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard1.3\Jdenticon.xml" />
+  </files>
+</package>

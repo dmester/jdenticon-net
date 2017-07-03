@@ -16,9 +16,9 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\Jdenticon.Gdi.Net40\bin\$configuration$\Jdenticon.Gdi.dll" target="lib\net40\Jdenticon.Gdi.dll" />
-    <file src="..\Jdenticon.Gdi.Net45\bin\$configuration$\Jdenticon.Gdi.dll" target="lib\net45\Jdenticon.Gdi.dll" />
-    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.Gdi.xml" target="lib\net40\Jdenticon.Gdi.xml" />
-    <file src="..\Jdenticon.Doc\bin\$configuration$\Jdenticon.Gdi.xml" target="lib\net45\Jdenticon.Gdi.xml" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.Gdi.dll" target="lib\net40\Jdenticon.Gdi.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Gdi.dll" target="lib\net45\Jdenticon.Gdi.dll" />
+    <file src="..\..\releases\help\Jdenticon.Gdi.xml" target="lib\net40\Jdenticon.Gdi.xml" />
+    <file src="..\..\releases\help\Jdenticon.Gdi.xml" target="lib\net45\Jdenticon.Gdi.xml" />
   </files>
 </package>

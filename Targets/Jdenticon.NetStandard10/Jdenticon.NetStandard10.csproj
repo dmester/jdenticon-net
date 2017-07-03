@@ -9,14 +9,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>TRACE;USE_SHARP_COMPRESS</DefineConstants>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>bin\Release\netstandard1.0\Jdenticon.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;USE_SHARP_COMPRESS</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile></DocumentationFile>
@@ -26,6 +24,7 @@
 
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="$(SolutionDir)\Build\Common.props" />
+  <Import Project="$(SolutionDir)\Build\Target.props" />
 
   <ItemGroup>
     <PackageReference Include="SharpCompress" Version="0.13.0" />
