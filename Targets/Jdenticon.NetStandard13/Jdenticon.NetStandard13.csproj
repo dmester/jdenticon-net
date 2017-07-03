@@ -10,10 +10,10 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS</DefineConstants>
-    <OutputPath>bin\Release\netstandard1.3\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DocumentationFile>bin\Release\netstandard1.3\Jdenticon.xml</DocumentationFile>
-    <WarningLevel>0</WarningLevel>
+    <WarningLevel>3</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
