@@ -82,6 +82,8 @@ namespace Jdenticon
             if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, 
                 "The size should be 1 pixel or larger.");
 
+            this.size = size;
+
             // Remove parts of hash that should not be used, as
             // some of the extensions want to keep the size of the 
             // hash down.
