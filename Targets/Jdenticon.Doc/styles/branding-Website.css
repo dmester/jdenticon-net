@@ -125,6 +125,7 @@ form#SearchForm {
 	float: right;
 	background-color: #eee;
 	width: 280px;
+	margin-top: -2px;
 }
 form#SearchForm input {
 	background-color: #eee;
