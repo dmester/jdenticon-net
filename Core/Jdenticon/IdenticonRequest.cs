@@ -166,21 +166,35 @@ namespace Jdenticon
                         var explicitStyle = (flags & 0b1) == 0b1;
                         if (explicitStyle)
                         {
+                            // By limiting the number of decimals we are limiting 
+                            // the rounding error created by the transformation 
+                            // from and to a byte.
+                            const int DecimalPrecision = 3;
+
+                            var padding = (float)Math.Round(
+                                reader.ReadByte() / 637f, DecimalPrecision);
+
                             var a = reader.ReadByte();
                             var r = reader.ReadByte();
                             var g = reader.ReadByte();
                             var b = reader.ReadByte();
 
-                            var grayscaleLightnessFrom = reader.ReadByte() / 255f;
-                            var grayscaleLightnessTo = reader.ReadByte() / 255f;
+                            var grayscaleLightnessFrom = (float)Math.Round(
+                                reader.ReadByte() / 255f, DecimalPrecision);
+                            var grayscaleLightnessTo = (float)Math.Round(
+                                reader.ReadByte() / 255f, DecimalPrecision);
 
-                            var colorLightnessFrom = reader.ReadByte() / 255f;
-                            var colorLightnessTo = reader.ReadByte() / 255f;
+                            var colorLightnessFrom = (float)Math.Round(
+                                reader.ReadByte() / 255f, DecimalPrecision);
+                            var colorLightnessTo = (float)Math.Round(
+                                reader.ReadByte() / 255f, DecimalPrecision);
 
-                            var saturation = reader.ReadByte() / 255f;
+                            var saturation = (float)Math.Round(
+                                reader.ReadByte() / 255f, DecimalPrecision);
 
                             request.style = new IdenticonStyle
                             {
+                                Padding = padding,
                                 BackColor = Color.FromArgb(a, r, g, b),
                                 ColorLightness = Range.Create(colorLightnessFrom, colorLightnessTo),
                                 GrayscaleLightness = Range.Create(grayscaleLightnessFrom, grayscaleLightnessTo),
@@ -254,6 +268,8 @@ namespace Jdenticon
                     // Style
                     if (explicitStyle)
                     {
+                        writer.Write((byte)(style.Padding * 637f));
+
                         writer.Write((byte)(style.BackColor.A));
                         writer.Write((byte)(style.BackColor.R));
                         writer.Write((byte)(style.BackColor.G));

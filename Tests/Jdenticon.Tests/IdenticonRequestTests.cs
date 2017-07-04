@@ -36,6 +36,7 @@ namespace Jdenticon.Tests
                 Size = 741,
                 Style = new IdenticonStyle
                 {
+                    Padding = 0.3f,
                     BackColor = Color.Bisque,
                     ColorLightness = Range.Create(0.25f, 0.75f),
                     GrayscaleLightness = Range.Create(0, 1f),
@@ -48,6 +49,7 @@ namespace Jdenticon.Tests
 
             Assert.AreEqual(url1.Format, url2.Format);
             Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
             AssertAreAlmostEqual(url1.Style.GrayscaleLightness.From, url2.Style.GrayscaleLightness.From);
@@ -70,6 +72,7 @@ namespace Jdenticon.Tests
 
             Assert.AreEqual(url1.Format, url2.Format);
             Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
             AssertAreAlmostEqual(url1.Style.GrayscaleLightness.From, url2.Style.GrayscaleLightness.From);
@@ -92,6 +95,7 @@ namespace Jdenticon.Tests
 
             Assert.AreEqual(url1.Format, url2.Format);
             Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
             AssertAreAlmostEqual(url1.Style.GrayscaleLightness.From, url2.Style.GrayscaleLightness.From);
