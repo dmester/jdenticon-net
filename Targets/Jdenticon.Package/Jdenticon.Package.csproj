@@ -52,6 +52,14 @@
   <Target Name="CreatePackages">
     <Exec Command="&quot;$(SolutionDir)Utils\NuGet\NuGet.exe&quot; pack &quot;$(MSBuildProjectDirectory)\%(CreatePackage.Identity)&quot; -Properties &quot;version=$(AssemblyVersion);configuration=$(Configuration)&quot; -OutputDirectory &quot;$(SolutionDir)releases&quot;" />
   </Target>
+  <Target Name="Clean">
+    <ItemGroup>
+      <FilesToDelete Include="$(SolutionDir)releases\*.nupkg"/>
+      <FilesToDelete Include="$(SolutionDir)releases\Jdenticon.*\*\*"/>
+      <FilesToDelete Include="$(SolutionDir)releases\Jdenticon.*.zip"/>
+    </ItemGroup>   
+    <Delete Files="@(FilesToDelete)" />
+  </Target>
   <PropertyGroup>
     <CreateZipCommand>
 cd /D $(SolutionDir)\releases\Jdenticon.$(AssemblyVersion)
