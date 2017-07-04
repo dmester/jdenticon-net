@@ -175,6 +175,19 @@ namespace Jdenticon
         }
 
         /// <summary>
+        /// Gets a hash code for this <see cref="IdenticonStyle"/>.
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return
+                padding.GetHashCode() ^
+                saturation.GetHashCode() ^
+                backColor.GetHashCode() ^
+                colorLightness.GetHashCode() ^
+                grayscaleLightness.GetHashCode();
+        }
+
+        /// <summary>
         /// Checks if this style is identical to another style.
         /// </summary>
         public override bool Equals(object obj)
