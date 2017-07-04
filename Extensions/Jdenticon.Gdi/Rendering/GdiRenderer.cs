@@ -25,7 +25,6 @@
 #endregion
 
 using Jdenticon.Gdi.Extensions;
-using Jdenticon.Gdi.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

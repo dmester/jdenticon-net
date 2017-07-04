@@ -136,6 +136,7 @@ namespace Jdenticon
             return new Identicon(HexString.ToArray(hash), size);
         }
 
+#pragma warning disable CS1573
         /// <inheritdoc cref="HashGenerator.ComputeHash(object, string)" />
         /// <summary>
         /// Generates a hash for a specified value and creates an <see cref="Identicon"/> instance from the generated hash.
@@ -147,6 +148,7 @@ namespace Jdenticon
         {
             return new Identicon(HashGenerator.ComputeHash(value, hashAlgorithmName), size);
         }
+#pragma warning restore CS1573
 
         /// <summary>
         /// Gets or sets the size of the icon.
