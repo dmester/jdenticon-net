@@ -15,9 +15,9 @@ namespace Jdenticon.WebApi.Sample
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "IdenticonApi",
-                routeTemplate: "api/identicon/{name}/{size}",
-                defaults: new { controller = "icon", action = "get" }
+                name: "IconApi",
+                routeTemplate: "api/icon/{name}/{size}",
+                defaults: new { controller = "IconApi", action = "Icon" }
             );
         }
     }

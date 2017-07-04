@@ -18,6 +18,12 @@ namespace Jdenticon.WebApi.Sample
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Mvc", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Icon",
+                url: "mvc/icon/{name}/{size}",
+                defaults: new { controller = "Mvc", action = "Icon" }
+            );
         }
     }
 }

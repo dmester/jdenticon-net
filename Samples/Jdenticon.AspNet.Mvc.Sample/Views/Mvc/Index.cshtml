@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Jdenticon.AspNet.Mvc;
+<!DOCTYPE html>
 <html>
 <head>
     <title>Jdenticon ASP.NET MVC and WebApi sample</title>
@@ -7,5 +8,25 @@
     <h1>Jdenticon</h1>
 
     <p>This is a sample illustrating how Jdenticon can be used in ASP.NET MVC and WebApi environments.</p>
+
+    <h2>Using HtmlHelper</h2>
+    <p>
+        @Html.Identicon("Test", size: 100, alt: "Identicon: Test")
+    </p>
+
+    <h2>Using UrlHelper</h2>
+    <p>
+        <img src="@Url.Identicon("Test", size: 100)" width="100" height="100" alt="Identicon: Test" />
+    </p>
+
+    <h2>Using MVC Controller</h2>
+    <p>
+        <img src="~/mvc/icon/Test/100" width="100" height="100" alt="Identicon: Test" />
+    </p>
+
+    <h2>Using WebApi Controller</h2>
+    <p>
+        <img src="~/api/icon/Test/100" width="100" height="100" alt="Identicon: Test" />
+    </p>
 </body>
 </html>

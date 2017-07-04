@@ -12,5 +12,13 @@ namespace Jdenticon.WebApi.Sample.Controllers
         {
             return View();
         }
+
+        public ActionResult Icon(string name, int size)
+        {
+            // The fully qualified name is used to clarify the difference between the MVC IdenticonResult 
+            // and the WebApi IdenticonResult.
+
+            return Jdenticon.AspNet.Mvc.IdenticonResult.FromValue(name, size);
+        }
     }
 }

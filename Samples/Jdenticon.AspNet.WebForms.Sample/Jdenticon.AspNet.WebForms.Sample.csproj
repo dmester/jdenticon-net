@@ -74,9 +74,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Targets\Jdenticon.AspNet.WebForms.Net45\Jdenticon.AspNet.WebForms.Net45.csproj">
       <Project>{1c7af3bd-ba4b-4ec9-8443-86d726aaf8df}</Project>
       <Name>Jdenticon.AspNet.WebForms.Net45</Name>

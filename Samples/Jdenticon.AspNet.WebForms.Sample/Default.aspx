@@ -13,12 +13,8 @@
     
     <asp:Repeater runat="server" ID="repeater">
         <ItemTemplate>
-            <jdenticon:Icon runat="server" Value='<%# 
-                Container.DataItem 
-                %>' />
-            <asp:Literal runat="server" Text='<%# 
-                Container.DataItem 
-                %>' />
+            <h2><asp:Literal runat="server" Text='<%# Container.DataItem  %>' /></h2>
+            <jdenticon:Icon runat="server" Value='<%# Container.DataItem %>' />
         </ItemTemplate>
     </asp:Repeater>
 </body>
