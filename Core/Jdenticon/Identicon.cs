@@ -69,7 +69,6 @@ namespace Jdenticon
     {
         private byte[] hash;
         private int size;
-        private float padding = 0.08f;
         private IconGenerator iconGenerator;
         private IdenticonStyle style;
 
@@ -147,23 +146,6 @@ namespace Jdenticon
         public static Identicon FromValue(object value, int size, string hashAlgorithmName = "SHA1")
         {
             return new Identicon(HashGenerator.ComputeHash(value, hashAlgorithmName), size);
-        }
-
-        /// <summary>
-        /// Gets or sets the padding between the edge of the image and the bounds of the rendered icon. The value is specified in percent in the range [0.0, 0.4].
-        /// </summary>
-        public float Padding
-        {
-            get { return padding; }
-            set
-            {
-                if (padding < 0f || padding > 0.4f)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(Padding),
-                        value, "Only padding values in the range [0.0, 0.4] are valid.");
-                }
-                padding = value;
-            }
         }
 
         /// <summary>
@@ -247,10 +229,10 @@ namespace Jdenticon
         /// Gets the bounds of the icon excluding its padding.
         /// </summary>
         public Rectangle GetIconBounds() => new Rectangle(
-            (int)(padding * size),
-            (int)(padding * size),
-            size - (int)(padding * size) * 2,
-            size - (int)(padding * size) * 2);
+            (int)(Style.Padding * size),
+            (int)(Style.Padding * size),
+            size - (int)(Style.Padding * size) * 2,
+            size - (int)(Style.Padding * size) * 2);
 
         /// <summary>
         /// Gets a string representation of this <see cref="Identicon"/>.

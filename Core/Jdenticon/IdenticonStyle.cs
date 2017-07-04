@@ -37,27 +37,33 @@ namespace Jdenticon
     public class IdenticonStyle : IEquatable<IdenticonStyle>
     {
         private Color backColor = DefaultBackColor;
+        private float padding = DefaultPadding;
         private float saturation = DefaultSaturation;
         private Range<float> colorLightness = DefaultColorLightness;
         private Range<float> grayscaleLightness = DefaultGrayscaleLightness;
 
         /// <summary>
-        /// Gets the default value of the <see cref="ColorLightness"/> property.
+        /// Gets the default value of the <see cref="Padding"/> property. Resolves to 0.08f.
+        /// </summary>
+        public static float DefaultPadding => 0.08f;
+
+        /// <summary>
+        /// Gets the default value of the <see cref="ColorLightness"/> property. Resolves to [0.4f, 0.8f].
         /// </summary>
         public static Range<float> DefaultColorLightness => Range.Create(0.4f, 0.8f);
 
         /// <summary>
-        /// Gets the default value of the <see cref="GrayscaleLightness"/> property.
+        /// Gets the default value of the <see cref="GrayscaleLightness"/> property. Resolves to [0.3f, 0.9f].
         /// </summary>
         public static Range<float> DefaultGrayscaleLightness => Range.Create(0.3f, 0.9f);
 
         /// <summary>
-        /// Gets the default value of the <see cref="Saturation"/> property.
+        /// Gets the default value of the <see cref="Saturation"/> property. Resolves to 0.5f.
         /// </summary>
         public static float DefaultSaturation => 0.5f;
 
         /// <summary>
-        /// Gets the default value of the <see cref="BackColor"/> property.
+        /// Gets the default value of the <see cref="BackColor"/> property. Resolves to <see cref="Color.White"/>.
         /// </summary>
         public static Color DefaultBackColor => Color.White;
         
@@ -69,7 +75,24 @@ namespace Jdenticon
             get { return backColor; }
             set { backColor = value; }
         }
-
+        
+        /// <summary>
+        /// Gets or sets the padding between the edge of the image and the bounds of the rendered icon. The value is specified in percent in the range [0.0, 0.4].
+        /// </summary>
+        public float Padding
+        {
+            get { return padding; }
+            set
+            {
+                if (padding < 0f || padding > 0.4f)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Padding),
+                        value, "Only padding values in the range [0.0, 0.4] are valid.");
+                }
+                padding = value;
+            }
+        }
+        
         /// <summary>
         /// The saturation of the icon in the range [0.0f, 1.0f].
         /// </summary>
@@ -166,6 +189,7 @@ namespace Jdenticon
         {
             return
                 other != null &&
+                other.padding == padding &&
                 other.backColor == backColor &&
                 other.colorLightness == colorLightness &&
                 other.grayscaleLightness == grayscaleLightness &
