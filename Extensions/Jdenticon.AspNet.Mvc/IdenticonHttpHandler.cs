@@ -39,6 +39,10 @@ namespace Jdenticon.AspNet.Mvc
     /// <see cref="IdenticonRequest"/> is used to generate a parameter string that is passed as
     /// query string to the handler without any key, e.g. <c>Identicon.axd?1gMA84z~Li~s84z~Lg--</c>.
     /// </para>
+    /// <para>
+    /// Since a specific URL is always generating the same icon, the HTTP responses will be served with 
+    /// a <c>Cache-Control</c> header that allows caching the icon for 1 year.
+    /// </para>
     /// </remarks>
     public class IdenticonHttpHandler : IHttpHandler
     {
@@ -49,13 +53,18 @@ namespace Jdenticon.AspNet.Mvc
         {
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets a value indicating whether another request can use the <see cref="IdenticonHttpHandler"/> instance.
+        /// </summary>
         public bool IsReusable
         {
             get { return true; }
         }
-        
-        /// <inheritdoc/>
+
+        /// <summary>
+        /// Renders the requested identicon and returns it to the client.
+        /// </summary>
+        /// <param name="context"><see cref="HttpContext"/> with the current request and response.</param>
         public void ProcessRequest(HttpContext context)
         {
             if (IdenticonRequest.TryParse(context.Request.Url.Query, out var request))

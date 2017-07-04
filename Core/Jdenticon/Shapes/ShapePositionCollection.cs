@@ -36,6 +36,11 @@ namespace Jdenticon.Shapes
     /// </summary>
     public class ShapePositionCollection : Collection<ShapePosition>
     {
+        /// <summary>
+        /// Creates a <see cref="ShapePosition"/> with the specified cell coordinates and adds it to the collection.
+        /// </summary>
+        /// <param name="x">The x-coordinate of the containing cell.</param>
+        /// <param name="y">The y-coordinate of the containing cell.</param>
         public void Add(int x, int y)
         {
             Add(new ShapePosition(x, y));

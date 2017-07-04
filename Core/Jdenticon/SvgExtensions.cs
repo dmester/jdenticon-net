@@ -46,18 +46,18 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Creates a string containing an SVG version of this icon.
+        /// Renders an <see cref="Identicon"/> as a Scalable Vector Graphics (SVG) data string.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
+        /// <param name="icon">The identicon to render as SVG.</param>
         public static string ToSvg(this Identicon icon)
         {
             return icon.ToSvg(false);
         }
 
         /// <summary>
-        /// Creates a string containing an SVG version of this icon.
+        /// Renders an <see cref="Identicon"/> as a Scalable Vector Graphics (SVG) data string.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
+        /// <param name="icon">The identicon to render as SVG.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
@@ -70,12 +70,12 @@ namespace Jdenticon
                 return writer.ToString();
             }
         }
-        
+
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="writer">The <see cref="TextWriter"/> to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="writer">The <see cref="TextWriter"/> to which the SVG data will be written.</param>
         /// <exception cref="ArgumentNullException"><paramref name="writer"/> was <c>null</c>.</exception>
         public static void SaveAsSvg(this Identicon icon, TextWriter writer)
         {
@@ -83,10 +83,10 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="stream">The stream to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the SVG data will be written.</param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
         public static void SaveAsSvg(this Identicon icon, Stream stream)
         {
@@ -95,22 +95,22 @@ namespace Jdenticon
 
 #if HAVE_FILE_STREAM
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="path">The path to the file to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the SVG file to create. If the file already exists it will be overwritten.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
         public static void SaveAsSvg(this Identicon icon, string path)
         {
             icon.SaveAsSvg(path, false);
         }
 #endif
-        
+
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="writer">The <see cref="TextWriter"/> to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="writer">The <see cref="TextWriter"/> to which the SVG data will be written.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
@@ -123,10 +123,10 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="stream">The stream to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the SVG data will be written.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
@@ -143,9 +143,9 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
+        /// <param name="icon">The identicon to save.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.
@@ -159,9 +159,9 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
+        /// <param name="icon">The identicon to save.</param>
         public static Stream SaveAsSvg(this Identicon icon)
         {
             return SaveAsSvg(icon, false);
@@ -169,10 +169,10 @@ namespace Jdenticon
 
 #if HAVE_FILE_STREAM
         /// <summary>
-        /// Saves this icon as an SVG file.
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="path">The path to the file to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the SVG file to create. If the file already exists it will be overwritten.</param>
         /// <param name="fragment">
         /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
         /// it suitable to be embedded in another SVG.

@@ -33,6 +33,11 @@ namespace Jdenticon.Rendering
     /// <summary>
     /// Base class for rendering shapes in an identicon.
     /// </summary>
+    /// <remarks>
+    /// Implement this class to e.g. support a new file format that is not natively supported by
+    /// Jdenticon. To invoke the new <see cref="Renderer"/>, pass the renderer as an argument to the 
+    /// <see cref="Identicon.Draw(Renderer, Rectangle)"/> method.
+    /// </remarks>
     public abstract class Renderer
     {
         private Transform transform = Transform.Empty;

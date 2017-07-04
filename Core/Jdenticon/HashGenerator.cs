@@ -44,10 +44,11 @@ namespace Jdenticon
     public static class HashGenerator
     {
         /// <summary>
-        /// Compute a SHA1 hash for the string representation of the specified value.
+        /// Compute a hash for the string representation of a specified value.
         /// </summary>
-        /// <param name="value">Value to be hashed.</param>
-        /// <param name="hashAlgorithmName">The name of the hash algorithm to use for hashing.</param>
+        /// <param name="value">Value that will be converted to a string and then hashed. Null 
+        /// values are supported and handled as empty strings.</param>
+        /// <param name="hashAlgorithmName">The name of the hash algorithm to be used for hashing.</param>
         /// <exception cref="System.ArgumentException">The specified <paramref name="hashAlgorithmName"/> is not supported.</exception>
         /// <remarks>
         /// <para>

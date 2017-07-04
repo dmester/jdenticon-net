@@ -42,8 +42,9 @@ namespace Jdenticon
     public static class GdiExtensions
     {
         /// <summary>
-        /// Draws this icon in the specified drawing context.
+        /// Draws an <see cref="Identicon"/> in a specified GDI drawing context.
         /// </summary>
+        /// <param name="icon">The identicon to draw.</param>
         /// <param name="g">Drawing context in which the icon will be rendered.</param>
         /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
         public static void Draw(this Identicon icon, Graphics g, Rendering.Rectangle rect)
@@ -53,18 +54,24 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Draws this icon in the specified drawing context.
+        /// Draws an <see cref="Identicon"/> in a specified GDI drawing context.
         /// </summary>
+        /// <param name="icon">The identicon to draw.</param>
         /// <param name="g">Drawing context in which the icon will be rendered.</param>
         /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
         public static void Draw(this Identicon icon, Graphics g, System.Drawing.Rectangle rect)
         {
             icon.Draw(g, rect.ToJdenticon());
         }
-        
+
         /// <summary>
-        /// Creates a bitmap icon.
+        /// Renders an <see cref="Identicon"/> to a GDI <see cref="Bitmap"/>.
         /// </summary>
+        /// <param name="icon">The identicon to render.</param>
+        /// <remarks>
+        /// The caller should dispose the returned <see cref="Bitmap"/> once it does not
+        /// need it anymore.
+        /// </remarks>
         public static Bitmap ToBitmap(this Identicon icon)
         {
             var iconBounds = icon.GetIconBounds();
@@ -112,9 +119,9 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as an Enhanced Metafile (.emf).
+        /// Saves an <see cref="Identicon"/> as an Enhanced Metafile (EMF).
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
+        /// <param name="icon">The identicon to save.</param>
         public static Stream SaveAsEmf(this Identicon icon)
         {
             var memoryStream = new MemoryStream();
@@ -124,10 +131,10 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as an Enhanced Metafile (.emf).
+        /// Saves an <see cref="Identicon"/> as an Enhanced Metafile (EMF).
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="stream">The stream to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the EMF data will be written.</param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
         public static void SaveAsEmf(this Identicon icon, Stream stream)
         {
@@ -136,10 +143,10 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as an Enhanced Metafile (.emf).
+        /// Saves an <see cref="Identicon"/> as an Enhanced Metafile (EMF).
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="path">The path to the file to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the EMF file to create. If the file already exists it will be overwritten.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
         public static void SaveAsEmf(this Identicon icon, string path)
         {

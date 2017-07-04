@@ -40,9 +40,9 @@ namespace Jdenticon
     public static class WpfExtensions
     {
         /// <summary>
-        /// Renders the icon as a WPF <see cref="Visual"/>.
+        /// Renders an <see cref="Identicon"/> as a WPF <see cref="Visual"/>.
         /// </summary>
-        /// <param name="size">The size of the generated bitmap in pixels.</param>
+        /// <param name="icon">The identicon to convert to a <see cref="Visual"/>.</param>
         public static Visual ToVisual(this Identicon icon)
         {
             var visual = new DrawingVisual();
@@ -55,10 +55,11 @@ namespace Jdenticon
 
             return visual;
         }
-        
+
         /// <summary>
-        /// Draws this icon in the specified drawing context.
+        /// Draws an <see cref="Identicon"/> in a specified WPF drawing context.
         /// </summary>
+        /// <param name="icon">The identicon to draw.</param>
         /// <param name="drawingContext">Drawing context in which the icon will be rendered.</param>
         /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
         public static void Draw(this Identicon icon, DrawingContext drawingContext, Rendering.Rectangle rect)
@@ -68,8 +69,9 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Draws this icon in the specified drawing context.
+        /// Draws an <see cref="Identicon"/> in a specified WPF drawing context.
         /// </summary>
+        /// <param name="icon">The identicon to draw.</param>
         /// <param name="drawingContext">Drawing context in which the icon will be rendered.</param>
         /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
         public static void Draw(this Identicon icon, DrawingContext drawingContext, System.Windows.Rect rect)

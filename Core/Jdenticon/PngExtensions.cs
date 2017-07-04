@@ -38,10 +38,10 @@ namespace Jdenticon
     public static class PngExtensions
     {
         /// <summary>
-        /// Saves this icon as a PNG file.
+        /// Saves an <see cref="Identicon"/> icon as a Portable Network Graphics (PNG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="stream">The stream to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the PNG data will be written.</param>
         /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
         public static void SaveAsPng(this Identicon icon, Stream stream)
         {
@@ -54,9 +54,9 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Saves this icon as a PNG file.
+        /// Saves an <see cref="Identicon"/> icon as a Portable Network Graphics (PNG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
+        /// <param name="icon">The identicon to save.</param>
         public static Stream SaveAsPng(this Identicon icon)
         {
             var memoryStream = new MemoryStream();
@@ -67,10 +67,10 @@ namespace Jdenticon
 
 #if HAVE_FILE_STREAM
         /// <summary>
-        /// Saves this icon as a PNG file.
+        /// Saves an <see cref="Identicon"/> icon as a Portable Network Graphics (PNG) file.
         /// </summary>
-        /// <param name="icon">Icon instance.</param>
-        /// <param name="path">The path to the file to which the icon will be written.</param>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the PNG file to create. If the file already exists it will be overwritten.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
         public static void SaveAsPng(this Identicon icon, string path)
         {

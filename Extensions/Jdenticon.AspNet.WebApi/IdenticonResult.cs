@@ -66,7 +66,7 @@ namespace Jdenticon.AspNet.WebApi
         /// <summary>
         /// Creates an <see cref="IdenticonResult"/> instance with the specified hash.
         /// </summary>
-        /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
+        /// <param name="hash">The hex encoded hash that will be used as base for the icon. The hash string must contain at least 12 characters.</param>
         /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
         public static IdenticonResult FromHash(string hash, int size, ExportImageFormat format = ExportImageFormat.Png)
@@ -77,7 +77,7 @@ namespace Jdenticon.AspNet.WebApi
         /// <summary>
         /// Creates an <see cref="IdenticonResult"/> instance with a hash of the specified object.
         /// </summary>
-        /// <param name="value">The string representation of this object will be hashed and used as base for this icon.</param>
+        /// <param name="value">The string representation of this object will be hashed and used as base for this icon. Null values are supported and handled as empty strings.</param>
         /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
         /// <param name="hashAlgorithmName">The name of the hash algorithm to use for hashing.</param>

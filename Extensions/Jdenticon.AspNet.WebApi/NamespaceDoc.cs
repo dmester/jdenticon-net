@@ -32,7 +32,7 @@ using System.Text;
 namespace Jdenticon.AspNet.WebApi
 {
     /// <summary>
-    /// Classes for using Jdenticon from WebApi.
+    /// Classes for using Jdenticon from ASP.NET WebApi.
     /// </summary>
     /// <example>
     /// <para>

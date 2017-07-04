@@ -103,6 +103,7 @@ namespace Jdenticon
         /// <summary>
         /// Checks if this is range is equal to another range.
         /// </summary>
+        /// <param name="obj">The object to compare.</param>
         public override bool Equals(object obj)
         {
             return obj is Range<TValue> && Equals((Range<TValue>)obj);
@@ -111,6 +112,7 @@ namespace Jdenticon
         /// <summary>
         /// Checks if this is range is equal to another range.
         /// </summary>
+        /// <param name="other">The object to compare.</param>
         public bool Equals(Range<TValue> other)
         {
             var comparer = EqualityComparer<TValue>.Default;
@@ -122,6 +124,8 @@ namespace Jdenticon
         /// <summary>
         /// Checks if two ranges are equal.
         /// </summary>
+        /// <param name="a">The first range to compare.</param>
+        /// <param name="b">The second range to compare.</param>
         public static bool operator ==(Range<TValue> a, Range<TValue> b)
         {
             return a.Equals(b);
@@ -130,6 +134,8 @@ namespace Jdenticon
         /// <summary>
         /// Checks if two ranges are not equal.
         /// </summary>
+        /// <param name="a">The first range to compare.</param>
+        /// <param name="b">The second range to compare.</param>
         public static bool operator !=(Range<TValue> a, Range<TValue> b)
         {
             return !a.Equals(b);

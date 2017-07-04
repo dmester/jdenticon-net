@@ -107,7 +107,7 @@ namespace Jdenticon
         }
 
         /// <summary>
-        /// Creates an <see cref="Identicon"/> instance with a specified hash.
+        /// Creates an <see cref="Identicon"/> instance from a specified hash.
         /// </summary>
         /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
         /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
@@ -123,7 +123,7 @@ namespace Jdenticon
         /// <summary>
         /// Creates an <see cref="Identicon"/> instance from a hexadecimal hash string.
         /// </summary>
-        /// <param name="hash">The hex encoded hash that will be used as base for this icon. The hash string must contain at least 12 characters.</param>
+        /// <param name="hash">The hex encoded hash that will be used as base for the icon. The hash string must contain at least 12 characters.</param>
         /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
         /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="hash"/> is null.</exception>
@@ -199,6 +199,11 @@ namespace Jdenticon
         /// </summary>
         /// <param name="renderer">The renderer used to render this icon.</param>
         /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
+        /// <remarks>
+        /// This method is only intended for usage with custom renderers. A custom renderer could as an example 
+        /// render an <see cref="Identicon"/> in a file format not natively supported by Jdenticon. To implement
+        /// a new file format, implement the abstract <see cref="Renderer"/> class.
+        /// </remarks>
         public void Draw(Renderer renderer, Rectangle rect)
         {
             IconGenerator.Generate(renderer, rect, Style, hash);

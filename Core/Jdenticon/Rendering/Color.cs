@@ -216,7 +216,6 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Gets a hexadecimal representation of this color on the format #rrggbbaa.
         /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             return "#" + value.ToString("x8");
@@ -319,6 +318,7 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Checks if this color has the same RGBA value as another color.
         /// </summary>
+        /// <param name="obj">The color to compare.</param>
         public override bool Equals(object obj)
         {
             return obj is Color && Equals((Color)obj);
@@ -327,6 +327,7 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Checks if this color has the same RGBA value as another color.
         /// </summary>
+        /// <param name="other">The color to compare.</param>
         public bool Equals(Color other)
         {
             return other.value == value;
@@ -335,6 +336,8 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Checks if the two <see cref="Color"/> have the same RGBA value.
         /// </summary>
+        /// <param name="a">The first color to compare.</param>
+        /// <param name="b">The second color to compare.</param>
         public static bool operator ==(Color a, Color b)
         {
             return a.value == b.value;
@@ -343,6 +346,8 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Checks if the two <see cref="Color"/> have different RGBA value.
         /// </summary>
+        /// <param name="a">The first color to compare.</param>
+        /// <param name="b">The second color to compare.</param>
         public static bool operator !=(Color a, Color b)
         {
             return a.value != b.value;

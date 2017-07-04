@@ -64,31 +64,56 @@ namespace Jdenticon.Shapes
             get { return y; }
         }
 
+        /// <summary>
+        /// Gets a string representation of the <see cref="ShapePosition"/> instance.
+        /// </summary>
         public override string ToString()
         {
             return "{ " + x + ", " + y + " }";
         }
 
+        /// <summary>
+        /// Gets a hash code for this <see cref="ShapePosition"/> instance.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return x ^ y;
         }
 
+        /// <summary>
+        /// Checks if this position is equal to another position.
+        /// </summary>
+        /// <param name="obj">The object to compare with.</param>
         public override bool Equals(object obj)
         {
             return obj is ShapePosition && Equals((ShapePosition)obj);
         }
 
+        /// <summary>
+        /// Checks if this position is equal to another position.
+        /// </summary>
+        /// <param name="other">The object to compare with.</param>
         public bool Equals(ShapePosition other)
         {
             return other.x == x && other.y == y;
         }
 
+        /// <summary>
+        /// Checks if two <see cref="ShapePosition"/> instances are equal.
+        /// </summary>
+        /// <param name="a">The first <see cref="ShapePosition"/> instance to compare.</param>
+        /// <param name="b">The second <see cref="ShapePosition"/> instance to compare.</param>
         public static bool operator ==(ShapePosition a, ShapePosition b)
         {
             return a.Equals(b);
         }
 
+        /// <summary>
+        /// Checks if two <see cref="ShapePosition"/> instances are not equal.
+        /// </summary>
+        /// <param name="a">The first <see cref="ShapePosition"/> instance to compare.</param>
+        /// <param name="b">The second <see cref="ShapePosition"/> instance to compare.</param>
         public static bool operator !=(ShapePosition a, ShapePosition b)
         {
             return !a.Equals(b);

@@ -190,6 +190,7 @@ namespace Jdenticon
         /// <summary>
         /// Checks if this style is identical to another style.
         /// </summary>
+        /// <param name="obj">The <see cref="IdenticonStyle"/> to compare.</param>
         public override bool Equals(object obj)
         {
             return Equals(obj as IdenticonStyle);
@@ -198,6 +199,7 @@ namespace Jdenticon
         /// <summary>
         /// Checks if this style is identical to another style.
         /// </summary>
+        /// <param name="other">The <see cref="IdenticonStyle"/> to compare.</param>
         public bool Equals(IdenticonStyle other)
         {
             return
