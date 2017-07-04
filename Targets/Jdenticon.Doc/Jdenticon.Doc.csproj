@@ -120,6 +120,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ResourceItems Include="ResourceItems.items" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Jdenticon.AspNet.Mvc.Net45\Jdenticon.AspNet.Mvc.Net45.csproj">
       <Project>{631529fa-2c0a-4792-b2bd-f273fb80e610}</Project>
       <Name>Jdenticon.AspNet.Mvc.Net45</Name>

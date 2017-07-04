@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+  <item id="assemblyNameAndModule">{1}.{2}</item>
+  <item id="boilerplate_requirementsAssembly"><strong>Assembly:</strong> {1}.dll</item>
+  <item id="definedBy" />
+  <item id="Overloaded" />
+  <item id="overridesMember" />
+  <item id="inheritedFrom" />
+</content>
