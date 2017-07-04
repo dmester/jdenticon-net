@@ -179,8 +179,14 @@ pre {
 	text-transform: uppercase;
 	background: #333;
   color: #fff;
-	padding: 1em 0.7em;
+	padding: 1em;
 	vertical-align: middle;
+}
+.pageHeader:before {
+	content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAALVBMVEUAAADdiLvYh7zWhrrXhLrXhbvXhbrXhbnXhbrXhbr/////////////qqr/gIAzY6IgAAAAD3RSTlMAD0hKcpnFxuX///s8AwJfjXD+AAAAeklEQVR4XoWSWQoAMQhDtfvq/Y87ox0KQyjNZx5oGktbHEuJTKCZ66s8Afhq8gDCAgGAW8ABkKQgyQaYCjXGP6cPTszv3Yi44CcRZx3N6remhHVZZopVFc1Xso1ioJhv5DOO4DjquPwUFx94qwRLvNWOh7qdFj/DNdUDHm4IoV3PU48AAAAASUVORK5CYII=);
+	display: inline-block;
+	vertical-align: -24%;
+	margin-right: .4em;
 }
 .pageBody {
 	padding: 0px;

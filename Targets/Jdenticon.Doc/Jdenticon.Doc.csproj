@@ -111,7 +111,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>xcopy /Y "$(ProjectDir)styles\*.*" "$(ProjectDir)bin\$(ConfigurationName)\styles"</PostBuildEvent>
+    <PostBuildEvent>xcopy /S /Y "$(ProjectDir)Patch\*.*" "$(ProjectDir)bin\$(ConfigurationName)"</PostBuildEvent>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
@@ -145,7 +145,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="styles\branding-Website.css" />
-    <Content Include="styles\branding.css" />
+    <Content Include="Patch\styles\branding-Website.css" />
+    <Content Include="Patch\styles\branding.css" />
+    <Content Include="Patch\favicon.ico" />
   </ItemGroup>
 </Project>
