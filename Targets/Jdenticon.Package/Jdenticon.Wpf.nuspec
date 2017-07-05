@@ -7,6 +7,7 @@
     <authors>Daniel Mester Pirttijärvi</authors>
     <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
     <projectUrl>http://jdenticon.com/</projectUrl>
+    <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extends Jdenticon-net with features to use Jdenticon with WPF.</description>
     <summary>Extends Jdenticon-net with features to use Jdenticon with WPF.</summary>
