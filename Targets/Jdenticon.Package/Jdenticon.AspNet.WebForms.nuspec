@@ -22,5 +22,6 @@
     <file src="..\..\releases\help\Jdenticon.AspNet.WebForms.xml" target="lib\net40\Jdenticon.AspNet.WebForms.xml" />
     <file src="..\..\releases\help\Jdenticon.AspNet.WebForms.xml" target="lib\net45\Jdenticon.AspNet.WebForms.xml" />
     <file src="Web.config.WebForms.transform" target="Content\Web.config.transform" />
+    <file src="ReadMe.WebForms.txt" target="readme.txt" />
   </files>
 </package>

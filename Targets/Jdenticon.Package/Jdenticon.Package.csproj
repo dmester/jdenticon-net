@@ -47,6 +47,11 @@
     <None Include="Web.config.WebForms.transform" />
     <None Include="Web.config.Mvc.transform" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.WebApi.txt" />
+    <Content Include="ReadMe.WebForms.txt" />
+    <Content Include="ReadMe.Mvc.txt" />
+  </ItemGroup>
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="$(SolutionDir)\Build\Common.props" />
   <Target Name="CreatePackages">
@@ -54,10 +59,10 @@
   </Target>
   <Target Name="Clean">
     <ItemGroup>
-      <FilesToDelete Include="$(SolutionDir)releases\*.nupkg"/>
-      <FilesToDelete Include="$(SolutionDir)releases\Jdenticon.*\*\*"/>
-      <FilesToDelete Include="$(SolutionDir)releases\Jdenticon.*.zip"/>
-    </ItemGroup>   
+      <FilesToDelete Include="$(SolutionDir)releases\*.nupkg" />
+      <FilesToDelete Include="$(SolutionDir)releases\Jdenticon.*\*\*" />
+      <FilesToDelete Include="$(SolutionDir)releases\Jdenticon.*.zip" />
+    </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
   </Target>
   <PropertyGroup>

@@ -20,5 +20,6 @@
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.AspNet.WebApi.dll" target="lib\net45\Jdenticon.AspNet.WebApi.dll" />
     <file src="..\..\releases\help\Jdenticon.AspNet.WebApi.xml" target="lib\net45\Jdenticon.AspNet.WebApi.xml" />
+    <file src="ReadMe.WebApi.txt" target="readme.txt" />
   </files>
 </package>
