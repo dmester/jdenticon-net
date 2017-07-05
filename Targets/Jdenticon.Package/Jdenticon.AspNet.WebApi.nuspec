@@ -3,7 +3,7 @@
   <metadata>
     <id>Jdenticon.AspNet.WebApi</id>
     <version>$version$</version>
-    <title>Jdenticon.AspNet.WebApi</title>
+    <title>Jdenticon ASP.NET WebApi Extensions</title>
     <authors>Daniel Mester Pirttijärvi</authors>
     <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
     <projectUrl>http://jdenticon.com/</projectUrl>

@@ -3,7 +3,7 @@
   <metadata>
     <id>Jdenticon.AspNet.Mvc</id>
     <version>$version$</version>
-    <title>Jdenticon.AspNet.Mvc</title>
+    <title>Jdenticon ASP.NET MVC Extensions</title>
     <authors>Daniel Mester Pirttijärvi</authors>
     <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
     <projectUrl>http://jdenticon.com/</projectUrl>
