@@ -84,7 +84,7 @@ There are multiple methods in the `Identicon` class for generating icons:
 ### Change icon appearance
 There are properties on `Identicon` that can be used to customize the look of the generated icons.
 
-* `Padding` (default 0.08)
+* `Style.Padding` (default 0.08)
 
   The padding between the outer bounds of the icon and the content. Specified as percent in the range
   [0.0, 0.4].
@@ -112,22 +112,20 @@ Example
 
 ```csharp
 using Jdenticon;
-using System.Drawing;
+using Jdenticon.Rendering;
 ----
 var iconStyle = new IdenticonStyle
 {
+    Padding = 0.10f,
     BackColor = Color.Transparent,
     Saturation = 0.4f,
     ColorLightness = Range.Create(0.4f, 0.9f),
     GrayscaleLightness = Range.Create(0.3f, 0.9f)
 };
 
-var icon = Identicon.FromValue("john.doe@example.faux");
-
-icon.Padding = 0.10f;
+var icon = Identicon.FromValue("john.doe@example.faux", size: 100);
 icon.Style = iconStyle;
-
-icon.Save(100, "johndoe.svg");
+icon.SaveAsPng("johndoe.png");
 ```
   
 ### Advanced customizations
