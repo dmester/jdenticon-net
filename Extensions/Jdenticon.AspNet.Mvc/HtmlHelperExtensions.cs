@@ -83,7 +83,7 @@ namespace Jdenticon.AspNet.Mvc
                 "src=\"" + HttpUtility.HtmlAttributeEncode(url) + "\" " +
                 "width=\"" + size + "\" " +
                 "height=\"" + size + "\" " +
-                "title=\"" + HttpUtility.HtmlAttributeEncode(alt ?? "") + "\" \">";
+                "alt=\"" + HttpUtility.HtmlAttributeEncode(alt ?? "") + "\" >";
             return new MvcHtmlString(html);
         }
     }
