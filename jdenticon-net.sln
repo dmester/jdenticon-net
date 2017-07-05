@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Net35", "Targets\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4DE9AC20-F167-4B0E-8B0C-534042D26004}"
 	ProjectSection(SolutionItems) = preProject
-		Defines.txt = Defines.txt
+		Core\Defines.txt = Core\Defines.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Package", "Targets\Jdenticon.Package\Jdenticon.Package.csproj", "{0BCADE58-DD80-4ABB-A193-499ABE5DF34F}"
