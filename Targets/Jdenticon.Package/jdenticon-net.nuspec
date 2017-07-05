@@ -37,5 +37,6 @@
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\net45\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard1.0\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard1.3\Jdenticon.xml" />
+    <file src="ReadMe.Core.txt" target="readme.txt" />
   </files>
 </package>
