@@ -79,12 +79,15 @@ namespace Jdenticon.AspNet.Mvc
             ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
         {
             var url = IdenticonUrl.Create(helper.ViewContext.HttpContext.Response, hash, size, format, style);
-            var html = "<img " +
-                "src=\"" + HttpUtility.HtmlAttributeEncode(url) + "\" " +
-                "width=\"" + size + "\" " +
-                "height=\"" + size + "\" " +
-                "alt=\"" + HttpUtility.HtmlAttributeEncode(alt ?? "") + "\" >";
-            return new MvcHtmlString(html);
+
+            var img = new TagBuilder("img");
+            
+            img.Attributes["src"] = url;
+            img.Attributes["width"] = size.ToString();
+            img.Attributes["height"] = size.ToString();
+            img.Attributes["alt"] = alt ?? "";
+            
+            return new MvcHtmlString(img.ToString(TagRenderMode.SelfClosing));
         }
     }
 }
