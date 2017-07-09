@@ -111,13 +111,14 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>powershell -ExecutionPolicy Bypass -File "$(ProjectDir)ReplacePageHeader.ps1" "$(SolutionDir)\releases\help\html" "$(ProjectDir)PageHeader.html"
+</PostBuildEvent>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="ReplacePageHeader.ps1" />
   </ItemGroup>
   <ItemGroup>
     <ResourceItems Include="ResourceItems.items" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="PageHeader.html" />
     <Content Include="styles\branding-Website.css" />
     <Content Include="styles\branding.css" />
   </ItemGroup>

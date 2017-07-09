@@ -1,9 +1,10 @@
 /* General styles */
 @import url('https://fonts.googleapis.com/css?family=Enriqueta:400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700&subset=latin-ext');
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 15px;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+	font-size: 100%;
 	line-height: 21px;
 	padding: 0;
 	margin: 0;
@@ -40,7 +41,7 @@ h4, .subHeading {
 	color: #000;
 }
 h5, h6 {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
 	font-size: 1em;
 	font-weight: normal;
 	line-height: 130%;
@@ -54,15 +55,14 @@ strong {
 }
 a, a:link {
 	text-decoration: none;
-	color: #1364c4;
+	color: #e843af;
 }
 a:visited, a:active {
 	text-decoration: none;
-	color: #03697a;
+	color: #e843af;
 }
 a:hover {
-	text-decoration: none;
-	color: #3390b1;
+	text-decoration: underline;
 }
 a.button, a.button:active, a.button:hover {
     float: right;
@@ -111,11 +111,11 @@ th {
 	background-color: #F2F2F2;
 	color: #555;
 	text-align: left;
-	padding-top: 0.8em;
-	padding-bottom: 0.8em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 	text-shadow: 1px 1px 0 #fff;
 	text-transform: uppercase;
-	font-size: 0.8em;
+	font-weight: 600;
 }
 td {
 	color: #555;
@@ -231,7 +231,7 @@ td.logoColumnAbove {
 	vertical-align: middle;
 }
 span.selflink {
-	color: #000066;
+	color: #ab207b;
 }
 div.preliminary {
 	margin-top: 1em;
@@ -284,6 +284,7 @@ div.caption {
 }
 .codeSnippetContainerTabs {
 	z-index: 1;
+	overflow: hidden;
 }
 
 .codeSnippetContainerTabs a {
@@ -294,16 +295,13 @@ display: block;
 .codeSnippetContainerTab {
 	width: auto;
 	color: #2a2a2a;
-	font-family: Arial, "Segoe UI" , "Lucida Grande" , Verdana, Arial, Helvetica, sans-serif !important;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif !important;
 	font-size: 12px;
 	font-style: normal !important;
 	vertical-align: baseline;
 	
-	
-	display: inline-block;
-	
-		
-    
+	float: left;
+	  
     border-bottom: 2px solid #fff;
     text-transform: uppercase;
     font-size: .8em;
@@ -312,12 +310,12 @@ display: block;
 	background: #f8f8f8;
 	width: auto;
 	color: #000000;
-	font-family: Arial, "Segoe UI" , "Lucida Grande" , Verdana, Arial, Helvetica, sans-serif !important;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif !important;
 	font-size: 12px;
 	font-style: normal !important;
 	vertical-align: baseline;
 	
-	display: inline-block;
+	float: left;
 	
     border-bottom: 2px solid #ddd;
     text-transform: uppercase;
@@ -329,7 +327,7 @@ display: block;
 	width: auto;
 	height: 22px;
 	color: #000000;
-	font-family: "Segoe UI" , "Lucida Grande" , Verdana, Arial, Helvetica, sans-serif !important;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif !important;
 	font-size: 12px;
 	font-style: normal !important;
 	vertical-align: baseline;
@@ -348,14 +346,13 @@ display: block;
 .codeSnippetContainerTabSingle {
 	padding: 2px 15px 0px 15px;
 	width: auto;
-	font-family: Arial, "Segoe UI" , "Lucida Grande" , Verdana, Arial, Helvetica, sans-serif !important;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif !important;
 	font-size: 12px;
-	font-weight: bold;
+	font-weight: normal;
 	font-style: normal !important;
 	vertical-align: baseline;
 	
-    display: inline-block;
-	
+	float: left;
 		
     padding: 0 1em .3em;
     border-bottom: 2px solid #ddd;
@@ -365,7 +362,7 @@ display: block;
 .codeSnippetContainerTab a {
 	top: 2px;
 	color: #000000;
-	font-weight: bold;
+	font-weight: 600;
 	text-decoration: none;
 	position: relative;
 }
@@ -378,7 +375,7 @@ display: block;
 .codeSnippetContainerTabActive a {
 	top: 2px;
 	color: #000000;
-	font-weight: bold;
+	font-weight: 600;
 	text-decoration: none;
 	position: relative;
 	cursor: default;
@@ -428,7 +425,7 @@ display: block;
 	color: #1364c4;
 	text-decoration: none;
 	padding: 5px 9px;
-	font-family: Arial, Helvetica, sans-serif !important;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif !important;
 	font-size: 10px;
 	font-style: normal !important;
 	text-decoration: none;

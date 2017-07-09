@@ -1,3 +1,6 @@
+
+
+
 /* Style adjustments for websites */
 .pageBody {
 	padding: 0px 20px 0px 0px;
@@ -42,7 +45,7 @@ div#leftNav {
 	padding-top: 15px;
 }
 div#tocNav {
-	font-family: Arial, 'Segoe UI' ,Verdana,Arial;
+	font-family: "Source Sans Pro", 'Segoe UI' ,Verdana,Arial;
 	overflow-x: hidden;
 	line-height: normal;
 	margin: -10px 0 0 -4px;
@@ -54,11 +57,12 @@ div#tocNav > div {
 	margin-bottom: 5px;
 }
 div#leftNav a, div#leftNav a:link, div#leftNav a:visited {
-	color: #1364c4;
+	color: #e843af;
 	text-decoration: none;
 }
 div#leftNav a:hover {
-	color: #3390b1;
+	color: #e843af;
+	text-decoration: underline;
 }
 div#tocNav > div > a, div#tocNav > div > a:link, div#tocNav > div > a:visited {
 	display: block;
@@ -69,7 +73,7 @@ div#tocNav > div > a, div#tocNav > div > a:link, div#tocNav > div > a:visited {
 }
 div#tocNav > div.current > a, div#tocNav > div.current > a:link, div#tocNav > div.current > a:visited {
 	color: #000;
-	font-weight: bold;
+	font-weight: 600;
 	text-decoration: none;
 }
 div#tocNav > div > a.tocExpanded, div#tocNav > div > a.tocCollapsed {
@@ -161,4 +165,188 @@ form#SearchForm button {
 
 .tocResize {
 display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*********************************
+ * Navigation
+ */
+body 
+{
+    padding-top: 5em;
+}
+ 
+nav
+{
+    line-height: 4em;
+    display: block;
+    text-align: left;
+    
+    background: #222;
+    
+    background: rgba(0,0,0,0.85);
+    color: white;
+    
+    z-index: 10;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+nav:before {
+  content: "";
+  position:absolute;
+  bottom:-2px;
+  left:0;
+  right:0;
+  height: 2px;
+  
+  background: linear-gradient(to bottom, rgba(145,0,94,0.7), transparent);
+  
+}
+
+nav .mobile
+{
+    display: none;
+}
+
+nav h2 a,
+nav h2 a:link,
+nav h2 a:visited,
+nav h2 a:active
+{
+    color: white;
+}
+
+nav h2 a:hover
+{
+    text-decoration: none;
+}
+
+nav .wrapper
+{
+    position: relative;
+}
+
+nav ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline;
+    
+    font: 1em 'Source Sans Pro';
+    text-transform: uppercase;
+}
+
+nav>div>ul {
+    position: absolute;
+    top: 0;
+    right: 0.7em;
+}
+
+nav ul ul 
+{
+      display: nonee;
+    text-transform: none;
+    margin-right: 1em;
+}
+
+nav li.active ul  {
+  display: inline;
+}
+
+nav ul a,
+nav ul a:link,
+nav ul a:visited,
+nav ul a:active,
+nav ul span
+{
+    color: #ef83c9;
+    text-decoration: none;
+}
+
+nav ul ul a,
+nav ul ul a:link,
+nav ul ul a:visited,
+nav ul ul a:active
+{
+    color: #fff;
+}
+
+nav li
+{
+    margin: 0;
+    padding: 0;
+    display: inline;
+    
+    position: relative;
+}
+
+nav ul a,
+nav ul a:link,
+nav ul span
+{
+    display: inline-block;
+    padding: 0 0.65em;
+    position: relative;
+    padding: 0 0.5em;
+    line-height: 4em;
+}
+
+nav ul span
+{
+    cursor: default;
+}
+
+nav ul ul a:hover
+{
+    text-decoration: underline;
+}
+
+nav a.current:before
+{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0.5em;
+    right: 0.5em;
+    height: 4px;
+    background: #ef83c9;
+}
+
+
+nav h2:before
+{
+    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAALVBMVEUAAADdiLvYh7zWhrrXhLrXhbvXhbrXhbnXhbrXhbr/////////////qqr/gIAzY6IgAAAAD3RSTlMAD0hKcpnFxuX///s8AwJfjXD+AAAAeklEQVR4XoWSWQoAMQhDtfvq/Y87ox0KQyjNZx5oGktbHEuJTKCZ66s8Afhq8gDCAgGAW8ABkKQgyQaYCjXGP6cPTszv3Yi44CcRZx3N6remhHVZZopVFc1Xso1ioJhv5DOO4DjquPwUFx94qwRLvNWOh7qdFj/DNdUDHm4IoV3PU48AAAAASUVORK5CYII=);
+    display: inline-block;
+    vertical-align: -6%;
+    margin-right: 0.4em;
+}
+
+nav h2
+{
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0;
+    
+    margin: 0 1em 0 0.8em;
+    font-size: 1.3em;
+    display: inline-block;
 }
