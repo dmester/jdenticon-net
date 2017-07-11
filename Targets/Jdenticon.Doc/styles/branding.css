@@ -45,7 +45,7 @@
 body {
 	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
 	font-size: 100%;
-	line-height: 21px;
+	line-height: 23px;
 	padding: 0;
 	margin: 0;
 	margin-left: auto;
@@ -54,7 +54,7 @@ body {
 }
 h1 {
 	font-family: Enriqueta, Arial, Helvetica, sans-serif;
-	font-size: 2.5em;
+	font-size: 2em;
 	font-weight: normal;
 	margin: 0;
 	color: #000;
@@ -90,7 +90,6 @@ h5, h6 {
 }
 strong {
   color: #000;
-  /*font-weight: 600;*/
   font-weight: normal;
 }
 a, a:link {
@@ -204,6 +203,7 @@ dl {
   margin: 0;
 }
 dd {
+  margin-top: 0.2em;
   margin-bottom: 1em;
 }
 pre {
@@ -302,7 +302,7 @@ div.caption {
 	padding-right: 5px;
 }
 .collapsibleRegionTitle {
-	font: 1.4em Enriqueta,Arial,Sans-serif;
+	font: 1.3em Enriqueta,Arial,Sans-serif;
 	margin-top: 9px;
 	margin-bottom: 19px;
 	padding-top: 20px;
@@ -538,6 +538,7 @@ span.keyword {
 span.parameter {
 	font-style: italic;
 	margin-right: 0.4em;
+    color: #222;
 }
 dt span.parameter {
 	font-weight: normal;
