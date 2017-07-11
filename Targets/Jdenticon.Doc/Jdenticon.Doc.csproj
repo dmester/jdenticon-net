@@ -117,6 +117,34 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="fonts\enriqueta\enriqueta-bold-webfont.woff" />
+    <Content Include="fonts\enriqueta\enriqueta-bold-webfont.woff2" />
+    <Content Include="fonts\enriqueta\enriqueta-regular-webfont.woff" />
+    <Content Include="fonts\enriqueta\enriqueta-regular-webfont.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Black.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Black.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-BlackIt.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-BlackIt.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Bold.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Bold.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-BoldIt.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-BoldIt.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-ExtraLight.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-ExtraLight.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-ExtraLightIt.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-ExtraLightIt.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-It.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-It.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Light.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Light.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-LightIt.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-LightIt.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Regular.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Regular.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Semibold.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-Semibold.ttf.woff2" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-SemiboldIt.ttf.woff" />
+    <Content Include="fonts\sourcesanspro\SourceSansPro-SemiboldIt.ttf.woff2" />
     <None Include="packages.config" />
     <None Include="ReplacePageHeader.ps1" />
   </ItemGroup>
@@ -152,6 +180,8 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <None Include="PageHeader.html" />
+    <Content Include="fonts\enriqueta\SIL Open Font License.txt" />
+    <Content Include="fonts\sourcesanspro\LICENSE.txt" />
     <Content Include="styles\branding-Website.css" />
     <Content Include="styles\branding.css" />
   </ItemGroup>
