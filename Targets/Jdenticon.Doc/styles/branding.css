@@ -135,7 +135,6 @@ table {
 	border-collapse: collapse;
 	padding: 0;
 	margin-bottom: 15px;
-	font-size: 15px;
 	width: 100%;
 }
 td, th {
@@ -151,11 +150,12 @@ th {
 	background-color: #F2F2F2;
 	color: #555;
 	text-align: left;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	padding-top: 0.7em;
+	padding-bottom: 0.6em;
 	text-shadow: 1px 1px 0 #fff;
 	text-transform: uppercase;
 	font-weight: 600;
+    font-size: 0.9em;
 }
 td {
 	color: #555;
