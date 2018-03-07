@@ -11,7 +11,7 @@ namespace Jdenticon.Tests
         [TestMethod]
         public void EdgeTable_VerticalUnaligned()
         {
-            var table = new EdgeTable(10);
+            var table = new EdgeTable(10, 10);
             table.Add(new Edge(1, new PointF(2.5f, 0), new PointF(2.5f, 10), Color.Red));
 
             var edges = table[5];
@@ -23,7 +23,7 @@ namespace Jdenticon.Tests
         [TestMethod]
         public void EdgeTable_VerticalAligned()
         {
-            var table = new EdgeTable(10);
+            var table = new EdgeTable(10, 10);
             table.Add(new Edge(1, new PointF(2f, 0), new PointF(2f, 10), Color.Red));
 
             var edges = table[5];
@@ -35,7 +35,7 @@ namespace Jdenticon.Tests
         [TestMethod]
         public void EdgeTable_Diagonal()
         {
-            var table = new EdgeTable(10);
+            var table = new EdgeTable(10, 10);
             table.Add(new Edge(1, new PointF(0, 0), new PointF(10, 5), Color.Red));
 
             var edges = table[0];
