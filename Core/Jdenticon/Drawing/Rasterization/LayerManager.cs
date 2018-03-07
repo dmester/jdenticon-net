@@ -45,11 +45,6 @@ namespace Jdenticon.Drawing.Rasterization
         private Buffer<Layer> layers = new Buffer<Layer>(10);
         private Color color;
         
-        private void Compact()
-        {
-            layers.TrimEnd(l => l.Winding == 0);
-        }
-        
         public Color Add(Edge intersection)
         {
             var color = default(Color);
@@ -64,7 +59,7 @@ namespace Jdenticon.Drawing.Rasterization
 
                     if (layers[i].Winding == 0)
                     {
-                        Compact();
+                        layers.RemoveAt(i);
                     }
                     else if (color.A != 255)
                     {
@@ -87,7 +82,7 @@ namespace Jdenticon.Drawing.Rasterization
                     {
                         color = color.Over(intersection.Color);
 
-                        if (color.A != 255 && layers[i].Winding != 0)
+                        if (color.A != 255)
                         {
                             color = color.Over(layers[i].Color);
                         }
@@ -108,20 +103,12 @@ namespace Jdenticon.Drawing.Rasterization
                 Winding = intersection.From.Y < intersection.To.Y ? 1 : -1
             });
             color = color.Over(intersection.Color);
-            
+
             CompleteColor:
 
-            for (; color.A != 255 && i >= 0; i--)
+            for (i--; i >= 0 && color.A != 255; i--)
             {
-                if (layers[i].Winding != 0)
-                {
-                    color = color.Over(layers[i].Color);
-
-                    if (color.A == 255)
-                    {
-                        break;
-                    }
-                }
+                color = color.Over(layers[i].Color);
             }
 
             this.color = color;

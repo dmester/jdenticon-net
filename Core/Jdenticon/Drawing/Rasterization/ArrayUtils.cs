@@ -33,12 +33,25 @@ namespace Jdenticon.Drawing.Rasterization
             if (count > 0)
             {
                 var previousItem = array[startIndex];
-                
+
                 for (var i = 0; i < count; i++)
                 {
                     var currentItem = array[startIndex + i + 1];
                     array[startIndex + i + 1] = previousItem;
                     previousItem = currentItem;
+                }
+            }
+        }
+
+        public static void ShiftLeft<T>(T[] array, int startIndex, int count)
+        {
+            if (count > 0)
+            {
+                var previousItem = array[startIndex];
+
+                for (var i = 0; i < count; i++)
+                {
+                    array[startIndex + i - 1] = array[startIndex + i];
                 }
             }
         }

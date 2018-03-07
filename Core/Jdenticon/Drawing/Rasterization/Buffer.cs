@@ -84,20 +84,12 @@ namespace Jdenticon.Drawing.Rasterization
             count++;
         }
 
-        public void TrimEnd(Predicate<T> predicate)
+        public void RemoveAt(int index)
         {
-            for (var i = count - 1; i >= 0; i--)
-            {
-                if (!predicate(items[i]))
-                {
-                    count = i + 1;
-                    return;
-                }
-            }
-
-            count = 0;
+            ArrayUtils.ShiftLeft(items, index + 1, count - index - 1);
+            count--;
         }
-
+        
         public int Count => count;
 
         public ref T this[int index]
