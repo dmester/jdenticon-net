@@ -33,10 +33,9 @@ namespace Jdenticon.Drawing.Rasterization
     internal static class SuperSampling
     {
         // Note that the product of SamplesPerPixelX and SamplesPerPixelY
-        // must not exceed 32 since AverageColor does not support more 
-        // samples than that per pixel.
+        // must not exceed AverageColor.MaxSampleCount.
 
-        public const int SamplesPerPixelX = 8;
+        public const int SamplesPerPixelX = AverageColor.MaxSampleCount / SamplesPerPixelY;
         public const int SamplesPerPixelY = 3;
 
         public const float SampleWidth = 1f / SamplesPerPixelX;
