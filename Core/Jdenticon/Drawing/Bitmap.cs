@@ -51,7 +51,7 @@ namespace Jdenticon.Drawing
         /// <param name="height"></param>
         public Bitmap(int width, int height)
         {
-            this.edges = new EdgeTable(height);
+            this.edges = new EdgeTable(width, height);
             this.width = width;
             this.height = height;
         }

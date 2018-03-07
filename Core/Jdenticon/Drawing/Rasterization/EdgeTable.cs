@@ -24,6 +24,7 @@
 //
 #endregion
 
+using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -36,12 +37,15 @@ namespace Jdenticon.Drawing.Rasterization
     internal class EdgeTable
     {
         private List<EdgeIntersectionRange>[] scanlines;
+        private int width;
 
-        public EdgeTable(int height)
+        public EdgeTable(int width, int height)
         {
-            if (height <= 0) throw new ArgumentOutOfRangeException("height");
+            if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width));
+            if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height));
 
             scanlines = new List<EdgeIntersectionRange>[height];
+            this.width = width;
         }
 
         class EdgeComparer : IComparer<EdgeIntersectionRange>
@@ -59,7 +63,7 @@ namespace Jdenticon.Drawing.Rasterization
                 return 0;
             }
         }
-
+        
         public void Add(Edge edge)
         {
             int minY, maxY;
@@ -69,7 +73,50 @@ namespace Jdenticon.Drawing.Rasterization
                 // Skip horizontal lines
                 return;
             }
-            else if (edge.From.Y < edge.To.Y)
+
+            if (edge.From.X >= width && edge.To.X >= width)
+            {
+                // Skip edges entirely to the right of the viewport
+                return;
+            }
+
+            // Edges crossing the right side of the viewport need to
+            // be clipped.
+            if ((edge.From.X > width) ^ (edge.To.X > width))
+            {
+                var intersectingY = edge.From.Y +
+                    (edge.To.Y - edge.From.Y) * (width - edge.From.X) / (edge.To.X - edge.From.X);
+
+                if (edge.From.X > width)
+                {
+                    // Keep To-point
+                    edge = new Edge(edge.PolygonID,
+                        new PointF(width, intersectingY), edge.To,
+                        edge.Color);
+                }
+                else
+                {
+                    // Keep From-point
+                    edge = new Edge(edge.PolygonID,
+                        edge.From, new PointF(width, intersectingY),
+                        edge.Color);
+                }
+            }
+
+            if (edge.From.Y < 0 && edge.To.Y < 0)
+            {
+                // Skip edges entirely above the viewport
+                return;
+            }
+
+            if (edge.From.Y >= scanlines.Length && edge.To.Y >= scanlines.Length)
+            {
+                // Skip edges entirely below the viewport
+                return;
+            }
+
+            // Determine lower and upper vertical bounds 
+            if (edge.From.Y < edge.To.Y)
             {
                 minY = (int)edge.From.Y;
                 maxY = (int)(edge.To.Y + 0.996f /* 1/255 */);
@@ -80,11 +127,7 @@ namespace Jdenticon.Drawing.Rasterization
                 maxY = (int)(edge.From.Y + 0.996f /* 1/255 */);
             }
 
-            if (maxY < 0 || minY >= scanlines.Length)
-            {
-                return;
-            }
-
+            // We only need to add the edge to the visible scanlines
             if (minY < 0)
             {
                 minY = 0;
@@ -94,53 +137,55 @@ namespace Jdenticon.Drawing.Rasterization
                 maxY = scanlines.Length;
             }
 
-            if (minY < maxY)
+            var y = minY;
+            var x1 = edge.Intersection(y);
+
+            while (y < maxY)
             {
-                var y = minY;
-                var x1 = edge.Intersection(y);
+                var x2 = edge.Intersection(y + 1);
 
-                while (y < maxY)
+                int fromX, superSampleWidth;
+                if (x1 < x2)
                 {
-                    var x2 = edge.Intersection(y + 1);
-
-                    int fromX, width;
-                    if (x1 < x2)
-                    {
-                        fromX = (int)x1;
-                        width = (int)(x2 + 0.9999f) - fromX;
-                    }
-                    else
-                    {
-                        fromX = (int)x2;
-                        width = (int)(x1 + 0.9999f) - fromX;
-                    }
-
-                    if (fromX < 0)
-                    {
-                        width += fromX;
-                        fromX = 0;
-
-                        if (width < 0)
-                        {
-                            width = 0;
-                        }
-                    }
-
-                    var scanline = scanlines[y];
-                    if (scanline == null)
-                    {
-                        scanlines[y] = scanline = new List<EdgeIntersectionRange>();
-                    }
-                    scanline.Add(new EdgeIntersectionRange
-                    {
-                        FromX = fromX,
-                        Width = width,
-                        Edge = edge
-                    });
-
-                    x1 = x2;
-                    y++;
+                    fromX = (int)x1;
+                    superSampleWidth = (int)(x2 + 0.9999f) - fromX;
                 }
+                else
+                {
+                    fromX = (int)x2;
+                    superSampleWidth = (int)(x1 + 0.9999f) - fromX;
+                }
+
+                if (fromX < 0)
+                {
+                    superSampleWidth += fromX;
+                    fromX = 0;
+
+                    if (superSampleWidth < 0)
+                    {
+                        superSampleWidth = 0;
+                    }
+                }
+
+                if (fromX + superSampleWidth > width)
+                {
+                    superSampleWidth = width - fromX;
+                }
+
+                var scanline = scanlines[y];
+                if (scanline == null)
+                {
+                    scanlines[y] = scanline = new List<EdgeIntersectionRange>();
+                }
+                scanline.Add(new EdgeIntersectionRange
+                {
+                    FromX = fromX,
+                    Width = superSampleWidth,
+                    Edge = edge
+                });
+
+                x1 = x2;
+                y++;
             }
         }
 
