@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Tests", "Tests\Jdenticon.Tests\Jdenticon.Tests.csproj", "{CDF729BC-F32A-4190-8F72-8C8438216DA1}"
 EndProject
@@ -92,6 +92,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AssemblyInfo", "Core\Assemb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Doc", "Targets\Jdenticon.Doc\Jdenticon.Doc.csproj", "{503810E3-323C-4FCA-8F6B-39196C6DC70B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.VisualTests", "Tests\Jdenticon.VisualTests\Jdenticon.VisualTests.csproj", "{AABD0907-3D03-4D96-98CF-02D779E9237B}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Core\AssemblyInfo\AssemblyInfo.projitems*{0b04331d-7c41-4312-8032-c7ecb447f051}*SharedItemsImports = 4
@@ -125,6 +127,7 @@ Global
 		Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems*{925d23fd-ef96-460d-9585-80aa08cd5bee}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{a35ab996-73cb-4b80-b85e-de531147c476}*SharedItemsImports = 13
 		Core\Jdenticon\Jdenticon.projitems*{a3807953-1974-4f93-891b-6d1e0efe7a27}*SharedItemsImports = 13
+		Core\Jdenticon\Jdenticon.projitems*{aabd0907-3d03-4d96-98cf-02d779e9237b}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems*{cbc73b22-177f-4c0a-87bb-e16e7fdef1b5}*SharedItemsImports = 13
@@ -400,6 +403,18 @@ Global
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B}.Release|x64.Build.0 = Release|x64
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B}.Release|x86.ActiveCfg = Release|x86
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B}.Release|x86.Build.0 = Release|x86
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x64.Build.0 = Debug|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x86.Build.0 = Debug|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x64.ActiveCfg = Release|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x64.Build.0 = Release|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x86.ActiveCfg = Release|Any CPU
+		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -434,6 +449,7 @@ Global
 		{51D5BB3D-498D-4A3D-8D92-305BE6737C97} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{19700CFA-A478-4402-9F31-20B780AC5D26} = {4DE9AC20-F167-4B0E-8B0C-534042D26004}
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
+		{AABD0907-3D03-4D96-98CF-02D779E9237B} = {9EA7C673-BDAA-4A31-9B71-2632703A21EB}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
