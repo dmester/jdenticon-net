@@ -36,14 +36,16 @@ namespace Jdenticon.Drawing.Rasterization
     /// </summary>
     internal struct AverageColor
     {
-        ulong argbnc;
+        ulong argbc;
+
+        public const int MaxSampleCount = 63;
         
         /// <summary>
         /// Removes all samples from this <see cref="AverageColor"/>.
         /// </summary>
         public void Clear()
         {
-            argbnc = 0;
+            argbc = 0;
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace Jdenticon.Drawing.Rasterization
         /// </summary>
         public int Count
         {
-            get { return (int)(argbnc & 0x3fLu); }
+            get { return (int)(argbc & 0x3fLu); }
         }
 
         /// <summary>
@@ -60,25 +62,18 @@ namespace Jdenticon.Drawing.Rasterization
         public void Add(Color color)
         {
 #if DEBUG
-            if (Count == 32)
+            if (Count == MaxSampleCount)
             {
                 throw new InvalidOperationException("Too many colors added to this AverageColor");
             }
 #endif
 
-            if (color.A != 0)
-            {
-                argbnc +=
-                    ((ulong)(uint)color.A << 51) |
-                    ((ulong)(uint)color.R << 38) |
-                    ((ulong)(uint)color.G << 25) |
-                    ((ulong)(uint)color.B << 12) |
-                    0x41Lu;
-            }
-            else
-            {
-                argbnc += 1;
-            }
+            argbc +=
+                ((ulong)(uint)color.A << 48) |
+                ((ulong)(uint)((color.R * color.A) / 255) << 34) |
+                ((ulong)(uint)((color.G * color.A) / 255) << 20) |
+                ((ulong)(uint)((color.B * color.A) / 255) << 6) |
+                0x1Lu;
         }
 
         /// <summary>
@@ -87,28 +82,21 @@ namespace Jdenticon.Drawing.Rasterization
         public void Add(Color color, int count)
         {
 #if DEBUG
-            if (Count == 32)
+            if (Count + count > MaxSampleCount)
             {
                 throw new InvalidOperationException("Too many colors added to this AverageColor");
             }
 #endif
 
-            if (color.A != 0)
-            {
-                argbnc += (
-                    ((ulong)(uint)color.A << 51) |
-                    ((ulong)(uint)color.R << 38) |
-                    ((ulong)(uint)color.G << 25) |
-                    ((ulong)(uint)color.B << 12) |
-                    0x41Lu
-                    ) * (ulong)count;
-            }
-            else
-            {
-                argbnc += (ulong)count;
-            }
+            argbc += (
+                ((ulong)(uint)color.A << 48) |
+                ((ulong)(uint)((color.R * color.A) / 255) << 34) |
+                ((ulong)(uint)((color.G * color.A) / 255) << 20) |
+                ((ulong)(uint)((color.B * color.A) / 255) << 6) |
+                0x1Lu
+                ) * (ulong)count;
         }
-
+        
         /// <summary>
         /// Gets the average color of the samples in this <see cref="AverageColor"/>.
         /// </summary>
@@ -116,18 +104,23 @@ namespace Jdenticon.Drawing.Rasterization
         {
             get
             {
-                var nonEmptyCount = (int)((argbnc >> 6) & 0x3f);
-
-                if (nonEmptyCount == 0)
+                var count = (int)(argbc & 0x3f);
+                if (count == 0)
                 {
                     return new Color();
                 }
 
+                var alphaSum = (int)(argbc >> 48);
+                if (alphaSum == 0)
+                {
+                    return new Color();
+                }
+                
                 return Color.FromArgb(
-                    (int)(argbnc >> 51) / (int)(argbnc & 0x3fLu),
-                    (int)((argbnc >> 38) & 0x1fffLu) / nonEmptyCount,
-                    (int)((argbnc >> 25) & 0x1fffLu) / nonEmptyCount,
-                    (int)((argbnc >> 12) & 0x1fffLu) / nonEmptyCount);
+                    alphaSum / count,
+                    ((int)((argbc >> 34) & 0x3fffLu) * 255) / alphaSum,
+                    ((int)((argbc >> 20) & 0x3fffLu) * 255) / alphaSum,
+                    ((int)((argbc >> 6) & 0x3fffLu) * 255) / alphaSum);
             }
         }
     }
