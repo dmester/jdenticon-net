@@ -129,7 +129,10 @@ namespace Jdenticon.Drawing
             this.edges.Sort();
             
             var writer = new BitmapWriter(BackgroundColor, width, height);
-            var superSampleBuffer = new SuperSampleBuffer(width);
+
+            // Allocate an extra slot for the color that will be forwarded
+            // until the next supersample range.
+            var superSampleBuffer = new SuperSampleBuffer(width + 1);
 
             var layers = new LayerManager[SuperSampling.SamplesPerPixelY];
             var superSampleRanges = new SuperSampleRangeList();
@@ -182,11 +185,16 @@ namespace Jdenticon.Drawing
                             superSampleBuffer.Add(color, intersection.X - superSampleRange.FromX);
                             color = subScanlineLayers.Add(intersection.Edge);
                         }
-                        
-                        superSampleBuffer.Add(color, superSampleRange.Width);
+
+                        // Write an extra pixel that will contain the color that
+                        // will be forwarded until the next supersample range.
+                        superSampleBuffer.Add(color, superSampleRange.Width + 1);
                         superSampleBuffer.Rewind();
                     } // /subpixel
-                    
+
+                    // Get color to be forwarded
+                    color = superSampleBuffer[superSampleRange.Width];
+
                     // Blend subpixels
                     superSampleBuffer.WriteTo(ref writer, superSampleRange.Width);
                     superSampleBuffer.Clear();

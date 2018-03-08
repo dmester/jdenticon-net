@@ -46,6 +46,8 @@ namespace Jdenticon.Drawing.Rasterization
             this.bufferSampleOffset = 0;
         }
 
+        public Color this[int index] => buffer[index].Color;
+
         public void Clear()
         {
             Rewind();
@@ -60,16 +62,6 @@ namespace Jdenticon.Drawing.Rasterization
         {
             bufferPixelOffset = 0;
             bufferSampleOffset = 0;
-        }
-
-        public void CompletePixel(Color color)
-        {
-            if (bufferSampleOffset > 0)
-            {
-                buffer[bufferPixelOffset].Add(color, SuperSampling.SamplesPerPixelX - bufferSampleOffset);
-                bufferSampleOffset = 0;
-                bufferPixelOffset++;
-            }
         }
         
         public void Add(Color color, float untilX)
