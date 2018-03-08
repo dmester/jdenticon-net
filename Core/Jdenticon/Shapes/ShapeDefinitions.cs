@@ -114,8 +114,8 @@ namespace Jdenticon.Shapes
                     renderer.AddRectangle(0, 0, cell, cell);
                     renderer.AddPolygon(new []
                     {
-                        new PointF(outer, outer),
-                        new PointF(cell - inner, outer),
+                        new PointF(outer, (int)outer),
+                        new PointF(cell - inner, (int)outer),
                         new PointF(outer + (cell - outer - inner) / 2, cell - inner)
                     }, true);
                 },
