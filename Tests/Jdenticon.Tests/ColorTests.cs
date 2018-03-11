@@ -40,5 +40,27 @@ namespace Jdenticon.Tests
             Assert.IsFalse(color1 == color3);
             Assert.IsTrue(color1 != color3);
         }
+
+        [TestMethod]
+        public void Color_Mix()
+        {
+            Assert.AreEqual(Color.FromArgb(0, 0, 0, 0), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(0, 0, 0, 0), 0));
+            Assert.AreEqual(Color.FromArgb(0, 0, 0, 0), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(0, 0, 0, 0), 1));
+            Assert.AreEqual(Color.FromArgb(0, 0, 0, 0), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(0, 0, 0, 0), 0.5f));
+
+            Assert.AreEqual(Color.FromArgb(0, 0, 0, 0), Color.Mix(Color.FromArgb(0, 255, 255, 0), Color.FromArgb(0, 255, 255, 0), 0.5f));
+
+            Assert.AreEqual(Color.FromArgb(127, 128, 128, 128), Color.Mix(Color.FromArgb(0, 255, 0, 0), Color.FromArgb(255, 128, 128, 128), 0.5f));
+
+            Assert.AreEqual(Color.FromArgb(0, 0, 0, 0), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 0f));
+
+            Assert.AreEqual(Color.FromArgb(119, 255, 255, 255), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 0.47f));
+            Assert.AreEqual(Color.FromArgb(122, 255, 255, 255), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 0.48f));
+            Assert.AreEqual(Color.FromArgb(124, 255, 255, 255), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 0.49f));
+            Assert.AreEqual(Color.FromArgb(127, 255, 255, 255), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 0.50f));
+            Assert.AreEqual(Color.FromArgb(130, 255, 255, 255), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 0.51f));
+            Assert.AreEqual(Color.FromArgb(132, 255, 255, 255), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 0.52f));
+            Assert.AreEqual(Color.FromArgb(255, 255, 255, 255), Color.Mix(Color.FromArgb(0, 0, 0, 0), Color.FromArgb(255, 255, 255, 255), 1f));
+        }
     }
 }

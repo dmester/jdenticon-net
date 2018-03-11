@@ -43,6 +43,16 @@ namespace Jdenticon.Drawing.Rasterization
 
         private Buffer<Layer> layers = new Buffer<Layer>(10);
         private Color color;
+
+        public void CopyTo(LayerManager other)
+        {
+            for (var i = 0; i < layers.Count; i++)
+            {
+                other.layers.Add(layers[i]);
+            }
+
+            other.color = color;
+        }
         
         public Color Add(Edge intersection)
         {

@@ -45,6 +45,10 @@ namespace Jdenticon.Drawing.Rasterization
         public int Width => toXExcl - fromX;
         public int ToXExcl => toXExcl;
 
+        public int Count => edges.Count;
+
+        public Edge this[int index] => edges[index];
+
         public void Add(EdgeIntersectionRange range)
         {
             if (edges.Count == 0)

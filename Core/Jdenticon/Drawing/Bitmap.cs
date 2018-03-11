@@ -129,19 +129,21 @@ namespace Jdenticon.Drawing
             this.edges.Sort();
             
             var writer = new BitmapWriter(BackgroundColor, width, height);
-
-            // Allocate an extra slot for the color that will be forwarded
-            // until the next supersample range.
-            var superSampleBuffer = new SuperSampleBuffer(width + 1);
+            var superSampleBuffer = new SuperSampleBuffer(width);
 
             var layers = new LayerManager[SuperSampling.SamplesPerPixelY];
             var superSampleRanges = new SuperSampleRangeList();
 
-            var i = 0;
+            // Keeps track of how many of the subpixellayers that are used for 
+            // the currently rendered scanline. Until a range requiring supersampling
+            // is encountered only a single layer is needed.
+            var usedLayers = 0;
+
             var color = default(Color);
             var intersections = new IntersectionList();
             
-            for (i = 0; i < layers.Length; i++)
+            // Create a layer manager for every subpixel scanline
+            for (var i = 0; i < layers.Length; i++)
             {
                 layers[i] = new LayerManager();
             }
@@ -154,11 +156,12 @@ namespace Jdenticon.Drawing
                     writer.Skip(width);
                     continue;
                 }
-
-                for (i = 0; i < layers.Length; i++)
+                
+                for (var i = 0; i < usedLayers; i++)
                 {
                     layers[i].Clear();
                 }
+                usedLayers = 1;
 
                 superSampleRanges.Populate(ranges);
                 
@@ -167,37 +170,126 @@ namespace Jdenticon.Drawing
                 for (var rangeIndex = 0; rangeIndex < superSampleRanges.Count; rangeIndex++)
                 {
                     ref var superSampleRange = ref superSampleRanges[rangeIndex];
-                    
-                    intersections.Initialize(ranges.Count);
 
-                    var y = ey + SuperSampling.SampleHeight / 2;
-
-                    for (var sy = 0; sy < SuperSampling.SamplesPerPixelY; sy++, y += SuperSampling.SampleHeight)
+                    // If there is exactly one edge in the supersample range, and it is crossing
+                    // the entire scanline, we can perform the antialiasing by integrating the
+                    // edge function.
+                    if (superSampleRange.Count == 1 && (
+                        superSampleRange[0].From.Y <= ey && superSampleRange[0].To.Y >= ey + 1 ||
+                        superSampleRange[0].From.Y >= ey + 1 && superSampleRange[0].To.Y <= ey
+                        ))
                     {
-                        var subScanlineLayers = layers[sy];
-                        color = subScanlineLayers.CurrentColor;
+                        var edge = superSampleRange[0];
 
-                        superSampleRange.GetIntersections(ref intersections, y);
-                        
-                        for (i = 0; i < intersections.Count; i++)
+                        // Determine the lower and upper x value where the edge 
+                        // intersects the scanline.
+                        var xey = edge.Intersection(ey);
+                        var xey1 = edge.Intersection(ey + 1);
+                        var x0 = Math.Min(xey, xey1);
+                        var x1 = Math.Max(xey, xey1);
+                        var width = x1 - x0;
+
+                        // Compute the average color of all subpixel layers before
+                        // and after the edge intersection.
+                        var fromColorAverage = new AverageColor();
+                        var toColorAverage = new AverageColor();
+
+                        for (var sy = 0; sy < usedLayers; sy++)
                         {
-                            ref var intersection = ref intersections[i];
-                            superSampleBuffer.Add(color, intersection.X - superSampleRange.FromX);
-                            color = subScanlineLayers.Add(intersection.Edge);
+                            var subScanlineLayers = layers[sy];
+                            fromColorAverage.Add(subScanlineLayers.CurrentColor);
+                            toColorAverage.Add(subScanlineLayers.Add(edge));
                         }
 
-                        // Write an extra pixel that will contain the color that
-                        // will be forwarded until the next supersample range.
-                        superSampleBuffer.Add(color, superSampleRange.Width + 1);
-                        superSampleBuffer.Rewind();
-                    } // /subpixel
+                        var fromColor = fromColorAverage.Color;
+                        color = toColorAverage.Color;
 
-                    // Get color to be forwarded
-                    color = superSampleBuffer[superSampleRange.Width];
+                        // Render pixels
+                        for (var x = superSampleRange.FromX; x < superSampleRange.ToXExcl; x++)
+                        {
+                            if (x0 >= x + 1)
+                            {
+                                // Pixel not covered
+                                writer.Write(fromColor);
+                                continue;
+                            }
 
-                    // Blend subpixels
-                    superSampleBuffer.WriteTo(ref writer, superSampleRange.Width);
-                    superSampleBuffer.Clear();
+                            if (x1 <= x)
+                            {
+                                // Pixel fully covered
+                                writer.Write(color);
+                                continue;
+                            }
+                            
+                            // toColor coverage in the range [0.0, 1.0]
+                            // Initialize to the fully covered range of the pixel.
+                            var coverage = x1 < x + 1 ? x + 1 - x1 : 0;
+
+                            // Compute integral for non-vertical edges
+                            if (width > 0.001f)
+                            {
+                                // Range to integrate
+                                var integralFrom = Math.Max(x0, x);
+                                var integralTo = Math.Min(x1, x + 1);
+
+                                coverage += 
+                                    (
+                                        (integralTo * integralTo - integralFrom * integralFrom) / 2 +
+                                        x0 * (integralFrom - integralTo)
+                                    ) / width;
+                            }
+
+                            writer.Write(Color.Mix(fromColor, color, coverage));
+                        }
+
+                    } // /simplified antialiasing
+                    else
+                    {
+                        // There are more than a single intersecting edge in this range.
+                        // Use super sampling to render the pixels.
+                        intersections.Initialize(ranges.Count);
+
+                        var y = ey + SuperSampling.SampleHeight / 2;
+
+                        // Ensure all subpixel layers are initialized
+                        while (usedLayers < SuperSampling.SamplesPerPixelY)
+                        {
+                            layers[0].CopyTo(layers[usedLayers]);
+                            usedLayers++;
+                        }
+
+                        // Average color of the pixels following the current supersample range.
+                        var forwardColorAverage = new AverageColor();
+
+                        for (var sy = 0; sy < SuperSampling.SamplesPerPixelY; sy++, y += SuperSampling.SampleHeight)
+                        {
+                            var subScanlineLayers = layers[sy];
+                            color = subScanlineLayers.CurrentColor;
+
+                            superSampleRange.GetIntersections(ref intersections, y);
+
+                            for (var i = 0; i < intersections.Count; i++)
+                            {
+                                ref var intersection = ref intersections[i];
+                                superSampleBuffer.Add(color, intersection.X - superSampleRange.FromX);
+                                color = subScanlineLayers.Add(intersection.Edge);
+                            }
+
+                            // Write an extra pixel that will contain the color that
+                            // will be forwarded until the next supersample range.
+                            superSampleBuffer.Add(color, superSampleRange.Width);
+                            superSampleBuffer.Rewind();
+
+                            forwardColorAverage.Add(color);
+                        } // /subpixel
+
+                        // Get color to be forwarded
+                        color = forwardColorAverage.Color;
+
+                        // Blend subpixels
+                        superSampleBuffer.WriteTo(ref writer, superSampleRange.Width);
+                        superSampleBuffer.Clear();
+                    } // /supersampling
 
                     // Forward last color
                     if (rangeIndex + 1 < superSampleRanges.Count)

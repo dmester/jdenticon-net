@@ -153,6 +153,40 @@ namespace Jdenticon.Rendering
                     HueToRgb(m1, m2, hue * 6 - 2));
             }
         }
+        
+        public static Color Mix(Color color1, Color color2, float weight)
+        {
+            // Convert weight to an integer value to avoid rounding errors on the RGB components.
+            // 8 bits goes to the RGB component, 8 bits to the multiplied alpha.
+            // Use the remaining 16 bits of the integer, for the alpha multiplier to
+            // maximize accuracy, but skip the first bit to avoid overflows to negative
+            // integers.
+            const int AlphaBits = 15;
+            const int AlphaMultiplier = 1 << AlphaBits;
+
+            var iweight = (int)(AlphaMultiplier * weight);
+
+            if (iweight < 0)
+            {
+                iweight = 0;
+            }
+            else if (iweight > AlphaMultiplier)
+            {
+                iweight = AlphaMultiplier;
+            }
+
+            var alphaSum = color1.A * (AlphaMultiplier - iweight) + color2.A * iweight;
+            if (alphaSum == 0)
+            {
+                return Transparent;
+            }
+
+            return Color.FromArgb(
+                alphaSum >> AlphaBits,
+                (color1.R * color1.A * (AlphaMultiplier - iweight) + color2.R * color2.A * iweight) / alphaSum,
+                (color1.G * color1.A * (AlphaMultiplier - iweight) + color2.G * color2.A * iweight) / alphaSum,
+                (color1.B * color1.A * (AlphaMultiplier - iweight) + color2.B * color2.A * iweight) / alphaSum);
+        }
 
         // Helper method for FromHsl
         private static int HueToRgb(float m1, float m2, float h)
@@ -203,7 +237,7 @@ namespace Jdenticon.Rendering
 
             return new Color(a, r, g, b);
         }
-
+        
         /// <summary>
         /// Gets the argb value of this color.
         /// </summary>

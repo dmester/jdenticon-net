@@ -37,31 +37,33 @@ namespace Jdenticon.Drawing.Rasterization
         public int Count => superSampleRangeCount;
 
         public ref SuperSampleRange this[int index] => ref superSampleRanges[index];
-
-
+        
         public void Populate(IList<EdgeIntersectionRange> ranges)
         {
             if (ranges.Count == 0)
             {
+                superSampleRangeCount = 0;
                 return;
             }
 
-            const int AllowedRangeDistance = 1;
             var rangeIndex = 0;
             var superSampleRangeIndex = 0;
 
+            // Initialize empty list
+            if (superSampleRanges == null)
+            {
+                superSampleRanges = new SuperSampleRange[10];
+
+                for (var i = 0; i < superSampleRanges.Length; i++)
+                {
+                    superSampleRanges[i].Initialize();
+                }
+            }
+
             do
             {
-                if (superSampleRanges == null)
-                {
-                    superSampleRanges = new SuperSampleRange[10];
-
-                    for (var i = 0; i < superSampleRanges.Length; i++)
-                    {
-                        superSampleRanges[i].Initialize();
-                    }
-                }
-                else if (superSampleRangeIndex >= superSampleRanges.Length)
+                // Ensure capacity
+                if (superSampleRangeIndex >= superSampleRanges.Length)
                 {
                     var oldSuperSampleRanges = superSampleRanges;
                     superSampleRanges = new SuperSampleRange[oldSuperSampleRanges.Length * 2];
@@ -74,18 +76,21 @@ namespace Jdenticon.Drawing.Rasterization
                     }
                 }
 
-                ref var msr = ref superSampleRanges[superSampleRangeIndex];
-                msr.Clear();
+                ref var superSampleRange = ref superSampleRanges[superSampleRangeIndex];
+                superSampleRange.Clear();
                 superSampleRangeIndex++;
 
-                msr.Add(ranges[rangeIndex]);
+                superSampleRange.Add(ranges[rangeIndex]);
                 rangeIndex++;
 
                 for (var i = rangeIndex; i < ranges.Count; i++)
                 {
-                    if (ranges[i].FromX <= msr.ToXExcl + AllowedRangeDistance)
+                    // Don't merge adjacent non-overlapping ranges. This improves the chances
+                    // that we can use the integration algorithm during the rasterization,
+                    // which performs better than supersampling.
+                    if (ranges[i].FromX < superSampleRange.ToXExcl)
                     {
-                        msr.Add(ranges[i]);
+                        superSampleRange.Add(ranges[i]);
                         rangeIndex++;
                     }
                     else
