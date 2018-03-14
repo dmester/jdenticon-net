@@ -153,7 +153,13 @@ namespace Jdenticon.Rendering
                     HueToRgb(m1, m2, hue * 6 - 2));
             }
         }
-        
+
+        /// <summary>
+        /// Computes a mix of the two specified colors, with the proportion given by the specified weight.
+        /// </summary>
+        /// <param name="color1">First color to mix.</param>
+        /// <param name="color2">Second color to mix.</param>
+        /// <param name="weight">Weight in the range [0,1]. 0 gives <paramref name="color1"/>, 1 gives <paramref name="color2"/>.</param>
         public static Color Mix(Color color1, Color color2, float weight)
         {
             // Convert weight to an integer value to avoid rounding errors on the RGB components.
