@@ -134,4 +134,4 @@ By subclassing `Jdenticon.IconGenerator` you can completely override the look of
 icon generator.
 
 ## License
-Jdenticon-net is released under the [zlib license](https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt).
+Jdenticon-net is released under the [MIT license](https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt).

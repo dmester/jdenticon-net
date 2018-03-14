@@ -5,7 +5,7 @@
     <version>$version$</version>
     <title>Jdenticon ASP.NET MVC Extensions</title>
     <authors>Daniel Mester Pirttijärvi</authors>
-    <licenseUrl>http://opensource.org/licenses/zlib-license.php</licenseUrl>
+    <licenseUrl>https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>http://jdenticon.com/</projectUrl>
     <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
