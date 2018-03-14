@@ -58,29 +58,14 @@ namespace Jdenticon.Tests
             ssRanges.Populate(new[]
             {
                 new EdgeIntersectionRange{FromX = 5, Width = 10 },
-                new EdgeIntersectionRange{FromX = 15, Width = 10 }
+                new EdgeIntersectionRange{FromX = 14, Width = 10 }
             });
 
             Assert.AreEqual(1, ssRanges.Count);
             Assert.AreEqual(5, ssRanges[0].FromX);
-            Assert.AreEqual(20, ssRanges[0].Width);
+            Assert.AreEqual(19, ssRanges[0].Width);
         }
-
-        [TestMethod]
-        public void SuperSampleRangeList_Adjacent_1pxDistance()
-        {
-            var ssRanges = new SuperSampleRangeList();
-            ssRanges.Populate(new[]
-            {
-                new EdgeIntersectionRange{FromX = 5, Width = 10 },
-                new EdgeIntersectionRange{FromX = 16, Width = 10 }
-            });
-
-            Assert.AreEqual(1, ssRanges.Count);
-            Assert.AreEqual(5, ssRanges[0].FromX);
-            Assert.AreEqual(21, ssRanges[0].Width);
-        }
-
+        
         [TestMethod]
         public void SuperSampleRangeList_Adjacent_2pxDistance()
         {
