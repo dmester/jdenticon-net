@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Jdenticon.Rendering
@@ -110,13 +111,20 @@ namespace Jdenticon.Rendering
         {
             return new Color(a, r, g, b);
         }
-
-        /// <summary>
-        /// Creates a <see cref="Color"/> from an ARGB value.
-        /// </summary>
-        public static Color FromArgb(uint argb)
+        
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This method does not operate on ARGB color values as suggested by its name. Use FromRgba instead.")]
+        public static Color FromArgb(uint rgba)
         {
-            return new Color(argb);
+            return new Color(rgba);
+        }
+        
+        /// <summary>
+        /// Creates a <see cref="Color"/> from a 32-bit RGBA value.
+        /// </summary>
+        public static Color FromRgba(uint rgba)
+        {
+            return new Color(rgba);
         }
 
         /// <summary>
@@ -243,11 +251,22 @@ namespace Jdenticon.Rendering
 
             return new Color(a, r, g, b);
         }
-        
+
         /// <summary>
         /// Gets the argb value of this color.
         /// </summary>
+        /// <exclude/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This method does not return an ARGB value, but rather an RGBA value. Use ToRgba instead.")]
         public uint ToArgb()
+        {
+            return value;
+        }
+
+        /// <summary>
+        /// Gets the 32-bit RGBA value of this color.
+        /// </summary>
+        public uint ToRgba()
         {
             return value;
         }
