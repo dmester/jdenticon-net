@@ -53,7 +53,7 @@ namespace Jdenticon.Shapes
                 },
                 (renderer, cell, index) =>
                 {
-                    var m = cell / 6;
+                    var m = cell * 0.16667f;
                     renderer.AddCircle(m, m, cell - 2 * m);
                 },
             };
