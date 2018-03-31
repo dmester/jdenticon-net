@@ -41,11 +41,11 @@ namespace Jdenticon.Rendering
         /// <param name="style">The style that specifies the lightness and saturation of the icon.</param>
         public ColorTheme(float hue, IdenticonStyle style)
         {
-            DarkGray = Color.FromHsl(0, 0, style.GrayscaleLightness.From);
-            MidColor = ColorUtils.FromHslCompensated(hue, style.Saturation, (style.ColorLightness.From + style.ColorLightness.To) / 2);
-            LightGray = Color.FromHsl(0, 0, style.GrayscaleLightness.To);
-            LightColor = ColorUtils.FromHslCompensated(hue, style.Saturation, style.ColorLightness.To);
-            DarkColor = ColorUtils.FromHslCompensated(hue, style.Saturation, style.ColorLightness.From);
+            DarkGray = ColorUtils.FromHslCompensated(hue, style.GrayscaleSaturation, style.GrayscaleLightness.From);
+            MidColor = ColorUtils.FromHslCompensated(hue, style.ColorSaturation, (style.ColorLightness.From + style.ColorLightness.To) / 2);
+            LightGray = ColorUtils.FromHslCompensated(hue, style.GrayscaleSaturation, style.GrayscaleLightness.To);
+            LightColor = ColorUtils.FromHslCompensated(hue, style.ColorSaturation, style.ColorLightness.To);
+            DarkColor = ColorUtils.FromHslCompensated(hue, style.ColorSaturation, style.ColorLightness.From);
         }
 
         /// <summary>

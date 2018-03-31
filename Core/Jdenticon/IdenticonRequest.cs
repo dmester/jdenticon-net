@@ -121,7 +121,7 @@ namespace Jdenticon
                     case '~': base64[i] = '+'; break;
                 }
             }
-            
+
             byte[] data;
             try
             {
@@ -160,7 +160,7 @@ namespace Jdenticon
 
                         // Format
                         request.Format = (ExportImageFormat)((flags >> 1) & 0b111);
-                        
+
                         // Style
                         var explicitStyle = (flags & 0b1) == 0b1;
                         if (explicitStyle)
@@ -188,8 +188,17 @@ namespace Jdenticon
                             var colorLightnessTo = (float)Math.Round(
                                 reader.ReadByte() / 255f, DecimalPrecision);
 
-                            var saturation = (float)Math.Round(
+                            var colorSaturation = (float)Math.Round(
                                 reader.ReadByte() / 255f, DecimalPrecision);
+
+                            // Hash
+                            request.Hash = reader.ReadBytes(10);
+
+                            // GrayscaleSaturation was added in version 2.1.0 so it might not be available.
+                            var grayscaleSaturation =
+                                dataStream.Position < dataStream.Length ?
+                                (float)Math.Round(reader.ReadByte() / 255f, DecimalPrecision) :
+                                IdenticonStyle.DefaultGrayscaleSaturation;
 
                             request.style = new IdenticonStyle
                             {
@@ -197,12 +206,15 @@ namespace Jdenticon
                                 BackColor = Color.FromArgb(a, r, g, b),
                                 ColorLightness = Range.Create(colorLightnessFrom, colorLightnessTo),
                                 GrayscaleLightness = Range.Create(grayscaleLightnessFrom, grayscaleLightnessTo),
-                                Saturation = saturation
+                                ColorSaturation = colorSaturation,
+                                GrayscaleSaturation = grayscaleSaturation
                             };
                         }
-
-                        // Hash
-                        request.Hash = reader.ReadBytes(10);
+                        else
+                        {
+                            // Hash
+                            request.Hash = reader.ReadBytes(10);
+                        }
                     }
                 }
             }
@@ -273,18 +285,18 @@ namespace Jdenticon
                         writer.Write((byte)(style.BackColor.R));
                         writer.Write((byte)(style.BackColor.G));
                         writer.Write((byte)(style.BackColor.B));
-                        
+
                         writer.Write((byte)(style.GrayscaleLightness.From * 255));
                         writer.Write((byte)(style.GrayscaleLightness.To * 255));
-                        
+
                         writer.Write((byte)(style.ColorLightness.From * 255));
                         writer.Write((byte)(style.ColorLightness.To * 255));
 
-                        writer.Write((byte)(style.Saturation * 255));
+                        writer.Write((byte)(style.ColorSaturation * 255));
                     }
 
                     // Hash
-                    if (Hash.Length > 10)
+                    if (Hash.Length != 10)
                     {
                         writer.Write(Hash, 0, 6);
                         writer.Write(Hash, Hash.Length - 4, 4);
@@ -292,6 +304,12 @@ namespace Jdenticon
                     else
                     {
                         writer.Write(Hash);
+                    }
+
+                    // Continued style (added in v2.1.0)
+                    if (explicitStyle)
+                    {
+                        writer.Write((byte)(style.GrayscaleSaturation * 255));
                     }
 
                     writer.Flush();

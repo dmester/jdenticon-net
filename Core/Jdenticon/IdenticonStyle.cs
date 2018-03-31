@@ -26,6 +26,7 @@
 using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Jdenticon
@@ -37,7 +38,8 @@ namespace Jdenticon
     {
         private Color backColor = DefaultBackColor;
         private float padding = DefaultPadding;
-        private float saturation = DefaultSaturation;
+        private float colorSaturation = DefaultColorSaturation;
+        private float grayscaleSaturation = DefaultGrayscaleSaturation;
         private Range<float> colorLightness = DefaultColorLightness;
         private Range<float> grayscaleLightness = DefaultGrayscaleLightness;
 
@@ -56,10 +58,20 @@ namespace Jdenticon
         /// </summary>
         public static Range<float> DefaultGrayscaleLightness => Range.Create(0.3f, 0.9f);
 
+        /// <exclude/>
+        [Obsolete("Use DefaultColorSaturation instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float DefaultSaturation => DefaultColorSaturation;
+
         /// <summary>
-        /// Gets the default value of the <see cref="Saturation"/> property. Resolves to 0.5f.
+        /// Gets the default value of the <see cref="ColorSaturation"/> property. Resolves to 0.5f.
         /// </summary>
-        public static float DefaultSaturation => 0.5f;
+        public static float DefaultColorSaturation => 0.5f;
+
+        /// <summary>
+        /// Gets the default value of the <see cref="GrayscaleSaturation"/> property. Resolves to 0f.
+        /// </summary>
+        public static float DefaultGrayscaleSaturation => 0f;
 
         /// <summary>
         /// Gets the default value of the <see cref="BackColor"/> property. Resolves to <see cref="Color.White"/>.
@@ -91,23 +103,57 @@ namespace Jdenticon
                 padding = value;
             }
         }
-        
-        /// <summary>
-        /// The saturation of the icon in the range [0.0f, 1.0f].
-        /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">The value was less than 0.0f or greater than 1.0f.</exception>
+
+        /// <exclude/>
+        [Obsolete("Use ColorSaturation instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Saturation
         {
-            get { return saturation; }
+            get { return ColorSaturation; }
+            set { ColorSaturation = value; }
+        }
+
+        /// <summary>
+        /// The saturation of the colored shapes in the icon. Valid values are [0.0f, 1.0f].
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">The value was less than 0.0f or greater than 1.0f.</exception>
+        /// <remarks>
+        /// This property was previously called <see cref="Saturation"/> but was renamed in version 2.1.0.
+        /// </remarks>
+        public float ColorSaturation
+        {
+            get { return colorSaturation; }
             set
             {
                 if (value < 0 || value > 1)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(Saturation), value,
+                    throw new ArgumentOutOfRangeException(nameof(ColorSaturation), value,
                         "Only saturation values in the range [0.0, 1.0] are allowed.");
                 }
 
-                saturation = value;
+                colorSaturation = value;
+            }
+        }
+
+        /// <summary>
+        /// The saturation of the by default grayscale shapes in the icon. The same hue is used for colored and grayscale shapes. Valid values are [0.0f, 1.0f].
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">The value was less than 0.0f or greater than 1.0f.</exception>
+        /// <remarks>
+        /// This property is available since version 2.1.0.
+        /// </remarks>
+        public float GrayscaleSaturation
+        {
+            get { return grayscaleSaturation; }
+            set
+            {
+                if (value < 0 || value > 1)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(GrayscaleSaturation), value,
+                        "Only saturation values in the range [0.0, 1.0] are allowed.");
+                }
+
+                grayscaleSaturation = value;
             }
         }
 
@@ -180,7 +226,8 @@ namespace Jdenticon
         {
             return
                 padding.GetHashCode() ^
-                saturation.GetHashCode() ^
+                colorSaturation.GetHashCode() ^
+                grayscaleSaturation.GetHashCode() ^
                 backColor.GetHashCode() ^
                 colorLightness.GetHashCode() ^
                 grayscaleLightness.GetHashCode();
@@ -207,7 +254,8 @@ namespace Jdenticon
                 other.backColor == backColor &&
                 other.colorLightness == colorLightness &&
                 other.grayscaleLightness == grayscaleLightness &
-                other.saturation == saturation;
+                other.colorSaturation == colorSaturation &&
+                other.grayscaleSaturation == grayscaleSaturation;
         }
     }
 }
