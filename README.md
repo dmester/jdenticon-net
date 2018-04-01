@@ -94,9 +94,19 @@ There are properties on `Identicon` that can be used to customize the look of th
   Specifies the background color of the generated icon. Set to `Color.Transparent` to not render any 
   background behind the identicon shapes.
   
-* `Style.Saturation` (default 0.5)
+* `Style.Hues` (default empty, meaning no hue limit)
+
+  By default a hue is selected for each individual hash. This property is used to limit the allowed
+  hues. When this collection is not empty, the icon hues will be limited to the ones specified in
+  the collection. 
   
-  Saturation of colored shapes in the range [0.0, 1.0].
+* `Style.ColorSaturation` (default 0.5)
+  
+  Saturation of the originally colored shapes in the range [0.0, 1.0].
+  
+* `Style.GrayscaleSaturation` (default 0.0)
+  
+  Saturation of the originally grayscale shapes in the range [0.0, 1.0].
   
 * `Style.ColorLightness` (default [0.4, 0.8])
 
@@ -116,9 +126,11 @@ using Jdenticon.Rendering;
 ----
 var iconStyle = new IdenticonStyle
 {
+    Hues = new HueCollection { { 314f, HueUnit.Degrees } },
     Padding = 0.10f,
     BackColor = Color.Transparent,
-    Saturation = 0.4f,
+    ColorSaturation = 0.4f,
+    GrayscaleSaturation = 0f,
     ColorLightness = Range.Create(0.4f, 0.9f),
     GrayscaleLightness = Range.Create(0.3f, 0.9f)
 };
