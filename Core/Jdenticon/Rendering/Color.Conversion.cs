@@ -106,18 +106,44 @@ namespace Jdenticon.Rendering
         /// <exception cref="ArgumentOutOfRangeException">One of the components was <see cref="float.NaN"/>, less than 0f or greater than 1f.</exception>
         public static Color FromHsl(float hue, float saturation, float lightness)
         {
+            return FromHsl(hue, saturation, lightness, 1f);
+        }
+
+        /// <summary>
+        /// Creates a <see cref="Color"/> instance from HSL (Hue-Saturation-Lightness) color parameters and an alpha value.
+        /// </summary>
+        /// <param name="hue">Hue in the range [0, 1]</param>
+        /// <param name="saturation">Saturation in the range [0, 1]</param>
+        /// <param name="lightness">Lightness in the range [0, 1]</param>
+        /// <param name="alpha">Alpha in the range [0, 1]</param>
+        /// <exception cref="ArgumentOutOfRangeException">One of the components was <see cref="float.NaN"/>, less than 0f or greater than 1f.</exception>
+        public static Color FromHsl(float hue, float saturation, float lightness, float alpha)
+        {
+            if (float.IsNaN(hue)) throw new ArgumentOutOfRangeException(nameof(hue), $"NaN is not a valid {nameof(hue)}. Allowed values are in the range [0, 1].");
+            if (hue < 0 || hue > 1) throw new ArgumentOutOfRangeException(nameof(hue), $"Value {hue} is not a valid {nameof(hue)}. Allowed values are in the range [0, 1].");
+
+            if (float.IsNaN(saturation)) throw new ArgumentOutOfRangeException(nameof(saturation), $"NaN is not a valid {nameof(saturation)}. Allowed values are in the range [0, 1].");
+            if (saturation < 0 || saturation > 1) throw new ArgumentOutOfRangeException(nameof(saturation), $"Value {saturation} is not a valid {nameof(saturation)}. Allowed values are in the range [0, 1].");
+
+            if (float.IsNaN(lightness)) throw new ArgumentOutOfRangeException(nameof(lightness), $"NaN is not a valid {nameof(lightness)}. Allowed values are in the range [0, 1].");
+            if (lightness < 0 || lightness > 1) throw new ArgumentOutOfRangeException(nameof(lightness), $"Value {lightness} is not a valid {nameof(lightness)}. Allowed values are in the range [0, 1].");
+
+            if (float.IsNaN(alpha)) throw new ArgumentOutOfRangeException(nameof(alpha), $"NaN is not a valid value of {nameof(alpha)}. Allowed values are in the range [0, 1].");
+            if (alpha < 0 || alpha > 1) throw new ArgumentOutOfRangeException(nameof(alpha), $"Value {alpha} is not a valid value of {nameof(alpha)}. Allowed values are in the range [0, 1].");
+            
             // Based on http://www.w3.org/TR/2011/REC-css3-color-20110607/#hsl-color
             if (saturation == 0)
             {
                 var value = (int)(lightness * 255);
-                return new Color(255, value, value, value);
+                return new Color((int)(255 * alpha), value, value, value);
             }
             else
             {
                 var m2 = lightness <= 0.5f ? lightness * (saturation + 1) : lightness + saturation - lightness * saturation;
                 var m1 = lightness * 2 - m2;
                 
-                return new Color(255,
+                return new Color(
+                    (int)(255 * alpha),
                     HueToRgb(m1, m2, hue * 6 + 2),
                     HueToRgb(m1, m2, hue * 6),
                     HueToRgb(m1, m2, hue * 6 - 2));
