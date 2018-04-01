@@ -50,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Deprecated.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Blending.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Conversion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Parser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\NamespaceDoc.cs" />
