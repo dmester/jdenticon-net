@@ -29,7 +29,7 @@ using System.Text;
 
 namespace Jdenticon.Rendering
 {
-    public partial struct Color
+    partial struct Color
     {
         #region Colors
 
