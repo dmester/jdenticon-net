@@ -209,6 +209,14 @@ namespace Jdenticon
                                 ColorSaturation = colorSaturation,
                                 GrayscaleSaturation = grayscaleSaturation
                             };
+
+                            // Hues
+                            var hueCount = dataStream.Position < dataStream.Length ? reader.ReadByte() : 0;
+                            for (var i = 0; i < hueCount; i++)
+                            {
+                                var hue = (float)Math.Round(reader.ReadByte() / 255f, DecimalPrecision);
+                                request.style.Hues.Add(hue);
+                            }
                         }
                         else
                         {
@@ -310,6 +318,13 @@ namespace Jdenticon
                     if (explicitStyle)
                     {
                         writer.Write((byte)(style.GrayscaleSaturation * 255));
+
+                        var hueCount = style.Hues.Count;
+                        writer.Write((byte)hueCount);
+                        for (var i = 0; i < hueCount; i++)
+                        {
+                            writer.Write((byte)(style.Hues[i] * 255));
+                        }
                     }
 
                     writer.Flush();

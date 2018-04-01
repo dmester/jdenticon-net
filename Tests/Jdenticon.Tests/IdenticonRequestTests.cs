@@ -43,7 +43,8 @@ namespace Jdenticon.Tests
                     ColorLightness = Range.Create(0.25f, 0.75f),
                     GrayscaleLightness = Range.Create(0, 1f),
                     ColorSaturation = 0.4f,
-                    GrayscaleSaturation = 0.1f
+                    GrayscaleSaturation = 0.1f,
+                    Hues = new HueCollection { 1.5f, -0.25f, 0.8f }
                 }
             };
 
@@ -64,6 +65,10 @@ namespace Jdenticon.Tests
 
             AssertAreAlmostEqual(url1.Style.ColorSaturation, url2.Style.ColorSaturation);
             AssertAreAlmostEqual(url1.Style.GrayscaleSaturation, url2.Style.GrayscaleSaturation);
+            Assert.AreEqual(3, url2.Style.Hues.Count);
+            AssertAreAlmostEqual(0.5f, url2.Style.Hues[0]);
+            AssertAreAlmostEqual(0.75f, url2.Style.Hues[1]);
+            AssertAreAlmostEqual(0.8f, url2.Style.Hues[2]);
 
             Assert.AreEqual(url1.Size, url2.Size);
         }
@@ -82,10 +87,11 @@ namespace Jdenticon.Tests
                     ColorLightness = Range.Create(0.25f, 0.75f),
                     GrayscaleLightness = Range.Create(0, 1f),
                     ColorSaturation = 0.4f,
-                    GrayscaleSaturation = 0.1f
+                    GrayscaleSaturation = 0.1f,
+                    Hues = new HueCollection { 1.5f, -0.25f, 0.8f }
                 }
             };
-
+            
             var text = url1.ToString();
             Assert.IsTrue(OldIdenticonRequest.TryParse(text, out var url2));
 
@@ -103,7 +109,8 @@ namespace Jdenticon.Tests
 
             AssertAreAlmostEqual(url1.Style.ColorSaturation, url2.Style.ColorSaturation);
             AssertAreAlmostEqual(IdenticonStyle.DefaultGrayscaleSaturation, url2.Style.GrayscaleSaturation);
-
+            Assert.AreEqual(0, url2.Style.Hues.Count);
+            
             Assert.AreEqual(url1.Size, url2.Size);
         }
 
@@ -127,7 +134,7 @@ namespace Jdenticon.Tests
 
             var text = url1.ToString();
             Assert.IsTrue(IdenticonRequest.TryParse(text, out var url2));
-
+            
             Assert.AreEqual(url1.Format, url2.Format);
             Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
             AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
@@ -142,6 +149,7 @@ namespace Jdenticon.Tests
 
             AssertAreAlmostEqual(url1.Style.ColorSaturation, url2.Style.ColorSaturation);
             AssertAreAlmostEqual(IdenticonStyle.DefaultGrayscaleSaturation, url2.Style.GrayscaleSaturation);
+            AssertAreAlmostEqual(0, url2.Style.Hues.Count);
 
             Assert.AreEqual(url1.Size, url2.Size);
         }

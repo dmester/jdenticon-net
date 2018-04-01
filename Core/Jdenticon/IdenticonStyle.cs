@@ -36,6 +36,7 @@ namespace Jdenticon
     /// </summary>
     public class IdenticonStyle : IEquatable<IdenticonStyle>
     {
+        private HueCollection hues = new HueCollection();
         private Color backColor = DefaultBackColor;
         private float padding = DefaultPadding;
         private float colorSaturation = DefaultColorSaturation;
@@ -77,7 +78,20 @@ namespace Jdenticon
         /// Gets the default value of the <see cref="BackColor"/> property. Resolves to <see cref="Color.White"/>.
         /// </summary>
         public static Color DefaultBackColor => Color.White;
-        
+
+        /// <summary>
+        /// Gets or sets a collection of the allowed hues in the generated icons. If the collection is empty
+        /// all hues are allowed.
+        /// </summary>
+        /// <remarks>
+        /// This property always returns a collection, even after setting the property to <c>Nothing</c>.
+        /// </remarks>
+        public HueCollection Hues
+        {
+            get => hues;
+            set => hues = value ?? new HueCollection();
+        }
+
         /// <summary>
         /// The background color of the icon. Set to <see cref="Color.Transparent"/> to remove the background.
         /// </summary>
@@ -255,7 +269,8 @@ namespace Jdenticon
                 other.colorLightness == colorLightness &&
                 other.grayscaleLightness == grayscaleLightness &
                 other.colorSaturation == colorSaturation &&
-                other.grayscaleSaturation == grayscaleSaturation;
+                other.grayscaleSaturation == grayscaleSaturation &&
+                other.hues.Equals(hues);
         }
     }
 }
