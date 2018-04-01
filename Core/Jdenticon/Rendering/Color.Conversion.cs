@@ -149,6 +149,65 @@ namespace Jdenticon.Rendering
                     HueToRgb(m1, m2, hue * 6 - 2));
             }
         }
+
+        /// <summary>
+        /// Creates a <see cref="Color"/> instance from HWB (Hue-Whiteness-Blackness) color parameters.
+        /// </summary>
+        /// <param name="hue">Hue in the range [0, 1].</param>
+        /// <param name="whiteness">Whiteness in the range [0, 1].</param>
+        /// <param name="blackness">Blackness in the range [0, 1].</param>
+        /// <exception cref="ArgumentOutOfRangeException">One of the components was <see cref="float.NaN"/>, less than 0f or greater than 1f.</exception>
+        public static Color FromHwb(float hue, float whiteness, float blackness)
+        {
+            return FromHwb(hue, whiteness, blackness, 1f);
+        }
+
+        /// <summary>
+        /// Creates a <see cref="Color"/> instance from HWB (Hue-Whiteness-Blackness) color parameters and an alpha value.
+        /// </summary>
+        /// <param name="hue">Hue in the range [0, 1].</param>
+        /// <param name="whiteness">Whiteness in the range [0, 1].</param>
+        /// <param name="blackness">Blackness in the range [0, 1].</param>
+        /// <param name="alpha">Alpha in the range [0, 1].</param>
+        /// <exception cref="ArgumentOutOfRangeException">One of the components was <see cref="float.NaN"/>, less than 0f or greater than 1f.</exception>
+        public static Color FromHwb(float hue, float whiteness, float blackness, float alpha)
+        {
+            if (float.IsNaN(hue)) throw new ArgumentOutOfRangeException(nameof(hue), $"NaN is not a valid {nameof(hue)}. Allowed values are in the range [0, 1].");
+            if (hue < 0 || hue > 1) throw new ArgumentOutOfRangeException(nameof(hue), $"Value {hue} is not a valid {nameof(hue)}. Allowed values are in the range [0, 1].");
+
+            if (float.IsNaN(whiteness)) throw new ArgumentOutOfRangeException(nameof(whiteness), $"NaN is not a valid value of {nameof(whiteness)}. Allowed values are in the range [0, 1].");
+            if (whiteness < 0 || whiteness > 1) throw new ArgumentOutOfRangeException(nameof(whiteness), $"Value {whiteness} is not a valid value of {nameof(whiteness)}. Allowed values are in the range [0, 1].");
+
+            if (float.IsNaN(blackness)) throw new ArgumentOutOfRangeException(nameof(blackness), $"NaN is not a valid value of {nameof(blackness)}. Allowed values are in the range [0, 1].");
+            if (blackness < 0 || blackness > 1) throw new ArgumentOutOfRangeException(nameof(blackness), $"Value {blackness} is not a valid value of {nameof(blackness)}. Allowed values are in the range [0, 1].");
+
+            if (float.IsNaN(alpha)) throw new ArgumentOutOfRangeException(nameof(alpha), $"NaN is not a valid value of {nameof(alpha)}. Allowed values are in the range [0, 1].");
+            if (alpha < 0 || alpha > 1) throw new ArgumentOutOfRangeException(nameof(alpha), $"Value {alpha} is not a valid value of {nameof(alpha)}. Allowed values are in the range [0, 1].");
+
+            // Specification:
+            // https://www.w3.org/TR/css-color-4/#hwb-to-rgb
+
+            var rgb = FromHsl(hue, 1, .5f);
+
+            // Sum of white and black must not exceed 100%
+            if (whiteness + blackness > 1)
+            {
+                whiteness = whiteness / (whiteness + blackness);
+                blackness = 1 - whiteness;
+            }
+
+            var m = 1 - whiteness - blackness;
+
+            var r = (int)(rgb.R * m + whiteness * 255);
+            var g = (int)(rgb.G * m + whiteness * 255);
+            var b = (int)(rgb.B * m + whiteness * 255);
+
+            return new Color(
+                (int)(255 * alpha),
+                r < 0 ? 0 : r > 255 ? 255 : r,
+                g < 0 ? 0 : g > 255 ? 255 : g,
+                b < 0 ? 0 : b > 255 ? 255 : b);
+        }
         
         // Helper method for FromHsl
         private static int HueToRgb(float m1, float m2, float h)
