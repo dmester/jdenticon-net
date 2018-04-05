@@ -116,23 +116,93 @@ namespace Jdenticon.Rendering
             return "#" + value.ToString("x8");
         }
 
-        /// <summary>
-        /// Gets a string representation of this color on the specified format. The following decimal
-        /// placeholders are recognized: R, G, B, A. The following hexadecimal placeholders are
-        /// recognized: RR, GG, BB, AA, rr, gg, bb, aa, where the lower case keywords produces 
-        /// lower case hex strings.
-        /// </summary>
+#pragma warning disable CS1573
+        /// <inheritdoc cref="ToString(string, IFormatProvider)" />
         public string ToString(string format)
         {
             return ToString(format, null);
         }
+#pragma warning restore CS1573
 
         /// <summary>
-        /// Gets a string representation of this color on the specified format. The following decimal
-        /// placeholders are recognized: R, G, B, A. The following hexadecimal placeholders are
-        /// recognized: RR, GG, BB, AA, rr, gg, bb, aa, where the lower case keywords produces 
-        /// lower case hex strings.
+        /// Gets a string representation of this color on the specified format.
         /// </summary>
+        /// <param name="format">Color string format.</param>
+        /// <param name="formatProvider">Format provider used to convert integers to strings.</param>
+        /// <remarks>
+        /// <para>
+        /// The format string can contain the following placeholders that will be replaced. All other characters
+        /// will be left intact.
+        /// </para>
+        /// <list type="table">
+        ///     <title>Placeholders.</title>
+        ///     <listheader>
+        ///         <term>Placeholder</term>
+        ///         <term>Example</term>
+        ///         <term>Remarks</term>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>R</term>
+        ///         <term>127</term>
+        ///         <term>Decimal value of the red component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>G</term>
+        ///         <term>241</term>
+        ///         <term>Decimal value of the green component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>R</term>
+        ///         <term>87</term>
+        ///         <term>Decimal value of the blue component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>A</term>
+        ///         <term>12</term>
+        ///         <term>Decimal alpha value.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>RR</term>
+        ///         <term>7F</term>
+        ///         <term>Uppercase hexadecimal representation of the red component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>GG</term>
+        ///         <term>F1</term>
+        ///         <term>Uppercase hexadecimal representation of the green component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>BB</term>
+        ///         <term>57</term>
+        ///         <term>Uppercase hexadecimal representation of the blue component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>AA</term>
+        ///         <term>0C</term>
+        ///         <term>Uppercase hexadecimal representation of the alpha value.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>rr</term>
+        ///         <term>7f</term>
+        ///         <term>Lowercase hexadecimal representation of the red component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>gg</term>
+        ///         <term>f1</term>
+        ///         <term>Lowercase hexadecimal representation of the green component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>bb</term>
+        ///         <term>57</term>
+        ///         <term>Lowercase hexadecimal representation of the blue component.</term>
+        ///     </item>
+        ///     <item>
+        ///         <term>aa</term>
+        ///         <term>0c</term>
+        ///         <term>Lowercase hexadecimal representation of the alpha value.</term>
+        ///     </item>
+        /// </list>
+        /// </remarks>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
@@ -198,7 +268,7 @@ namespace Jdenticon.Rendering
             {
                 sb.Append(format, formatCursor, format.Length - formatCursor);
             }
-
+            
             return sb.ToString();
         }
 

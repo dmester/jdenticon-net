@@ -92,6 +92,7 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Creates a <see cref="Color"/> from a 32-bit RGBA value.
         /// </summary>
+        /// <param name="rgba">A 0xRRGGBBAA color value.</param>
         public static Color FromRgba(uint rgba)
         {
             return new Color(rgba);

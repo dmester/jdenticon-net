@@ -82,6 +82,7 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Determines the hue to be used in an icon for the specified hash.
         /// </summary>
+        /// <param name="hash">Hash for which the hue will be computed. Must contain at least 4 bytes.</param>
         protected static float GetHue(byte[] hash)
         {
             var bytes = new byte[4];
