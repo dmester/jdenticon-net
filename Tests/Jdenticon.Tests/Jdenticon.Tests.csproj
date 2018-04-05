@@ -67,6 +67,7 @@
     <Compile Include="RangeTests.cs" />
     <Compile Include="EdgeTableTests.cs" />
     <Compile Include="SuperSampleRangeListTests.cs" />
+    <Compile Include="IdenticonStyleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Targets\Jdenticon.AspNet.Mvc.Net45\Jdenticon.AspNet.Mvc.Net45.csproj">

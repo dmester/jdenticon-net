@@ -70,6 +70,7 @@ namespace Jdenticon
         private int size;
         private IconGenerator iconGenerator;
         private IdenticonStyle style;
+        private static IdenticonStyle defaultStyle = new IdenticonStyle();
 
         /// <summary>
         /// Creates an <see cref="Identicon"/> instance with the specified hash.
@@ -179,18 +180,37 @@ namespace Jdenticon
             }
             set { iconGenerator = value; }
         }
-        
+
         /// <summary>
         /// Gets or sets the style of the icon.
         /// </summary>
+        /// <remarks>
+        /// This property will be initialized with a clone of the <see cref="DefaultStyle"/>.
+        /// </remarks>
         public IdenticonStyle Style
         {
             get
             {
-                if (style == null) style = new IdenticonStyle();
+                if (style == null) style = DefaultStyle.Clone();
                 return style;
             }
             set { style = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the default style that will be used for all <see cref="Identicon"/> 
+        /// instances where no explicit style has been specified.
+        /// </summary>
+        /// <remarks>
+        /// When rendering a new <see cref="Identicon"/> this style will be applied, 
+        /// if no explicit style has been specified on the icon. This specific <see cref="IdenticonStyle"/> 
+        /// instance is never exposed directly by <see cref="Identicon"/> instances, but is always cloned
+        /// before exposed.
+        /// </remarks>
+        public static IdenticonStyle DefaultStyle
+        {
+            get => defaultStyle;
+            set => defaultStyle = value ?? new IdenticonStyle();
         }
 
         /// <summary>

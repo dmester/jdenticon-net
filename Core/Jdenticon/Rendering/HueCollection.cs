@@ -20,8 +20,34 @@ namespace Jdenticon.Rendering
     /// </remarks>
     public class HueCollection : ICollection<float>, IEquatable<HueCollection>
     {
-        private List<float> hues = new List<float>();
+        private List<float> hues;
 
+        /// <summary>
+        /// Creates an empty <see cref="HueCollection"/>.
+        /// </summary>
+        public HueCollection()
+        {
+            hues = new List<float>();
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="HueCollection"/> containing the specified hue
+        /// values specified in turns.
+        /// </summary>
+        /// <param name="hues">Enumerable of hues to be added to the new collection. 
+        /// Hues should be specified in turns and will be normalized to the range [0, 1).</param>
+        /// <exception cref="ArgumentNullException"><paramref name="hues"/> was <c>Nothing</c>.</exception>
+        public HueCollection(IEnumerable<float> hues)
+        {
+            if (hues == null) throw new ArgumentNullException(nameof(hues));
+            this.hues = new List<float>();
+            
+            foreach (var hue in hues)
+            {
+                this.hues.Add(Normalize(hue, HueUnit.Turns));
+            }
+        }
+        
         /// <summary>
         /// Gets the number of hues in this collection.
         /// </summary>
@@ -178,14 +204,21 @@ namespace Jdenticon.Rendering
             return hues.GetEnumerator();
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as HueCollection);
-        }
-
+        /// <summary>
+        /// Gets a hash code for this <see cref="HueCollection"/>.
+        /// </summary>
         public override int GetHashCode()
         {
             return hues.GetHashCode();
+        }
+
+        /// <summary>
+        /// Checks if this style is identical to another object.
+        /// </summary>
+        /// <param name="obj">The object to compare.</param>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as HueCollection);
         }
 
         /// <summary>

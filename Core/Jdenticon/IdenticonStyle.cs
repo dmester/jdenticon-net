@@ -36,13 +36,39 @@ namespace Jdenticon
     /// </summary>
     public class IdenticonStyle : IEquatable<IdenticonStyle>
     {
-        private HueCollection hues = new HueCollection();
-        private Color backColor = DefaultBackColor;
-        private float padding = DefaultPadding;
-        private float colorSaturation = DefaultColorSaturation;
-        private float grayscaleSaturation = DefaultGrayscaleSaturation;
-        private Range<float> colorLightness = DefaultColorLightness;
-        private Range<float> grayscaleLightness = DefaultGrayscaleLightness;
+        private HueCollection hues;
+        private Color backColor;
+        private float padding;
+        private float colorSaturation;
+        private float grayscaleSaturation;
+        private Range<float> colorLightness;
+        private Range<float> grayscaleLightness;
+
+        /// <summary>
+        /// Creates a new <see cref="IdenticonStyle"/> instance initialized with the default 
+        /// values of each property.
+        /// </summary>
+        public IdenticonStyle()
+        {
+            hues = new HueCollection();
+            backColor = DefaultBackColor;
+            padding = DefaultPadding;
+            colorSaturation = DefaultColorSaturation;
+            grayscaleSaturation = DefaultGrayscaleSaturation;
+            colorLightness = DefaultColorLightness;
+            grayscaleLightness = DefaultGrayscaleLightness;
+        }
+        
+        private IdenticonStyle(IdenticonStyle otherStyleToClone)
+        {
+            hues = new HueCollection(otherStyleToClone.hues);
+            backColor = otherStyleToClone.backColor;
+            padding = otherStyleToClone.padding;
+            colorSaturation = otherStyleToClone.colorSaturation;
+            grayscaleSaturation = otherStyleToClone.grayscaleSaturation;
+            colorLightness = otherStyleToClone.colorLightness;
+            grayscaleLightness = otherStyleToClone.grayscaleLightness;
+        }
 
         /// <summary>
         /// Gets the default value of the <see cref="Padding"/> property. Resolves to 0.08f.
@@ -132,7 +158,7 @@ namespace Jdenticon
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">The value was less than 0.0f or greater than 1.0f.</exception>
         /// <remarks>
-        /// This property was previously called <see cref="Saturation"/> but was renamed in version 2.1.0.
+        /// This property was previously called <c>Saturation</c> but was renamed in version 2.1.0.
         /// </remarks>
         public float ColorSaturation
         {
@@ -271,6 +297,14 @@ namespace Jdenticon
                 other.colorSaturation == colorSaturation &&
                 other.grayscaleSaturation == grayscaleSaturation &&
                 other.hues.Equals(hues);
+        }
+
+        /// <summary>
+        /// Creates and returns a deep copy of this <see cref="IdenticonStyle"/>.
+        /// </summary>
+        public IdenticonStyle Clone()
+        {
+            return new IdenticonStyle(this);
         }
     }
 }
