@@ -52,7 +52,7 @@ namespace Jdenticon.Tests
             Assert.IsTrue(IdenticonRequest.TryParse(text, out var url2));
 
             Assert.AreEqual(url1.Format, url2.Format);
-            Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            Assert.AreEqual(url1.Style.BackColor.ToRgba(), url2.Style.BackColor.ToRgba());
             AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
@@ -96,7 +96,7 @@ namespace Jdenticon.Tests
             Assert.IsTrue(OldIdenticonRequest.TryParse(text, out var url2));
 
             Assert.AreEqual(url1.Format, url2.Format);
-            Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            Assert.AreEqual(url1.Style.BackColor.ToRgba(), url2.Style.BackColor.ToRgba());
             AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
@@ -136,7 +136,7 @@ namespace Jdenticon.Tests
             Assert.IsTrue(IdenticonRequest.TryParse(text, out var url2));
             
             Assert.AreEqual(url1.Format, url2.Format);
-            Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            Assert.AreEqual(url1.Style.BackColor.ToRgba(), url2.Style.BackColor.ToRgba());
             AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
@@ -167,7 +167,7 @@ namespace Jdenticon.Tests
             Assert.IsTrue(IdenticonRequest.TryParse(text, out var url2));
 
             Assert.AreEqual(url1.Format, url2.Format);
-            Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            Assert.AreEqual(url1.Style.BackColor.ToRgba(), url2.Style.BackColor.ToRgba());
             AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
@@ -190,7 +190,7 @@ namespace Jdenticon.Tests
             Assert.IsTrue(IdenticonRequest.TryParse(text, out var url2));
 
             Assert.AreEqual(url1.Format, url2.Format);
-            Assert.AreEqual(url1.Style.BackColor.ToArgb(), url2.Style.BackColor.ToArgb());
+            Assert.AreEqual(url1.Style.BackColor.ToRgba(), url2.Style.BackColor.ToRgba());
             AssertAreAlmostEqual(url1.Style.Padding, url2.Style.Padding);
             AssertAreAlmostEqual(url1.Style.ColorLightness.From, url2.Style.ColorLightness.From);
             AssertAreAlmostEqual(url1.Style.ColorLightness.To, url2.Style.ColorLightness.To);
