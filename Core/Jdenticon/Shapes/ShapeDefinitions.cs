@@ -111,11 +111,17 @@ namespace Jdenticon.Shapes
                     var inner = cell * 0.1f;
                     var outer = inner * 4;
 
+                    // Align edge to nearest pixel in large icons
+                    if (outer > 3)
+                    {
+                        outer = (int)outer;
+                    }
+
                     renderer.AddRectangle(0, 0, cell, cell);
                     renderer.AddPolygon(new []
                     {
-                        new PointF(outer, (int)outer),
-                        new PointF(cell - inner, (int)outer),
+                        new PointF(outer, outer),
+                        new PointF(cell - inner, outer),
                         new PointF(outer + (cell - outer - inner) / 2, cell - inner)
                     }, true);
                 },
