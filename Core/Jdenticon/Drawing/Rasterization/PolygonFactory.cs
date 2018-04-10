@@ -34,12 +34,12 @@ namespace Jdenticon.Drawing.Rasterization
     {
         public static PointF[] FromCircle(PointF center, float radius, bool clockwise)
         {
-            const int ArcLengthPixels = 3;
+            const int TargetChordLengthPixels = 3;
 
-            int sectors = (int)(((float)Math.PI * radius * 2) / ArcLengthPixels);
-            if (sectors < 4)
+            int sectors = (int)(((float)Math.PI * radius * 2) / TargetChordLengthPixels);
+            if (sectors < 9)
             {
-                sectors = 4;
+                sectors = 9;
             }
 
             var points = new PointF[sectors];
