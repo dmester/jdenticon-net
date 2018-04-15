@@ -86,7 +86,7 @@ namespace Jdenticon.AspNet.Mvc
         /// identicon urls.
         /// </para>
         /// <code language="html" title="HtmlHelper approach">
-        /// @using Jdenticon;
+        /// @using Jdenticon.AspNet.Mvc;
         /// 
         /// &lt;!-- The following markup --&gt;
         /// 

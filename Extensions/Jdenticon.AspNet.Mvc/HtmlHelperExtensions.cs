@@ -78,7 +78,7 @@ namespace Jdenticon.AspNet.Mvc
         /// identicons as IMG tags.
         /// </para>
         /// <code language="html" title="HtmlHelper approach">
-        /// @using Jdenticon;
+        /// @using Jdenticon.AspNet.Mvc;
         /// 
         /// &lt;!-- The following markup --&gt;
         /// 
