@@ -63,7 +63,7 @@ namespace Jdenticon
             {
                 if (style == null)
                 {
-                    style = new IdenticonStyle();
+                    style = Identicon.DefaultStyle.Clone();
                 }
                 return style;
             }
@@ -277,7 +277,7 @@ namespace Jdenticon
                     // Flags:
                     // Bit 0: explicit style (bool)
                     // Bit 1-3: image format (int)
-                    var explicitStyle = style != null && !style.Equals(new IdenticonStyle());
+                    var explicitStyle = style != null && !style.Equals(Identicon.DefaultStyle);
                     var format = (int)Format;
 
                     writer.Write((byte)(

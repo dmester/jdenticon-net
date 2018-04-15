@@ -74,6 +74,46 @@ namespace Jdenticon.Tests
         }
 
         [TestMethod]
+        public void IdenticonRequest_DefaultStyle()
+        {
+            var url1 = new IdenticonRequest
+            {
+                Hash = HashGenerator.ComputeHash("Hello", "SHA1"),
+                Size = 741,
+                Style = new IdenticonStyle
+                {
+                    Padding = 0.3f
+                }
+            };
+
+            try
+            {
+                var text = url1.ToString();
+                Assert.IsTrue(IdenticonRequest.TryParse(text, out var url2));
+
+                AssertAreAlmostEqual(0.3f, url2.Style.Padding);
+                Identicon.DefaultStyle.Padding = 0.1f;
+                AssertAreAlmostEqual(0.3f, url2.Style.Padding);
+
+                Identicon.DefaultStyle.Padding = 0.3f;
+
+                text = url1.ToString();
+                Assert.IsTrue(IdenticonRequest.TryParse(text, out var url3));
+
+                AssertAreAlmostEqual(0.3f, url3.Style.Padding);
+                Identicon.DefaultStyle.Padding = 0.2f;
+
+                Assert.IsTrue(IdenticonRequest.TryParse(text, out var url4));
+                AssertAreAlmostEqual(0.2f, url4.Style.Padding);
+            }
+            finally
+            {
+                // Restore default style so that other tests are not affected
+                Identicon.DefaultStyle = null;
+            }
+        }
+
+        [TestMethod]
         public void IdenticonRequest_v200BackwardCompatiblity()
         {
             var url1 = new IdenticonRequest
