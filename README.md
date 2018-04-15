@@ -6,7 +6,10 @@
 ## Features
 Jdenticon-net is a .NET port of the JavaScript library [Jdenticon](https://github.com/dmester/jdenticon).
 
-* Runs on .NET Framework 2.x, 3.x, 4.x, .NET Standard 1.x and .NET Core 1.x.
+* Runs on multiple .NET platforms.
+** .NET Framework 2.0 and later
+** .NET Standard 1.0 and later
+** .NET Core 1.0 and later
 * Render icons as PNG and SVG files with no dependencies to System.Drawing or WPF.
 * Integration package available for ASP.NET WebForms, MVC and WebApi.
 * Generate SVG fragments to be used inline on websites.
