@@ -254,11 +254,15 @@ namespace Jdenticon
         /// <summary>
         /// Gets the bounds of the icon excluding its padding.
         /// </summary>
-        public Rectangle GetIconBounds() => new Rectangle(
-            (int)(Style.Padding * size),
-            (int)(Style.Padding * size),
-            size - (int)(Style.Padding * size) * 2,
-            size - (int)(Style.Padding * size) * 2);
+        public Rectangle GetIconBounds()
+        {
+            // Round to nearest integer
+            var padding = (int)(Style.Padding * size + 0.5f);
+            
+            return new Rectangle(
+                padding, padding,
+                size - padding * 2, size - padding * 2);
+        }
 
         /// <summary>
         /// Gets a string representation of this <see cref="Identicon"/>.
