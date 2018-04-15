@@ -57,7 +57,7 @@ namespace Jdenticon.AspNet.Mvc
         /// </summary>
         /// <param name="helper">The <see cref="HtmlHelper"/>.</param>
         /// <param name="icon">The icon that will be rendered.</param>
-        /// <param name="size">The size of the generated icon in pixels.</param>
+        /// <param name="size">The size of the generated icon in pixels. If no size is specified the size of <paramref name="icon"/> will be used.</param>
         /// <param name="alt">The alt attribute of the rendered image.</param>
         /// <param name="format">The file format of the generated icon.</param>
         /// <remarks>
@@ -95,9 +95,14 @@ namespace Jdenticon.AspNet.Mvc
         /// &lt;/div&gt;
         /// </code>
         /// </example>
-        public static MvcHtmlString Identicon(this HtmlHelper helper, Identicon icon, int size, string alt = null, 
+        public static MvcHtmlString Identicon(this HtmlHelper helper, Identicon icon, int size = 0, string alt = null, 
             ExportImageFormat format = ExportImageFormat.Png)
         {
+            if (size == 0)
+            {
+                size = icon.Size;
+            }
+
             return helper.Identicon(icon.Hash, size, alt, format, icon.Style);
         }
 
