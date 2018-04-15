@@ -36,6 +36,7 @@ namespace Jdenticon.AspNet.Mvc
     /// </summary>
     public static class HtmlHelperExtensions
     {
+        /// <inheritdoc cref="Identicon(HtmlHelper, Jdenticon.Identicon, int, string, ExportImageFormat)" />
         /// <summary>
         /// Renders an identicon as an IMG tag.
         /// </summary>
@@ -59,12 +60,48 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="alt">The alt attribute of the rendered image.</param>
         /// <param name="format">The file format of the generated icon.</param>
+        /// <remarks>
+        /// <para>
+        /// This extension method can be used in your cshtml files to insert identicons as IMG tags.
+        /// The IMG tag will include an url that will be handled by the <see cref="IdenticonHttpHandler"/>
+        /// handler, which is automatically installed in your Web.config when installing the 
+        /// <c>Jdenticon.AspNet.Mvc</c> NuGet package.
+        /// </para>
+        /// <para>
+        /// If you don't need a whole IMG tag, but rather just an url, please have a look at 
+        /// <see cref="UrlHelperExtensions"/>.
+        /// </para>
+        /// </remarks>
+        /// <example>
+        /// <para>
+        /// This example shows how to use the <see cref="HtmlHelper"/> extension methods to render
+        /// identicons as IMG tags.
+        /// </para>
+        /// <code language="html" title="HtmlHelper approach">
+        /// @using Jdenticon;
+        /// 
+        /// &lt;!-- The following markup --&gt;
+        /// 
+        /// &lt;div class="user-info"&gt;
+        ///     @Html.Identicon("JohnDoe64", 60, alt: "JohnDoe64 icon")
+        ///     &lt;div class="user-info__name"&gt;JohnDoe64&lt;/div&gt;
+        /// &lt;/div&gt;
+        /// 
+        /// &lt;!-- is rendered as --&gt;
+        /// 
+        /// &lt;div class="user-info"&gt;
+        ///     &lt;img src="/identicon.axd?5AMA8Xyneag78XyneQ--" width="60" height="60" alt="JohnDoe64 icon" /&gt;
+        ///     &lt;div class="user-info__name"&gt;JohnDoe64&lt;/div&gt;
+        /// &lt;/div&gt;
+        /// </code>
+        /// </example>
         public static MvcHtmlString Identicon(this HtmlHelper helper, Identicon icon, int size, string alt = null, 
             ExportImageFormat format = ExportImageFormat.Png)
         {
             return helper.Identicon(icon.Hash, size, alt, format, icon.Style);
         }
 
+        /// <inheritdoc cref="Identicon(HtmlHelper, Jdenticon.Identicon, int, string, ExportImageFormat)" />
         /// <summary>
         /// Renders an identicon as an IMG tag.
         /// </summary>

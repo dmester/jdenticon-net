@@ -16,6 +16,8 @@ Foreach-Object {
     $content = Get-Content $_.FullName
 	$content = $content.replace($oldHeader, $newHeader)
 	$content = $content.replace($oldFooter, $newFooter)
+	$content = $content.replace('<link rel="shortcut icon" href="../icons/favicon.ico" />', "");
+	$content = $content.replace('</title>', ' - Jdenticon for .NET</title>');
 
 	Set-Content -Path $_.FullName -Value $content -Encoding UTF8
 }
