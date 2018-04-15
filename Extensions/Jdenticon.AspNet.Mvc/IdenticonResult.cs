@@ -50,6 +50,9 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="hash">The hash that will be used as base for this icon. The hash must contain at least 6 bytes.</param>
         /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentException"><paramref name="hash"/> was too short.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hash"/> was <c>null</c>.</exception>
         public static IdenticonResult FromHash(byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png)
         {
             return new IdenticonResult(Identicon.FromHash(hash, size), format);
@@ -61,6 +64,9 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="hash">The hex encoded hash that will be used as base for the icon. The hash string must contain at least 12 characters.</param>
         /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentException"><paramref name="hash"/> was too short.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="hash"/> was <c>null</c>.</exception>
         public static IdenticonResult FromHash(string hash, int size, ExportImageFormat format = ExportImageFormat.Png)
         {
             return new IdenticonResult(Identicon.FromHash(hash, size), format);
@@ -73,6 +79,7 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="size">The size of the icon in pixels.</param>
         /// <param name="format">The format of the generated icon.</param>
         /// <param name="hashAlgorithmName">The name of the hash algorithm to use for hashing.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
         public static IdenticonResult FromValue(object value, int size, ExportImageFormat format = ExportImageFormat.Png, string hashAlgorithmName = "SHA1")
         {
             return new IdenticonResult(Identicon.FromValue(value, size, hashAlgorithmName), format);
@@ -83,8 +90,10 @@ namespace Jdenticon.AspNet.Mvc
         /// </summary>
         /// <param name="icon">The <see cref="Identicon"/> to be rendered.</param>
         /// <param name="format">The format of the generated icon.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="icon"/> was <c>null</c>.</exception>
         public static IdenticonResult FromIcon(Identicon icon, ExportImageFormat format = ExportImageFormat.Png)
         {
+            if (icon == null) throw new ArgumentNullException(nameof(icon));
             return new IdenticonResult(icon, format);
         }
 

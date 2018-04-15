@@ -46,6 +46,8 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="alt">The alt attribute of the rendered image.</param>
         /// <param name="style">The icon style.</param>
         /// <param name="format">The file format of the generated icon.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="helper"/> was <c>null</c>.</exception>
         public static MvcHtmlString Identicon(this HtmlHelper helper, object value, int size, string alt = null, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
         {
             var hash = HashGenerator.ComputeHash(value, "SHA1");
@@ -95,13 +97,13 @@ namespace Jdenticon.AspNet.Mvc
         /// &lt;/div&gt;
         /// </code>
         /// </example>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="helper"/> or <paramref name="icon"/> was <c>null</c>.</exception>
         public static MvcHtmlString Identicon(this HtmlHelper helper, Identicon icon, int size = 0, string alt = null, 
             ExportImageFormat format = ExportImageFormat.Png)
         {
-            if (size == 0)
-            {
-                size = icon.Size;
-            }
+            if (icon == null) throw new ArgumentNullException(nameof(icon));
+            if (size == 0) size = icon.Size;
 
             return helper.Identicon(icon.Hash, size, alt, format, icon.Style);
         }
@@ -111,14 +113,22 @@ namespace Jdenticon.AspNet.Mvc
         /// Renders an identicon as an IMG tag.
         /// </summary>
         /// <param name="helper">The <see cref="HtmlHelper"/>.</param>
-        /// <param name="hash">The hash that will be used as base for the icon.</param>
+        /// <param name="hash">The hash that will be used as base for the icon. Must contain at least 6 bytes.</param>
         /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="alt">The alt attribute of the rendered image.</param>
         /// <param name="style">The icon style.</param>
         /// <param name="format">The file format of the generated icon.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentException"><paramref name="hash"/> was too short.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="helper"/> or <paramref name="hash"/> was <c>null</c>.</exception>
         public static MvcHtmlString Identicon(this HtmlHelper helper, byte[] hash, int size, string alt = null, 
             ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
         {
+            if (helper == null) throw new ArgumentNullException(nameof(helper));
+            if (hash == null) throw new ArgumentNullException(nameof(hash));
+            if (hash.Length < 6) throw new ArgumentException("The specified hash is too short. At least 6 bytes are required.", nameof(hash));
+            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger");
+
             var url = IdenticonUrl.Create(helper.ViewContext.HttpContext.Response, hash, size, format, style);
 
             var img = new TagBuilder("img");

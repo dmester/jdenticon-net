@@ -45,6 +45,8 @@ namespace Jdenticon.AspNet.Mvc
         /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="style">The icon style.</param>
         /// <param name="format">The file format of the generated icon.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="helper"/> was <c>null</c>.</exception>
         public static string Identicon(this UrlHelper helper, object value, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
         {
             var hash = HashGenerator.ComputeHash(value, "SHA1");
@@ -56,12 +58,20 @@ namespace Jdenticon.AspNet.Mvc
         /// Generates an URL to an identicon.
         /// </summary>
         /// <param name="helper">The <see cref="UrlHelper"/>.</param>
-        /// <param name="hash">The hash that will be used as base for the icon.</param>
+        /// <param name="hash">The hash that will be used as base for the icon. Must contain at least 6 bytes.</param>
         /// <param name="size">The size of the generated icon in pixels.</param>
         /// <param name="style">The icon style.</param>
         /// <param name="format">The file format of the generated icon.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentException"><paramref name="hash"/> was too short.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="helper"/> or <paramref name="hash"/> was <c>null</c>.</exception>
         public static string Identicon(this UrlHelper helper, byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
         {
+            if (helper == null) throw new ArgumentNullException(nameof(helper));
+            if (hash == null) throw new ArgumentNullException(nameof(hash));
+            if (hash.Length < 6) throw new ArgumentException("The specified hash is too short. At least 6 bytes are required.", nameof(hash));
+            if (size < 1) throw new ArgumentOutOfRangeException(nameof(size), size, "The size should be 1 pixel or larger");
+
             return IdenticonUrl.Create(helper.RequestContext.HttpContext.Response, hash, size, format, style);
         }
 
@@ -103,13 +113,12 @@ namespace Jdenticon.AspNet.Mvc
         /// &lt;/div&gt;
         /// </code>
         /// </example>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="helper"/> or <paramref name="icon"/> was <c>null</c>.</exception>
         public static string Identicon(this UrlHelper helper, Identicon icon, int size = 0, ExportImageFormat format = ExportImageFormat.Png)
         {
             if (icon == null) throw new ArgumentNullException(nameof(icon));
-            if (size == 0)
-            {
-                size = icon.Size;
-            }
+            if (size == 0) size = icon.Size;
 
             return helper.Identicon(icon.Hash, size, format, icon.Style);
         }
