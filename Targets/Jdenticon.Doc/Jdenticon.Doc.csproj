@@ -52,7 +52,7 @@
     <HelpTitle>Jdenticon-net documentation</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <MissingTags>Summary, Parameter, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
-    <CopyrightText>Copyright &amp;#169%3b Daniel Mester Pirttij&amp;#228%3brvi $([System.DateTime]::Now.Year)</CopyrightText>
+    <CopyrightText>Copyright</CopyrightText>
     <CopyrightHref>http://jdenticon.com/</CopyrightHref>
     <ComponentConfigurations>
       <ComponentConfig id="IntelliSense Component" enabled="True">
@@ -111,7 +111,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>powershell -ExecutionPolicy Bypass -File "$(ProjectDir)ReplacePageHeader.ps1" "$(SolutionDir)\releases\help\html" "$(ProjectDir)PageHeader.html"
+    <PostBuildEvent>powershell -ExecutionPolicy Bypass -File "$(ProjectDir)ReplacePageHeader.ps1" "$(SolutionDir)\releases\help\html" "$(ProjectDir)PageHeader.html" "$(ProjectDir)PageFooter.html"
 </PostBuildEvent>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
@@ -121,6 +121,7 @@
     <Content Include="fonts\enriqueta\enriqueta-bold-webfont.woff2" />
     <Content Include="fonts\enriqueta\enriqueta-regular-webfont.woff" />
     <Content Include="fonts\enriqueta\enriqueta-regular-webfont.woff2" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.svg" />
     <Content Include="fonts\sourcesanspro\SourceSansPro-Black.ttf.woff" />
     <Content Include="fonts\sourcesanspro\SourceSansPro-Black.ttf.woff2" />
     <Content Include="fonts\sourcesanspro\SourceSansPro-BlackIt.ttf.woff" />
@@ -145,6 +146,11 @@
     <Content Include="fonts\sourcesanspro\SourceSansPro-Semibold.ttf.woff2" />
     <Content Include="fonts\sourcesanspro\SourceSansPro-SemiboldIt.ttf.woff" />
     <Content Include="fonts\sourcesanspro\SourceSansPro-SemiboldIt.ttf.woff2" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome\FontAwesome.otf" />
     <None Include="packages.config" />
     <None Include="ReplacePageHeader.ps1" />
   </ItemGroup>
@@ -182,6 +188,8 @@
     <None Include="PageHeader.html" />
     <Content Include="fonts\enriqueta\SIL Open Font License.txt" />
     <Content Include="fonts\sourcesanspro\LICENSE.txt" />
+    <Content Include="PageFooter.html" />
+    <Content Include="scripts\nav.js" />
     <Content Include="styles\branding-Website.css" />
     <Content Include="styles\branding.css" />
   </ItemGroup>

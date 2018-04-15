@@ -31,12 +31,12 @@ icon.SaveAsPng("johndoe.png");
 ### ASP.NET
 To get started using Jdenticon for ASP.NET, please see:
 
-* [Code examples for ASP.NET WebForms](https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_WebForms.htm)
-* [Code examples for ASP.NET MVC](https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_Mvc.htm)
-* [Code examples for ASP.NET WebApi](https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_WebApi.htm)
+* [Code examples for ASP.NET WebForms](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebForms.htm)
+* [Code examples for ASP.NET MVC](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_Mvc.htm)
+* [Code examples for ASP.NET WebApi](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebApi.htm)
 
 ## Quick Reference
-For full documentation, please see https://dmester.github.io/jdenticon-net-docs/.
+For full documentation, please see https://jdenticon.com/net-api/.
 
 ### Create an instance of Identicon
 There are mainly two ways of creating an instance of `Identicon`:
