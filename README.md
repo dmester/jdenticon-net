@@ -139,6 +139,27 @@ var icon = Identicon.FromValue("john.doe@example.faux", size: 100);
 icon.Style = iconStyle;
 icon.SaveAsPng("johndoe.png");
 ```
+
+It is also possible to set a default style. In ASP.NET this can be done in Application_Start in your Global.asax file.
+
+```csharp
+using Jdenticon;
+using Jdenticon.Rendering;
+----
+Identicon.DefaultStyle = new IdenticonStyle
+{
+    Hues = new HueCollection { { 314f, HueUnit.Degrees } },
+    Padding = 0.10f,
+    BackColor = Color.Transparent,
+    ColorSaturation = 0.4f,
+    GrayscaleSaturation = 0f,
+    ColorLightness = Range.Create(0.4f, 0.9f),
+    GrayscaleLightness = Range.Create(0.3f, 0.9f)
+};
+
+var icon = Identicon.FromValue("john.doe@example.faux", size: 100);
+icon.SaveAsPng("johndoe.png");
+```
   
 ### Advanced customizations
 By subclassing `Jdenticon.IconGenerator` you can completely override the look of your icons. Set the
