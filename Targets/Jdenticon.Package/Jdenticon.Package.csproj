@@ -44,6 +44,7 @@
     <CreatePackage Include="Jdenticon.AspNet.WebApi.nuspec" />
     <CreatePackage Include="Jdenticon.AspNet.Mvc.nuspec" />
     <CreatePackage Include="Jdenticon.AspNet.WebForms.nuspec" />
+    <None Include="packages.config" />
     <None Include="Web.config.WebForms.transform" />
     <None Include="Web.config.Mvc.transform" />
   </ItemGroup>
