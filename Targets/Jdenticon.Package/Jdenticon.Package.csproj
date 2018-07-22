@@ -48,6 +48,7 @@
     <None Include="Web.config.Mvc.transform" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReadMe.Gdi.txt" />
     <Content Include="ReadMe.Core.txt" />
     <Content Include="ReadMe.WebApi.txt" />
     <Content Include="ReadMe.WebForms.txt" />
