@@ -1,7 +1,0 @@
-language: csharp
-solution: jdenticon-net.sln
-install:
-    - nuget restore jdenticon-net.sln
-script:
-    - msbuild /p:Configuration=Travis jdenticon-net.sln
-    
