@@ -3,5 +3,5 @@ solution: jdenticon-net.sln
 install:
     - nuget restore jdenticon-net.sln
 script:
-    - msbuild /p:Configuration=Debug jdenticon-net.sln
+    - msbuild /p:Configuration=Travis jdenticon-net.sln
     
