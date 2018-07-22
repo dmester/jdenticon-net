@@ -2,8 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Product>Jdenticon</Product>
-    <AssemblyOriginatorKeyFile>M:\Repos\Keys\Jdenticon.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(JdenticonKeyFile)' != '' ">
+    <AssemblyOriginatorKeyFile>$(JdenticonKeyFile)</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
+    <DefineConstants>$(DefineConstants);SIGNED_ASSEMBLIES</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <GlobalAssemblyInfo>$([System.IO.File]::ReadAllText('$(SolutionDir)\Core\AssemblyInfo\GlobalAssemblyInfo.cs'))</GlobalAssemblyInfo>

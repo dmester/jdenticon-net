@@ -16,3 +16,6 @@ Hash algorithms are available in the platform.
 
 USE_SHARP_COMPRESS
 Use SharpCompress for Deflate compression.
+
+SIGNED_ASSEMBLIES
+Defined if the assemblies are signed with a private key.

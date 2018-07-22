@@ -60,6 +60,12 @@
   <Target Name="CreatePackages">
     <Exec Command="&quot;$(SolutionDir)Utils\NuGet\NuGet.exe&quot; pack &quot;$(MSBuildProjectDirectory)\%(CreatePackage.Identity)&quot; -Properties &quot;version=$(AssemblyVersion);configuration=$(Configuration)&quot; -OutputDirectory &quot;$(SolutionDir)releases&quot;" />
   </Target>
+  <Target Name="CreatePublishBatch_Signed" Condition=" '$(JdenticonKeyFile)' != '' " AfterTargets="CreatePackages">
+    <Exec Command="&#xD;&#xA;echo @echo off &gt; &quot;$(SolutionDir)releases\PublishNuGet.$(AssemblyVersion).bat&quot;&#xD;&#xA;echo echo You will now publish version $(AssemblyVersion) to NuGet &gt;&gt; &quot;$(SolutionDir)releases\PublishNuGet.$(AssemblyVersion).bat&quot;&#xD;&#xA;echo pause &gt;&gt; &quot;$(SolutionDir)releases\PublishNuGet.$(AssemblyVersion).bat&quot;&#xD;&#xA;echo &quot;$(SolutionDir)Utils\NuGet\NuGet.exe&quot; push &quot;$(SolutionDir)releases\*.$(AssemblyVersion).nupkg&quot; &gt;&gt; &quot;$(SolutionDir)releases\PublishNuGet.$(AssemblyVersion).bat&quot;&#xD;&#xA;" />
+  </Target>
+  <Target Name="CreatePublishBatch_Unsigned" Condition=" '$(JdenticonKeyFile)' == '' " AfterTargets="CreatePackages">
+    <Exec Command="&#xD;&#xA;echo @echo off &gt; &quot;$(SolutionDir)releases\PublishNuGet.$(AssemblyVersion).bat&quot;&#xD;&#xA;echo echo Version $(AssemblyVersion) is not signed &gt;&gt; &quot;$(SolutionDir)releases\PublishNuGet.$(AssemblyVersion).bat&quot;&#xD;&#xA;echo pause &gt;&gt; &quot;$(SolutionDir)releases\PublishNuGet.$(AssemblyVersion).bat&quot;&#xD;&#xA;" />
+  </Target>
   <Target Name="Clean">
     <ItemGroup>
       <FilesToDelete Include="$(SolutionDir)releases\*.nupkg" />
