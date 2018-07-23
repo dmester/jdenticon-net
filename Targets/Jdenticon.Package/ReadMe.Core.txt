@@ -28,5 +28,5 @@ your application:
   * Jdenticon.Wpf
 
 Full documentation is available at
-https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon.htm
+https://jdenticon.com/net-api/N_Jdenticon.html
 

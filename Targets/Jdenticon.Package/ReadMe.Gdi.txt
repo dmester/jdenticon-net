@@ -6,7 +6,7 @@ This package is intended for rendering identicons in Windows Forms based
 applications.
 
 Full documentation is available at
-https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon.htm
+https://jdenticon.com/net-api/N_Jdenticon.html
 
 
 CAUTION!

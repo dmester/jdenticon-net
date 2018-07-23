@@ -5,7 +5,7 @@
 Please see the code example below how to use Jdenticon in your API.
 
 Full documentation is available at
-https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_WebApi.htm
+https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebApi.html
 
 IDENTICON AS ACTION RESULT
 ==========================

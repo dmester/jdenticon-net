@@ -5,7 +5,7 @@
 Use any of the approaches listed below to add an identicon to your application.
 
 Full documentation is available at
-https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_Mvc.htm
+https://jdenticon.com/net-api/N_Jdenticon_AspNet_Mvc.html
 
 HTMLHELPER APPROACH
 ===================

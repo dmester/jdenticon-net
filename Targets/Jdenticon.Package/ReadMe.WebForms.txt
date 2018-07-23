@@ -5,7 +5,7 @@
 Please see the code example below how to add an identicon to your application.
 
 Full documentation is available at
-https://dmester.github.io/jdenticon-net-docs/html/N_Jdenticon_AspNet_WebForms.htm
+https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebForms.html
 
 DATABINDING EXAMPLE
 ===================
