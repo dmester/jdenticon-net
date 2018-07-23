@@ -14,19 +14,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
     <JdenticonPlatform>net45</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.0'">
     <JdenticonPlatform>netstandard10</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);USE_SHARP_COMPRESS</DefineConstants>
+    <DefineConstants>$(DefineConstants);USE_SHARP_COMPRESS;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
     <JdenticonPlatform>netstandard13</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <JdenticonPlatform>netstandard20</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <Target Name="CopyAssembly" AfterTargets="Build">
     <Copy  

@@ -80,7 +80,7 @@ namespace Jdenticon.Rendering
 
             return ActionDisposable.Empty;
         }
-        
+
         /// <summary>
         /// Writes the SVG to the specified <see cref="TextWriter"/>.
         /// </summary>
@@ -88,13 +88,25 @@ namespace Jdenticon.Rendering
         /// <param name="fragment">If <c>true</c> an SVG string without the root svg element will be rendered.</param>
         public void Save(TextWriter writer, bool fragment)
         {
+            writer.Write(ToSvg(fragment));
+        }
+
+        /// <summary>
+        /// Writes the SVG to the specified <see cref="TextWriter"/>.
+        /// </summary>
+        /// <param name="writer">The output writer to which the SVG will be written.</param>
+        /// <param name="fragment">If <c>true</c> an SVG string without the root svg element will be rendered.</param>
+        public string ToSvg(bool fragment)
+        {
+            var svg = new List<string>();
+
             var invariantCulture = CultureInfo.InvariantCulture;
             var widthAsString = width.ToString(invariantCulture);
             var heightAsString = height.ToString(invariantCulture);
             
             if (!fragment)
             {
-                writer.Write("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" +
+                svg.Add("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" +
                     widthAsString + "\" height=\"" + heightAsString + "\" viewBox=\"0 0 " +
                     widthAsString + " " + heightAsString + "\" preserveAspectRatio=\"xMidYMid meet\">");
             }
@@ -102,20 +114,22 @@ namespace Jdenticon.Rendering
             if (backColor.A > 0)
             {
                 var opacity = (float)backColor.A / 255;
-                writer.Write("<rect fill=\"" + ColorUtils.ToHexString(backColor) + "\" fill-opacity=\"" +
+                svg.Add("<rect fill=\"" + ColorUtils.ToHexString(backColor) + "\" fill-opacity=\"" +
                     opacity.ToString(invariantCulture) +
                     "\" x=\"0\" y=\"0\" width=\"" + widthAsString + "\" height=\"" + heightAsString + "\"/>");
             }
             
             foreach (var pair in pathsByColor)
             {
-                writer.Write("<path fill=\"" + ColorUtils.ToHexString(pair.Key) + "\" d=\"" + pair.Value + "\"/>");
+                svg.Add("<path fill=\"" + ColorUtils.ToHexString(pair.Key) + "\" d=\"" + pair.Value + "\"/>");
             }
 
             if (!fragment)
             {
-                writer.Write("</svg>");
+                svg.Add("</svg>");
             }
+
+            return string.Concat(svg);
         }
     }
 }

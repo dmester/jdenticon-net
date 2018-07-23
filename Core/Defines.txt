@@ -19,3 +19,6 @@ Use SharpCompress for Deflate compression.
 
 SIGNED_ASSEMBLIES
 Defined if the assemblies are signed with a private key.
+
+SUPPORT_ASYNC_AWAIT
+Defines that async await is supported.

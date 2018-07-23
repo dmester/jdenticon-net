@@ -30,6 +30,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+#if SUPPORT_ASYNC_AWAIT
+using System.Threading.Tasks;
+#endif
+
 namespace Jdenticon
 {
     /// <summary>
@@ -37,12 +41,28 @@ namespace Jdenticon
     /// </summary>
     public static class SvgExtensions
     {
-        private static void GenerateSvg(this Identicon icon, TextWriter writer, bool fragment)
+        private static string GenerateSvg(this Identicon icon, bool fragment)
         {
             var iconBounds = icon.GetIconBounds();
             var renderer = new SvgRenderer(icon.Size, icon.Size);
             icon.Draw(renderer, iconBounds);
-            renderer.Save(writer, fragment);
+            return renderer.ToSvg(fragment);
+        }
+
+        private static byte[] GenerateBinarySvg(this Identicon icon, bool fragment)
+        {
+            var svg = icon.GenerateSvg(fragment);
+            var binaryLength = Encoding.UTF8.GetByteCount(svg);
+            var preamble = Encoding.UTF8.GetPreamble();
+
+            var buffer = new byte[binaryLength + preamble.Length];
+            for (var i = 0; i < preamble.Length; i++)
+            {
+                buffer[i] = preamble[i];
+            }
+
+            Encoding.UTF8.GetBytes(svg, 0, svg.Length, buffer, preamble.Length);
+            return buffer;
         }
 
         /// <summary>
@@ -64,11 +84,7 @@ namespace Jdenticon
         /// </param>
         public static string ToSvg(this Identicon icon, bool fragment)
         {
-            using (var writer = new StringWriter())
-            {
-                icon.GenerateSvg(writer, fragment);
-                return writer.ToString();
-            }
+            return icon.GenerateSvg(fragment);
         }
 
         /// <summary>
@@ -119,7 +135,9 @@ namespace Jdenticon
         public static void SaveAsSvg(this Identicon icon, TextWriter writer, bool fragment)
         {
             if (writer == null) throw new ArgumentNullException(nameof(writer));
-            icon.GenerateSvg(writer, fragment);
+
+            var svg = icon.GenerateSvg(fragment);
+            writer.Write(svg);
         }
 
         /// <summary>
@@ -136,13 +154,8 @@ namespace Jdenticon
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
-            using (var leaveOpenStream = new LeaveOpenStream(stream))
-            {
-                using (var writer = new StreamWriter(leaveOpenStream, Encoding.UTF8))
-                {
-                    icon.SaveAsSvg(writer, fragment);
-                }
-            }
+            var binarySvg = icon.GenerateBinarySvg(fragment);
+            stream.Write(binarySvg, 0, binarySvg.Length);
         }
 
         /// <summary>
@@ -155,10 +168,8 @@ namespace Jdenticon
         /// </param>
         public static Stream SaveAsSvg(this Identicon icon, bool fragment)
         {
-            var memoryStream = new MemoryStream();
-            icon.SaveAsSvg(memoryStream, fragment);
-            memoryStream.Position = 0;
-            return memoryStream;
+            var binarySvg = icon.GenerateBinarySvg(fragment);
+            return new MemoryStream(binarySvg, false);
         }
 
         /// <summary>
@@ -183,13 +194,108 @@ namespace Jdenticon
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
         public static void SaveAsSvg(this Identicon icon, string path, bool fragment)
         {
-            if (path == null) throw new ArgumentNullException("path");
+            if (path == null) throw new ArgumentNullException(nameof(path));
 
-            using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+            using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
                 icon.SaveAsSvg(stream, fragment);
             }
         }
+#endif
+
+#if SUPPORT_ASYNC_AWAIT
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="writer">The <see cref="TextWriter"/> to which the SVG data will be written.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> was <c>null</c>.</exception>
+        public static Task SaveAsSvgAsync(this Identicon icon, TextWriter writer)
+        {
+            return icon.SaveAsSvgAsync(writer, false);
+        }
+
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the SVG data will be written.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
+        public static Task SaveAsSvgAsync(this Identicon icon, Stream stream)
+        {
+            return icon.SaveAsSvgAsync(stream, false);
+        }
+
+#if HAVE_FILE_STREAM
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the SVG file to create. If the file already exists it will be overwritten.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
+        public static Task SaveAsSvgAsync(this Identicon icon, string path)
+        {
+            return icon.SaveAsSvgAsync(path, false);
+        }
+#endif
+
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="writer">The <see cref="TextWriter"/> to which the SVG data will be written.</param>
+        /// <param name="fragment">
+        /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
+        /// it suitable to be embedded in another SVG.
+        /// </param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> was <c>null</c>.</exception>
+        public static Task SaveAsSvgAsync(this Identicon icon, TextWriter writer, bool fragment)
+        {
+            if (writer == null) throw new ArgumentNullException(nameof(writer));
+
+            var svg = icon.GenerateSvg(fragment);
+            return writer.WriteAsync(svg);
+        }
+
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the SVG data will be written.</param>
+        /// <param name="fragment">
+        /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
+        /// it suitable to be embedded in another SVG.
+        /// </param>
+        /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
+        public static Task SaveAsSvgAsync(this Identicon icon, Stream stream, bool fragment)
+        {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+
+            var binarySvg = icon.GenerateBinarySvg(fragment);
+            return stream.WriteAsync(binarySvg, 0, binarySvg.Length);
+        }
+
+#if HAVE_FILE_STREAM
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Scalable Vector Graphics (SVG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the SVG file to create. If the file already exists it will be overwritten.</param>
+        /// <param name="fragment">
+        /// If <c>true</c> the generated SVG will not be encapsulated in the root svg element making 
+        /// it suitable to be embedded in another SVG.
+        /// </param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
+        public static async Task SaveAsSvgAsync(this Identicon icon, string path, bool fragment)
+        {
+            if (path == null) throw new ArgumentNullException(nameof(path));
+
+            using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                await icon.SaveAsSvgAsync(stream, fragment);
+            }
+        }
+#endif
 #endif
     }
 }

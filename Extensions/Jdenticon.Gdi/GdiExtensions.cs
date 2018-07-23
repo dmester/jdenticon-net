@@ -33,6 +33,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+#if SUPPORT_ASYNC_AWAIT
+using System.Threading.Tasks;
+#endif
+
 namespace Jdenticon
 {
     /// <summary>
@@ -91,7 +95,7 @@ namespace Jdenticon
             }
         }
 
-        private static void ToMetafile(Identicon icon, Stream stream)
+        private static byte[] ToMetafile(this Identicon icon)
         {
             var iconBounds = icon.GetIconBounds();
 
@@ -100,14 +104,19 @@ namespace Jdenticon
                 var hdc = desktopGraphics.GetHdc();
                 try
                 {
-                    using (var img = new Metafile(stream, hdc,
-                        new System.Drawing.Rectangle(0, 0, icon.Size, icon.Size), MetafileFrameUnit.Pixel,
-                        EmfType.EmfPlusDual))
+                    using (var memoryStream = new MemoryStream())
                     {
-                        using (var graphics = Graphics.FromImage(img))
+                        using (var img = new Metafile(memoryStream, hdc,
+                            new System.Drawing.Rectangle(0, 0, icon.Size, icon.Size), MetafileFrameUnit.Pixel,
+                            EmfType.EmfPlusDual))
                         {
-                            icon.Draw(graphics, iconBounds);
+                            using (var graphics = Graphics.FromImage(img))
+                            {
+                                icon.Draw(graphics, iconBounds);
+                            }
                         }
+
+                        return memoryStream.ToArray();
                     }
                 }
                 finally
@@ -123,10 +132,7 @@ namespace Jdenticon
         /// <param name="icon">The identicon to save.</param>
         public static Stream SaveAsEmf(this Identicon icon)
         {
-            var memoryStream = new MemoryStream();
-            icon.SaveAsEmf(memoryStream);
-            memoryStream.Position = 0;
-            return memoryStream;
+            return new MemoryStream(icon.ToMetafile(), false);
         }
 
         /// <summary>
@@ -138,7 +144,9 @@ namespace Jdenticon
         public static void SaveAsEmf(this Identicon icon, Stream stream)
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
-            ToMetafile(icon, stream);
+
+            var emf = icon.ToMetafile();
+            stream.Write(emf, 0, emf.Length);
         }
 
         /// <summary>
@@ -151,10 +159,44 @@ namespace Jdenticon
         {
             if (path == null) throw new ArgumentNullException(nameof(path));
 
-            using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+            using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
-                icon.SaveAsEmf(stream);
+                var emf = icon.ToMetafile();
+                stream.Write(emf, 0, emf.Length);
             }
         }
+
+#if SUPPORT_ASYNC_AWAIT
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> as an Enhanced Metafile (EMF) asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the EMF data will be written.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
+        public static Task SaveAsEmfAsync(this Identicon icon, Stream stream)
+        {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+
+            var emf = icon.ToMetafile();
+            return stream.WriteAsync(emf, 0, emf.Length);
+        }
+
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> as an Enhanced Metafile (EMF) asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the EMF file to create. If the file already exists it will be overwritten.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
+        public static async Task SaveAsEmfAsync(this Identicon icon, string path)
+        {
+            if (path == null) throw new ArgumentNullException(nameof(path));
+
+            using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                var emf = icon.ToMetafile();
+                await stream.WriteAsync(emf, 0, emf.Length);
+            }
+        }
+#endif
     }
 }

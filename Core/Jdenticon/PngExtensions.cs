@@ -29,6 +29,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+#if SUPPORT_ASYNC_AWAIT
+using System.Threading.Tasks;
+#endif
+
 namespace Jdenticon
 {
     /// <summary>
@@ -36,6 +40,19 @@ namespace Jdenticon
     /// </summary>
     public static class PngExtensions
     {
+        private static byte[] GeneratePng(this Identicon icon)
+        {
+            var renderer = new PngRenderer(icon.Size, icon.Size);
+            var iconBounds = icon.GetIconBounds();
+            icon.Draw(renderer, iconBounds);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                renderer.SavePng(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
         /// <summary>
         /// Saves an <see cref="Identicon"/> icon as a Portable Network Graphics (PNG) file.
         /// </summary>
@@ -46,10 +63,8 @@ namespace Jdenticon
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
-            var renderer = new PngRenderer(icon.Size, icon.Size);
-            var iconBounds = icon.GetIconBounds();
-            icon.Draw(renderer, iconBounds);
-            renderer.SavePng(stream);
+            var pngData = icon.GeneratePng();
+            stream.Write(pngData, 0, pngData.Length);
         }
 
         /// <summary>
@@ -58,10 +73,8 @@ namespace Jdenticon
         /// <param name="icon">The identicon to save.</param>
         public static Stream SaveAsPng(this Identicon icon)
         {
-            var memoryStream = new MemoryStream();
-            icon.SaveAsPng(memoryStream);
-            memoryStream.Position = 0;
-            return memoryStream;
+            var pngData = icon.GeneratePng();
+            return new MemoryStream(pngData, false);
         }
 
 #if HAVE_FILE_STREAM
@@ -73,13 +86,49 @@ namespace Jdenticon
         /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
         public static void SaveAsPng(this Identicon icon, string path)
         {
-            if (path == null) throw new ArgumentNullException("path");
+            if (path == null) throw new ArgumentNullException(nameof(path));
             
-            using (var stream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+            using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
-                icon.SaveAsPng(stream);
+                var pngData = icon.GeneratePng();
+                stream.Write(pngData, 0, pngData.Length);
             }
         }
+#endif
+
+#if SUPPORT_ASYNC_AWAIT
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Portable Network Graphics (PNG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="stream">The stream to which the PNG data will be written.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="stream"/> was <c>null</c>.</exception>
+        public static Task SaveAsPngAsync(this Identicon icon, Stream stream)
+        {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+
+            var pngData = icon.GeneratePng();
+            return stream.WriteAsync(pngData, 0, pngData.Length);
+        }
+        
+#if HAVE_FILE_STREAM
+        /// <summary>
+        /// Saves an <see cref="Identicon"/> icon as a Portable Network Graphics (PNG) file asynchronously.
+        /// </summary>
+        /// <param name="icon">The identicon to save.</param>
+        /// <param name="path">The path to the PNG file to create. If the file already exists it will be overwritten.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> was <c>null</c>.</exception>
+        public static async Task SaveAsPngAsync(this Identicon icon, string path)
+        {
+            if (path == null) throw new ArgumentNullException(nameof(path));
+
+            using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                var pngData = icon.GeneratePng();
+                await stream.WriteAsync(pngData, 0, pngData.Length);
+            }
+        }
+#endif
 #endif
     }
 }
