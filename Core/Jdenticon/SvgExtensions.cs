@@ -23,6 +23,7 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
+using Jdenticon.IO;
 using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
@@ -135,9 +136,12 @@ namespace Jdenticon
         {
             if (stream == null) throw new ArgumentNullException(nameof(stream));
 
-            using (var writer = new StreamWriter(stream, Encoding.UTF8))
+            using (var leaveOpenStream = new LeaveOpenStream(stream))
             {
-                icon.SaveAsSvg(writer, fragment);
+                using (var writer = new StreamWriter(leaveOpenStream, Encoding.UTF8))
+                {
+                    icon.SaveAsSvg(writer, fragment);
+                }
             }
         }
 
