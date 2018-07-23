@@ -111,8 +111,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-</PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir)Targets\Jdenticon.SourceIndex\bin\$(Configuration)\Jdenticon.SourceIndex.exe" "$(SolutionDir)." "$(SolutionDir)releases\help\sourcemapping.json"</PostBuildEvent>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>

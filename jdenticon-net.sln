@@ -93,13 +93,13 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AssemblyInfo", "Core\AssemblyInfo\AssemblyInfo.shproj", "{19700CFA-A478-4402-9F31-20B780AC5D26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Doc", "Targets\Jdenticon.Doc\Jdenticon.Doc.csproj", "{503810E3-323C-4FCA-8F6B-39196C6DC70B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{99AF8B33-2E00-41D9-AFDA-74D73004BEE8} = {99AF8B33-2E00-41D9-AFDA-74D73004BEE8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.VisualTests", "Tests\Jdenticon.VisualTests\Jdenticon.VisualTests.csproj", "{AABD0907-3D03-4D96-98CF-02D779E9237B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.SourceIndex", "Targets\Jdenticon.SourceIndex\Jdenticon.SourceIndex.csproj", "{99AF8B33-2E00-41D9-AFDA-74D73004BEE8}"
-	ProjectSection(ProjectDependencies) = postProject
-		{503810E3-323C-4FCA-8F6B-39196C6DC70B} = {503810E3-323C-4FCA-8F6B-39196C6DC70B}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jdenticon.NetStandard20", "Targets\Jdenticon.NetStandard20\Jdenticon.NetStandard20.csproj", "{94AA035B-D967-4ED8-A499-989F0F7FE1C6}"
 EndProject
