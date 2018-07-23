@@ -1,7 +1,7 @@
 ﻿#region License
 // Jdenticon-net
 // https://github.com/dmester/jdenticon-net
-// Copyright © Daniel Mester Pirttijärvi 2016
+// Copyright © Daniel Mester Pirttijärvi 2018
 //
 // Permission is hereby granted, free of charge, to any person obtaining 
 // a copy of this software and associated documentation files (the 
