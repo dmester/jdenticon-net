@@ -10,7 +10,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DocumentationFile>bin\Release\netstandard2.0\Jdenticon.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
     <WarningLevel>3</WarningLevel>
   </PropertyGroup>
 
