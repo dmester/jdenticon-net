@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jdenticon.AspNetCore</id>
+    <version>$version$</version>
+    <title>Jdenticon ASP.NET Core Extensions</title>
+    <authors>Daniel Mester Pirttijärvi</authors>
+    <licenseUrl>https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://jdenticon.com/</projectUrl>
+    <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extends Jdenticon-net with features to use Jdenticon with ASP.NET Core.
+
+This package contains:
+* IdenticonTagHelper
+* @Html.Identicon() extension method
+* @Url.Identicon() extension method
+* IdenticonResult for usage in MVC controllers</description>
+    <summary>Extends Jdenticon-net with features to use Jdenticon with ASP.NET Core.</summary>
+    <tags>identicon avatar library</tags>
+    <dependencies>
+      <group targetFramework="netstandard1.6">
+        <dependency id="Jdenticon-net" version="$version$" />
+        <dependency id="Microsoft.AspNetCore.Mvc.ViewFeatures" version="1.0.0" />
+        <dependency id="Microsoft.AspNetCore.Razor.Runtime" version="1.0.0" />
+      </group>
+      <group targetFramework="net451">
+        <dependency id="Jdenticon-net" version="$version$" />
+        <dependency id="Microsoft.AspNetCore.Mvc.ViewFeatures" version="1.0.0" />
+        <dependency id="Microsoft.AspNetCore.Razor.Runtime" version="1.0.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\releases\Jdenticon.$version$\netstandard16\Jdenticon.AspNetCore.dll" target="lib\netstandard1.6\Jdenticon.AspNetCore.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net451\Jdenticon.AspNetCore.dll" target="lib\net451\Jdenticon.AspNetCore.dll" />
+    <file src="..\..\releases\help\Jdenticon.AspNetCore.xml" target="lib\netstandard1.6\Jdenticon.AspNetCore.xml" />
+    <file src="..\..\releases\help\Jdenticon.AspNetCore.xml" target="lib\net451\Jdenticon.AspNetCore.xml" />
+    <file src="ReadMe.AspNetCore.txt" target="readme.txt" />
+  </files>
+</package>

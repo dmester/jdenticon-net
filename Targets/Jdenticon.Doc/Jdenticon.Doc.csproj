@@ -13,7 +13,7 @@
     <RootNamespace>Documentation</RootNamespace>
     <Name>Documentation</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
+    <FrameworkVersion>.NET Framework 4.5.1</FrameworkVersion>
     <OutputPath>$(SolutionDir)\releases\help\</OutputPath>
     <HtmlHelpName>Documentation</HtmlHelpName>
     <Language>en-US</Language>
@@ -26,6 +26,8 @@
       <DocumentationSource sourceFile="..\Jdenticon.AspNet.Mvc.Net45\bin\$(Configuration)\Jdenticon.AspNet.Mvc.dll" />
       <DocumentationSource sourceFile="..\Jdenticon.AspNet.WebForms.Net45\bin\$(Configuration)\Jdenticon.AspNet.WebForms.xml" />
       <DocumentationSource sourceFile="..\Jdenticon.AspNet.WebForms.Net45\bin\$(Configuration)\Jdenticon.AspNet.WebForms.dll" />
+      <DocumentationSource sourceFile="..\Jdenticon.AspNetCore.Doc\bin\$(Configuration)\Jdenticon.AspNetCore.xml" />
+      <DocumentationSource sourceFile="..\Jdenticon.AspNetCore.Doc\bin\$(Configuration)\Jdenticon.AspNetCore.dll" />
       <DocumentationSource sourceFile="..\Jdenticon.Wpf.Net45\bin\$(Configuration)\Jdenticon.Wpf.xml" />
       <DocumentationSource sourceFile="..\Jdenticon.Wpf.Net45\bin\$(Configuration)\Jdenticon.Wpf.dll" />
       <DocumentationSource sourceFile="..\Jdenticon.Gdi.Net45\bin\$(Configuration)\Jdenticon.Gdi.xml" />
@@ -74,7 +76,7 @@
         </Filter>
       </Filter>
     </ApiFilter>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
@@ -133,6 +135,10 @@
     <ProjectReference Include="..\Jdenticon.AspNet.WebForms.Net45\Jdenticon.AspNet.WebForms.Net45.csproj">
       <Project>{1c7af3bd-ba4b-4ec9-8443-86d726aaf8df}</Project>
       <Name>Jdenticon.AspNet.WebForms.Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jdenticon.AspNetCore.Doc\Jdenticon.AspNetCore.Doc.csproj">
+      <Project>{a55ed9f4-aca2-4aaa-9a26-b74f82b3d5f1}</Project>
+      <Name>Jdenticon.AspNetCore.Doc</Name>
     </ProjectReference>
     <ProjectReference Include="..\Jdenticon.Gdi.Net45\Jdenticon.Gdi.Net45.csproj">
       <Project>{6b54783a-aad1-4f6c-b77a-4d37b233d7e2}</Project>

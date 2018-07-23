@@ -68,8 +68,9 @@ namespace Jdenticon.AspNet.Mvc
         {
             if (IdenticonRequest.TryParse(context.Request.Url.Query, out var request))
             {
+                // The urls are permanent so it is ok to cache icons for a long time
                 context.Response.Cache.SetCacheability(HttpCacheability.Public);
-                context.Response.Cache.SetMaxAge(TimeSpan.FromDays(365));
+                context.Response.Cache.SetMaxAge(TimeSpan.FromDays(30));
 
                 var icon = Identicon.FromHash(request.Hash, request.Size);
                 icon.Style = request.Style;

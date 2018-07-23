@@ -44,6 +44,9 @@
     <CreatePackage Include="Jdenticon.AspNet.WebApi.nuspec" />
     <CreatePackage Include="Jdenticon.AspNet.Mvc.nuspec" />
     <CreatePackage Include="Jdenticon.AspNet.WebForms.nuspec" />
+    <CreatePackage Include="Jdenticon.AspNetCore.nuspec">
+      <SubType>Designer</SubType>
+    </CreatePackage>
     <None Include="packages.config" />
     <None Include="Web.config.WebForms.transform" />
     <None Include="Web.config.Mvc.transform" />
@@ -51,6 +54,7 @@
   <ItemGroup>
     <Content Include="ReadMe.Gdi.txt" />
     <Content Include="ReadMe.Core.txt" />
+    <Content Include="ReadMe.AspNetCore.txt" />
     <Content Include="ReadMe.WebApi.txt" />
     <Content Include="ReadMe.WebForms.txt" />
     <Content Include="ReadMe.Mvc.txt" />

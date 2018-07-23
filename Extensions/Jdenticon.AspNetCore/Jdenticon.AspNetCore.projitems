@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>bf0e624e-66ff-4712-91ae-4fd227bd5ab6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Jdenticon.AspNetCore</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)HtmlHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonMiddleware.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonBuilderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonTagHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonUrl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NamespaceDoc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UrlHelperExtensions.cs" />
+  </ItemGroup>
+</Project>

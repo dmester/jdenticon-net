@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>Jdenticon.AspNetCore</AssemblyName>
+    <RootNamespace>Jdenticon</RootNamespace>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile></DocumentationFile>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <Import Project="..\..\Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems" Label="Shared" />
+
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
+  <Import Project="$(SolutionDir)\Build\Common.props" />
+  <Import Project="$(SolutionDir)\Build\Target.props" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jdenticon.NetStandard13\Jdenticon.NetStandard13.csproj" />
+  </ItemGroup>
+  
+</Project>
