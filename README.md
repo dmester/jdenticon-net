@@ -15,7 +15,7 @@ Jdenticon-net is a .NET port of the JavaScript library [Jdenticon](https://githu
   * .NET Standard 1.0 and later
   * .NET Core 1.0 and later
 * Render icons as PNG and SVG files with no dependencies to System.Drawing or WPF.
-* Integration package available for ASP.NET WebForms, MVC and WebApi.
+* Integration package available for ASP.NET Core, ASP.NET WebForms, MVC and WebApi.
 * Generate SVG fragments to be used inline on websites.
 * Render icons directly on screen using GDI+.
 
@@ -38,9 +38,10 @@ icon.SaveAsPng("johndoe.png");
 ### ASP.NET
 To get started using Jdenticon for ASP.NET, please see:
 
-* [Code examples for ASP.NET WebForms](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebForms.htm)
-* [Code examples for ASP.NET MVC](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_Mvc.htm)
-* [Code examples for ASP.NET WebApi](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebApi.htm)
+* [Code examples for ASP.NET Core](https://jdenticon.com/net-api/html/N_Jdenticon_AspNetCore.html)
+* [Code examples for ASP.NET WebForms](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebForms.html)
+* [Code examples for ASP.NET MVC](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_Mvc.html)
+* [Code examples for ASP.NET WebApi](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebApi.html)
 
 ## Quick Reference
 For full documentation, please see https://jdenticon.com/net-api/.
