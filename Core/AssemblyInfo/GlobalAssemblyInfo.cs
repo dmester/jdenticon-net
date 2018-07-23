@@ -23,5 +23,5 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("Copyright © Daniel Mester Pirttijärvi 2016-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("2.1.0.0")]
-[assembly: AssemblyFileVersion("2.1.0.0")]
+[assembly: AssemblyVersion("2.2.0.0")]
+[assembly: AssemblyFileVersion("2.2.0.0")]
