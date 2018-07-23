@@ -9,7 +9,10 @@
     <projectUrl>http://jdenticon.com/</projectUrl>
     <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Extends Jdenticon-net with features to use Jdenticon with ASP.NET WebForms.</description>
+    <description>Extends Jdenticon-net with features to use Jdenticon with ASP.NET WebForms.
+
+This package contains:
+* Identicon web control</description>
     <summary>Extends Jdenticon-net with features to use Jdenticon with ASP.NET WebForms.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
