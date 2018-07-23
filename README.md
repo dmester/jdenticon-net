@@ -38,10 +38,10 @@ icon.SaveAsPng("johndoe.png");
 ### ASP.NET
 To get started using Jdenticon for ASP.NET, please see:
 
-* [Code examples for ASP.NET Core](https://jdenticon.com/net-api/html/N_Jdenticon_AspNetCore.html)
-* [Code examples for ASP.NET WebForms](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebForms.html)
-* [Code examples for ASP.NET MVC](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_Mvc.html)
-* [Code examples for ASP.NET WebApi](https://jdenticon.com/net-api/html/N_Jdenticon_AspNet_WebApi.html)
+* [Code examples for ASP.NET Core](https://jdenticon.com/net-api/N_Jdenticon_AspNetCore.html)
+* [Code examples for ASP.NET WebForms](https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebForms.html)
+* [Code examples for ASP.NET MVC](https://jdenticon.com/net-api/N_Jdenticon_AspNet_Mvc.html)
+* [Code examples for ASP.NET WebApi](https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebApi.html)
 
 ## Quick Reference
 For full documentation, please see https://jdenticon.com/net-api/.
