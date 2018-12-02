@@ -61,7 +61,9 @@
   </ItemGroup>
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="$(SolutionDir)\Build\Common.props" />
-  <Target Name="CreatePackages">
+  <Target Name="Build">
+  </Target>
+  <Target Name="CreatePackages" AfterTargets="Build">
     <Exec Command="&quot;$(SolutionDir)Utils\NuGet\NuGet.exe&quot; pack &quot;$(MSBuildProjectDirectory)\%(CreatePackage.Identity)&quot; -Properties &quot;version=$(AssemblyVersion);configuration=$(Configuration)&quot; -OutputDirectory &quot;$(SolutionDir)releases&quot;" />
   </Target>
   <Target Name="CreatePublishBatch_Signed" Condition=" '$(JdenticonKeyFile)' != '' " AfterTargets="CreatePackages">
