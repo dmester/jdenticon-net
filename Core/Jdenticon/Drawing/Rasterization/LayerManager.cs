@@ -127,6 +127,7 @@ namespace Jdenticon.Drawing.Rasterization
         public void Clear()
         {
             layers.Clear();
+            color = default(Color);
         }
 
         public Color CurrentColor => this.color;
