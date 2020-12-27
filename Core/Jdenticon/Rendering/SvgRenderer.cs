@@ -114,7 +114,7 @@ namespace Jdenticon.Rendering
             {
                 var opacity = (float)backColor.A / 255;
                 svg.Add("<rect fill=\"" + ColorUtils.ToHexString(backColor) + "\" fill-opacity=\"" +
-                    opacity.ToString(invariantCulture) +
+                    opacity.ToString("0.##", invariantCulture) +
                     "\" x=\"0\" y=\"0\" width=\"" + widthAsString + "\" height=\"" + heightAsString + "\"/>");
             }
             

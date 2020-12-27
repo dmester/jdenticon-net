@@ -106,7 +106,7 @@ namespace Jdenticon.Tests
 
                     if (actualSvg != expectedSvg)
                     {
-                        Assert.Fail("Icon '{0}' failed SVG rendering test.", iconNumber);
+                        Assert.Fail("Icon '{0}' failed SVG rendering test. Actual: {1}", iconNumber, actualSvg);
                     }
                 }
             }

@@ -37,6 +37,15 @@ namespace Jdenticon.Rendering
     {
         private readonly List<string> dataString = new List<string>();
 
+        private static string FormatCoordinate(float coordinate)
+        {
+            // Round to a single decimal. Done for two reasons:
+            // * Smaller output. For some icons the SVG is as much as 15% smaller with rounding.
+            // * More deterministic output. Without specifying a format string, the produced output could
+            //   vary on different machines.
+            return coordinate.ToString("0.#", CultureInfo.InvariantCulture);
+        }
+
         /// <summary>
         /// Adds a circle to the SVG.
         /// </summary>
@@ -44,13 +53,12 @@ namespace Jdenticon.Rendering
         {
             var sweepFlag = counterClockwise ? '0' : '1';
             var radius = diameter / 2;
-            var invariant = CultureInfo.InvariantCulture;
-            var radiusAsString = radius.ToString(invariant);
+            var radiusAsString = FormatCoordinate(radius);
 
             dataString.Add(
-                "M" + (location.X).ToString(invariant) + " " + (location.Y + radius).ToString(invariant) +
-                "a" + radiusAsString + "," + radiusAsString + " 0 1," + sweepFlag + " " + diameter.ToString(invariant) + ",0" +
-                "a" + radiusAsString + "," + radiusAsString + " 0 1," + sweepFlag + " " + (-diameter).ToString(invariant) + ",0");
+                "M" + FormatCoordinate(location.X) + " " + FormatCoordinate(location.Y + radius) +
+                "a" + radiusAsString + "," + radiusAsString + " 0 1," + sweepFlag + " " + FormatCoordinate(diameter) + ",0" +
+                "a" + radiusAsString + "," + radiusAsString + " 0 1," + sweepFlag + " " + FormatCoordinate(-diameter) + ",0");
         }
 
         /// <summary>
@@ -58,13 +66,11 @@ namespace Jdenticon.Rendering
         /// </summary>
         public void AddPolygon(PointF[] points)
         {
-            var invariant = CultureInfo.InvariantCulture;
-
-            dataString.Add("M" + points[0].X.ToString(invariant) + " " + points[0].Y.ToString(invariant));
+            dataString.Add("M" + FormatCoordinate(points[0].X) + " " + FormatCoordinate(points[0].Y));
 
             for (var i = 1; i < points.Length; i++)
             {
-                dataString.Add("L" + points[i].X.ToString(invariant) + " " + points[i].Y.ToString(invariant));
+                dataString.Add("L" + FormatCoordinate(points[i].X) + " " + FormatCoordinate(points[i].Y));
             }
 
             dataString.Add("Z");
