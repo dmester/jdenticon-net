@@ -38,9 +38,8 @@ namespace Jdenticon.AspNetCore
     /// </summary>
     /// <example>
     /// <para>
-    /// <see cref="UseJdenticon"/> should be called from the <c>Configure</c> 
-    /// method in your <c>Setup</c> class. Put the call right above 
-    /// <see cref="Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles"/>.
+    /// <see cref="UseJdenticon(IApplicationBuilder)"/> should be called from the <c>Configure</c> method in your <c>Setup</c>
+    /// class. Put the call right above <see cref="StaticFileExtensions.UseStaticFiles(IApplicationBuilder)"/>.
     /// </para>
     /// <code language="cs" title="Startup.cs">
     /// public class Startup
@@ -78,9 +77,8 @@ namespace Jdenticon.AspNetCore
         /// <param name="builder">Application builder.</param>
         /// <example>
         /// <para>
-        /// <see cref="UseJdenticon"/> should be called from the <c>Configure</c> 
-        /// method in your <c>Setup</c> class. Put the call right above 
-        /// <see cref="Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles"/>.
+        /// <see cref="UseJdenticon(IApplicationBuilder)"/> should be called from the <c>Configure</c> method in your <c>Setup</c>
+        /// class. Put the call right above <see cref="StaticFileExtensions.UseStaticFiles(IApplicationBuilder)"/>.
         /// </para>
         /// <code language="cs" title="Startup.cs">
         /// public class Startup
@@ -125,9 +123,8 @@ namespace Jdenticon.AspNetCore
         /// <param name="configureDefaultStyle">Callback used to configure the default identicon style.</param>
         /// <example>
         /// <para>
-        /// <see cref="UseJdenticon"/> should be called from the <c>Configure</c> 
-        /// method in your <c>Setup</c> class. Put the call right above 
-        /// <see cref="Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles"/>.
+        /// <see cref="UseJdenticon(IApplicationBuilder)"/> should be called from the <c>Configure</c> method in your <c>Setup</c>
+        /// class. Put the call right above <see cref="StaticFileExtensions.UseStaticFiles(IApplicationBuilder)"/>.
         /// </para>
         /// <code language="cs" title="Startup.cs">
         /// public class Startup

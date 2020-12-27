@@ -23,6 +23,7 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -33,9 +34,8 @@ using System.Text;
 namespace Jdenticon.AspNetCore
 {
     /// <summary>
-    /// Classes for using Jdenticon from ASP.NET Core. This namespace contains 
-    /// classes for usage in Razor views, and an <see cref="Microsoft.AspNetCore.Mvc.IActionResult"/>
-    /// for returning identicons from Mvc controllers.
+    /// Classes for using Jdenticon from ASP.NET Core. This namespace contains classes for usage in Razor views, and an
+    /// <see cref="IActionResult"/> for returning identicons from Mvc controllers.
     /// </summary>
     /// <example>
     /// <para>
@@ -47,10 +47,9 @@ namespace Jdenticon.AspNetCore
     /// </code>
     /// <para>
     /// After installing the NuGet package, enable Jdenticon in your applications
-    /// by calling <see cref="IdenticonBuilderExtensions.UseJdenticon"/>
+    /// by calling <see cref="IdenticonBuilderExtensions.UseJdenticon(IApplicationBuilder)"/>
     /// in <c>Configure(IApplicationBuilder)</c> in your <c>Startup</c> class.
-    /// Put it right above 
-    /// <see cref="Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles"/>.
+    /// Put it right above <see cref="StaticFileExtensions.UseStaticFiles(IApplicationBuilder)"/>.
     /// </para>
     /// <code language="cs" title="Startup.cs">
     /// public class Startup

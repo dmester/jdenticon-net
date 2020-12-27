@@ -68,6 +68,7 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Sets the background color of the image.
         /// </summary>
+        /// <param name="color">New background color.</param>
         public abstract void SetBackground(Color color);
 
         /// <summary>

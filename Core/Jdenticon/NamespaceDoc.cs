@@ -36,7 +36,7 @@ namespace Jdenticon
     /// since all save operations are implemented as extension methods for the
     /// <see cref="Identicon"/> class.
     /// </summary>
-    /// <inheritdoc cref="Identicon" select="example" />
+    /// <inheritdoc cref="Identicon" path="example" />
     [CompilerGenerated]
     internal static class NamespaceDoc
     {

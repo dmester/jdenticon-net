@@ -137,7 +137,7 @@ namespace Jdenticon.AspNetCore
         /// is specified, <see cref="Hash">identicon-hash</see> has precedence.
         /// </para>
         /// </remarks>
-        /// <exception cref="ArgumentException"><paramref name="hash"/> does not contain 6 bytes.</exception>
+        /// <exception cref="ArgumentException"><paramref name="value"/> does not contain 6 bytes.</exception>
         /// <example>
         /// <para>
         /// In the following example <see cref="Hash">identicon-hash</see> is used

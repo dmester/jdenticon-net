@@ -94,7 +94,6 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Writes the SVG to the specified <see cref="TextWriter"/>.
         /// </summary>
-        /// <param name="writer">The output writer to which the SVG will be written.</param>
         /// <param name="fragment">If <c>true</c> an SVG string without the root svg element will be rendered.</param>
         public string ToSvg(bool fragment)
         {

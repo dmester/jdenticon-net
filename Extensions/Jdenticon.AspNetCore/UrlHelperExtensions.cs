@@ -23,6 +23,7 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -85,9 +86,8 @@ namespace Jdenticon.AspNetCore
         /// <para>
         /// This extension method can be used in views to generate urls to identicons, 
         /// which are handled by the Jdenticon middleware. 
-        /// Insert a call to <see cref="IdenticonBuilderExtensions.UseJdenticon"/> right above 
-        /// <see cref="Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles"/> to enable the
-        /// Jdenticon middleware.
+        /// Insert a call to <see cref="IdenticonBuilderExtensions.UseJdenticon(IApplicationBuilder)"/> right above 
+        /// <see cref="StaticFileExtensions.UseStaticFiles(IApplicationBuilder)"/> to enable the Jdenticon middleware.
         /// </para>
         /// <code language="cs" title="Startup.cs">
         /// public class Startup
