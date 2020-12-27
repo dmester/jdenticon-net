@@ -229,14 +229,10 @@ namespace Jdenticon.Drawing
                             if (width > 0.001f)
                             {
                                 // Range to integrate
-                                var integralFrom = Math.Max(x0, x);
-                                var integralTo = Math.Min(x1, x + 1);
+                                var integralFrom = Math.Max(x0, x) - x0;
+                                var integralTo = Math.Min(x1, x + 1) - x0;
 
-                                coverage += 
-                                    (
-                                        (integralTo * integralTo - integralFrom * integralFrom) / 2 +
-                                        x0 * (integralFrom - integralTo)
-                                    ) / width;
+                                coverage += (integralTo * integralTo - integralFrom * integralFrom) / (2 * width);
                             }
 
                             writer.Write(Color.Mix(fromColor, color, coverage));
