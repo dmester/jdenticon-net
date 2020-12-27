@@ -46,8 +46,6 @@ namespace Jdenticon.Drawing.Rasterization
         {
             if (count > 0)
             {
-                var previousItem = array[startIndex];
-
                 for (var i = 0; i < count; i++)
                 {
                     array[startIndex + i - 1] = array[startIndex + i];
