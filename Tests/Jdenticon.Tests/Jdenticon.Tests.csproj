@@ -71,6 +71,8 @@
     <Compile Include="SuperSampleRangeListTests.cs" />
     <Compile Include="IdenticonStyleTests.cs" />
     <Compile Include="IdenticonTests.cs" />
+    <Compile Include="ImmutableHueCollectionTests.cs" />
+    <Compile Include="NumericListTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Targets\Jdenticon.AspNet.Mvc.Net45\Jdenticon.AspNet.Mvc.Net45.csproj">

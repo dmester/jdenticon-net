@@ -33,6 +33,9 @@ namespace Jdenticon.Rendering
     /// <summary>
     /// Represents a 24-bit color with a 8-bit alpha channel.
     /// </summary>
+#if HAVE_EXTENDED_COMPONENTMODEL
+    [TypeConverter(typeof(ColorConverter))]
+#endif
     public partial struct Color : IFormattable, IEquatable<Color>
     {
         #region Fields
@@ -99,7 +102,7 @@ namespace Jdenticon.Rendering
         #endregion
 
         #region Methods
-        
+
         /// <summary>
         /// Gets the 32-bit RGBA value of this color.
         /// </summary>
@@ -268,7 +271,7 @@ namespace Jdenticon.Rendering
             {
                 sb.Append(format, formatCursor, format.Length - formatCursor);
             }
-            
+
             return sb.ToString();
         }
 

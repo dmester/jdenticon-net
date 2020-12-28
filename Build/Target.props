@@ -2,23 +2,23 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v2.0'">
     <JdenticonPlatform>net20</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;HAVE_EXTENDED_COMPONENTMODEL</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v3.5'">
     <JdenticonPlatform>net35</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;HAVE_EXTENDED_COMPONENTMODEL</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v4.0'">
     <JdenticonPlatform>net40</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;HAVE_EXTENDED_COMPONENTMODEL</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v4.5'">
     <JdenticonPlatform>net45</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;SUPPORT_ASYNC_AWAIT</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;HAVE_EXTENDED_COMPONENTMODEL;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v4.5.1'">
     <JdenticonPlatform>net451</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;SUPPORT_ASYNC_AWAIT</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_ASSEMBLY_ATTRIBUTES;HAVE_EXTENDED_COMPONENTMODEL;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.0'">
     <JdenticonPlatform>netstandard10</JdenticonPlatform>
@@ -30,11 +30,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
     <JdenticonPlatform>netstandard16</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;SUPPORT_ASYNC_AWAIT</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_EXTENDED_COMPONENTMODEL;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <JdenticonPlatform>netstandard20</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;SUPPORT_ASYNC_AWAIT</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_EXTENDED_COMPONENTMODEL;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <Target Name="CopyAssembly" AfterTargets="Build">
     <Copy  

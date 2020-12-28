@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 
@@ -59,6 +60,9 @@ namespace Jdenticon
     /// Represents a range between two values.
     /// </summary>
     /// <typeparam name="TValue">The type of the range bounds.</typeparam>
+#if HAVE_EXTENDED_COMPONENTMODEL
+    [TypeConverter(typeof(RangeConverter))]
+#endif
     public struct Range<TValue> : IEquatable<Range<TValue>> where TValue : struct
     {
         private TValue from;

@@ -9,6 +9,8 @@
     <Import_RootNamespace>Jdenticon</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)NumericList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RangeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashAlgorithms\MD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashAlgorithms\SHA1.cs" />
@@ -51,6 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Blending.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Conversion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Parser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\ColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\NamespaceDoc.cs" />

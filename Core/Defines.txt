@@ -1,4 +1,6 @@
 
+The defines are defined in Build\Target.props
+
 HAVE_ASSEMBLY_ATTRIBUTES
 Support for InteropServices and CompilerServices assembly attributes.
 
@@ -13,6 +15,9 @@ The FileStream class is available.
 
 HAVE_HASH_ALGORITHMS
 Hash algorithms are available in the platform.
+
+HAVE_TYPE_CONVERTER
+TypeConverter is available.
 
 USE_SHARP_COMPRESS
 Use SharpCompress for Deflate compression.
