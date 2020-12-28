@@ -177,5 +177,12 @@ namespace Jdenticon.Rendering
                 new PointF(x, y + height / 2),
             }, invert);
         }
+
+        /// <summary>
+        /// Flushes all pending draw operations to the target.
+        /// </summary>
+        public virtual void Flush()
+        {
+        }
     }
 }

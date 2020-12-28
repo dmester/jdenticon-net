@@ -41,8 +41,9 @@ namespace Jdenticon.Rendering
     /// </summary>
     public class WpfRenderer : Renderer
     {
-        private int width, height;
-        private DrawingContext context;
+        private readonly int width, height;
+        private readonly DrawingContext context;
+        private readonly Dictionary<JdenticonColor, PathGeometry> pathsByColor = new Dictionary<JdenticonColor, PathGeometry>();
         private PathGeometry currentPath;
 
         /// <summary>
@@ -59,21 +60,30 @@ namespace Jdenticon.Rendering
         }
 
         /// <inheritdoc />
-        public override IDisposable BeginShape(JdenticonColor color)
+        public override void Flush()
         {
-            currentPath = new PathGeometry
-            {
-                FillRule = FillRule.Nonzero
-            };
-            
-            return new ActionDisposable(() =>
+            foreach (var path in pathsByColor)
             {
                 context.DrawGeometry(
-                    brush: new SolidColorBrush(color.ToWpfColor()),
+                    brush: new SolidColorBrush(path.Key.ToWpfColor()),
                     pen: null,
-                    geometry: currentPath);
-                currentPath = null;
-            });
+                    geometry: path.Value);
+            }
+            pathsByColor.Clear();
+        }
+
+        /// <inheritdoc />
+        public override IDisposable BeginShape(JdenticonColor color)
+        {
+            if (!pathsByColor.TryGetValue(color, out currentPath))
+            {
+                pathsByColor[color] = currentPath = new PathGeometry
+                {
+                    FillRule = FillRule.Nonzero
+                };
+            }
+
+            return ActionDisposable.Empty;
         }
 
         /// <inheritdoc />

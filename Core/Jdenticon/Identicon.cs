@@ -226,6 +226,7 @@ namespace Jdenticon
         public void Draw(Renderer renderer, Rectangle rect)
         {
             IconGenerator.Generate(renderer, rect, Style, hash);
+            renderer.Flush();
         }
 
         /// <summary>

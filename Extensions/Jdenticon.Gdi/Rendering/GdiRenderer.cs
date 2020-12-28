@@ -39,8 +39,9 @@ namespace Jdenticon.Rendering
     /// </summary>
     public class GdiRenderer : Renderer
     {
+        private readonly Graphics graphics;
+        private readonly Dictionary<Color, GraphicsPath> pathsByColor = new Dictionary<Color, GraphicsPath>();
         private GraphicsPath path;
-        private Graphics graphics;
 
         /// <summary>
         /// Creates an instance of the class <see cref="GdiRenderer"/>.
@@ -49,6 +50,33 @@ namespace Jdenticon.Rendering
         public GdiRenderer(Graphics graphics)
         {
             this.graphics = graphics;
+        }
+
+        /// <inheritdoc />
+        public override void Flush()
+        {
+            var state = graphics.Save();
+            try
+            {
+                graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                foreach (var path in pathsByColor)
+                {
+                    using (var brush = new SolidBrush(path.Key.ToGdi()))
+                    {
+                        graphics.FillPath(brush, path.Value);
+                    }
+
+                    path.Value.Dispose();
+                }
+
+                pathsByColor.Clear();
+            }
+            finally
+            {
+                graphics.Restore(state);
+            }
         }
 
         /// <inheritdoc />
@@ -75,30 +103,12 @@ namespace Jdenticon.Rendering
         /// <inheritdoc />
         public override IDisposable BeginShape(Color color)
         {
-            var localPath = new GraphicsPath(FillMode.Alternate);
-            this.path = localPath;
-
-            return new ActionDisposable(() =>
+            if (!pathsByColor.TryGetValue(color, out path))
             {
-                Interlocked.CompareExchange(ref this.path, null, localPath);
+                pathsByColor[color] = path = new GraphicsPath(FillMode.Alternate);
+            }
 
-                var state = graphics.Save();
-                try
-                {
-                    graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                    using (var brush = new SolidBrush(color.ToGdi()))
-                    {
-                        graphics.FillPath(brush, localPath);
-                    }
-                }
-                finally
-                {
-                    graphics.Restore(state);
-                    localPath.Dispose();
-                }
-            });
+            return ActionDisposable.Empty;
         }
     }
 }
