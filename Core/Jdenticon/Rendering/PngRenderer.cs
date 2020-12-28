@@ -67,7 +67,7 @@ namespace Jdenticon.Rendering
         }
 
         /// <inheritdoc />
-        public override void SetBackground(Color color)
+        public override void SetBackground(Color color, Rectangle iconBounds)
         {
             bitmap.BackgroundColor = color;
         }

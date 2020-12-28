@@ -214,7 +214,7 @@ namespace Jdenticon.Rendering
         /// <param name="hash">The hash to be used as basis for the generated icon.</param>
         protected virtual void RenderBackground(Renderer renderer, Rectangle rect, IdenticonStyle style, ColorTheme colorTheme, byte[] hash)
         {
-            renderer.SetBackground(style.BackColor);
+            renderer.SetBackground(style.BackColor, rect);
         }
 
         /// <summary>

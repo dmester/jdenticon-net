@@ -69,7 +69,8 @@ namespace Jdenticon.Rendering
         /// Sets the background color of the image.
         /// </summary>
         /// <param name="color">New background color.</param>
-        public abstract void SetBackground(Color color);
+        /// <param name="iconBounds">The icon bounds.</param>
+        public abstract void SetBackground(Color color, Rectangle iconBounds);
 
         /// <summary>
         /// Begins a new shape. The shape should always be ended by disposing the 

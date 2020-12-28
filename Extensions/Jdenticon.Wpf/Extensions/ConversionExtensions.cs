@@ -45,6 +45,11 @@ namespace Jdenticon.Wpf.Extensions
             return JdenticonColor.FromArgb(color.A, color.R, color.G, color.B);
         }
 
+        public static System.Windows.Rect ToWpf(this Rectangle rect)
+        {
+            return new System.Windows.Rect(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
         public static Rectangle ToJdenticon(this System.Windows.Rect rect)
         {
             return new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height);

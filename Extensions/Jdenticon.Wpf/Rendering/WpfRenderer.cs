@@ -87,15 +87,12 @@ namespace Jdenticon.Rendering
         }
 
         /// <inheritdoc />
-        public override void SetBackground(JdenticonColor color)
+        public override void SetBackground(JdenticonColor color, Rectangle iconBounds)
         {
-            if (color.A > 0)
-            {
-                context.DrawRectangle(
-                    brush: new SolidColorBrush(color.ToWpfColor()),
-                    pen: null,
-                    rectangle: new Rect(0, 0, width, height));
-            }
+            context.DrawRectangle(
+                brush: new SolidColorBrush(color.ToWpf()),
+                pen: null,
+                rectangle: iconBounds.ToWpf());
         }
 
         /// <inheritdoc />

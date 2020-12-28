@@ -95,9 +95,12 @@ namespace Jdenticon.Rendering
         }
 
         /// <inheritdoc />
-        public override void SetBackground(Color color)
+        public override void SetBackground(Color color, Rectangle iconBounds)
         {
-            graphics.Clear(color.ToGdi());
+            using (var brush = new SolidBrush(color.ToGdi()))
+            {
+                graphics.FillRectangle(brush, iconBounds.X, iconBounds.Y, iconBounds.Width, iconBounds.Height);
+            }
         }
 
         /// <inheritdoc />
