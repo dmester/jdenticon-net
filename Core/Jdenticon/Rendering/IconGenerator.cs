@@ -187,19 +187,20 @@ namespace Jdenticon.Rendering
         /// Creates a quadratic copy of the specified <see cref="Rectangle"/> with a 
         /// multiple of the cell count as size.
         /// </summary>
-        /// <param name="rect">The rectangle to be normalized.</param>
-        protected Rectangle NormalizeRectangle(Rectangle rect)
+        /// <param name="rect">The outer icon rectangle.</param>
+        protected Rectangle GetInnerRectangle(Rectangle rect, float padding)
         {
-            var size = Math.Min(rect.Width, rect.Height);
-            
+            var outerSize = Math.Min(rect.Width, rect.Height);
+            var innerSize = (int)((1f - 2 * padding) * outerSize);
+
             // Make size a multiple of the cell count
-            size -= size % CellCount;
+            innerSize -= innerSize % CellCount;
             
             return new Rectangle(
-                x: rect.X + (rect.Width - size) / 2,
-                y: rect.Y + (rect.Height - size) / 2,
-                width: size,
-                height: size
+                x: rect.X + (rect.Width - innerSize) / 2,
+                y: rect.Y + (rect.Height - innerSize) / 2,
+                width: innerSize,
+                height: innerSize
                 );
         }
 
@@ -227,8 +228,8 @@ namespace Jdenticon.Rendering
         protected virtual void RenderForeground(Renderer renderer, Rectangle rect, IdenticonStyle style, ColorTheme colorTheme, byte[] hash)
         {
             // Ensure rect is quadratic and a multiple of the cell count
-            var normalizedRect = NormalizeRectangle(rect);
-            var cellSize = normalizedRect.Width / CellCount;
+            var innerRect = GetInnerRectangle(rect, style.Padding);
+            var cellSize = innerRect.Width / CellCount;
 
             foreach (var shape in GetShapes(colorTheme, hash))
             {
@@ -241,8 +242,8 @@ namespace Jdenticon.Rendering
                         var position = shape.Positions[i];
 
                         renderer.Transform = new Transform(
-                            normalizedRect.X + position.X * cellSize,
-                            normalizedRect.Y + position.Y * cellSize,
+                            innerRect.X + position.X * cellSize,
+                            innerRect.Y + position.Y * cellSize,
                             cellSize, rotation++ % 4);
 
                         shape.Definition(renderer, cellSize, i);

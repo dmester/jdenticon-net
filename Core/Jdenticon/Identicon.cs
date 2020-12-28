@@ -26,6 +26,7 @@
 using Jdenticon.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 
@@ -217,7 +218,21 @@ namespace Jdenticon
         /// Draws this icon using a specified renderer.
         /// </summary>
         /// <param name="renderer">The renderer used to render this icon.</param>
-        /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
+        /// <remarks>
+        /// This method is only intended for usage with custom renderers. A custom renderer could as an example 
+        /// render an <see cref="Identicon"/> in a file format not natively supported by Jdenticon. To implement
+        /// a new file format, implement the abstract <see cref="Renderer"/> class.
+        /// </remarks>
+        public void Draw(Renderer renderer)
+        {
+            Draw(renderer, new Rectangle(0, 0, Size, Size));
+        }
+
+        /// <summary>
+        /// Draws this icon using a specified renderer.
+        /// </summary>
+        /// <param name="renderer">The renderer used to render this icon.</param>
+        /// <param name="rect">The bounds of the rendered icon, including padding.</param>
         /// <remarks>
         /// This method is only intended for usage with custom renderers. A custom renderer could as an example 
         /// render an <see cref="Identicon"/> in a file format not natively supported by Jdenticon. To implement
@@ -252,17 +267,12 @@ namespace Jdenticon
             }
         }
 
-        /// <summary>
-        /// Gets the bounds of the icon excluding its padding.
-        /// </summary>
+        /// <exclude/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("The Draw method now includes padding. You don't need to pass a rectangle to Draw.")]
         public Rectangle GetIconBounds()
         {
-            // Round to nearest integer
-            var padding = (int)(Style.Padding * size + 0.5f);
-            
-            return new Rectangle(
-                padding, padding,
-                size - padding * 2, size - padding * 2);
+            return new Rectangle(0, 0, size, size);
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">The identicon to draw.</param>
         /// <param name="g">Drawing context in which the icon will be rendered.</param>
-        /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
+        /// <param name="rect">The bounds of the rendered icon, including padding.</param>
         public static void Draw(this Identicon icon, Graphics g, Rendering.Rectangle rect)
         {
             var renderer = new GdiRenderer(g);
@@ -61,10 +61,21 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">The identicon to draw.</param>
         /// <param name="g">Drawing context in which the icon will be rendered.</param>
-        /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
+        /// <param name="rect">The bounds of the rendered icon, including padding.</param>
         public static void Draw(this Identicon icon, Graphics g, System.Drawing.Rectangle rect)
         {
             icon.Draw(g, rect.ToJdenticon());
+        }
+
+        /// <summary>
+        /// Draws an <see cref="Identicon"/> in a specified GDI drawing context at position (0, 0).
+        /// </summary>
+        /// <param name="icon">The identicon to draw.</param>
+        /// <param name="g">Drawing context in which the icon will be rendered.</param>
+        public static void Draw(this Identicon icon, Graphics g)
+        {
+            var renderer = new GdiRenderer(g);
+            icon.Draw(renderer);
         }
 
         /// <summary>
@@ -77,13 +88,12 @@ namespace Jdenticon
         /// </remarks>
         public static Bitmap ToBitmap(this Identicon icon)
         {
-            var iconBounds = icon.GetIconBounds();
             var img = new Bitmap(icon.Size, icon.Size);
             try
             {
                 using (var g = Graphics.FromImage(img))
                 {
-                    icon.Draw(g, iconBounds);
+                    icon.Draw(g);
                 }
 
                 return img;
@@ -97,8 +107,6 @@ namespace Jdenticon
 
         private static byte[] ToMetafile(this Identicon icon)
         {
-            var iconBounds = icon.GetIconBounds();
-
             using (var desktopGraphics = Graphics.FromHwnd(IntPtr.Zero))
             {
                 var hdc = desktopGraphics.GetHdc();
@@ -112,7 +120,7 @@ namespace Jdenticon
                         {
                             using (var graphics = Graphics.FromImage(img))
                             {
-                                icon.Draw(graphics, iconBounds);
+                                icon.Draw(graphics);
                             }
                         }
 

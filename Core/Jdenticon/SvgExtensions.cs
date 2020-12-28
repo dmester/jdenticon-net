@@ -43,9 +43,8 @@ namespace Jdenticon
     {
         private static string GenerateSvg(this Identicon icon, bool fragment)
         {
-            var iconBounds = icon.GetIconBounds();
             var renderer = new SvgRenderer(icon.Size, icon.Size);
-            icon.Draw(renderer, iconBounds);
+            icon.Draw(renderer);
             return renderer.ToSvg(fragment);
         }
 

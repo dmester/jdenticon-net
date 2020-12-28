@@ -43,8 +43,7 @@ namespace Jdenticon
         private static byte[] GeneratePng(this Identicon icon)
         {
             var renderer = new PngRenderer(icon.Size, icon.Size);
-            var iconBounds = icon.GetIconBounds();
-            icon.Draw(renderer, iconBounds);
+            icon.Draw(renderer);
 
             using (var memoryStream = new MemoryStream())
             {

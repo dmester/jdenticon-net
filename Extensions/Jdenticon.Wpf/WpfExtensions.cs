@@ -48,8 +48,7 @@ namespace Jdenticon
             
             using (var context = visual.RenderOpen())
             {
-                var iconBounds = icon.GetIconBounds();
-                icon.Draw(context, iconBounds);
+                icon.Draw(context);
             }
 
             return visual;
@@ -60,7 +59,7 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">The identicon to draw.</param>
         /// <param name="drawingContext">Drawing context in which the icon will be rendered.</param>
-        /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
+        /// <param name="rect">The bounds of the rendered icon, including padding.</param>
         public static void Draw(this Identicon icon, DrawingContext drawingContext, Rendering.Rectangle rect)
         {
             var renderer = new WpfRenderer(drawingContext, rect.Width, rect.Height);
@@ -72,10 +71,21 @@ namespace Jdenticon
         /// </summary>
         /// <param name="icon">The identicon to draw.</param>
         /// <param name="drawingContext">Drawing context in which the icon will be rendered.</param>
-        /// <param name="rect">The bounds of the rendered icon. No padding will be applied to the rectangle.</param>
+        /// <param name="rect">The bounds of the rendered icon, including padding.</param>
         public static void Draw(this Identicon icon, DrawingContext drawingContext, System.Windows.Rect rect)
         {
             icon.Draw(drawingContext, rect.ToJdenticon());
+        }
+
+        /// <summary>
+        /// Draws an <see cref="Identicon"/> in a specified WPF drawing context at position (0, 0).
+        /// </summary>
+        /// <param name="icon">The identicon to draw.</param>
+        /// <param name="drawingContext">Drawing context in which the icon will be rendered.</param>
+        public static void Draw(this Identicon icon, DrawingContext drawingContext)
+        {
+            var renderer = new WpfRenderer(drawingContext, icon.Size, icon.Size);
+            icon.Draw(renderer);
         }
     }
 }

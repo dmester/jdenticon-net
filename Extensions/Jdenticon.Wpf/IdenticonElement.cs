@@ -296,18 +296,7 @@ namespace Jdenticon.Wpf
                 identicon.Style = IdenticonStyle;
                 identicon.Style.BackColor = JdenticonColor.Transparent; // The background was drawn above
                 identicon.IconGenerator = IconGenerator;
-
-                var renderer = new WpfRenderer(drawingContext, (int)width, (int)height);
-
-                var iconBounds = identicon.GetIconBounds();
-                iconBounds = new Rectangle(
-                    iconBounds.X + ((int)width - identicon.Size) / 2,
-                    iconBounds.Y + ((int)height - identicon.Size) / 2,
-                    iconBounds.Width,
-                    iconBounds.Height
-                    );
-
-                identicon.Draw(renderer, iconBounds);
+                identicon.Draw(drawingContext);
             }
         }
 
