@@ -37,7 +37,7 @@ available to your views by adding the following code to
 _ViewImports.cshtml.
 
     @using Jdenticon.AspNetCore
-    @addTagHelper "*, Jdenticon.AspNetCore"
+    @addTagHelper *, Jdenticon.AspNetCore
 
 
 USAGE
