@@ -2,14 +2,22 @@
 using System.IO;
 using System.Linq;
 using Jdenticon.Rendering;
-using Jdenticon.Tests.Icons;
+using Jdenticon.Tests.EndToEnd.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Jdenticon.Tests
+namespace Jdenticon.Tests.EndToEnd.Identicons
 {
     [TestClass]
     public class IdenticonTests
     {
+        private static TestBed testBed;
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            testBed = TestBed.Create<IdenticonTests>(context);
+        }
+
         // These tests should match the tests in Jdenticon-js and Jdenticon-php.
         // Failed tests might not be incorrect, but ensure the icon are looking the
         // same to a human eye.
@@ -61,13 +69,7 @@ namespace Jdenticon.Tests
         {
             Test(73, null);
         }
-
-        private static Stream GetExpectedIcon(string name)
-        {
-            var type = typeof(IconResources);
-            return type.Assembly.GetManifestResourceStream(type, name);
-        }
-
+        
         private static void Test(int iconNumber, IdenticonStyle style)
         {
             var icon = Identicon.FromValue(iconNumber, 50);
@@ -80,36 +82,18 @@ namespace Jdenticon.Tests
             {
                 icon.SaveAsPng(actualStream);
 
-                var actualBytes = actualStream.ToArray();
-
-                using (var expectedStream = GetExpectedIcon($"{iconNumber}.png"))
-                {
-                    // +1 to be able to detect a too short actual icon
-                    var expectedBytes = new byte[actualBytes.Length + 1];
-                    var expectedByteCount = expectedStream.Read(expectedBytes, 0, actualBytes.Length);
-
-                    if (expectedByteCount != actualBytes.Length ||
-                        expectedBytes.Take(expectedByteCount).SequenceEqual(actualBytes) == false)
-                    {
-                        Assert.Fail("Icon '{0}' failed PNG rendering test.", iconNumber);
-                    }
-                }
+                actualStream.Position = 0;
+                testBed.AssertEqual(actualStream, $"{iconNumber}.png");
             }
 
             var actualSvg = icon.ToSvg();
+            testBed.AssertEqual(actualSvg, $"{iconNumber}.svg");
+        }
 
-            using (var expectedStream = GetExpectedIcon($"{iconNumber}.svg"))
-            {
-                using (var reader = new StreamReader(expectedStream))
-                {
-                    var expectedSvg = reader.ReadToEnd();
-
-                    if (actualSvg != expectedSvg)
-                    {
-                        Assert.Fail("Icon '{0}' failed SVG rendering test. Actual: {1}", iconNumber, actualSvg);
-                    }
-                }
-            }
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            testBed?.Dispose();
         }
     }
 }
