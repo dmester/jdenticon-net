@@ -19,6 +19,9 @@ Hash algorithms are available in the platform.
 HAVE_TYPE_CONVERTER
 TypeConverter is available.
 
+HAVE_MEMORYSTREAM_GETBUFFER
+TypeConverter is available.
+
 USE_SHARP_COMPRESS
 Use SharpCompress for Deflate compression.
 

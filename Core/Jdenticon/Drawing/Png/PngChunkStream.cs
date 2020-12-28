@@ -53,11 +53,17 @@ namespace Jdenticon.Drawing.Png
 
             if (disposing)
             {
+#if HAVE_MEMORYSTREAM_GETBUFFER
                 var data = buffer.GetBuffer();
+#else
+                var data = buffer.ToArray();
+#endif
+
+                var dataLength = (int)buffer.Length;
                 var crc = new Crc32();
 
                 // Length 32
-                outputStream.WriteBigEndian((int)buffer.Length);
+                outputStream.WriteBigEndian(dataLength);
 
                 // Name
                 var binaryName = Encoding.UTF8.GetBytes(name);
@@ -65,8 +71,8 @@ namespace Jdenticon.Drawing.Png
                 crc.Update(binaryName, 0, binaryName.Length);
 
                 // Data
-                outputStream.Write(data, 0, (int)buffer.Length);
-                crc.Update(data, 0, (int)buffer.Length);
+                outputStream.Write(data, 0, dataLength);
+                crc.Update(data, 0, dataLength);
                 
                 // crc32: type + data
                 outputStream.WriteBigEndian(crc.Value);

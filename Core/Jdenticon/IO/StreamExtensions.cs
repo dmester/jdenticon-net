@@ -54,10 +54,5 @@ namespace Jdenticon.IO
             };
             stream.Write(values, 0, 4);
         }
-
-        public static byte[] GetBuffer(this MemoryStream stream)
-        {
-            return stream.ToArray();
-        }
     }
 }

@@ -251,8 +251,6 @@ namespace Jdenticon
         {
             using (var dataStream = new MemoryStream(50))
             {
-                var buffer = dataStream.GetBuffer();
-
                 using (var writer = new BinaryWriter(dataStream))
                 {
                     // Checksum placeholder
@@ -329,11 +327,19 @@ namespace Jdenticon
 
                     writer.Flush();
 
-                    var checksum = ComputeChecksum(buffer, 1, (int)dataStream.Length - 1);
+#if HAVE_MEMORYSTREAM_GETBUFFER
+                    var buffer = dataStream.GetBuffer();
+#else
+                    var buffer = dataStream.ToArray();
+#endif
+
+                    var bufferLength = (int)dataStream.Length;
+
+                    var checksum = ComputeChecksum(buffer, 1, bufferLength - 1);
                     buffer[0] = checksum;
 
-                    var base64 = new char[dataStream.Length * 2];
-                    var base64Length = Convert.ToBase64CharArray(buffer, 0, (int)dataStream.Length, base64, 0);
+                    var base64 = new char[bufferLength * 2];
+                    var base64Length = Convert.ToBase64CharArray(buffer, 0, bufferLength, base64, 0);
 
                     // Replace /, = and + with characters that are not reserved characters in percent-encoding
                     for (var i = 0; i < base64Length; i++)
