@@ -1,0 +1,81 @@
+﻿<Window x:Class="Jdenticon.Wpf.Sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jdenticon.Wpf.Sample"
+        xmlns:jd="clr-namespace:Jdenticon.Wpf;assembly=Jdenticon.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="800">
+    <Window.Resources>
+        <Style TargetType="jd:IdenticonElement" x:Key="DefaultStyle">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="15,0,15,10"/>
+        </Style>
+        <Style TargetType="jd:IdenticonElement" x:Key="Style1" BasedOn="{StaticResource DefaultStyle}">
+            <Setter Property="Hues" Value="119deg"/>
+            <Setter Property="Background" Value="#2e6b8034"/>
+            <Setter Property="ColorLightness" Value="0.47, 0.67"/>
+            <Setter Property="GrayscaleLightness" Value="0.28, 0.48"/>
+            <Setter Property="ColorSaturation" Value="0.10"/>
+            <Setter Property="GrayscaleSaturation" Value="0.02"/>
+        </Style>
+        <Style TargetType="jd:IdenticonElement" x:Key="Style2" BasedOn="{StaticResource DefaultStyle}">
+            <Setter Property="Hues" Value="207deg"/>
+            <Setter Property="Background" Value="#2a4766"/>
+            <Setter Property="ColorLightness" Value="0.84, 0.84"/>
+            <Setter Property="GrayscaleLightness" Value="0.84, 0.84"/>
+            <Setter Property="ColorSaturation" Value="0.48"/>
+            <Setter Property="GrayscaleSaturation" Value="0.48"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="15,10"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="Icon">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#eee">
+        <StackPanel Orientation="Horizontal" Margin="20">
+            <StackPanel Style="{StaticResource Icon}">
+                <TextBlock>Unstyled icon</TextBlock>
+                <jd:IdenticonElement Value="icon2" Style="{StaticResource DefaultStyle}" />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource Icon}">
+                <TextBlock>
+                    Styled icon
+                    <Hyperlink NavigateUri="https://jdenticon.com/icon-designer.html?config=6b80342e10770a022f431c30"
+                               RequestNavigate="Hyperlink_RequestNavigate">
+                        #1
+                    </Hyperlink>
+                </TextBlock>
+                <jd:IdenticonElement Value="icon2" Style="{StaticResource Style1}" />
+            </StackPanel>
+        
+            <StackPanel Style="{StaticResource Icon}">
+                <TextBlock>
+                    Styled icon
+                    <Hyperlink NavigateUri="https://jdenticon.com/icon-designer.html?config=2a4766ff10cf303054545454"
+                               RequestNavigate="Hyperlink_RequestNavigate">
+                        #2
+                    </Hyperlink>
+                </TextBlock>
+                <jd:IdenticonElement Value="icon2" Style="{StaticResource Style2}" />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource Icon}">
+                <TextBlock>No padding</TextBlock>
+                <jd:IdenticonElement Value="icon2" Style="{StaticResource DefaultStyle}" Padding="0" />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource Icon}">
+                <TextBlock>No background</TextBlock>
+                <jd:IdenticonElement Value="icon2" Style="{StaticResource DefaultStyle}" Background="Transparent" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
