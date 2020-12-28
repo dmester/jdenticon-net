@@ -35,9 +35,14 @@ namespace Jdenticon.Wpf.Extensions
 {
     internal static class ConversionExtensions
     {
-        public static WpfColor ToWpfColor(this JdenticonColor color)
+        public static WpfColor ToWpf(this JdenticonColor color)
         {
             return WpfColor.FromArgb((byte)color.A, (byte)color.R, (byte)color.G, (byte)color.B);
+        }
+
+        public static JdenticonColor ToJdenticon(this WpfColor color)
+        {
+            return JdenticonColor.FromArgb(color.A, color.R, color.G, color.B);
         }
 
         public static Rectangle ToJdenticon(this System.Windows.Rect rect)

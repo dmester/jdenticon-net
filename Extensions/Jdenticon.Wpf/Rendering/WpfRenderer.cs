@@ -65,7 +65,7 @@ namespace Jdenticon.Rendering
             foreach (var path in pathsByColor)
             {
                 context.DrawGeometry(
-                    brush: new SolidColorBrush(path.Key.ToWpfColor()),
+                    brush: new SolidColorBrush(path.Key.ToWpf()),
                     pen: null,
                     geometry: path.Value);
             }

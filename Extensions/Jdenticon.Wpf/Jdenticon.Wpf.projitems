@@ -9,8 +9,11 @@
     <Import_RootNamespace>Jdenticon.Wpf</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FloatRangeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ImmutableHueCollectionConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IdenticonElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NamespaceDoc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImmutableHueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WpfExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ConversionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\WpfRenderer.cs" />
