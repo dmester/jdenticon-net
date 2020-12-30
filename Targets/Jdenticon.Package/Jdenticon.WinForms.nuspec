@@ -29,9 +29,9 @@ Features:
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.WinForms.dll" target="lib\net40\Jdenticon.WinForms.dll" />
-    <file src="..\..\releases\Jdenticon.$version$\netcore30\Jdenticon.WinForms.dll" target="lib\netcore30\Jdenticon.WinForms.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netcore30\Jdenticon.WinForms.dll" target="lib\netcoreapp3.0\Jdenticon.WinForms.dll" />
     <file src="..\..\releases\help\Jdenticon.WinForms.xml" target="lib\net40\Jdenticon.WinForms.xml" />
-    <file src="..\..\releases\help\Jdenticon.WinForms.xml" target="lib\netcore30\Jdenticon.WinForms.xml" />
+    <file src="..\..\releases\help\Jdenticon.WinForms.xml" target="lib\netcoreapp3.0\Jdenticon.WinForms.xml" />
     <file src="ReadMe.WinForms.txt" target="readme.txt" />
     <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />
   </files>
