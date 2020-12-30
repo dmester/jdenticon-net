@@ -169,6 +169,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <Content Include="images\WpfIcons.png" />
+    <Content Include="images\WpfStyled.png" />
+    <Content Include="images\WpfValueBinding.png" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

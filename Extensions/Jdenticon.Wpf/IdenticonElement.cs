@@ -38,6 +38,87 @@ namespace Jdenticon.Wpf
     /// <summary>
     /// Element that renders and displays an identicon.
     /// </summary>
+    /// <example>
+    /// <para>
+    ///     Place the <see cref="IdenticonElement"/> where you want an identicon to be rendered in your application. 
+    ///     Don't forget to add the Jdenticon XML namespace.
+    /// </para>
+    /// <code language="xml" title="Example usage in WPF">
+    /// &lt;Window x:Class="SampleApp.MainWindow"
+    ///         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    ///         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    ///         xmlns:jd="clr-namespace:Jdenticon.Wpf;assembly=Jdenticon.Wpf"
+    ///         Title="MainWindow" Height="250" Width="600"&gt;
+    ///     &lt;Window.Resources&gt;
+    ///         &lt;Style TargetType="{x:Type jd:IdenticonElement}"&gt;
+    ///             &lt;Setter Property="Width" Value="100" /&gt;
+    ///             &lt;Setter Property="Height" Value="100" /&gt;
+    ///             &lt;Setter Property="Margin" Value="10" /&gt;
+    ///         &lt;/Style&gt;
+    ///     &lt;/Window.Resources&gt;
+    ///     &lt;StackPanel Orientation="Horizontal" HorizontalAlignment="Center"&gt;
+    ///         &lt;jd:IdenticonElement Value="icon1" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon2" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon3" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon4" /&gt;
+    ///     &lt;/StackPanel&gt;
+    /// &lt;/Window&gt;
+    /// </code>
+    /// <para>
+    ///     This is the resulting application:
+    /// </para>
+    /// <img src="../images/WpfIcons.png" alt="Sample WPF application with four identicons" />
+    /// 
+    /// <h4>Binding</h4>
+    /// <para>
+    ///     To make the identicon useful you probably want to bind a value to the icon. The value decides what the
+    ///     icon will look like.
+    /// </para>
+    /// <code language="xml" title="Example usage in WPF">
+    /// &lt;jd:IdenticonElement Value="{Binding Path=UserID}" /&gt;
+    /// </code>
+    /// 
+    /// <h4>Styling</h4>
+    /// <para>
+    ///     The colors of the identicons can be customized using the stying properties. A suggestion is to create
+    ///     a style for your identicons that is used throughout the application to ensure a consistent look.
+    ///     You can use the <a href="https://jdenticon.com/icon-designer.html">icon designer</a> to create a style.
+    /// </para>
+    /// <code language="xml" title="Custom style">
+    /// &lt;Window x:Class="SampleApp.MainWindow"
+    ///         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    ///         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    ///         xmlns:jd="clr-namespace:Jdenticon.Wpf;assembly=Jdenticon.Wpf"
+    ///         Title="MainWindow" Height="250" Width="600"&gt;
+    ///     &lt;Window.Resources&gt;
+    ///         &lt;Style TargetType="{x:Type jd:IdenticonElement}"&gt;
+    ///             &lt;Setter Property="Width" Value="100" /&gt;
+    ///             &lt;Setter Property="Height" Value="100" /&gt;
+    ///             &lt;Setter Property="Margin" Value="10" /&gt;
+    ///             
+    ///             &lt;!-- Custom identicon style --&gt;
+    ///             &lt;!-- https://jdenticon.com/icon-designer.html?config=2a4766ff10cf303054545454 --&gt;
+    ///             &lt;Setter Property="Hues" Value="207deg"/&gt;
+    ///             &lt;Setter Property="Background" Value="#2a4766"/&gt;
+    ///             &lt;Setter Property="ColorLightness" Value="0.84, 0.84"/&gt;
+    ///             &lt;Setter Property="GrayscaleLightness" Value="0.84, 0.84"/&gt;
+    ///             &lt;Setter Property="ColorSaturation" Value="0.48"/&gt;
+    ///             &lt;Setter Property="GrayscaleSaturation" Value="0.48"/&gt;
+    ///         &lt;/Style&gt;
+    ///     &lt;/Window.Resources&gt;
+    ///     &lt;StackPanel Orientation="Horizontal" HorizontalAlignment="Center"&gt;
+    ///         &lt;jd:IdenticonElement Value="icon1" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon2" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon3" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon4" /&gt;
+    ///     &lt;/StackPanel&gt;
+    /// &lt;/Window&gt;
+    /// </code>
+    /// <para>
+    ///     Here is what the icons above look like:
+    /// </para>
+    /// <img src="../images/WpfStyled.png" alt="Identicons with custom style"/>
+    /// </example>
     public class IdenticonElement : FrameworkElement
     {
         private const string CatAppearance = "Appearance";
@@ -296,6 +377,34 @@ namespace Jdenticon.Wpf
         /// <summary>
         /// Gets or sets a value that the generated identicon will be based upon. A string representation of the value will be hashed using SHA1.
         /// </summary>
+        /// <example>
+        /// <para>
+        ///     Here is an example where the value property is bound to the value of a textbox.
+        /// </para>
+        /// <code language="xml" title="Binding value">
+        /// &lt;Window x:Class="MySample.MainWindow"
+        ///         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        ///         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ///         xmlns:jd="clr-namespace:Jdenticon.Wpf;assembly=Jdenticon.Wpf"
+        ///         Title="Jdenticon WPF Sample" Height="530" Width="450"&gt;
+        ///     &lt;Grid Margin="25"&gt;
+        ///         &lt;Grid.RowDefinitions&gt;
+        ///             &lt;RowDefinition Height="auto"/&gt;
+        ///             &lt;RowDefinition Height="auto"/&gt;
+        ///             &lt;RowDefinition Height="*"/&gt;
+        ///         &lt;/Grid.RowDefinitions&gt;
+        /// 
+        ///         &lt;Label Grid.Row="0" Padding="5,0,5,5"&gt;Value to hash:&lt;/Label&gt;
+        ///         &lt;TextBox x:Name="tbValue" Grid.Row="1" Padding="5" Text="Jdenticon"&gt;&lt;/TextBox&gt;
+        ///         &lt;jd:IdenticonElement Grid.Row="2" Margin="40" Value="{Binding ElementName=tbValue, Path=Text}" /&gt;
+        ///     &lt;/Grid&gt;
+        /// &lt;/Window&gt;
+        /// </code>
+        /// <para>
+        ///     Here is the outcome:
+        /// </para>
+        /// <img src="../images/WpfValueBinding.png" alt="WPF value binding"/>
+        /// </example>
         [Bindable(true), Category(CatData)]
         public object Value
         {
@@ -310,6 +419,7 @@ namespace Jdenticon.Wpf
             nameof(Value), typeof(object), typeof(IdenticonElement), new PropertyMetadata("", OnValueChanged));
 
 
+        /// <exclude/>
         protected override void OnRender(DrawingContext drawingContext)
         {
             var width = ActualWidth;
@@ -335,6 +445,7 @@ namespace Jdenticon.Wpf
             }
         }
 
+        /// <exclude/>
         protected override Size MeasureOverride(Size availableSize)
         {
             var size = Math.Min(availableSize.Width, availableSize.Height);
