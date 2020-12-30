@@ -53,6 +53,7 @@
     <None Include="Web.config.Mvc.transform" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="nuget-logo-net.png" />
     <Content Include="ReadMe.WinForms.txt" />
     <Content Include="ReadMe.Gdi.txt" />
     <Content Include="ReadMe.Core.txt" />

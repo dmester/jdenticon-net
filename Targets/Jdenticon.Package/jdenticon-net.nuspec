@@ -7,7 +7,7 @@
     <authors>Daniel Mester Pirttijärvi</authors>
     <license type="expression">MIT</license>
     <projectUrl>http://jdenticon.com/</projectUrl>
-    <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
+    <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.
 
@@ -51,5 +51,6 @@ Commonly used types:
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard1.3\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard2.0\Jdenticon.xml" />
     <file src="ReadMe.Core.txt" target="readme.txt" />
+    <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />
   </files>
 </package>

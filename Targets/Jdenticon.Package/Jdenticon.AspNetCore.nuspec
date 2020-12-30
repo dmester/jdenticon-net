@@ -7,7 +7,7 @@
     <authors>Daniel Mester Pirttijärvi</authors>
     <license type="expression">MIT</license>
     <projectUrl>http://jdenticon.com/</projectUrl>
-    <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
+    <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extends Jdenticon-net with features to use Jdenticon with ASP.NET Core.
 
@@ -37,5 +37,6 @@ This package contains:
     <file src="..\..\releases\help\Jdenticon.AspNetCore.xml" target="lib\netstandard1.6\Jdenticon.AspNetCore.xml" />
     <file src="..\..\releases\help\Jdenticon.AspNetCore.xml" target="lib\net451\Jdenticon.AspNetCore.xml" />
     <file src="ReadMe.AspNetCore.txt" target="readme.txt" />
+    <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />
   </files>
 </package>

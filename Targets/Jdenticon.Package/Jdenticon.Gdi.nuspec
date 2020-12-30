@@ -7,7 +7,7 @@
     <authors>Daniel Mester Pirttijärvi</authors>
     <license type="expression">MIT</license>
     <projectUrl>http://jdenticon.com/</projectUrl>
-    <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
+    <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extends Jdenticon-net with features to use Jdenticon with GDI+.
 
@@ -39,5 +39,6 @@ Also see the Jdenticon.WinForms package which includes a WinForms control.</desc
     <file src="..\..\releases\help\Jdenticon.Gdi.xml" target="lib\net45\Jdenticon.Gdi.xml" />
     <file src="..\..\releases\help\Jdenticon.Gdi.xml" target="lib\netstandard2.0\Jdenticon.Gdi.xml" />
     <file src="ReadMe.Gdi.txt" target="readme.txt" />
+    <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />
   </files>
 </package>
