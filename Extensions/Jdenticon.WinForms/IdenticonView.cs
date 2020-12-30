@@ -66,6 +66,9 @@ namespace Jdenticon.WinForms
         private static readonly object EventGrayscaleSaturationChanged = new object();
         private static readonly object EventColorLightnessChanged = new object();
 
+        /// <summary>
+        /// Creates a new instance of <see cref="IdenticonView"/>.
+        /// </summary>
         public IdenticonView()
         {
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -518,11 +521,13 @@ namespace Jdenticon.WinForms
         }
         
         private bool ShouldSerializeBackColor() => BackColor != IdenticonStyle.DefaultBackColor.ToGdi();
+        /// <exclude/>
         public override void ResetBackColor() => BackColor = IdenticonStyle.DefaultBackColor.ToGdi();
 
-
+        /// <exclude/>
         protected override Size DefaultSize => new Size(100, 100);
 
+        /// <exclude/>
         protected override void OnPaint(PaintEventArgs e)
         {
             var rect = ClientRectangle;
