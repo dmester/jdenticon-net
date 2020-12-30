@@ -24,7 +24,6 @@
 #endregion
 
 using Jdenticon.Rendering;
-using Jdenticon.Wpf.Converters;
 using Jdenticon.Wpf.Extensions;
 using System;
 using System.Collections.Generic;
