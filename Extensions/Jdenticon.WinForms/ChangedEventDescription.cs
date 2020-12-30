@@ -1,7 +1,7 @@
 ﻿#region License
 // Jdenticon-net
 // https://github.com/dmester/jdenticon-net
-// Copyright © Daniel Mester Pirttijärvi 2016
+// Copyright © Daniel Mester Pirttijärvi 2020
 //
 // Permission is hereby granted, free of charge, to any person obtaining 
 // a copy of this software and associated documentation files (the 
@@ -25,40 +25,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using System.Text;
 
-namespace Jdenticon.Gdi.Extensions
+namespace Jdenticon.WinForms
 {
-    /// <summary>
-    /// Extension methods for converting structs between GDI and Jdenticon.
-    /// </summary>
-    internal static class ConversionExtensions
+    [AttributeUsage(AttributeTargets.Event)]
+    internal class ChangedEventDescriptionAttribute : DescriptionAttribute
     {
-        public static Rendering.Rectangle ToJdenticon(this System.Drawing.Rectangle rect)
+        public ChangedEventDescriptionAttribute(string propertyName) : 
+            base($"Event raised when the value of the {propertyName} property is changed.")
         {
-            return new Rendering.Rectangle(
-                rect.X, rect.Y, rect.Width, rect.Height);
-        }
-
-        public static System.Drawing.PointF ToGdi(this Rendering.PointF point)
-        {
-            return new System.Drawing.PointF(point.X, point.Y);
-        }
-
-        public static System.Drawing.PointF[] ToGdi(this Rendering.PointF[] points)
-        {
-            var translated = new System.Drawing.PointF[points.Length];
-            for (var i = 0; i < points.Length; i++)
-            {
-                translated[i] = points[i].ToGdi();
-            }
-            return translated;
-        }
-
-        public static System.Drawing.Color ToGdi(this Rendering.Color color)
-        {
-            return System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
         }
     }
 }

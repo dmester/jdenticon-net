@@ -28,37 +28,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jdenticon.Gdi.Extensions
+namespace Jdenticon.WebForms.Extensions
 {
     /// <summary>
     /// Extension methods for converting structs between GDI and Jdenticon.
     /// </summary>
     internal static class ConversionExtensions
     {
-        public static Rendering.Rectangle ToJdenticon(this System.Drawing.Rectangle rect)
-        {
-            return new Rendering.Rectangle(
-                rect.X, rect.Y, rect.Width, rect.Height);
-        }
-
-        public static System.Drawing.PointF ToGdi(this Rendering.PointF point)
-        {
-            return new System.Drawing.PointF(point.X, point.Y);
-        }
-
-        public static System.Drawing.PointF[] ToGdi(this Rendering.PointF[] points)
-        {
-            var translated = new System.Drawing.PointF[points.Length];
-            for (var i = 0; i < points.Length; i++)
-            {
-                translated[i] = points[i].ToGdi();
-            }
-            return translated;
-        }
-
         public static System.Drawing.Color ToGdi(this Rendering.Color color)
         {
             return System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
+        }
+
+        public static Rendering.Color ToJdenticon(this System.Drawing.Color color)
+        {
+            return Rendering.Color.FromRgba(color.R, color.G, color.B, color.A);
         }
     }
 }

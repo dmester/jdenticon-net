@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Jdenticon.WinForms</id>
+    <version>$version$</version>
+    <title>Jdenticon WinForms Extensions</title>
+    <authors>Daniel Mester Pirttijärvi</authors>
+    <licenseUrl>https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://jdenticon.com/</projectUrl>
+    <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extends Jdenticon-net for usage in Windows Forms applications.
+
+Features:
+* IdenticonView control</description>
+    <summary>Extends Jdenticon-net for usage in Windows Forms applications.</summary>
+    <tags>identicon avatar library</tags>
+    <dependencies>
+      <group targetFramework="netcoreapp3.0">
+        <dependency id="Jdenticon-net" version="$version$" />
+        <dependency id="Jdenticon.Gdi" version="$version$" />
+        <dependency id="System.Drawing.Common" version="4.5.0" />
+      </group>
+      <group targetFramework="net">
+        <dependency id="Jdenticon-net" version="$version$" />
+        <dependency id="Jdenticon.Gdi" version="$version$" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.WinForms.dll" target="lib\net40\Jdenticon.WinForms.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netcore30\Jdenticon.WinForms.dll" target="lib\netcore30\Jdenticon.WinForms.dll" />
+    <file src="..\..\releases\help\Jdenticon.WinForms.xml" target="lib\net40\Jdenticon.WinForms.xml" />
+    <file src="..\..\releases\help\Jdenticon.WinForms.xml" target="lib\netcore30\Jdenticon.WinForms.xml" />
+    <file src="ReadMe.WinForms.txt" target="readme.txt" />
+  </files>
+</package>

@@ -36,6 +36,8 @@
       <DocumentationSource sourceFile="..\Jdenticon.Wpf.Net45\bin\$(Configuration)\Jdenticon.Wpf.dll" />
       <DocumentationSource sourceFile="..\Jdenticon.Gdi.Net45\bin\$(Configuration)\Jdenticon.Gdi.xml" />
       <DocumentationSource sourceFile="..\Jdenticon.Gdi.Net45\bin\$(Configuration)\Jdenticon.Gdi.dll" />
+      <DocumentationSource sourceFile="..\Jdenticon.WinForms.Net40\bin\$(Configuration)\Jdenticon.WinForms.xml" />
+      <DocumentationSource sourceFile="..\Jdenticon.WinForms.Net40\bin\$(Configuration)\Jdenticon.WinForms.dll" />
       <DocumentationSource sourceFile="..\Jdenticon.AspNet.WebApi.Net45\bin\$(Configuration)\Jdenticon.AspNet.WebApi.xml" />
       <DocumentationSource sourceFile="..\Jdenticon.AspNet.WebApi.Net45\bin\$(Configuration)\Jdenticon.AspNet.WebApi.dll" />
     </DocumentationSources>
@@ -155,6 +157,10 @@
     <ProjectReference Include="..\Jdenticon.Net45\Jdenticon.Net45.csproj">
       <Project>{0b04331d-7c41-4312-8032-c7ecb447f051}</Project>
       <Name>Jdenticon.Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jdenticon.WinForms.Net40\Jdenticon.WinForms.Net40.csproj">
+      <Project>{365306b0-a687-405a-85f1-10ac8876adaa}</Project>
+      <Name>Jdenticon.WinForms.Net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Jdenticon.Wpf.Net45\Jdenticon.Wpf.Net45.csproj">
       <Project>{b38298aa-acef-423c-8091-9fc2509dbfcb}</Project>

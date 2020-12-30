@@ -34,7 +34,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <JdenticonPlatform>netstandard20</JdenticonPlatform>
-    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_EXTENDED_COMPONENTMODEL;HAVE_MEMORYSTREAM_GETBUFFER;SUPPORT_ASYNC_AWAIT</DefineConstants>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_EXTENDED_COMPONENTMODEL;HAVE_MEMORYSTREAM_GETBUFFER;SUPPORT_ASYNC_AWAIT</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+    <JdenticonPlatform>netcore30</JdenticonPlatform>
+    <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_EXTENDED_COMPONENTMODEL;HAVE_MEMORYSTREAM_GETBUFFER;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
   <Target Name="CopyAssembly" AfterTargets="Build">
     <Copy  

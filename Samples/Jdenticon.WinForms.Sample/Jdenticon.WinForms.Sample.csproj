@@ -84,13 +84,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Targets\Jdenticon.Gdi.Net45\Jdenticon.Gdi.Net45.csproj">
-      <Project>{6b54783a-aad1-4f6c-b77a-4d37b233d7e2}</Project>
-      <Name>Jdenticon.Gdi.Net45</Name>
+    <ProjectReference Include="..\..\Targets\Jdenticon.Gdi.Net40\Jdenticon.Gdi.Net40.csproj">
+      <Project>{172be500-e675-4491-8169-6cec51409b34}</Project>
+      <Name>Jdenticon.Gdi.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Targets\Jdenticon.Net45\Jdenticon.Net45.csproj">
-      <Project>{0b04331d-7c41-4312-8032-c7ecb447f051}</Project>
-      <Name>Jdenticon.Net45</Name>
+    <ProjectReference Include="..\..\Targets\Jdenticon.Net40\Jdenticon.Net40.csproj">
+      <Project>{0d43650a-f62d-44c2-9ca2-ebf93dccaed6}</Project>
+      <Name>Jdenticon.Net40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Targets\Jdenticon.WinForms.Net40\Jdenticon.WinForms.Net40.csproj">
+      <Project>{365306b0-a687-405a-85f1-10ac8876adaa}</Project>
+      <Name>Jdenticon.WinForms.Net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

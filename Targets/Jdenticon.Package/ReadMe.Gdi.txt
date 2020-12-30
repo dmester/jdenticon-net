@@ -5,6 +5,11 @@
 This package is intended for rendering identicons in Windows Forms based 
 applications.
 
+If you only need a simple way of adding an identicon to your Windows Forms
+based window, then install the Jdenticon.WinForms package, which contains
+a WinForms control.
+
+
 Full documentation is available at
 https://jdenticon.com/net-api/N_Jdenticon.html
 

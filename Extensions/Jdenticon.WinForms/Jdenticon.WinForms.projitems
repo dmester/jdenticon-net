@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>82e20bc5-f9ce-48ab-b3ec-39d914dde55a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Jdenticon.WinForms</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ChangedEventDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ConversionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonView.HiddenMembers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IdenticonView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)IdenticonView.bmp" />
+  </ItemGroup>
+</Project>

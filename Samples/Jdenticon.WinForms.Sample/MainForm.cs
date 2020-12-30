@@ -17,15 +17,6 @@ namespace Jdenticon.WinForms.Sample
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            var iconUnstyled = Identicon.FromValue("icon2", 100);
-            var iconStyled1 = Identicon.FromValue("icon2", 100);
-            var iconStyled2 = Identicon.FromValue("icon2", 100);
-            var iconNoPadding = Identicon.FromValue("icon2", 100);
-            var iconNoBackground = Identicon.FromValue("icon2", 100);
 
             // https://jdenticon.com/icon-designer.html?config=6b80342e10770a022f431c30
             iconStyled1.Style = new IdenticonStyle
@@ -48,15 +39,6 @@ namespace Jdenticon.WinForms.Sample
                 ColorSaturation = 0.48f,
                 GrayscaleSaturation = 0.48f
             };
-
-            iconNoPadding.Style.Padding = 0;
-            iconNoBackground.Style.BackColor = JdenticonColor.Transparent;
-
-            iconUnstyled.Draw(e.Graphics, new Rendering.Rectangle(20, 20, 100, 100));
-            iconStyled1.Draw(e.Graphics, new Rendering.Rectangle(140, 20, 100, 100));
-            iconStyled2.Draw(e.Graphics, new Rendering.Rectangle(260, 20, 100, 100));
-            iconNoPadding.Draw(e.Graphics, new Rendering.Rectangle(380, 20, 100, 100));
-            iconNoBackground.Draw(e.Graphics, new Rendering.Rectangle(500, 20, 100, 100));
         }
     }
 }

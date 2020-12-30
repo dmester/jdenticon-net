@@ -9,14 +9,16 @@
     <projectUrl>http://jdenticon.com/</projectUrl>
     <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Extends Jdenticon-net with features to use Jdenticon with GDI+ and Windows Forms applications.
+    <description>Extends Jdenticon-net with features to use Jdenticon with GDI+.
 
 Features:
 * Render identicons to System.Drawing.Graphics
 * Render identicons to System.Drawing.Bitmap
 * Render EMF (Enhanced Metafile) identicons
 
-This package is not intended for server-side applications.</description>
+This package is not intended for server-side applications.
+
+Also see the Jdenticon.WinForms package which includes a WinForms control.</description>
     <summary>Extends Jdenticon-net with features to use Jdenticon from Windows Forms applications.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
