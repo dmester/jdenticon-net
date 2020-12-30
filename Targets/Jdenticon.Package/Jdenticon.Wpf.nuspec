@@ -5,7 +5,7 @@
     <version>$version$</version>
     <title>Jdenticon WPF Extensions</title>
     <authors>Daniel Mester Pirttijärvi</authors>
-    <licenseUrl>https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>http://jdenticon.com/</projectUrl>
     <iconUrl>http://jdenticon.com/hosted/nuget-logo-net.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
