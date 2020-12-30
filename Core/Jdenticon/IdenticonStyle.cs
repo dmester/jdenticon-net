@@ -36,6 +36,8 @@ namespace Jdenticon
     /// </summary>
     public class IdenticonStyle : IEquatable<IdenticonStyle>
     {
+        #region Fields
+
         private HueCollection hues;
         private Color backColor;
         private float padding;
@@ -43,6 +45,10 @@ namespace Jdenticon
         private float grayscaleSaturation;
         private Range<float> colorLightness;
         private Range<float> grayscaleLightness;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Creates a new <see cref="IdenticonStyle"/> instance initialized with the default 
@@ -58,7 +64,7 @@ namespace Jdenticon
             colorLightness = DefaultColorLightness;
             grayscaleLightness = DefaultGrayscaleLightness;
         }
-        
+
         private IdenticonStyle(IdenticonStyle otherStyleToClone)
         {
             hues = new HueCollection(otherStyleToClone.hues);
@@ -69,6 +75,10 @@ namespace Jdenticon
             colorLightness = otherStyleToClone.colorLightness;
             grayscaleLightness = otherStyleToClone.grayscaleLightness;
         }
+
+        #endregion
+
+        #region Default values
 
         /// <summary>
         /// Gets the default value of the <see cref="Padding"/> property. Resolves to 0.08f.
@@ -105,6 +115,10 @@ namespace Jdenticon
         /// </summary>
         public static Color DefaultBackColor => Color.White;
 
+        #endregion
+
+        #region Style properties
+
         /// <summary>
         /// Gets or sets a collection of the allowed hues in the generated icons. If the collection is empty
         /// all hues are allowed.
@@ -118,24 +132,35 @@ namespace Jdenticon
             set => hues = value ?? new HueCollection();
         }
 
+        private bool ShouldSerializeHues() => hues != null && hues.Count > 0;
+        private void ResetHues() => Hues = null;
+
+
         /// <summary>
         /// The background color of the icon. Set to <see cref="Color.Transparent"/> to remove the background.
+        /// Default value is white.
         /// </summary>
         public Color BackColor
         {
             get { return backColor; }
             set { backColor = value; }
         }
-        
+
+        private bool ShouldSerializeBackColor() => BackColor != DefaultBackColor;
+        private void ResetBackColor() => BackColor = DefaultBackColor;
+
+
         /// <summary>
-        /// Gets or sets the padding between the edge of the image and the bounds of the rendered icon. The value is specified in percent in the range [0.0, 0.4].
+        /// Gets or sets the padding between the edge of the image and the bounds of the rendered icon.
+        /// The value is specified in percent in the range [0.0, 0.4]. Default value is 0.08f.
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Value was less than 0f or greater than 0.4f.</exception>
         public float Padding
         {
             get { return padding; }
             set
             {
-                if (padding < 0f || padding > 0.4f)
+                if (value < 0f || value > 0.4f)
                 {
                     throw new ArgumentOutOfRangeException(nameof(Padding),
                         value, "Only padding values in the range [0.0, 0.4] are valid.");
@@ -144,17 +169,26 @@ namespace Jdenticon
             }
         }
 
+        private bool ShouldSerializePadding() => Padding != DefaultPadding;
+        private void ResetPadding() => Padding = DefaultPadding;
+
+
         /// <exclude/>
         [Obsolete("Use ColorSaturation instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+#if HAVE_EXTENDED_COMPONENTMODEL
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+#endif
         public float Saturation
         {
             get { return ColorSaturation; }
             set { ColorSaturation = value; }
         }
 
+
         /// <summary>
-        /// The saturation of the colored shapes in the icon. Valid values are [0.0f, 1.0f].
+        /// The saturation of the colored shapes in the icon. Valid values are [0.0f, 1.0f]. Default value is 0.05f.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">The value was less than 0.0f or greater than 1.0f.</exception>
         /// <remarks>
@@ -175,8 +209,13 @@ namespace Jdenticon
             }
         }
 
+        private bool ShouldSerializeColorSaturation() => ColorSaturation != DefaultColorSaturation;
+        private void ResetColorSaturation() => ColorSaturation = DefaultColorSaturation;
+
+
         /// <summary>
-        /// The saturation of the by default grayscale shapes in the icon. The same hue is used for colored and grayscale shapes. Valid values are [0.0f, 1.0f].
+        /// The saturation of the by default grayscale shapes in the icon. The same hue is used for colored and grayscale shapes. 
+        /// Valid values are [0.0f, 1.0f]. Default value is 0f.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">The value was less than 0.0f or greater than 1.0f.</exception>
         /// <remarks>
@@ -197,8 +236,12 @@ namespace Jdenticon
             }
         }
 
+        private bool ShouldSerializeGrayscaleSaturation() => GrayscaleSaturation != DefaultGrayscaleSaturation;
+        private void ResetGrayscaleSaturation() => GrayscaleSaturation = DefaultGrayscaleSaturation;
+
+
         /// <summary>
-        /// The lightness range of the colored shapes in the icon.
+        /// The lightness range of the colored shapes in the icon. Default value is 0.4f - 0.8f.
         /// </summary>
         /// <remarks>
         /// <para>
@@ -217,20 +260,24 @@ namespace Jdenticon
             {
                 if (value.From < 0 || value.From > 1)
                 {
-                    throw new ArgumentOutOfRangeException("ColorLightness.From", value.From, 
+                    throw new ArgumentOutOfRangeException("ColorLightness.From", value.From,
                         "Only lightness values in the range [0.0, 1.0] are allowed.");
                 }
                 if (value.To < 0 || value.To > 1)
                 {
-                    throw new ArgumentOutOfRangeException("ColorLightness.To", value.To, 
+                    throw new ArgumentOutOfRangeException("ColorLightness.To", value.To,
                         "Only lightness values in the range [0.0, 1.0] are allowed.");
                 }
                 colorLightness = value;
             }
         }
 
+        private bool ShouldSerializeColorLightness() => ColorLightness != DefaultColorLightness;
+        private void ResetColorLightness() => ColorLightness = DefaultColorLightness;
+
+
         /// <summary>
-        /// The lightness range of the grayscale shapes in the icon. 
+        /// The lightness range of the grayscale shapes in the icon. Default value is 0.3f - 0.9f.
         /// </summary>
         /// <remarks>
         /// <para>
@@ -258,6 +305,11 @@ namespace Jdenticon
                 grayscaleLightness = value;
             }
         }
+
+        private bool ShouldSerializeGrayscaleLightness() => GrayscaleLightness != DefaultGrayscaleLightness;
+        private void ResetGrayscaleLightness() => GrayscaleLightness = DefaultGrayscaleLightness;
+
+#endregion
 
         /// <summary>
         /// Gets a hash code for this <see cref="IdenticonStyle"/>.
