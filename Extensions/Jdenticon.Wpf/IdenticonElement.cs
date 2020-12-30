@@ -50,8 +50,13 @@ namespace Jdenticon.Wpf
         /// Gets or sets an <see cref="Jdenticon.IdenticonStyle"/> that will affect the appearance of the generated icon.
         /// </summary>
         /// <remarks>
-        /// This property will return a copy of the <see cref="Jdenticon.IdenticonStyle"/> currently in use. Changes to the returned instance
-        /// will not affect the rendering of this icon, unless the property is set with the updated <see cref="Jdenticon.IdenticonStyle"/> instance.
+        /// <para>
+        ///     This property will return a copy of the <see cref="Jdenticon.IdenticonStyle"/> currently in use. Changes to the returned instance
+        ///     will not affect the rendering of this icon, unless the property is set with the updated <see cref="Jdenticon.IdenticonStyle"/> instance.
+        /// </para>
+        /// <para>
+        ///     This property is available since version 3.0.0.
+        /// </para>
         /// </remarks>
         public IdenticonStyle IdenticonStyle
         {
@@ -83,6 +88,9 @@ namespace Jdenticon.Wpf
         }
 
         /// <inheritdoc cref="IdenticonStyle.Padding"/>
+        /// <remarks>
+        /// This property is available since version 3.0.0.
+        /// </remarks>
         [Bindable(true), Category(CatAppearance)]
         public float Padding
         {
@@ -101,6 +109,9 @@ namespace Jdenticon.Wpf
         /// <summary>
         /// Gets or sets the background of the identicon.
         /// </summary>
+        /// <remarks>
+        /// This property is available since version 3.0.0.
+        /// </remarks>
         [Bindable(true), Category(CatAppearance)]
         public Brush Background
         {
@@ -155,6 +166,9 @@ namespace Jdenticon.Wpf
         ///     <term>0.5turn</term>
         /// </item>
         /// </list>
+        /// <para>
+        /// This property is available since version 3.0.0.
+        /// </para>
         /// </remarks>
         [Bindable(true), Category(CatAppearance)]
         public HueString Hues
@@ -172,6 +186,12 @@ namespace Jdenticon.Wpf
 
 
         /// <inheritdoc cref="IdenticonStyle.GrayscaleLightness"/>
+        /// <remarks>
+        /// <inheritdoc cref="IdenticonStyle.GrayscaleLightness"/>
+        /// <para>
+        /// This property is available since version 3.0.0.
+        /// </para>
+        /// </remarks>
         [Bindable(true), Category(CatAppearance)]
         [TypeConverter(typeof(FloatRangeConverter))]
         public Range<float> GrayscaleLightness
@@ -190,6 +210,12 @@ namespace Jdenticon.Wpf
 
 
         /// <inheritdoc cref="IdenticonStyle.ColorLightness"/>
+        /// <remarks>
+        /// <inheritdoc cref="IdenticonStyle.ColorLightness"/>
+        /// <para>
+        /// This property is available since version 3.0.0.
+        /// </para>
+        /// </remarks>
         [Bindable(true), Category(CatAppearance)]
         [TypeConverter(typeof(FloatRangeConverter))]
         public Range<float> ColorLightness
@@ -208,6 +234,11 @@ namespace Jdenticon.Wpf
 
 
         /// <inheritdoc cref="IdenticonStyle.ColorSaturation"/>
+        /// <remarks>
+        /// <para>
+        /// This property is available since version 3.0.0.
+        /// </para>
+        /// </remarks>
         [Bindable(true), Category(CatAppearance)]
         public float ColorSaturation
         {
@@ -225,6 +256,11 @@ namespace Jdenticon.Wpf
 
 
         /// <inheritdoc cref="IdenticonStyle.GrayscaleSaturation"/>
+        /// <remarks>
+        /// <para>
+        /// This property is available since version 3.0.0.
+        /// </para>
+        /// </remarks>
         [Bindable(true), Category(CatAppearance)]
         public float GrayscaleSaturation
         {

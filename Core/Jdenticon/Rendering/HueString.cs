@@ -31,6 +31,12 @@ using System.Text;
 
 namespace Jdenticon.Rendering
 {
+    /// <summary>
+    /// Specifies a list of hue values as a string.
+    /// </summary>
+    /// <remarks>
+    /// This class is available since version 3.0.0.
+    /// </remarks>
 #if HAVE_EXTENDED_COMPONENTMODEL
     [TypeConverter(typeof(HueStringConverter))]
 #endif
