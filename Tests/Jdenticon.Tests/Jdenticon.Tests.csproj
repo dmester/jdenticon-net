@@ -65,7 +65,6 @@
     <Compile Include="EdgeTableTests.cs" />
     <Compile Include="SuperSampleRangeListTests.cs" />
     <Compile Include="IdenticonStyleTests.cs" />
-    <Compile Include="IdenticonTests.cs" />
     <Compile Include="ImmutableHueCollectionTests.cs" />
     <Compile Include="HueCollectionTests.cs" />
     <Compile Include="NumericListTests.cs" />
