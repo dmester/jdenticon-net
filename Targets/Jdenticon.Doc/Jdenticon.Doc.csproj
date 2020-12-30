@@ -74,7 +74,7 @@
         </component>
       </ComponentConfig>
     </ComponentConfigurations>
-    <VisibleItems>InheritedMembers, Protected, ProtectedInternalAsProtected</VisibleItems>
+    <VisibleItems>InheritedMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="Jdenticon.AspNet.WebForms" isExposed="True" xmlns="">
         <Filter entryType="Class" fullName="Jdenticon.AspNet.WebForms.Icon" filterName="Icon" isExposed="True">
