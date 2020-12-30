@@ -1,6 +1,32 @@
-﻿using System;
+﻿#region License
+// Jdenticon-net
+// https://github.com/dmester/jdenticon-net
+// Copyright © Daniel Mester Pirttijärvi 2020
+//
+// Permission is hereby granted, free of charge, to any person obtaining 
+// a copy of this software and associated documentation files (the 
+// "Software"), to deal in the Software without restriction, including 
+// without limitation the rights to use, copy, modify, merge, publish, 
+// distribute, sublicense, and/or sell copies of the Software, and to 
+// permit persons to whom the Software is furnished to do so, subject to 
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be 
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#endregion
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace Jdenticon.Rendering
@@ -18,16 +44,21 @@ namespace Jdenticon.Rendering
     /// Queries will always return the internal hue specified in turns.
     /// </para>
     /// </remarks>
-    public class HueCollection : ICollection<float>, IEquatable<HueCollection>
+    public class HueCollection : ICollection<float>, IEquatable<HueCollection>, IFormattable
     {
-        private List<float> hues;
+        private readonly List<HueValue> hues;
+
+        internal HueCollection(IEnumerable<HueValue> values)
+        {
+            hues = new List<HueValue>(values);
+        }
 
         /// <summary>
         /// Creates an empty <see cref="HueCollection"/>.
         /// </summary>
         public HueCollection()
         {
-            hues = new List<float>();
+            hues = new List<HueValue>();
         }
 
         /// <summary>
@@ -39,15 +70,31 @@ namespace Jdenticon.Rendering
         /// <exception cref="ArgumentNullException"><paramref name="hues"/> was <c>Nothing</c>.</exception>
         public HueCollection(IEnumerable<float> hues)
         {
-            if (hues == null) throw new ArgumentNullException(nameof(hues));
-            this.hues = new List<float>();
-            
-            foreach (var hue in hues)
+            this.hues = new List<HueValue>();
+
+            foreach (var hue in hues ?? throw new ArgumentNullException(nameof(hues)))
             {
-                this.hues.Add(Normalize(hue, HueUnit.Turns));
+                this.hues.Add(new HueValue(hue));
             }
         }
-        
+
+        /// <summary>
+        /// Creates a new <see cref="HueCollection"/> containing the specified hue
+        /// values specified in turns.
+        /// </summary>
+        /// <param name="hues">Enumerable of hues to be added to the new collection. 
+        /// Hues should be specified in turns and will be normalized to the range [0, 1).</param>
+        /// <exception cref="ArgumentNullException"><paramref name="hues"/> was <c>Nothing</c>.</exception>
+        public HueCollection(params float[] hues)
+        {
+            this.hues = new List<HueValue>();
+
+            foreach (var hue in hues ?? throw new ArgumentNullException(nameof(hues)))
+            {
+                this.hues.Add(new HueValue(hue));
+            }
+        }
+
         /// <summary>
         /// Gets the number of hues in this collection.
         /// </summary>
@@ -62,36 +109,9 @@ namespace Jdenticon.Rendering
         /// Gets the hue (in turns, range [0, 1)) at the specified index in this collection.
         /// </summary>
         /// <param name="index">Hue index.</param>
-        public float this[int index] => hues[index];
+        public float this[int index] => hues[index].Turns;
 
-        private static float Normalize(float hue, HueUnit hueUnit)
-        {
-            // Convert to turns
-            switch (hueUnit)
-            {
-                case HueUnit.Degrees:
-                    hue /= 360;
-                    break;
-
-                case HueUnit.Gradians:
-                    hue /= 400;
-                    break;
-
-                case HueUnit.Radians:
-                    hue /= 2 * (float)Math.PI;
-                    break;
-            }
-
-            // Normalize hue to range [0, 1)
-            hue = hue % 1;
-
-            if (hue < 0)
-            {
-                hue += 1;
-            }
-
-            return hue;
-        }
+        internal IEnumerable<HueValue> Values => hues;
 
         /// <summary>
         /// Adds a hue to the collection.
@@ -104,7 +124,7 @@ namespace Jdenticon.Rendering
             if (float.IsPositiveInfinity(hue)) throw new ArgumentException("Positive infinity is not a valid hue.", nameof(hue));
             if (float.IsNegativeInfinity(hue)) throw new ArgumentException("Negative infinity is not a valid hue.", nameof(hue));
 
-            hues.Add(Normalize(hue, HueUnit.Turns));
+            hues.Add(new HueValue(hue));
         }
 
         /// <summary>
@@ -118,7 +138,7 @@ namespace Jdenticon.Rendering
             if (float.IsPositiveInfinity(hue)) throw new ArgumentException("Positive infinity is not a valid hue.", nameof(hue));
             if (float.IsNegativeInfinity(hue)) throw new ArgumentException("Negative infinity is not a valid hue.", nameof(hue));
 
-            hues.Add(Normalize(hue, hueUnit));
+            hues.Add(new HueValue(hue, hueUnit));
         }
 
         /// <summary>
@@ -141,7 +161,7 @@ namespace Jdenticon.Rendering
         /// </remarks>
         public bool Contains(float hue)
         {
-            return hues.Contains(Normalize(hue, HueUnit.Turns));
+            return hues.Contains(new HueValue(hue));
         }
 
         /// <summary>
@@ -157,7 +177,7 @@ namespace Jdenticon.Rendering
         /// </remarks>
         public bool Contains(float hue, HueUnit hueUnit)
         {
-            return hues.Contains(Normalize(hue, hueUnit));
+            return hues.Contains(new HueValue(hue, hueUnit));
         }
 
         /// <summary>
@@ -167,7 +187,26 @@ namespace Jdenticon.Rendering
         /// <param name="arrayIndex">The index in <paramref name="array"/> to which the first hue will be copied.</param>
         public void CopyTo(float[] array, int arrayIndex)
         {
-            hues.CopyTo(array, arrayIndex);
+            if (arrayIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+            }
+
+            if (array.Length < arrayIndex + hues.Count)
+            {
+                throw new ArgumentException("Insufficient space in the specified array.", nameof(array));
+            }
+
+            for (var i = 0; i < hues.Count; i++)
+            {
+                array[arrayIndex + i] = hues[i].Turns;
+            }
+        }
+
+        // .NET < 3.5 does not have the Linq namespace
+        private IEnumerable<float> EnumerateTurns()
+        {
+            foreach (var hue in hues) yield return hue.Turns;
         }
 
         /// <summary>
@@ -175,7 +214,7 @@ namespace Jdenticon.Rendering
         /// </summary>
         public IEnumerator<float> GetEnumerator()
         {
-            return hues.GetEnumerator();
+            return EnumerateTurns().GetEnumerator();
         }
 
         /// <summary>
@@ -185,7 +224,7 @@ namespace Jdenticon.Rendering
         /// <returns><c>true</c> if the hue was found and removed from the collection.</returns>
         public bool Remove(float hue)
         {
-            return hues.Remove(Normalize(hue, HueUnit.Turns));
+            return hues.Remove(new HueValue(hue));
         }
 
         /// <summary>
@@ -196,12 +235,12 @@ namespace Jdenticon.Rendering
         /// <returns><c>true</c> if the hue was found and removed from the collection.</returns>
         public bool Remove(float hue, HueUnit hueUnit)
         {
-            return hues.Remove(Normalize(hue, hueUnit));
+            return hues.Remove(new HueValue(hue, hueUnit));
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return hues.GetEnumerator();
+            return GetEnumerator();
         }
 
         /// <summary>
@@ -236,13 +275,36 @@ namespace Jdenticon.Rendering
 
             for (var i = 0; i < hues.Count; i++)
             {
-                if (hues[i] != other.hues[i])
+                if (hues[i].Turns != other.hues[i].Turns)
                 {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Creates a string representation of the hues in this collection.
+        /// The result can be parsed using <see cref="Parse(string)"/>.
+        /// </summary>
+        public override string ToString()
+        {
+            return ToString(CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Creates a culture-specific string representation of the hues in this collection.
+        /// The result can be parsed using <see cref="Parse(string, IFormatProvider)"/>.
+        /// </summary>
+        public string ToString(IFormatProvider formatProvider)
+        {
+            return NumericList.Join(hues, formatProvider);
+        }
+
+        string IFormattable.ToString(string format, IFormatProvider formatProvider)
+        {
+            return ToString(formatProvider);
         }
     }
 }

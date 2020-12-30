@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Png\PngPalette.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExportImageFormat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IdenticonRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\ZlibStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Adler32.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\Crc32.cs" />
@@ -55,7 +56,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Color.Parser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\ColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueString.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueUnitInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\HueValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\NamespaceDoc.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shapes\NamespaceDoc.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SvgExtensions.cs" />

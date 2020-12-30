@@ -29,26 +29,56 @@ using System.Text;
 
 namespace Jdenticon.Rendering
 {
-    /// <summary>
-    /// Specifies the unit of a hue value.
-    /// </summary>
-    public enum HueUnit
+    internal class HueUnitInfo
     {
+        public HueUnitInfo(HueUnit key, string suffix, float period)
+        {
+            Key = key;
+            Suffix = suffix;
+            Period = period;
+        }
+
         /// <summary>
-        /// Hue specified in degrees. The first turn is specified in the range [0, 360).
+        /// Hue unit.
         /// </summary>
-        Degrees,
+        public HueUnit Key { get; }
+
         /// <summary>
-        /// Hue specified in turns. The first turn is specified in the range [0, 1).
+        /// Textual suffix that can be specified after the hue value, e.g. 23rad, to specify the unit.
         /// </summary>
-        Turns,
+        public string Suffix { get; }
+
         /// <summary>
-        /// Hue specified in radians. The first turn is specified in the range [0, 2π).
+        /// The maximum value of the unit, until it starts over.
         /// </summary>
-        Radians,
+        public float Period { get; }
+
         /// <summary>
-        /// Hue specified in gradians. The first turn is specified in the range [0, 400).
+        /// Information about known units.
         /// </summary>
-        Gradians
+        public static HueUnitInfo[] Values { get; } = new[]
+        {
+            new HueUnitInfo(HueUnit.Turns, "turn", 1f),
+            new HueUnitInfo(HueUnit.Gradians, "grad", 400f),
+            new HueUnitInfo(HueUnit.Degrees, "deg", 360f),
+            new HueUnitInfo(HueUnit.Radians, "rad", (float)(2 * Math.PI)),
+        };
+
+        /// <summary>
+        /// Gets information about a specific unit.
+        /// </summary>
+        /// <exception cref="ArgumentException">Unknown <paramref name="unit"/>.</exception>
+        public static HueUnitInfo Get(HueUnit hueUnit)
+        {
+            foreach (var unitInfo in Values)
+            {
+                if (unitInfo.Key == hueUnit)
+                {
+                    return unitInfo;
+                }
+            }
+
+            throw new ArgumentException($"Unknown hue unit {hueUnit}.", nameof(hueUnit));
+        }
     }
 }
