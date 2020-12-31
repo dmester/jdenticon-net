@@ -2,19 +2,19 @@
 * JDENTICON GDI
 **************************************************************************
 
-This package is intended for rendering identicons in Windows Forms based 
-applications.
+This package is intended for rendering identicons using GDI+.
 
-If you only need a simple way of adding an identicon to your Windows Forms
-based window, then install the Jdenticon.WinForms package, which contains
+If you need a simple way of adding an identicon to your Windows Forms
+based application, then install the Jdenticon.WinForms package, containing
 a WinForms control.
-
 
 Full documentation is available at
 https://jdenticon.com/net-api/N_Jdenticon.html
 
 
 CAUTION!
+========
+
 Using this package in server-side applications is generally a bad idea!
  
 More information:

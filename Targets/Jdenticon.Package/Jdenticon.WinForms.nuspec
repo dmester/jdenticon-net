@@ -13,7 +13,7 @@
 
 Features:
 * IdenticonView control</description>
-    <tags>identicon avatar library</tags>
+    <tags>identicon avatar library WinForms</tags>
     <dependencies>
       <group targetFramework="netcoreapp3.0">
         <dependency id="Jdenticon-net" version="$version$" />

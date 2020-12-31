@@ -13,7 +13,7 @@
 
 This package contains:
 * IdenticonResult for usage in WebApi controllers</description>
-    <tags>identicon avatar library</tags>
+    <tags>identicon avatar library ASP.NET WebApi</tags>
     <dependencies>
       <dependency id="Jdenticon-net" version="$version$" />
       <dependency id="Microsoft.AspNet.WebApi.Core" version="4.0" />

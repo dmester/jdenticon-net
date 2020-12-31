@@ -16,7 +16,7 @@ This package contains:
 * @Html.Identicon() extension method
 * @Url.Identicon() extension method
 * IdenticonResult for usage in MVC controllers</description>
-    <tags>identicon avatar library</tags>
+    <tags>identicon avatar library ASP.NET Core</tags>
     <dependencies>
       <group targetFramework="netstandard1.6">
         <dependency id="Jdenticon-net" version="$version$" />

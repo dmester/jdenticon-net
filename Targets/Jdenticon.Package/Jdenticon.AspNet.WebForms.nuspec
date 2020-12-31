@@ -13,7 +13,7 @@
 
 This package contains:
 * Identicon web control</description>
-    <tags>identicon avatar library</tags>
+    <tags>identicon avatar library ASP.NET WebForms</tags>
     <dependencies>
       <dependency id="Jdenticon-net" version="$version$" />
     </dependencies>

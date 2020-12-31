@@ -10,7 +10,7 @@
     <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extends Jdenticon-net with features to use Jdenticon with WPF.</description>
-    <tags>identicon avatar library</tags>
+    <tags>identicon avatar library WPF</tags>
     <dependencies>
       <dependency id="Jdenticon-net" version="$version$" />
     </dependencies>
@@ -20,6 +20,7 @@
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Wpf.dll" target="lib\net45\Jdenticon.Wpf.dll" />
     <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net40\Jdenticon.Wpf.xml" />
     <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net45\Jdenticon.Wpf.xml" />
+    <file src="ReadMe.Wpf.txt" target="readme.txt" />
     <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />
   </files>
 </package>

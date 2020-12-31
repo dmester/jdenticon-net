@@ -22,8 +22,7 @@ your application:
 
   * Jdenticon.AspNet.WebForms
 
-  * Jdenticon.Gdi
-    If you want to render icons in a WinForms application.
+  * Jdenticon.WinForms
 
   * Jdenticon.Wpf
 
