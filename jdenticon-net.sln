@@ -106,8 +106,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Doc", "Targets\Jd
 		{631529FA-2C0A-4792-B2BD-F273FB80E610} = {631529FA-2C0A-4792-B2BD-F273FB80E610}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.VisualTests", "Tests\Jdenticon.VisualTests\Jdenticon.VisualTests.csproj", "{AABD0907-3D03-4D96-98CF-02D779E9237B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.SourceIndex", "Targets\Jdenticon.SourceIndex\Jdenticon.SourceIndex.csproj", "{99AF8B33-2E00-41D9-AFDA-74D73004BEE8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jdenticon.NetStandard20", "Targets\Jdenticon.NetStandard20\Jdenticon.NetStandard20.csproj", "{94AA035B-D967-4ED8-A499-989F0F7FE1C6}"
@@ -136,7 +134,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Jdenticon.WinForms", "Exten
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.WinForms.Net40", "Targets\Jdenticon.WinForms.Net40\Jdenticon.WinForms.Net40.csproj", "{365306B0-A687-405A-85F1-10AC8876ADAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Wpf.NetCore30", "Targets\Jdenticon.Wpf.NetCore30\Jdenticon.Wpf.NetCore30.csproj", "{64BCF99E-1285-457C-8F30-EB3F2BB36687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jdenticon.Wpf.NetCore30", "Targets\Jdenticon.Wpf.NetCore30\Jdenticon.Wpf.NetCore30.csproj", "{64BCF99E-1285-457C-8F30-EB3F2BB36687}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -185,7 +183,6 @@ Global
 		Core\Jdenticon\Jdenticon.projitems*{a3807953-1974-4f93-891b-6d1e0efe7a27}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{a55ed9f4-aca2-4aaa-9a26-b74f82b3d5f1}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems*{a55ed9f4-aca2-4aaa-9a26-b74f82b3d5f1}*SharedItemsImports = 4
-		Core\Jdenticon\Jdenticon.projitems*{aabd0907-3d03-4d96-98cf-02d779e9237b}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{b77f0ac0-0c45-4238-bbc4-9171ac1f079c}*SharedItemsImports = 5
@@ -580,23 +577,6 @@ Global
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B}.VSTS|x64.Build.0 = Release|x64
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B}.VSTS|x86.ActiveCfg = Release|x86
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B}.VSTS|x86.Build.0 = Release|x86
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x64.Build.0 = Debug|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Debug|x86.Build.0 = Debug|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x64.ActiveCfg = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x64.Build.0 = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x86.ActiveCfg = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.Release|x86.Build.0 = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.VSTS|Any CPU.ActiveCfg = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.VSTS|x64.ActiveCfg = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.VSTS|x64.Build.0 = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.VSTS|x86.ActiveCfg = Release|Any CPU
-		{AABD0907-3D03-4D96-98CF-02D779E9237B}.VSTS|x86.Build.0 = Release|Any CPU
 		{99AF8B33-2E00-41D9-AFDA-74D73004BEE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{99AF8B33-2E00-41D9-AFDA-74D73004BEE8}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{99AF8B33-2E00-41D9-AFDA-74D73004BEE8}.Debug|x64.Build.0 = Debug|Any CPU
@@ -862,7 +842,6 @@ Global
 		{51D5BB3D-498D-4A3D-8D92-305BE6737C97} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{19700CFA-A478-4402-9F31-20B780AC5D26} = {4DE9AC20-F167-4B0E-8B0C-534042D26004}
 		{503810E3-323C-4FCA-8F6B-39196C6DC70B} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
-		{AABD0907-3D03-4D96-98CF-02D779E9237B} = {9EA7C673-BDAA-4A31-9B71-2632703A21EB}
 		{99AF8B33-2E00-41D9-AFDA-74D73004BEE8} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{94AA035B-D967-4ED8-A499-989F0F7FE1C6} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{E140D1EA-288C-41D5-B5D5-95852AF80C25} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
