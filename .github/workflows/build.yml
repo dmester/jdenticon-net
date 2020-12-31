@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Setup NuGet.exe
+      uses: NuGet/setup-nuget@v1.0.5
+    - name: Setup VSTest.console.exe
+      uses: darenm/Setup-VSTest@v1
+    
+    - name: Restore NuGet Packages
+      run: nuget restore jdenticon-net.sln
+  
+    - name: Build
+      run: msbuild jdenticon-net.sln /p:Configuration=Release
+      
+    - name: VSTest
+      run: vstest.console.exe /Platform:x64 Tests\Jdenticon.Tests\bin\Release\Jdenticon.Tests.dll Tests\Jdenticon.Tests.EndToEnd\bin\Release\Jdenticon.Tests.EndToEnd.dll -- MSTest.DeleteDeploymentDirectoryAfterTestRunIsComplete=false
+
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: Release
+        path: releases
+
+    - name: Publish test results
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: Test results
+        path: TestResults
