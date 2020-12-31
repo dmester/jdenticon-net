@@ -20,7 +20,7 @@ Features:
         <dependency id="Jdenticon.Gdi" version="$version$" />
         <dependency id="System.Drawing.Common" version="4.5.0" />
       </group>
-      <group targetFramework="net">
+      <group targetFramework="net40">
         <dependency id="Jdenticon-net" version="$version$" />
         <dependency id="Jdenticon.Gdi" version="$version$" />
       </group>

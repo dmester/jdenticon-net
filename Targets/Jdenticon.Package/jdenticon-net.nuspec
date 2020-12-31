@@ -31,8 +31,10 @@ Commonly used types:
       </group>
       <group targetFramework="netstandard2.0">
       </group>
-      <group targetFramework="net">
-      </group>
+      <group targetFramework="net20"/>
+      <group targetFramework="net35"/>
+      <group targetFramework="net40"/>
+      <group targetFramework="net45"/>
     </dependencies>
   </metadata>
   <files>

@@ -23,7 +23,10 @@ This package is not intended for server-side applications.</description>
         <dependency id="Jdenticon-net" version="$version$" />
         <dependency id="System.Drawing.Common" version="4.5.0" />
       </group>
-      <group targetFramework="net">
+      <group targetFramework="net40">
+        <dependency id="Jdenticon-net" version="$version$" />
+      </group>
+      <group targetFramework="net45">
         <dependency id="Jdenticon-net" version="$version$" />
       </group>
     </dependencies>
