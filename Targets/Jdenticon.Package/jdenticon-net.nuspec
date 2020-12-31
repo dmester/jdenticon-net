@@ -22,19 +22,19 @@ Commonly used types:
     <summary>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
-      <group targetFramework="netstandard1.0">  
-        <dependency id="NETStandard.Library" version="1.6.0" />
-        <dependency id="SharpCompress" version="0.24.0" />
+      <group targetFramework="netstandard2.0">
       </group>
       <group targetFramework="netstandard1.3">
         <dependency id="NETStandard.Library" version="1.6.0" />
       </group>
-      <group targetFramework="netstandard2.0">
+      <group targetFramework="netstandard1.0">
+        <dependency id="NETStandard.Library" version="1.6.0" />
+        <dependency id="SharpCompress" version="0.24.0" />
       </group>
-      <group targetFramework="net20"/>
-      <group targetFramework="net35"/>
-      <group targetFramework="net40"/>
       <group targetFramework="net45"/>
+      <group targetFramework="net40"/>
+      <group targetFramework="net35"/>
+      <group targetFramework="net20"/>
     </dependencies>
   </metadata>
   <files>

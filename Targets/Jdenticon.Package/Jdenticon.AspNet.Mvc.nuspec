@@ -17,8 +17,14 @@ This package contains:
 * IdenticonResult for usage in MVC controllers</description>
     <tags>identicon avatar library ASP.NET MVC</tags>
     <dependencies>
-      <dependency id="Jdenticon-net" version="$version$" />
-      <dependency id="Microsoft.AspNet.Mvc" version="[4.0,)" />
+      <group targetFramework="net40">
+        <dependency id="Jdenticon-net" version="$version$" />
+        <dependency id="Microsoft.AspNet.Mvc" version="[4.0,)" />
+      </group>
+      <group targetFramework="net45">
+        <dependency id="Jdenticon-net" version="$version$" />
+        <dependency id="Microsoft.AspNet.Mvc" version="[4.0,)" />
+      </group>
     </dependencies>
   </metadata>
   <files>

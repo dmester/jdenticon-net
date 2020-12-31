@@ -12,7 +12,15 @@
     <description>Extends Jdenticon-net with features to use Jdenticon with WPF.</description>
     <tags>identicon avatar library WPF</tags>
     <dependencies>
-      <dependency id="Jdenticon-net" version="$version$" />
+      <group targetFramework="net40">
+        <dependency id="Jdenticon-net" version="$version$" />
+      </group>
+      <group targetFramework="net45">
+        <dependency id="Jdenticon-net" version="$version$" />
+      </group>
+      <group targetFramework="netcoreapp3.0">
+        <dependency id="Jdenticon-net" version="$version$" />
+      </group>
     </dependencies>
     <frameworkReferences>
       <group targetFramework="netcoreapp3.0">

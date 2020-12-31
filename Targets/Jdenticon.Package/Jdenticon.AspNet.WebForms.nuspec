@@ -15,7 +15,12 @@ This package contains:
 * Identicon web control</description>
     <tags>identicon avatar library ASP.NET WebForms</tags>
     <dependencies>
-      <dependency id="Jdenticon-net" version="$version$" />
+      <group targetFramework="net40">
+        <dependency id="Jdenticon-net" version="$version$" />
+      </group>
+      <group targetFramework="net45">
+        <dependency id="Jdenticon-net" version="$version$" />
+      </group>
     </dependencies>
   </metadata>
   <files>
