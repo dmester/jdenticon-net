@@ -17,31 +17,34 @@ Jdenticon-net is a .NET port of the JavaScript library [Jdenticon](https://githu
 * Render icons as PNG and SVG files with no dependencies to System.Drawing or WPF.
 * Integration package available for ASP.NET Core, ASP.NET WebForms, MVC and WebApi.
 * Generate SVG fragments to be used inline on websites.
-* Render icons directly on screen using GDI+.
+* Controls available for WPF and WinForms.
 
 ## Getting started
-Using Jdenticon-net is simple. Follow the steps below to integrate Jdenticon-net into your solution.
 
-### 1. Install the [NuGet package](https://www.nuget.org/packages/Jdenticon-net/)
+### ASP.NET
+* [Using Jdenticon in ASP.NET Core](https://jdenticon.com/net-api/N_Jdenticon_AspNetCore.html)
+* [Using Jdenticon in ASP.NET MVC](https://jdenticon.com/net-api/N_Jdenticon_AspNet_Mvc.html)
+* [Using Jdenticon in ASP.NET WebApi](https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebApi.html)
+* [Using Jdenticon in ASP.NET WebForms](https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebForms.html)
+
+### Desktop
+* [Showing identicons in WPF applications](https://jdenticon.com/net-api/N_Jdenticon_Wpf.html)
+* [Showing identicons in WinForms applications](https://jdenticon.com/net-api/N_Jdenticon_WinForms.html)
+
+### Command line
+
+Install the core [NuGet package](https://www.nuget.org/packages/Jdenticon-net/).
 ```
 PM> Install-Package Jdenticon-net
 ```
 
-### 2. Use `Identicon` to generate icons
+Use `Identicon` to generate icons
 ```csharp
 using Jdenticon;
 ----
 var icon = Identicon.FromValue("john.doe@example.faux", size: 100);
 icon.SaveAsPng("johndoe.png");
 ```
-
-### ASP.NET
-To get started using Jdenticon for ASP.NET, please see:
-
-* [Code examples for ASP.NET Core](https://jdenticon.com/net-api/N_Jdenticon_AspNetCore.html)
-* [Code examples for ASP.NET WebForms](https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebForms.html)
-* [Code examples for ASP.NET MVC](https://jdenticon.com/net-api/N_Jdenticon_AspNet_Mvc.html)
-* [Code examples for ASP.NET WebApi](https://jdenticon.com/net-api/N_Jdenticon_AspNet_WebApi.html)
 
 ## Quick Reference
 For full documentation, please see https://jdenticon.com/net-api/.
@@ -73,17 +76,6 @@ There are multiple methods in the `Identicon` class for generating icons:
 
   Generates an icon and saves it as an SVG image.
   
-* `Draw(graphics, rectangle)`
-
-  Generates an icon and draws it in the specified GDI+ drawing context. Suitable if you want to 
-  display the icon on the screen without first saving it to a file.
-  
-* `ToBitmap()`
-
-  Generates an icon as a [Bitmap](https://msdn.microsoft.com/en-us/library/system.drawing.bitmap(v=vs.110).aspx)
-  object for later usage. Remember that you are responsible for disposing the returned object when you don't 
-  need it anymore.
-
 * `ToSvg([fragment])`
 
   Generates an SVG string containing an icon. This can be useful for embedding icons in other SVG files or
