@@ -30,6 +30,7 @@ using System.IO;
 using System.Text;
 
 #if USE_SHARP_COMPRESS
+using SharpCompress.IO;
 using SharpCompress.Compressors;
 using SharpCompress.Compressors.Deflate;
 #else 
@@ -69,8 +70,8 @@ namespace Jdenticon.IO
             outputStream = stream;
 
 #if USE_SHARP_COMPRESS
-            deflateStream = new DeflateStream(stream, 
-                CompressionMode.Compress, CompressionLevel.Level3, true);
+            deflateStream = new DeflateStream(new NonDisposingStream(stream),
+                CompressionMode.Compress, CompressionLevel.Level3);
 #elif HAVE_COMPRESSION_LEVEL
             deflateStream = new DeflateStream(stream, 
                 CompressionLevel.Optimal, true);

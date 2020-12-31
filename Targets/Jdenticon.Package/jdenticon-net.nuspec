@@ -23,11 +23,11 @@ Commonly used types:
     <tags>identicon avatar library</tags>
     <dependencies>
       <group targetFramework="netstandard1.0">  
-        <dependency id="NETStandard.Library" version="1.6" />
-        <dependency id="SharpCompress" version="0.13.0" />
+        <dependency id="NETStandard.Library" version="1.6.0" />
+        <dependency id="SharpCompress" version="0.24.0" />
       </group>
       <group targetFramework="netstandard1.3">
-        <dependency id="NETStandard.Library" version="1.6" />
+        <dependency id="NETStandard.Library" version="1.6.0" />
       </group>
       <group targetFramework="netstandard2.0">
       </group>

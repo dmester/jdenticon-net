@@ -4,7 +4,7 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <AssemblyName>Jdenticon</AssemblyName>
     <RootNamespace>Jdenticon</RootNamespace>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
@@ -27,7 +27,7 @@
   <Import Project="$(SolutionDir)\Build\Target.props" />
 
   <ItemGroup>
-    <PackageReference Include="SharpCompress" Version="0.13.0" />
+    <PackageReference Include="SharpCompress" Version="0.24.0" />
   </ItemGroup>
 
 </Project>
