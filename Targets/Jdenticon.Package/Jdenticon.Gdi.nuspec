@@ -19,7 +19,6 @@ Features:
 This package is not intended for server-side applications.
 
 Also see the Jdenticon.WinForms package which includes a WinForms control.</description>
-    <summary>Extends Jdenticon-net with features to use Jdenticon from Windows Forms applications.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">

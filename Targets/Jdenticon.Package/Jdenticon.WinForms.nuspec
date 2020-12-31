@@ -13,7 +13,6 @@
 
 Features:
 * IdenticonView control</description>
-    <summary>Extends Jdenticon-net for usage in Windows Forms applications.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
       <group targetFramework="netcoreapp3.0">

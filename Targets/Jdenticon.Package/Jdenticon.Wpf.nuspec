@@ -10,7 +10,6 @@
     <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extends Jdenticon-net with features to use Jdenticon with WPF.</description>
-    <summary>Extends Jdenticon-net with features to use Jdenticon with WPF.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
       <dependency id="Jdenticon-net" version="$version$" />
