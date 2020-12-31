@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>Jdenticon.Wpf</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RootNamespace>Jdenticon.Wpf</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <Import Project="$(SolutionDir)\Build\Common.props" />
+
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
+
+  <Import Project="..\..\Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems" Label="Shared" />
+  <Import Project="$(SolutionDir)\Build\Target.props" />
+  <ItemGroup>
+    <ProjectReference Include="..\Jdenticon.NetStandard20\Jdenticon.NetStandard20.csproj" />
+  </ItemGroup>
+</Project>

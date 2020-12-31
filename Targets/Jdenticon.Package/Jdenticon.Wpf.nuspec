@@ -14,12 +14,19 @@
     <dependencies>
       <dependency id="Jdenticon-net" version="$version$" />
     </dependencies>
+    <frameworkReferences>
+      <group targetFramework="netcoreapp3.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.Wpf.dll" target="lib\net40\Jdenticon.Wpf.dll" />
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Wpf.dll" target="lib\net45\Jdenticon.Wpf.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netcore30\Jdenticon.Wpf.dll" target="lib\netcoreapp3.0\Jdenticon.Wpf.dll" />
     <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net40\Jdenticon.Wpf.xml" />
     <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net45\Jdenticon.Wpf.xml" />
+    <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\netcoreapp3.0\Jdenticon.Wpf.xml" />
     <file src="ReadMe.Wpf.txt" target="readme.txt" />
     <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />
   </files>

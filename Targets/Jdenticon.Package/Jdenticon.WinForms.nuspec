@@ -25,6 +25,11 @@ Features:
         <dependency id="Jdenticon.Gdi" version="$version$" />
       </group>
     </dependencies>
+    <frameworkReferences>
+      <group targetFramework="netcoreapp3.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.WinForms.dll" target="lib\net40\Jdenticon.WinForms.dll" />
