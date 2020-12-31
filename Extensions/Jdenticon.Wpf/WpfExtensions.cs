@@ -62,7 +62,7 @@ namespace Jdenticon
         /// <param name="rect">The bounds of the rendered icon, including padding.</param>
         public static void Draw(this Identicon icon, DrawingContext drawingContext, Rendering.Rectangle rect)
         {
-            var renderer = new WpfRenderer(drawingContext, rect.Width, rect.Height);
+            var renderer = new WpfRenderer(drawingContext);
             icon.Draw(renderer, rect);
         }
 
@@ -84,7 +84,7 @@ namespace Jdenticon
         /// <param name="drawingContext">Drawing context in which the icon will be rendered.</param>
         public static void Draw(this Identicon icon, DrawingContext drawingContext)
         {
-            var renderer = new WpfRenderer(drawingContext, icon.Size, icon.Size);
+            var renderer = new WpfRenderer(drawingContext);
             icon.Draw(renderer);
         }
     }

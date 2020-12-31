@@ -26,6 +26,7 @@
 using Jdenticon.Wpf.Extensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -41,7 +42,6 @@ namespace Jdenticon.Rendering
     /// </summary>
     public class WpfRenderer : Renderer
     {
-        private readonly int width, height;
         private readonly DrawingContext context;
         private readonly Dictionary<JdenticonColor, PathGeometry> pathsByColor = new Dictionary<JdenticonColor, PathGeometry>();
         private PathGeometry currentPath;
@@ -50,14 +50,15 @@ namespace Jdenticon.Rendering
         /// Creates an instance of the class <see cref="WpfRenderer"/>.
         /// </summary>
         /// <param name="context">The drawing context to which the icon will be rendered.</param>
-        /// <param name="width">Width of the drawing surface in pixels.</param>
-        /// <param name="height">Height of the drawing surface in pixels.</param>
-        public WpfRenderer(DrawingContext context, int width, int height)
+        public WpfRenderer(DrawingContext context)
         {
             this.context = context;
-            this.width = width;
-            this.height = height;
         }
+
+        /// <exclude/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Use WpfRenderer(DrawingContext) instead. Width and height are not used.")]
+        public WpfRenderer(DrawingContext context, int width, int height) : this(context) { }
 
         /// <inheritdoc />
         public override void Flush()
