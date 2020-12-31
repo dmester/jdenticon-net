@@ -188,6 +188,7 @@ namespace Jdenticon.Rendering
         /// multiple of the cell count as size.
         /// </summary>
         /// <param name="rect">The outer icon rectangle.</param>
+        /// <param name="padding">Padding of the icon.</param>
         protected Rectangle GetInnerRectangle(Rectangle rect, float padding)
         {
             var outerSize = Math.Min(rect.Width, rect.Height);

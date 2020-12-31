@@ -47,6 +47,10 @@ namespace Jdenticon.Rendering
 
         private HueString() { }
 
+        /// <summary>
+        /// Creates a <see cref="HueString"/> instance containing the hue values from a specified <see cref="HueCollection"/>.
+        /// </summary>
+        /// <param name="collection">Hue values from this collection is added to the hue string.</param>
         public HueString(HueCollection collection)
         {
             hues = new List<HueValue>(collection.Values);
@@ -55,11 +59,11 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Parses a list of hues specified as a string.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Hue string to parse.</param>
         /// <remarks>
         /// <para>
         ///     This method can parse string representations of a <see cref="HueString"/> created with the 
-        ///     <see cref="ToString"/> method.
+        ///     <see cref="ToString()"/> method.
         /// </para>
         /// <para>
         ///     The value is a comma separated list of hues. The default unit is turns in the range [0, 1), but another unit can be 
@@ -104,7 +108,8 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Parses a culture-specific list of hues specified as a string.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Hue string to parse.</param>
+        /// <param name="formatProvider">Format provider for parsing numbers.</param>
         /// <remarks>
         /// <para>
         ///     This method can parse string representations of a <see cref="HueString"/> created with the 
@@ -150,16 +155,19 @@ namespace Jdenticon.Rendering
             }
         }
 
+        /// <summary>
+        /// Gets a <see cref="HueString"/> with no hue values.
+        /// </summary>
         public static HueString Empty { get; } = new HueString();
 
         /// <summary>
         /// Parses a list of hues specified as a string.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Hue string to parse.</param>
         /// <remarks>
         /// <para>
         ///     This method can parse string representations of a <see cref="HueString"/> created with the 
-        ///     <see cref="ToString"/> method.
+        ///     <see cref="ToString()"/> method.
         /// </para>
         /// <para>
         ///     The value is a comma separated list of hues. The default unit is turns in the range [0, 1), but another unit can be 
@@ -205,7 +213,8 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Parses a culture-specific list of hues specified as a string.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Hue string to parse.</param>
+        /// <param name="formatProvider">Format provider for parsing numbers.</param>
         /// <remarks>
         /// <para>
         ///     This method can parse string representations of a <see cref="HueString"/> created with the 
@@ -312,6 +321,9 @@ namespace Jdenticon.Rendering
         /// <param name="b">The second hue string to compare.</param>
         public static bool operator !=(HueString a, HueString b) => !Equals(a, b);
 
+        /// <summary>
+        /// Gets a <see cref="HueCollection"/> containing the hues in this <see cref="HueString"/>.
+        /// </summary>
         public HueCollection ToCollection() => new HueCollection(hues);
 
         /// <summary>
@@ -327,6 +339,7 @@ namespace Jdenticon.Rendering
         /// Creates a culture-specific string representation of these hues.
         /// The result can be parsed using <see cref="HueString(string, IFormatProvider)"/>.
         /// </summary>
+        /// <param name="formatProvider">Format provider used for formatting numbers in the hue string.</param>
         public string ToString(IFormatProvider formatProvider)
         {
             return NumericList.Join(hues, formatProvider);

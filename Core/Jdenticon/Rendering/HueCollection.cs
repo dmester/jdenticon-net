@@ -286,7 +286,7 @@ namespace Jdenticon.Rendering
 
         /// <summary>
         /// Creates a string representation of the hues in this collection.
-        /// The result can be parsed using <see cref="Parse(string)"/>.
+        /// The result can be parsed using <see cref="HueString.Parse(string)"/>.
         /// </summary>
         public override string ToString()
         {
@@ -295,8 +295,9 @@ namespace Jdenticon.Rendering
 
         /// <summary>
         /// Creates a culture-specific string representation of the hues in this collection.
-        /// The result can be parsed using <see cref="Parse(string, IFormatProvider)"/>.
+        /// The result can be parsed using <see cref="HueString.Parse(string, IFormatProvider)"/>.
         /// </summary>
+        /// <param name="formatProvider">Format provider used for formatting numbers in the hue string.</param>
         public string ToString(IFormatProvider formatProvider)
         {
             return NumericList.Join(hues, formatProvider);

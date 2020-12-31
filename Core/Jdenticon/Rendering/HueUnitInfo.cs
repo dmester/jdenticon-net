@@ -67,7 +67,7 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Gets information about a specific unit.
         /// </summary>
-        /// <exception cref="ArgumentException">Unknown <paramref name="unit"/>.</exception>
+        /// <exception cref="ArgumentException">Unknown <paramref name="hueUnit"/>.</exception>
         public static HueUnitInfo Get(HueUnit hueUnit)
         {
             foreach (var unitInfo in Values)

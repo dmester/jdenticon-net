@@ -104,6 +104,7 @@ namespace Jdenticon.AspNetCore
         /// <summary>
         /// Creates and sends the identicon to the client asynchronously.
         /// </summary>
+        /// <param name="context">The context in which the result is executed.</param>
         public async Task ExecuteResultAsync(ActionContext context)
         {
             Stream content = null;

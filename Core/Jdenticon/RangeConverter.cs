@@ -34,14 +34,24 @@ using System.Globalization;
 
 namespace Jdenticon
 {
+    /// <summary>
+    /// Converts <see cref="Range{TValue}"/> to <see cref="string"/> and vice versa.
+    /// </summary>
     public class RangeConverter : TypeConverter
     {
         private readonly Type rangeType;
 
+        /// <summary>
+        /// Creates a new instance of <see cref="RangeConverter"/>.
+        /// </summary>
         public RangeConverter()
         {
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="RangeConverter"/> for a specific range bound value type.
+        /// </summary>
+        /// <param name="type">Type of range bound values.</param>
         protected RangeConverter(Type type)
         {
             rangeType = type;
