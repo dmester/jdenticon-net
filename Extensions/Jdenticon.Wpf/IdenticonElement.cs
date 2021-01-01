@@ -425,6 +425,7 @@ namespace Jdenticon.Wpf
             var width = ActualWidth;
             var height = ActualHeight;
             var iconSize = (int)Math.Min(width, height);
+            var rect = new Rect(0, 0, width, height);
 
             var background = Background;
             if (background != null)
@@ -432,7 +433,7 @@ namespace Jdenticon.Wpf
                 drawingContext.DrawRectangle(
                     brush: background,
                     pen: null,
-                    rectangle: new Rect(0, 0, width, height));
+                    rectangle: rect);
             }
 
             if (iconSize > 0)
@@ -441,7 +442,7 @@ namespace Jdenticon.Wpf
                 identicon.Style = IdenticonStyle;
                 identicon.Style.BackColor = JdenticonColor.Transparent; // The background was drawn above
                 identicon.IconGenerator = IconGenerator;
-                identicon.Draw(drawingContext);
+                identicon.Draw(drawingContext, rect);
             }
         }
 
