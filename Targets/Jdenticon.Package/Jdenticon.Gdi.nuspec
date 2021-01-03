@@ -7,6 +7,7 @@
     <authors>Daniel Mester Pirttijärvi</authors>
     <license type="expression">MIT</license>
     <projectUrl>http://jdenticon.com/</projectUrl>
+    <repository type="git" url="https://github.com/dmester/jdenticon-net.git" />
     <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This is a dependency to Jdenticon.WinForms. You probably want to install the Jdenticon.WinForms package instead.
