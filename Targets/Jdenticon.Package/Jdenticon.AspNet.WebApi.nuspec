@@ -23,6 +23,7 @@ This package contains:
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.AspNet.WebApi.dll" target="lib\net45\Jdenticon.AspNet.WebApi.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.AspNet.WebApi.pdb" target="lib\net45\Jdenticon.AspNet.WebApi.pdb" />
     <file src="..\..\releases\help\Jdenticon.AspNet.WebApi.xml" target="lib\net45\Jdenticon.AspNet.WebApi.xml" />
     <file src="ReadMe.WebApi.txt" target="readme.txt" />
     <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />

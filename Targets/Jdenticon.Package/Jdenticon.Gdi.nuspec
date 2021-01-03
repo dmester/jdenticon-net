@@ -33,8 +33,11 @@ This package is not intended for server-side applications.</description>
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.Gdi.dll" target="lib\net40\Jdenticon.Gdi.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.Gdi.pdb" target="lib\net40\Jdenticon.Gdi.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Gdi.dll" target="lib\net45\Jdenticon.Gdi.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Gdi.pdb" target="lib\net45\Jdenticon.Gdi.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\netstandard20\Jdenticon.Gdi.dll" target="lib\netstandard2.0\Jdenticon.Gdi.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard20\Jdenticon.Gdi.pdb" target="lib\netstandard2.0\Jdenticon.Gdi.pdb" />
     <file src="..\..\releases\help\Jdenticon.Gdi.xml" target="lib\net40\Jdenticon.Gdi.xml" />
     <file src="..\..\releases\help\Jdenticon.Gdi.xml" target="lib\net45\Jdenticon.Gdi.xml" />
     <file src="..\..\releases\help\Jdenticon.Gdi.xml" target="lib\netstandard2.0\Jdenticon.Gdi.xml" />

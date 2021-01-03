@@ -40,10 +40,20 @@
     <JdenticonPlatform>netcore30</JdenticonPlatform>
     <DefineConstants>$(DefineConstants);HAVE_COMPRESSION_LEVEL;HAVE_CRYPTO_CONFIG;HAVE_FILE_STREAM;HAVE_HASH_ALGORITHMS;HAVE_EXTENDED_COMPONENTMODEL;HAVE_MEMORYSTREAM_GETBUFFER;SUPPORT_ASYNC_AWAIT</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugSymbols>true</DebugSymbols>
+    <!-- Only portable pdbs are supported by NuGet -->
+    <!-- https://docs.microsoft.com/en-us/nuget/create-packages/symbol-packages-snupkg#nugetorg-symbol-package-constraints -->
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
   <Target Name="CopyAssembly" AfterTargets="Build">
-    <Copy  
-        SourceFiles="$(TargetPath)"  
+    <Copy
+        SourceFiles="$(TargetPath)"
         DestinationFolder="$(SolutionDir)\releases\Jdenticon.$(AssemblyVersion)\$(JdenticonPlatform)"
-    />  
+    />
+    <Copy
+        SourceFiles="$(TargetDir)$(TargetName).pdb"
+        DestinationFolder="$(SolutionDir)\releases\Jdenticon.$(AssemblyVersion)\$(JdenticonPlatform)"
+    />
   </Target> 
 </Project>

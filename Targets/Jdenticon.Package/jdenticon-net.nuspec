@@ -39,12 +39,19 @@ Commonly used types:
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net20\Jdenticon.dll" target="lib\net20\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net20\Jdenticon.pdb" target="lib\net20\Jdenticon.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\net35\Jdenticon.dll" target="lib\net35\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net35\Jdenticon.pdb" target="lib\net35\Jdenticon.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.dll" target="lib\net40\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.pdb" target="lib\net40\Jdenticon.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.dll" target="lib\net45\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.pdb" target="lib\net45\Jdenticon.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\netstandard10\Jdenticon.dll" target="lib\netstandard1.0\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard10\Jdenticon.pdb" target="lib\netstandard1.0\Jdenticon.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\netstandard13\Jdenticon.dll" target="lib\netstandard1.3\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard13\Jdenticon.pdb" target="lib\netstandard1.3\Jdenticon.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\netstandard20\Jdenticon.dll" target="lib\netstandard2.0\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard20\Jdenticon.pdb" target="lib\netstandard2.0\Jdenticon.pdb" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\net20\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\net35\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\net40\Jdenticon.xml" />

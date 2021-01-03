@@ -30,8 +30,11 @@
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.Wpf.dll" target="lib\net40\Jdenticon.Wpf.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.Wpf.pdb" target="lib\net40\Jdenticon.Wpf.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Wpf.dll" target="lib\net45\Jdenticon.Wpf.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.Wpf.pdb" target="lib\net45\Jdenticon.Wpf.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\netcore30\Jdenticon.Wpf.dll" target="lib\netcoreapp3.0\Jdenticon.Wpf.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netcore30\Jdenticon.Wpf.pdb" target="lib\netcoreapp3.0\Jdenticon.Wpf.pdb" />
     <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net40\Jdenticon.Wpf.xml" />
     <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\net45\Jdenticon.Wpf.xml" />
     <file src="..\..\releases\help\Jdenticon.Wpf.xml" target="lib\netcoreapp3.0\Jdenticon.Wpf.xml" />

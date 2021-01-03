@@ -32,7 +32,9 @@ This package contains:
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\netstandard16\Jdenticon.AspNetCore.dll" target="lib\netstandard1.6\Jdenticon.AspNetCore.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard16\Jdenticon.AspNetCore.pdb" target="lib\netstandard1.6\Jdenticon.AspNetCore.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\net451\Jdenticon.AspNetCore.dll" target="lib\net451\Jdenticon.AspNetCore.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net451\Jdenticon.AspNetCore.pdb" target="lib\net451\Jdenticon.AspNetCore.pdb" />
     <file src="..\..\releases\help\Jdenticon.AspNetCore.xml" target="lib\netstandard1.6\Jdenticon.AspNetCore.xml" />
     <file src="..\..\releases\help\Jdenticon.AspNetCore.xml" target="lib\net451\Jdenticon.AspNetCore.xml" />
     <file src="ReadMe.AspNetCore.txt" target="readme.txt" />

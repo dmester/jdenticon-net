@@ -29,7 +29,9 @@ This package contains:
   </metadata>
   <files>
     <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.AspNet.Mvc.dll" target="lib\net40\Jdenticon.AspNet.Mvc.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net40\Jdenticon.AspNet.Mvc.pdb" target="lib\net40\Jdenticon.AspNet.Mvc.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.AspNet.Mvc.dll" target="lib\net45\Jdenticon.AspNet.Mvc.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\net45\Jdenticon.AspNet.Mvc.pdb" target="lib\net45\Jdenticon.AspNet.Mvc.pdb" />
     <file src="..\..\releases\help\Jdenticon.AspNet.Mvc.xml" target="lib\net40\Jdenticon.AspNet.Mvc.xml" />
     <file src="..\..\releases\help\Jdenticon.AspNet.Mvc.xml" target="lib\net45\Jdenticon.AspNet.Mvc.xml" />
     <file src="Web.config.Mvc.transform" target="Content\Web.config.transform" />
