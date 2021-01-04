@@ -68,12 +68,13 @@ namespace Jdenticon
         {
             if (value is string str)
             {
-                var propertyType = rangeType ?? context.PropertyDescriptor?.PropertyType;
+                var propertyType = rangeType ?? context?.PropertyDescriptor?.PropertyType;
                 if (propertyType != null && propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Range<>))
                 {
                     var rangeValueType = propertyType.GetGenericArguments()[0];
 
-                    var parts = NumericList.Parse(str, culture);
+                    var nonNullCulture = culture ?? CultureInfo.InvariantCulture;
+                    var parts = NumericList.Parse(str, nonNullCulture);
 
                     if (parts.Length > 0 && parts.Length < 3)
                     {
@@ -82,12 +83,12 @@ namespace Jdenticon
 
                         if (parts.Length == 1)
                         {
-                            from = to = Convert.ChangeType(parts[0], rangeValueType, culture);
+                            from = to = Convert.ChangeType(parts[0], rangeValueType, nonNullCulture);
                         }
                         else
                         {
-                            from = Convert.ChangeType(parts[0], rangeValueType, culture);
-                            to = Convert.ChangeType(parts[1], rangeValueType, culture);
+                            from = Convert.ChangeType(parts[0], rangeValueType, nonNullCulture);
+                            to = Convert.ChangeType(parts[1], rangeValueType, nonNullCulture);
                         }
 
                         return Activator.CreateInstance(propertyType, from, to);
@@ -127,11 +128,12 @@ namespace Jdenticon
                     }
                     else if (destinationType == typeof(string))
                     {
-                        var result = Convert.ToString(from, culture);
+                        var nonNullCulture = culture ?? CultureInfo.InvariantCulture;
+                        var result = Convert.ToString(from, nonNullCulture);
 
                         if (!Equals(from, to))
                         {
-                            result += NumericList.GetSeparator(culture) + " " + Convert.ToString(to, culture);
+                            result += NumericList.GetSeparator(nonNullCulture) + " " + Convert.ToString(to, nonNullCulture);
                         }
 
                         return result;

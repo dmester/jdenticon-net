@@ -75,7 +75,7 @@ namespace Jdenticon.Rendering
         {
             if (value is string str)
             {
-                return HueString.Parse(str, culture);
+                return HueString.Parse(str, culture ?? CultureInfo.InvariantCulture);
             }
 
             return base.ConvertFrom(context, culture, value);
