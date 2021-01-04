@@ -2,4 +2,4 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Jdenticon ASP.NET Core .NET Standard 1.6")]
+[assembly: AssemblyTitle("Jdenticon ASP.NET Core .NET Standard 2.1")]

@@ -55,8 +55,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.Package", "Target
 		{172BE500-E675-4491-8169-6CEC51409B34} = {172BE500-E675-4491-8169-6CEC51409B34}
 		{0D43650A-F62D-44C2-9CA2-EBF93DCCAED6} = {0D43650A-F62D-44C2-9CA2-EBF93DCCAED6}
 		{0B04331D-7C41-4312-8032-C7ECB447F051} = {0B04331D-7C41-4312-8032-C7ECB447F051}
+		{8FBF452E-C013-449B-905D-547CC95E3E26} = {8FBF452E-C013-449B-905D-547CC95E3E26}
 		{6B54783A-AAD1-4F6C-B77A-4D37B233D7E2} = {6B54783A-AAD1-4F6C-B77A-4D37B233D7E2}
 		{51D5BB3D-498D-4A3D-8D92-305BE6737C97} = {51D5BB3D-498D-4A3D-8D92-305BE6737C97}
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E} = {1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}
 		{94AA035B-D967-4ED8-A499-989F0F7FE1C6} = {94AA035B-D967-4ED8-A499-989F0F7FE1C6}
 		{D2E2F878-98C3-4138-B177-F6287AF83909} = {D2E2F878-98C3-4138-B177-F6287AF83909}
 		{D34FFA7E-31DE-4B5A-9AAD-A13777567D38} = {D34FFA7E-31DE-4B5A-9AAD-A13777567D38}
@@ -140,6 +142,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Polyfills", "Polyfills", "{
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NullableReferenceTypes", "Polyfills\NullableReferenceTypes\NullableReferenceTypes.shproj", "{2504231C-E1E8-4DFD-A470-F03B64DFF133}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jdenticon.NetStandard21", "Targets\Jdenticon.NetStandard21\Jdenticon.NetStandard21.csproj", "{8FBF452E-C013-449B-905D-547CC95E3E26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jdenticon.AspNetCore.NetStandard21", "Targets\Jdenticon.AspNetCore.NetStandard21\Jdenticon.AspNetCore.NetStandard21.csproj", "{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Core\AssemblyInfo\AssemblyInfo.projitems*{0b04331d-7c41-4312-8032-c7ecb447f051}*SharedItemsImports = 4
@@ -152,6 +158,8 @@ Global
 		Core\AssemblyInfo\AssemblyInfo.projitems*{0d43650a-f62d-44c2-9ca2-ebf93dccaed6}*SharedItemsImports = 4
 		Core\Jdenticon\Jdenticon.projitems*{0d43650a-f62d-44c2-9ca2-ebf93dccaed6}*SharedItemsImports = 4
 		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{0d43650a-f62d-44c2-9ca2-ebf93dccaed6}*SharedItemsImports = 4
+		Core\AssemblyInfo\AssemblyInfo.projitems*{1477ce4e-a70c-41cc-b6b1-0d0a2bd58d3e}*SharedItemsImports = 5
+		Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems*{1477ce4e-a70c-41cc-b6b1-0d0a2bd58d3e}*SharedItemsImports = 5
 		Core\AssemblyInfo\AssemblyInfo.projitems*{172be500-e675-4491-8169-6cec51409b34}*SharedItemsImports = 4
 		Extensions\Jdenticon.Gdi\Jdenticon.Gdi.projitems*{172be500-e675-4491-8169-6cec51409b34}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{18390b98-d7a0-4ded-b808-b59ef0452919}*SharedItemsImports = 4
@@ -181,6 +189,8 @@ Global
 		Core\Jdenticon\Jdenticon.projitems*{887bf1ab-e9d3-4a07-bfaf-7bcea2a4294e}*SharedItemsImports = 5
 		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{887bf1ab-e9d3-4a07-bfaf-7bcea2a4294e}*SharedItemsImports = 5
 		Extensions\Jdenticon.Gdi\Jdenticon.Gdi.projitems*{891a1f69-047b-4125-96ea-44a5945aedb5}*SharedItemsImports = 13
+		Core\AssemblyInfo\AssemblyInfo.projitems*{8fbf452e-c013-449b-905d-547cc95e3e26}*SharedItemsImports = 5
+		Core\Jdenticon\Jdenticon.projitems*{8fbf452e-c013-449b-905d-547cc95e3e26}*SharedItemsImports = 5
 		Core\AssemblyInfo\AssemblyInfo.projitems*{90e670eb-1a82-44d9-bc76-336cab3b555a}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{90e670eb-1a82-44d9-bc76-336cab3b555a}*SharedItemsImports = 4
 		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{90e670eb-1a82-44d9-bc76-336cab3b555a}*SharedItemsImports = 4
@@ -827,6 +837,42 @@ Global
 		{64BCF99E-1285-457C-8F30-EB3F2BB36687}.VSTS|x64.Build.0 = Debug|Any CPU
 		{64BCF99E-1285-457C-8F30-EB3F2BB36687}.VSTS|x86.ActiveCfg = Debug|Any CPU
 		{64BCF99E-1285-457C-8F30-EB3F2BB36687}.VSTS|x86.Build.0 = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Debug|x64.Build.0 = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Debug|x86.Build.0 = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Release|x64.ActiveCfg = Release|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Release|x64.Build.0 = Release|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Release|x86.ActiveCfg = Release|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.Release|x86.Build.0 = Release|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.VSTS|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.VSTS|Any CPU.Build.0 = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.VSTS|x64.ActiveCfg = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.VSTS|x64.Build.0 = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.VSTS|x86.ActiveCfg = Debug|Any CPU
+		{8FBF452E-C013-449B-905D-547CC95E3E26}.VSTS|x86.Build.0 = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Debug|x64.Build.0 = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Debug|x86.Build.0 = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Release|x64.ActiveCfg = Release|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Release|x64.Build.0 = Release|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Release|x86.ActiveCfg = Release|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.Release|x86.Build.0 = Release|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.VSTS|Any CPU.ActiveCfg = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.VSTS|Any CPU.Build.0 = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.VSTS|x64.ActiveCfg = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.VSTS|x64.Build.0 = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.VSTS|x86.ActiveCfg = Debug|Any CPU
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E}.VSTS|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -876,6 +922,8 @@ Global
 		{365306B0-A687-405A-85F1-10AC8876ADAA} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{64BCF99E-1285-457C-8F30-EB3F2BB36687} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{2504231C-E1E8-4DFD-A470-F03B64DFF133} = {FE59D67F-896C-4833-B5DB-99507045FCFC}
+		{8FBF452E-C013-449B-905D-547CC95E3E26} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
+		{1477CE4E-A70C-41CC-B6B1-0D0A2BD58D3E} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DE0E126-9EE5-44E1-BEE9-6022E44EA77E}

@@ -2,5 +2,5 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Jdenticon .NET 4.5")]
+[assembly: AssemblyTitle("Jdenticon ASP.NET Core .NET 4.5")]
 

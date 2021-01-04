@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>Jdenticon.AspNetCore</AssemblyName>
+    <RootNamespace>Jdenticon</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
+
+  <Import Project="..\..\Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems" Label="Shared" />
+
+  <Import Project="$(SolutionDir)\Build\Common.props" />
+  <Import Project="$(SolutionDir)\Build\Target.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.0.4" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Jdenticon.NetStandard21\Jdenticon.NetStandard21.csproj" />
+  </ItemGroup>
+</Project>

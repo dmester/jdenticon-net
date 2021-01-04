@@ -23,6 +23,8 @@ Commonly used types:
     <summary>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.</summary>
     <tags>identicon avatar library</tags>
     <dependencies>
+      <group targetFramework="netstandard2.1">
+      </group>
       <group targetFramework="netstandard2.0">
       </group>
       <group targetFramework="netstandard1.3">
@@ -53,6 +55,8 @@ Commonly used types:
     <file src="..\..\releases\Jdenticon.$version$\netstandard13\Jdenticon.pdb" target="lib\netstandard1.3\Jdenticon.pdb" />
     <file src="..\..\releases\Jdenticon.$version$\netstandard20\Jdenticon.dll" target="lib\netstandard2.0\Jdenticon.dll" />
     <file src="..\..\releases\Jdenticon.$version$\netstandard20\Jdenticon.pdb" target="lib\netstandard2.0\Jdenticon.pdb" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard21\Jdenticon.dll" target="lib\netstandard2.1\Jdenticon.dll" />
+    <file src="..\..\releases\Jdenticon.$version$\netstandard21\Jdenticon.pdb" target="lib\netstandard2.1\Jdenticon.pdb" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\net20\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\net35\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\net40\Jdenticon.xml" />
@@ -60,6 +64,7 @@ Commonly used types:
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard1.0\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard1.3\Jdenticon.xml" />
     <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard2.0\Jdenticon.xml" />
+    <file src="..\..\releases\help\Jdenticon.xml" target="lib\netstandard2.1\Jdenticon.xml" />
     <file src="ReadMe.Core.txt" target="readme.txt" />
     <file src="nuget-logo-net.png" target="images\jdenticon-logo-net.png" />
   </files>

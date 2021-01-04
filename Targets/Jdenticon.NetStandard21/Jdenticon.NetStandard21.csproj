@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>Jdenticon</AssemblyName>
+    <RootNamespace>Jdenticon</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
+
+  <Import Project="..\..\Core\Jdenticon\Jdenticon.projitems" Label="Shared" />
+
+  <Import Project="$(SolutionDir)\Build\Common.props" />
+  <Import Project="$(SolutionDir)\Build\Target.props" />
+</Project>
