@@ -211,6 +211,7 @@ Global
 		Core\AssemblyInfo\AssemblyInfo.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
+		Core\AssemblyInfo\AssemblyInfo.projitems*{b632fd1b-9081-4f49-b092-f1474e824977}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{b77f0ac0-0c45-4238-bbc4-9171ac1f079c}*SharedItemsImports = 5
 		Extensions\Jdenticon.WinForms\Jdenticon.WinForms.projitems*{b77f0ac0-0c45-4238-bbc4-9171ac1f079c}*SharedItemsImports = 5
 		Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems*{bf0e624e-66ff-4712-91ae-4fd227bd5ab6}*SharedItemsImports = 13
