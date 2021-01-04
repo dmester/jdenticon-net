@@ -29,6 +29,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -40,7 +42,7 @@ namespace Jdenticon.Rendering
 #if HAVE_EXTENDED_COMPONENTMODEL
     [TypeConverter(typeof(HueStringConverter))]
 #endif
-    public class HueString : IFormattable, IEquatable<HueString>
+    public class HueString : IFormattable, IEquatable<HueString?>
     {
         private readonly List<HueValue> hues = new List<HueValue>();
         private int? hashCode;
@@ -51,9 +53,10 @@ namespace Jdenticon.Rendering
         /// Creates a <see cref="HueString"/> instance containing the hue values from a specified <see cref="HueCollection"/>.
         /// </summary>
         /// <param name="collection">Hue values from this collection is added to the hue string.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="collection"/> was <c>null</c>.</exception>
         public HueString(HueCollection collection)
         {
-            hues = new List<HueValue>(collection.Values);
+            hues = new List<HueValue>(collection.Values ?? throw new ArgumentNullException(nameof(collection)));
         }
 
         /// <summary>
@@ -101,7 +104,7 @@ namespace Jdenticon.Rendering
         ///     to use a localized decimal separator.
         /// </para>
         /// </remarks>
-        public HueString(string value) : this(value, CultureInfo.InvariantCulture)
+        public HueString(string? value) : this(value, CultureInfo.InvariantCulture)
         {
         }
 
@@ -147,9 +150,9 @@ namespace Jdenticon.Rendering
         /// </item>
         /// </list>
         /// </remarks>
-        public HueString(string value, IFormatProvider formatProvider)
+        public HueString(string? value, IFormatProvider formatProvider)
         {
-            foreach (var hueString in NumericList.Split(value, formatProvider))
+            foreach (var hueString in NumericList.Parse(value, formatProvider))
             {
                 hues.Add(HueValue.Parse(hueString, formatProvider));
             }
@@ -205,7 +208,7 @@ namespace Jdenticon.Rendering
         ///     to use a localized decimal separator.
         /// </para>
         /// </remarks>
-        public static HueString Parse(string value)
+        public static HueString Parse(string? value)
         {
             return new HueString(value);
         }
@@ -252,7 +255,7 @@ namespace Jdenticon.Rendering
         /// </item>
         /// </list>
         /// </remarks>
-        public static HueString Parse(string value, IFormatProvider formatProvider)
+        public static HueString Parse(string? value, IFormatProvider formatProvider)
         {
             return new HueString(value, formatProvider);
         }
@@ -278,12 +281,12 @@ namespace Jdenticon.Rendering
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj) => Equals(obj as HueString);
+        public override bool Equals(object? obj) => Equals(obj as HueString);
 
         /// <inheritdoc />
-        public bool Equals(HueString other)
+        public bool Equals(HueString? other)
         {
-            if (other == null)
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
@@ -312,14 +315,14 @@ namespace Jdenticon.Rendering
         /// </summary>
         /// <param name="a">The first cohue stringlor to compare.</param>
         /// <param name="b">The second hue string to compare.</param>
-        public static bool operator ==(HueString a, HueString b) => Equals(a, b);
+        public static bool operator ==(HueString? a, HueString? b) => Equals(a, b);
 
         /// <summary>
         /// Checks if the two <see cref="HueString"/> have different hue values.
         /// </summary>
         /// <param name="a">The first hue string to compare.</param>
         /// <param name="b">The second hue string to compare.</param>
-        public static bool operator !=(HueString a, HueString b) => !Equals(a, b);
+        public static bool operator !=(HueString? a, HueString? b) => !Equals(a, b);
 
         /// <summary>
         /// Gets a <see cref="HueCollection"/> containing the hues in this <see cref="HueString"/>.

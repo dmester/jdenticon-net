@@ -28,6 +28,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Shapes
 {
     /// <summary>
@@ -38,7 +40,7 @@ namespace Jdenticon.Shapes
         /// <summary>
         /// The shape definition to be used to render the shape.
         /// </summary>
-        public ShapeDefinition Definition { get; set; }
+        public ShapeDefinition Definition { get; set; } = (renderer, cell, index) => { };
 
         /// <summary>
         /// The fill color of the shape.
@@ -48,7 +50,7 @@ namespace Jdenticon.Shapes
         /// <summary>
         /// The positions in which the shape will be rendered.
         /// </summary>
-        public ShapePositionCollection Positions { get; set; }
+        public ShapePositionCollection Positions { get; set; } = new ShapePositionCollection();
 
         /// <summary>
         /// The rotation index of the icon in the first position.

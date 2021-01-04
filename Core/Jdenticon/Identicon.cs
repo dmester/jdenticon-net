@@ -30,6 +30,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon
 {
     /// <summary>
@@ -69,8 +71,8 @@ namespace Jdenticon
     {
         private byte[] hash;
         private int size;
-        private IconGenerator iconGenerator;
-        private IdenticonStyle style;
+        private IconGenerator? iconGenerator;
+        private IdenticonStyle? style;
         private static IdenticonStyle defaultStyle = new IdenticonStyle();
 
         /// <summary>
@@ -145,7 +147,7 @@ namespace Jdenticon
         /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> is less than 1 pixel.</exception>
         /// <returns>An <see cref="Identicon"/> instance for the hash of <paramref name="value"/>.</returns>
-        public static Identicon FromValue(object value, int size, string hashAlgorithmName = "SHA1")
+        public static Identicon FromValue(object? value, int size, string hashAlgorithmName = "SHA1")
         {
             return new Identicon(HashGenerator.ComputeHash(value, hashAlgorithmName), size);
         }

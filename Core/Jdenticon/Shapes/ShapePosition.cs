@@ -27,6 +27,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Shapes
 {
     /// <summary>
@@ -84,7 +86,7 @@ namespace Jdenticon.Shapes
         /// Checks if this position is equal to another position.
         /// </summary>
         /// <param name="obj">The object to compare with.</param>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is ShapePosition && Equals((ShapePosition)obj);
         }

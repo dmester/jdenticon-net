@@ -136,15 +136,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdenticon.WinForms.Net40", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jdenticon.Wpf.NetCore30", "Targets\Jdenticon.Wpf.NetCore30\Jdenticon.Wpf.NetCore30.csproj", "{64BCF99E-1285-457C-8F30-EB3F2BB36687}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Polyfills", "Polyfills", "{FE59D67F-896C-4833-B5DB-99507045FCFC}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NullableReferenceTypes", "Polyfills\NullableReferenceTypes\NullableReferenceTypes.shproj", "{2504231C-E1E8-4DFD-A470-F03B64DFF133}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Core\AssemblyInfo\AssemblyInfo.projitems*{0b04331d-7c41-4312-8032-c7ecb447f051}*SharedItemsImports = 4
 		Core\Jdenticon\Jdenticon.projitems*{0b04331d-7c41-4312-8032-c7ecb447f051}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{0b04331d-7c41-4312-8032-c7ecb447f051}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{0bcade58-dd80-4abb-a193-499abe5df34f}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{0ca14689-3236-4159-8180-1bc0a30dfa8a}*SharedItemsImports = 4
 		Core\Jdenticon\Jdenticon.projitems*{0ca14689-3236-4159-8180-1bc0a30dfa8a}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{0ca14689-3236-4159-8180-1bc0a30dfa8a}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{0d43650a-f62d-44c2-9ca2-ebf93dccaed6}*SharedItemsImports = 4
 		Core\Jdenticon\Jdenticon.projitems*{0d43650a-f62d-44c2-9ca2-ebf93dccaed6}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{0d43650a-f62d-44c2-9ca2-ebf93dccaed6}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{172be500-e675-4491-8169-6cec51409b34}*SharedItemsImports = 4
 		Extensions\Jdenticon.Gdi\Jdenticon.Gdi.projitems*{172be500-e675-4491-8169-6cec51409b34}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{18390b98-d7a0-4ded-b808-b59ef0452919}*SharedItemsImports = 4
@@ -152,10 +159,13 @@ Global
 		Core\AssemblyInfo\AssemblyInfo.projitems*{19700cfa-a478-4402-9f31-20b780ac5d26}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{1c7af3bd-ba4b-4ec9-8443-86d726aaf8df}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNet.WebForms\Jdenticon.AspNet.WebForms.projitems*{1c7af3bd-ba4b-4ec9-8443-86d726aaf8df}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{2504231c-e1e8-4dfd-a470-f03b64dff133}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{365306b0-a687-405a-85f1-10ac8876adaa}*SharedItemsImports = 4
 		Extensions\Jdenticon.WinForms\Jdenticon.WinForms.projitems*{365306b0-a687-405a-85f1-10ac8876adaa}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{365306b0-a687-405a-85f1-10ac8876adaa}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{376df6d0-72b0-441e-a265-60574a314bb0}*SharedItemsImports = 4
 		Core\Jdenticon\Jdenticon.projitems*{376df6d0-72b0-441e-a265-60574a314bb0}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{376df6d0-72b0-441e-a265-60574a314bb0}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNet.WebForms\Jdenticon.AspNet.WebForms.projitems*{3ae16ddb-0ecb-4c73-9f8f-373274d82d3e}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{51d5bb3d-498d-4a3d-8d92-305be6737c97}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNet.WebApi\Jdenticon.AspNet.WebApi.projitems*{51d5bb3d-498d-4a3d-8d92-305be6737c97}*SharedItemsImports = 4
@@ -169,30 +179,38 @@ Global
 		Extensions\Jdenticon.WinForms\Jdenticon.WinForms.projitems*{82e20bc5-f9ce-48ab-b3ec-39d914dde55a}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{887bf1ab-e9d3-4a07-bfaf-7bcea2a4294e}*SharedItemsImports = 5
 		Core\Jdenticon\Jdenticon.projitems*{887bf1ab-e9d3-4a07-bfaf-7bcea2a4294e}*SharedItemsImports = 5
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{887bf1ab-e9d3-4a07-bfaf-7bcea2a4294e}*SharedItemsImports = 5
 		Extensions\Jdenticon.Gdi\Jdenticon.Gdi.projitems*{891a1f69-047b-4125-96ea-44a5945aedb5}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{90e670eb-1a82-44d9-bc76-336cab3b555a}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{90e670eb-1a82-44d9-bc76-336cab3b555a}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{90e670eb-1a82-44d9-bc76-336cab3b555a}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{925d23fd-ef96-460d-9585-80aa08cd5bee}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems*{925d23fd-ef96-460d-9585-80aa08cd5bee}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{94aa035b-d967-4ed8-a499-989f0f7fe1c6}*SharedItemsImports = 5
 		Core\Jdenticon\Jdenticon.projitems*{94aa035b-d967-4ed8-a499-989f0f7fe1c6}*SharedItemsImports = 5
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{94aa035b-d967-4ed8-a499-989f0f7fe1c6}*SharedItemsImports = 5
 		Core\AssemblyInfo\AssemblyInfo.projitems*{99304cc2-d36a-4836-8ef2-ca77a35b0418}*SharedItemsImports = 5
 		Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems*{99304cc2-d36a-4836-8ef2-ca77a35b0418}*SharedItemsImports = 5
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{99304cc2-d36a-4836-8ef2-ca77a35b0418}*SharedItemsImports = 5
 		Core\AssemblyInfo\AssemblyInfo.projitems*{99af8b33-2e00-41d9-afda-74d73004bee8}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{a35ab996-73cb-4b80-b85e-de531147c476}*SharedItemsImports = 13
 		Core\Jdenticon\Jdenticon.projitems*{a3807953-1974-4f93-891b-6d1e0efe7a27}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{a55ed9f4-aca2-4aaa-9a26-b74f82b3d5f1}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems*{a55ed9f4-aca2-4aaa-9a26-b74f82b3d5f1}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{a55ed9f4-aca2-4aaa-9a26-b74f82b3d5f1}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{b38298aa-acef-423c-8091-9fc2509dbfcb}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{b77f0ac0-0c45-4238-bbc4-9171ac1f079c}*SharedItemsImports = 5
 		Extensions\Jdenticon.WinForms\Jdenticon.WinForms.projitems*{b77f0ac0-0c45-4238-bbc4-9171ac1f079c}*SharedItemsImports = 5
 		Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems*{bf0e624e-66ff-4712-91ae-4fd227bd5ab6}*SharedItemsImports = 13
 		Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems*{cbc73b22-177f-4c0a-87bb-e16e7fdef1b5}*SharedItemsImports = 13
 		Core\AssemblyInfo\AssemblyInfo.projitems*{d2e2f878-98c3-4138-b177-f6287af83909}*SharedItemsImports = 5
 		Core\Jdenticon\Jdenticon.projitems*{d2e2f878-98c3-4138-b177-f6287af83909}*SharedItemsImports = 5
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{d2e2f878-98c3-4138-b177-f6287af83909}*SharedItemsImports = 5
 		Core\AssemblyInfo\AssemblyInfo.projitems*{d34ffa7e-31de-4b5a-9aad-a13777567d38}*SharedItemsImports = 4
 		Extensions\Jdenticon.AspNetCore\Jdenticon.AspNetCore.projitems*{d34ffa7e-31de-4b5a-9aad-a13777567d38}*SharedItemsImports = 4
+		Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems*{d34ffa7e-31de-4b5a-9aad-a13777567d38}*SharedItemsImports = 4
 		Core\AssemblyInfo\AssemblyInfo.projitems*{e140d1ea-288c-41d5-b5d5-95852af80c25}*SharedItemsImports = 5
 		Extensions\Jdenticon.Gdi\Jdenticon.Gdi.projitems*{e140d1ea-288c-41d5-b5d5-95852af80c25}*SharedItemsImports = 5
 	EndGlobalSection
@@ -857,6 +875,7 @@ Global
 		{82E20BC5-F9CE-48AB-B3EC-39D914DDE55A} = {CD5F2665-2F1C-438B-A8EC-5A967516B2C9}
 		{365306B0-A687-405A-85F1-10AC8876ADAA} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
 		{64BCF99E-1285-457C-8F30-EB3F2BB36687} = {F780E026-BA07-4769-9BE1-7E9CC9FA4B8B}
+		{2504231C-E1E8-4DFD-A470-F03B64DFF133} = {FE59D67F-896C-4833-B5DB-99507045FCFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DE0E126-9EE5-44E1-BEE9-6022E44EA77E}

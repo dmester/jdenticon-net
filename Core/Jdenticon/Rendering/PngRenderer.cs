@@ -29,6 +29,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -37,7 +39,7 @@ namespace Jdenticon.Rendering
     public class PngRenderer : Renderer
     {
         private Bitmap bitmap;
-        private Drawing.Path path;
+        private Drawing.Path? path;
 
         /// <summary>
         /// Creates an instance of the class <see cref="PngRenderer"/>.
@@ -52,6 +54,8 @@ namespace Jdenticon.Rendering
         /// <inheritdoc />
         protected override void AddCircleNoTransform(PointF location, float diameter, bool counterClockwise)
         {
+            if (path == null) throw new InvalidOperationException("No active shape. Call BeginShape before calling this method.");
+
             path.AddCircle(
                 new PointF(
                     location.X + diameter / 2, location.Y + diameter / 2
@@ -63,6 +67,9 @@ namespace Jdenticon.Rendering
         /// <inheritdoc />
         protected override void AddPolygonNoTransform(PointF[] points)
         {
+            if (points == null) throw new ArgumentNullException(nameof(points));
+            if (path == null) throw new InvalidOperationException("No active shape. Call BeginShape before calling this method.");
+
             path.AddPolygon(points);
         }
 

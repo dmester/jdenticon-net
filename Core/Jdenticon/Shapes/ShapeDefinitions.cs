@@ -28,6 +28,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Shapes
 {
     /// <summary>
@@ -203,11 +205,11 @@ namespace Jdenticon.Shapes
         /// <summary>
         /// Gets the definition of the shapes that are placed in the center of the icon.
         /// </summary>
-        public static IList<ShapeDefinition> CenterShapes { get; private set; }
+        public static IList<ShapeDefinition> CenterShapes { get; }
 
         /// <summary>
         /// Gets the definition of the shapes that are placed around the center of the icon.
         /// </summary>
-        public static IList<ShapeDefinition> OuterShapes { get; private set; }
+        public static IList<ShapeDefinition> OuterShapes { get; }
     }
 }

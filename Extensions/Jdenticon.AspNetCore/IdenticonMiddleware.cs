@@ -32,6 +32,8 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable enable
+
 namespace Jdenticon.AspNetCore
 {
     /// <summary>
@@ -76,8 +78,11 @@ namespace Jdenticon.AspNetCore
         /// Processes a request and determines whether it can be handled as an identicon request.
         /// </summary>
         /// <param name="context">Current context.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="context"/> was <c>null</c>.</exception>
         public Task InvokeAsync(HttpContext context)
         {
+            if (context == null) throw new ArgumentNullException(nameof(context));
+
             var path = context.Request.Path;
             if (path.HasValue)
             {

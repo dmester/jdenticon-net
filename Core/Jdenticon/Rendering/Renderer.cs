@@ -27,6 +27,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -55,6 +57,8 @@ namespace Jdenticon.Rendering
         /// Adds a polygon without translating or changing direction of the points.
         /// </summary>
         /// <param name="points">The points that the polygon consists of.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="points"/> is <c>null</c>.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if this method is called without first calling <see cref="BeginShape(Color)"/>.</exception>
         protected abstract void AddPolygonNoTransform(PointF[] points);
 
         /// <summary>
@@ -63,6 +67,7 @@ namespace Jdenticon.Rendering
         /// <param name="location">The upper-left position of the bounding rectangle.</param>
         /// <param name="diameter">The diameter of the circle.</param>
         /// <param name="counterClockwise">If <c>true</c> the cirlce will be drawn counter clockwise.</param>
+        /// <exception cref="InvalidOperationException">Thrown if this method is called without first calling <see cref="BeginShape(Color)"/>.</exception>
         protected abstract void AddCircleNoTransform(PointF location, float diameter, bool counterClockwise);
 
         /// <summary>
@@ -131,8 +136,10 @@ namespace Jdenticon.Rendering
         /// </summary>
         /// <param name="points">List of points that the polygon consists of.</param>
         /// <param name="invert">If <c>true</c> the area of the polygon will be removed from the filled area.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="points"/> was <c>null</c>.</exception>
         public void AddPolygon(PointF[] points, bool invert = false)
         {
+            if (points == null) throw new ArgumentNullException(nameof(points));
             AddPolygonCore((PointF[])points.Clone(), invert);
         }
 

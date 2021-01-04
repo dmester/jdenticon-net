@@ -26,7 +26,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text;
+
+#nullable enable
 
 namespace Jdenticon.Rendering
 {
@@ -123,7 +126,7 @@ namespace Jdenticon.Rendering
         /// <inheritdoc cref="ToString(string, IFormatProvider)" />
         public string ToString(string format)
         {
-            return ToString(format, null);
+            return ToString(format, CultureInfo.InvariantCulture);
         }
 #pragma warning restore CS1573
 
@@ -287,7 +290,7 @@ namespace Jdenticon.Rendering
         /// Checks if this color has the same RGBA value as another color.
         /// </summary>
         /// <param name="obj">The color to compare.</param>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Color && Equals((Color)obj);
         }

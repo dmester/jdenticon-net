@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     partial struct Color
@@ -11,9 +13,9 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Tries to parse a string to a <see cref="Color"/> without throwing any exception upon failures.
         /// </summary>
-        /// <param name="s">The string to be parsed as a <see cref="Color"/>.</param>
+        /// <param name="input">The string to be parsed as a <see cref="Color"/>.</param>
         /// <param name="result">The parsed color.</param>
-        /// <returns><c>true</c> if <paramref name="s"/> could be parsed as a color, otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if <paramref name="input"/> could be parsed as a color, otherwise <c>false</c>.</returns>
         /// <remarks>
         /// <para>
         /// This method will parse all formats listed in the 
@@ -133,9 +135,9 @@ namespace Jdenticon.Rendering
         ///     </item>
         /// </list>
         /// </remarks>
-        public static bool TryParse(string s, out Color result)
+        public static bool TryParse(string? input, out Color result)
         {
-            return TryParse(s, out result, false);
+            return TryParse(input, out result, false);
         }
 
         /// <inheritdoc cref="TryParse(string, out Color)" />
@@ -143,10 +145,11 @@ namespace Jdenticon.Rendering
         /// Parse a string to a <see cref="Color"/>.
         /// </summary>
         /// <returns>The parsed <see cref="Color"/>.</returns>
-        /// <exception cref="FormatException"><paramref name="s"/> could not be parsed as a color.</exception>
-        public static Color Parse(string s)
+        /// <exception cref="FormatException"><paramref name="input"/> could not be parsed as a color.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="input"/> is <c>null</c>.</exception>
+        public static Color Parse(string input)
         {
-            TryParse(s, out var result, true);
+            TryParse(input, out var result, true);
             return result;
         }
 
@@ -321,8 +324,19 @@ namespace Jdenticon.Rendering
             }
         }
         
-        private static bool TryParse(string input, out Color result, bool throwOnError)
+        private static bool TryParse(string? input, out Color result, bool throwOnError)
         {
+            if (input == null)
+            {
+                if (throwOnError)
+                {
+                    throw new ArgumentNullException(nameof(input));
+                }
+
+                result = default(Color);
+                return false;
+            }
+
             // Named colors as defined in CSS Color Module Level 4.
             // https://www.w3.org/TR/css-color-4/#named-colors
             if (NamedCssColors.TryParse(input, out result))

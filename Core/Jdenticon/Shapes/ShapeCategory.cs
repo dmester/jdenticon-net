@@ -27,6 +27,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Shapes
 {
     /// <summary>
@@ -43,7 +45,7 @@ namespace Jdenticon.Shapes
         /// <summary>
         /// A list of possible shape definitions in this category.
         /// </summary>
-        public IList<ShapeDefinition> Shapes { get; set; }
+        public IList<ShapeDefinition> Shapes { get; set; } = new ShapeDefinition[0];
 
         /// <summary>
         /// The index of the hash octet determining which of the shape definitions that will be used 
@@ -59,6 +61,6 @@ namespace Jdenticon.Shapes
         /// <summary>
         /// The positions in which the shapes of this category will be rendered.
         /// </summary>
-        public ShapePositionCollection Positions { get; set; }
+        public ShapePositionCollection Positions { get; set; } = new ShapePositionCollection();
     }
 }

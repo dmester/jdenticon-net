@@ -29,12 +29,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon
 {
     /// <summary>
     /// Specifies the color style of an identicon.
     /// </summary>
-    public class IdenticonStyle : IEquatable<IdenticonStyle>
+    public class IdenticonStyle : IEquatable<IdenticonStyle?>
     {
         #region Fields
 
@@ -133,7 +135,7 @@ namespace Jdenticon
         }
 
         private bool ShouldSerializeHues() => hues != null && hues.Count > 0;
-        private void ResetHues() => Hues = null;
+        private void ResetHues() => Hues = new HueCollection();
 
 
         /// <summary>
@@ -338,7 +340,7 @@ namespace Jdenticon
         /// Checks if this style is identical to another style.
         /// </summary>
         /// <param name="other">The <see cref="IdenticonStyle"/> to compare.</param>
-        public bool Equals(IdenticonStyle other)
+        public bool Equals(IdenticonStyle? other)
         {
             return
                 other != null &&

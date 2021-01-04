@@ -28,6 +28,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -260,8 +262,16 @@ namespace Jdenticon.Rendering
         /// <param name="rect">The outer bounds of the icon.</param>
         /// <param name="style">The style of the icon.</param>
         /// <param name="hash">The hash to be used as basis for the generated icon.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="renderer"/>, <paramref name="style"/> or <paramref name="hash"/> 
+        ///     was <c>null</c>.
+        /// </exception>
         public void Generate(Renderer renderer, Rectangle rect, IdenticonStyle style, byte[] hash)
         {
+            if (renderer == null) throw new ArgumentNullException(nameof(renderer));
+            if (style == null) throw new ArgumentNullException(nameof(style));
+            if (hash == null) throw new ArgumentNullException(nameof(hash));
+
             var hue = GetHue(hash);
             var colorTheme = new ColorTheme(hue, style);
 

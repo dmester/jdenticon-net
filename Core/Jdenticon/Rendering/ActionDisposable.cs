@@ -28,6 +28,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -36,13 +38,13 @@ namespace Jdenticon.Rendering
     /// </summary>
     public class ActionDisposable : IDisposable
     {
-        Action action;
+        Action? action;
 
         /// <summary>
         /// Creates an instance of <see cref="ActionDisposable"/>.
         /// </summary>
         /// <param name="action">The action that will be invoked when the <see cref="ActionDisposable"/> is disposed.</param>
-        public ActionDisposable(Action action)
+        public ActionDisposable(Action? action)
         {
             this.action = action;
         }

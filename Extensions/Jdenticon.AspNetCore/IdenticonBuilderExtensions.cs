@@ -30,6 +30,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable enable
+
 namespace Jdenticon.AspNetCore
 {
     /// <summary>
@@ -106,8 +108,11 @@ namespace Jdenticon.AspNetCore
         /// }
         /// </code>
         /// </example>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> was <c>null</c>.</exception>
         public static void UseJdenticon(this IApplicationBuilder builder)
         {
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
+
             builder.Map(IdenticonUrl.PathPrefix, innerApp =>
             {
                 innerApp.UseMiddleware<IdenticonMiddleware>();
@@ -156,8 +161,12 @@ namespace Jdenticon.AspNetCore
         /// }
         /// </code>
         /// </example>
+        /// <exception cref="ArgumentNullException"><paramref name="builder"/> or <paramref name="configureDefaultStyle"/> was <c>null</c>.</exception>
         public static void UseJdenticon(this IApplicationBuilder builder, Action<IdenticonStyle> configureDefaultStyle)
         {
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            if (configureDefaultStyle == null) throw new ArgumentNullException(nameof(configureDefaultStyle));
+
             UseJdenticon(builder);
             configureDefaultStyle(Identicon.DefaultStyle);
         }

@@ -35,6 +35,8 @@ using System.Security.Cryptography;
 using Jdenticon.HashAlgorithms;
 #endif
 
+#nullable enable
+
 namespace Jdenticon
 {
     /// <summary>
@@ -107,7 +109,7 @@ namespace Jdenticon
         ///     </item>
         /// </list>
         /// </remarks>
-        public static byte[] ComputeHash(object value, string hashAlgorithmName)
+        public static byte[] ComputeHash(object? value, string hashAlgorithmName)
         {
             string stringData;
 

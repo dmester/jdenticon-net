@@ -29,6 +29,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -44,7 +46,7 @@ namespace Jdenticon.Rendering
     /// Queries will always return the internal hue specified in turns.
     /// </para>
     /// </remarks>
-    public class HueCollection : ICollection<float>, IEquatable<HueCollection>, IFormattable
+    public class HueCollection : ICollection<float>, IEquatable<HueCollection?>, IFormattable
     {
         private readonly List<HueValue> hues;
 
@@ -185,17 +187,14 @@ namespace Jdenticon.Rendering
         /// </summary>
         /// <param name="array">Array to copy the hues to.</param>
         /// <param name="arrayIndex">The index in <paramref name="array"/> to which the first hue will be copied.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="array"/> is <c>null</c></exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="arrayIndex"/> was negative</exception>
+        /// <exception cref="ArgumentException">Insufficient space in the specified array.</exception>
         public void CopyTo(float[] array, int arrayIndex)
         {
-            if (arrayIndex < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex));
-            }
-
-            if (array.Length < arrayIndex + hues.Count)
-            {
-                throw new ArgumentException("Insufficient space in the specified array.", nameof(array));
-            }
+            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (arrayIndex < 0) throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+            if (array.Length < arrayIndex + hues.Count) throw new ArgumentException("Insufficient space in the specified array.", nameof(array));
 
             for (var i = 0; i < hues.Count; i++)
             {
@@ -255,7 +254,7 @@ namespace Jdenticon.Rendering
         /// Checks if this style is identical to another object.
         /// </summary>
         /// <param name="obj">The object to compare.</param>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as HueCollection);
         }
@@ -265,7 +264,7 @@ namespace Jdenticon.Rendering
         /// hues and the same order as <paramref name="other"/>. 
         /// </summary>
         /// <param name="other">Collection to compare with.</param>
-        public bool Equals(HueCollection other)
+        public bool Equals(HueCollection? other)
         {
             if (other == null ||
                 other.hues.Count != hues.Count)

@@ -31,6 +31,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.AspNetCore
 {
     /// <summary>
@@ -50,7 +52,7 @@ namespace Jdenticon.AspNetCore
         /// <param name="format">The file format of the generated icon.</param>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="helper"/> was <c>null</c>.</exception>
-        public static IHtmlContent Identicon(this IHtmlHelper helper, object value, int size, string alt = null, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
+        public static IHtmlContent Identicon(this IHtmlHelper helper, object? value, int size, string? alt = null, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle? style = null)
         {
             var hash = HashGenerator.ComputeHash(value, "SHA1");
             return helper.Identicon(hash, size, alt, format, style);
@@ -116,7 +118,7 @@ namespace Jdenticon.AspNetCore
         /// </example>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="helper"/> or <paramref name="icon"/> was <c>null</c>.</exception>
-        public static IHtmlContent Identicon(this IHtmlHelper helper, Identicon icon, int size = 0, string alt = null, 
+        public static IHtmlContent Identicon(this IHtmlHelper helper, Identicon icon, int size = 0, string? alt = null, 
             ExportImageFormat format = ExportImageFormat.Png)
         {
             if (icon == null) throw new ArgumentNullException(nameof(icon));
@@ -138,8 +140,8 @@ namespace Jdenticon.AspNetCore
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
         /// <exception cref="ArgumentException"><paramref name="hash"/> was too short.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="helper"/> or <paramref name="hash"/> was <c>null</c>.</exception>
-        public static IHtmlContent Identicon(this IHtmlHelper helper, byte[] hash, int size, string alt = null, 
-            ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
+        public static IHtmlContent Identicon(this IHtmlHelper helper, byte[] hash, int size, string? alt = null, 
+            ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle? style = null)
         {
             if (helper == null) throw new ArgumentNullException(nameof(helper));
             if (hash == null) throw new ArgumentNullException(nameof(hash));

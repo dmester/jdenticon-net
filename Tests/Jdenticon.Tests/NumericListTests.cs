@@ -20,7 +20,7 @@ namespace Jdenticon.Tests
         [DataRow("sv-SE", " 2.4 5.6; 6  ;  7  ", "2.4", "5.6", "6", "7")]
         public void Split(string culture, string input, params string[] expectedOutput)
         {
-            var output = NumericList.Split(input, CultureInfo.GetCultureInfo(culture));
+            var output = NumericList.Parse(input, CultureInfo.GetCultureInfo(culture));
             CollectionAssert.AreEquivalent(expectedOutput, output);
         }
 

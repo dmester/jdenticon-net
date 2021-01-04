@@ -6,6 +6,7 @@
     <RootNamespace>Jdenticon</RootNamespace>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,6 +24,8 @@
   <Import Project="..\..\Core\Jdenticon\Jdenticon.projitems" Label="Shared" />
 
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
+
+  <Import Project="..\..\Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems" Label="Shared" />
   <Import Project="$(SolutionDir)\Build\Common.props" />
   <Import Project="$(SolutionDir)\Build\Target.props" />
 

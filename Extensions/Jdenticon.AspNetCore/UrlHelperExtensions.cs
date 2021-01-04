@@ -29,6 +29,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.AspNetCore
 {
     /// <summary>
@@ -47,7 +49,7 @@ namespace Jdenticon.AspNetCore
         /// <param name="format">The file format of the generated icon.</param>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="helper"/> was <c>null</c>.</exception>
-        public static string Identicon(this IUrlHelper helper, object value, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
+        public static string Identicon(this IUrlHelper helper, object? value, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle? style = null)
         {
             var hash = HashGenerator.ComputeHash(value, "SHA1");
             return helper.Identicon(hash, size, format, style);
@@ -65,7 +67,7 @@ namespace Jdenticon.AspNetCore
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> was less than 1.</exception>
         /// <exception cref="ArgumentException"><paramref name="hash"/> was too short.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="helper"/> or <paramref name="hash"/> was <c>null</c>.</exception>
-        public static string Identicon(this IUrlHelper helper, byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle style = null)
+        public static string Identicon(this IUrlHelper helper, byte[] hash, int size, ExportImageFormat format = ExportImageFormat.Png, IdenticonStyle? style = null)
         {
             if (helper == null) throw new ArgumentNullException(nameof(helper));
             if (hash == null) throw new ArgumentNullException(nameof(hash));

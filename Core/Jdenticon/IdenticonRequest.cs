@@ -28,8 +28,11 @@ using Jdenticon.Rendering;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
+
+#nullable enable
 
 namespace Jdenticon
 {
@@ -39,14 +42,34 @@ namespace Jdenticon
     /// </summary>
     public class IdenticonRequest
     {
-        private IdenticonStyle style;
+        private byte[]? hash;
+        private IdenticonStyle? style;
         private int size;
         private static readonly int[] DefaultSizes = new[] { 16, 32, 48, 64, 128, 256, 512 };
 
         /// <summary>
         /// Gets or sets the hash that the requested icon will be based on.
         /// </summary>
-        public byte[] Hash { get; set; }
+        /// <exception cref="ArgumentNullException">The value was <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">The hash was shorter than 6 bytes.</exception>
+        public byte[] Hash
+        {
+            get
+            {
+                if (hash == null)
+                {
+                    // Default to hash of empty string
+                    hash = new byte[] { 0xda, 0x39, 0xa3, 0xee, 0x5e, 0x6b, 0xaf, 0xd8, 0x07, 0x09 };
+                }
+                return hash;
+            }
+            set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(value));
+                if (value.Length < 6) throw new ArgumentException("The hash must contain at least 10 bytes.", nameof(value));
+                hash = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the file format of the requested icon.
@@ -100,7 +123,7 @@ namespace Jdenticon
         /// </summary>
         /// <param name="requestString">The request string.</param>
         /// <param name="request">The parsed request if succeeded.</param>
-        public static bool TryParse(string requestString, out IdenticonRequest request)
+        public static bool TryParse(string? requestString, [NotNullWhen(true)] out IdenticonRequest request)
         {
             if (requestString == null ||
                 requestString.Length == 0 ||
@@ -240,7 +263,7 @@ namespace Jdenticon
             return true;
 
             InvalidRequest:
-            request = null;
+            request = null!;
             return false;
         }
 
@@ -273,55 +296,57 @@ namespace Jdenticon
                     }
 
                     // Flags:
-                    // Bit 0: explicit style (bool)
+                    // Bit 0: explicit style specified (bool)
                     // Bit 1-3: image format (int)
-                    var explicitStyle = style != null && !style.Equals(Identicon.DefaultStyle);
+                    var explicitStyle = style != null && !style.Equals(Identicon.DefaultStyle) ? style : null;
+
                     var format = (int)Format;
 
                     writer.Write((byte)(
                         (format << 1) |
-                        (explicitStyle ? 1 : 0)));
+                        (explicitStyle != null ? 1 : 0)));
 
                     // Style
-                    if (explicitStyle)
+                    if (explicitStyle != null)
                     {
-                        writer.Write((byte)(style.Padding * 637f));
+                        writer.Write((byte)(explicitStyle.Padding * 637f));
 
-                        writer.Write((byte)(style.BackColor.A));
-                        writer.Write((byte)(style.BackColor.R));
-                        writer.Write((byte)(style.BackColor.G));
-                        writer.Write((byte)(style.BackColor.B));
+                        writer.Write((byte)(explicitStyle.BackColor.A));
+                        writer.Write((byte)(explicitStyle.BackColor.R));
+                        writer.Write((byte)(explicitStyle.BackColor.G));
+                        writer.Write((byte)(explicitStyle.BackColor.B));
 
-                        writer.Write((byte)(style.GrayscaleLightness.From * 255));
-                        writer.Write((byte)(style.GrayscaleLightness.To * 255));
+                        writer.Write((byte)(explicitStyle.GrayscaleLightness.From * 255));
+                        writer.Write((byte)(explicitStyle.GrayscaleLightness.To * 255));
 
-                        writer.Write((byte)(style.ColorLightness.From * 255));
-                        writer.Write((byte)(style.ColorLightness.To * 255));
+                        writer.Write((byte)(explicitStyle.ColorLightness.From * 255));
+                        writer.Write((byte)(explicitStyle.ColorLightness.To * 255));
 
-                        writer.Write((byte)(style.ColorSaturation * 255));
+                        writer.Write((byte)(explicitStyle.ColorSaturation * 255));
                     }
 
                     // Hash
-                    if (Hash.Length != 10)
+                    var hash = Hash;
+                    if (hash.Length != 10)
                     {
-                        writer.Write(Hash, 0, 6);
-                        writer.Write(Hash, Hash.Length - 4, 4);
+                        writer.Write(hash, 0, 6);
+                        writer.Write(hash, hash.Length - 4, 4);
                     }
                     else
                     {
-                        writer.Write(Hash);
+                        writer.Write(hash);
                     }
 
                     // Continued style (added in v2.1.0)
-                    if (explicitStyle)
+                    if (explicitStyle != null)
                     {
-                        writer.Write((byte)(style.GrayscaleSaturation * 255));
+                        writer.Write((byte)(explicitStyle.GrayscaleSaturation * 255));
 
-                        var hueCount = style.Hues.Count;
+                        var hueCount = explicitStyle.Hues.Count;
                         writer.Write((byte)hueCount);
                         for (var i = 0; i < hueCount; i++)
                         {
-                            writer.Write((byte)(style.Hues[i] * 255));
+                            writer.Write((byte)(explicitStyle.Hues[i] * 255));
                         }
                     }
 

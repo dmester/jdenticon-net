@@ -27,6 +27,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     internal class HueUnitInfo

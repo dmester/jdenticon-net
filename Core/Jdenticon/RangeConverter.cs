@@ -73,7 +73,7 @@ namespace Jdenticon
                 {
                     var rangeValueType = propertyType.GetGenericArguments()[0];
 
-                    var parts = NumericList.Split(str, culture);
+                    var parts = NumericList.Parse(str, culture);
 
                     if (parts.Length > 0 && parts.Length < 3)
                     {

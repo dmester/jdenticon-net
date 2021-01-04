@@ -28,9 +28,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
-    internal class HueValue : IEquatable<HueValue>, IFormattable
+    internal class HueValue : IEquatable<HueValue?>, IFormattable
     {
         private HueValue(string value, IFormatProvider formatProvider)
         {
@@ -103,7 +105,7 @@ namespace Jdenticon.Rendering
         public override int GetHashCode() => unchecked((int)(1000 * Turns));
 
         public override bool Equals(object obj) => Equals(obj as HueValue);
-        public bool Equals(HueValue other) => other != null && other.Turns == Turns;
+        public bool Equals(HueValue? other) => other != null && other.Turns == Turns;
 
         public override string ToString() => ToString(CultureInfo.InvariantCulture);
 

@@ -29,6 +29,8 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -36,8 +38,8 @@ namespace Jdenticon.Rendering
     /// </summary>
     public class SvgRenderer : Renderer
     {
-        private Dictionary<Color, SvgPath> pathsByColor = new Dictionary<Color, SvgPath>();
-        private SvgPath path;
+        private readonly Dictionary<Color, SvgPath> pathsByColor = new Dictionary<Color, SvgPath>();
+        private SvgPath? path;
         private int width, height;
         private Color backColor;
 
@@ -55,12 +57,17 @@ namespace Jdenticon.Rendering
         /// <inheritdoc />
         protected override void AddCircleNoTransform(PointF location, float diameter, bool counterClockwise)
         {
+            if (path == null) throw new InvalidOperationException("No active shape. Call BeginShape before calling this method.");
+
             path.AddCircle(location, diameter, counterClockwise);
         }
 
         /// <inheritdoc />
         protected override void AddPolygonNoTransform(PointF[] points)
         {
+            if (points == null) throw new ArgumentNullException(nameof(points));
+            if (path == null) throw new InvalidOperationException("No active shape. Call BeginShape before calling this method.");
+
             path.AddPolygon(points);
         }
 

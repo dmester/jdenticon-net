@@ -27,6 +27,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     /// <summary>
@@ -39,8 +41,11 @@ namespace Jdenticon.Rendering
         /// </summary>
         /// <param name="hue">The hue of the colored shapes.</param>
         /// <param name="style">The style that specifies the lightness and saturation of the icon.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="style"/> is <c>null</c>.</exception>
         public ColorTheme(float hue, IdenticonStyle style)
         {
+            if (style == null) throw new ArgumentNullException(nameof(style));
+
             if (style.Hues.Count > 0)
             {
                 // Multiply with 0.999 to change the range to [0, 1)
@@ -83,6 +88,7 @@ namespace Jdenticon.Rendering
         /// <summary>
         /// Gets a color from this color theme by index.
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">There is no color of the specified index.</exception>
         public Color this[int index]
         {
             get

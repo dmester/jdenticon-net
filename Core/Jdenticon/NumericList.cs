@@ -29,6 +29,8 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
+#nullable enable
+
 namespace Jdenticon
 {
     /// <summary>
@@ -42,9 +44,11 @@ namespace Jdenticon
         /// <param name="formatProvider">Format provider used for formatting the numbers.</param>
         public static char GetSeparator(IFormatProvider formatProvider)
         {
+            if (formatProvider == null) throw new ArgumentNullException(nameof(formatProvider));
+
             var numberFormat = formatProvider.GetFormat(typeof(NumberFormatInfo)) as NumberFormatInfo;
             var decimalSeparator = numberFormat?.NumberDecimalSeparator;
-            return decimalSeparator.Length > 0 && decimalSeparator[0] == ',' ? ';' : ',';
+            return !string.IsNullOrEmpty(decimalSeparator) && decimalSeparator![0] == ',' ? ';' : ',';
         }
 
         /// <summary>
@@ -52,6 +56,9 @@ namespace Jdenticon
         /// </summary>
         public static string Join<T>(IEnumerable<T> items, IFormatProvider formatProvider)
         {
+            if (items == null) throw new ArgumentNullException(nameof(items));
+            if (formatProvider == null) throw new ArgumentNullException(nameof(formatProvider));
+
             var listSeparator = GetSeparator(formatProvider) + " ";
             var result = new StringBuilder();
 
@@ -70,8 +77,10 @@ namespace Jdenticon
         /// <param name="str">String containing a list of numbers.</param>
         /// <param name="formatProvider">Format provider used for formatting the numbers.</param>
         /// <returns>The splitted numbers.</returns>
-        public static string[] Split(string str, IFormatProvider formatProvider)
+        public static string[] Parse(string? str, IFormatProvider formatProvider)
         {
+            if (formatProvider == null) throw new ArgumentNullException(nameof(formatProvider));
+
             if (str != null)
             {
                 str = str.Trim();

@@ -32,6 +32,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.AspNetCore
 {
     /// <summary>
@@ -92,7 +94,7 @@ namespace Jdenticon.AspNetCore
     [HtmlTargetElement("img", Attributes = IdenticonHashAttributeName)]
     public class IdenticonTagHelper : TagHelper
     {
-        private byte[] hash;
+        private byte[]? hash;
 
         private const string IdenticonValueAttributeName = "identicon-value";
         private const string IdenticonHashAttributeName = "identicon-hash";
@@ -123,7 +125,7 @@ namespace Jdenticon.AspNetCore
         /// </code>
         /// </example>
         [HtmlAttributeName(IdenticonValueAttributeName)]
-        public object Value { get; set; }
+        public object? Value { get; set; }
 
         /// <summary>
         /// Gets or sets a hash that will be used as base for this icon.
@@ -151,7 +153,7 @@ namespace Jdenticon.AspNetCore
         /// </code>
         /// </example>
         [HtmlAttributeName(IdenticonHashAttributeName)]
-        public byte[] Hash
+        public byte[]? Hash
         {
             get => hash;
             set => hash =
@@ -179,7 +181,7 @@ namespace Jdenticon.AspNetCore
 
         /// <exclude/>
         [ViewContext]
-        public ViewContext ViewContext { get; set; }
+        public ViewContext? ViewContext { get; set; }
 
         /// <exclude/>
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -187,6 +189,9 @@ namespace Jdenticon.AspNetCore
             output.Attributes.RemoveAll(IdenticonValueAttributeName);
             output.Attributes.RemoveAll(IdenticonHashAttributeName);
             output.Attributes.RemoveAll(IdenticonFormatAttributeName);
+
+            var viewContext = ViewContext;
+            if (viewContext == null) throw new InvalidOperationException("Cannot process request without a ViewContext.");
 
             var sizeAttributes = new[] { "width", "height" };
             var size = sizeAttributes
@@ -206,7 +211,7 @@ namespace Jdenticon.AspNetCore
                 .FirstOrDefault() ??
                 100;
 
-            var url = IdenticonUrl.Create(ViewContext.HttpContext, 
+            var url = IdenticonUrl.Create(viewContext.HttpContext, 
                 hash: Hash ?? HashGenerator.ComputeHash(Value, "SHA1"),
                 size: size,
                 format: Format,

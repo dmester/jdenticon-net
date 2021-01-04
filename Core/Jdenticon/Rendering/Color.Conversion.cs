@@ -28,6 +28,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
+#nullable enable
+
 namespace Jdenticon.Rendering
 {
     partial struct Color
