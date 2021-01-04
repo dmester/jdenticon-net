@@ -5,6 +5,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <RootNamespace>Jdenticon.WinForms</RootNamespace>
   </PropertyGroup>
   
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
