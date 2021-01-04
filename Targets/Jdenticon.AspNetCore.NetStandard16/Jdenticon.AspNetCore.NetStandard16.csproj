@@ -27,8 +27,8 @@
   <Import Project="$(SolutionDir)\Build\Common.props" />
   <Import Project="$(SolutionDir)\Build\Target.props" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jdenticon.NetStandard13\Jdenticon.NetStandard13.csproj" />
