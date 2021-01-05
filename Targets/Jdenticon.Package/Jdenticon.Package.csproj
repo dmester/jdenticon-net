@@ -81,7 +81,6 @@ cd /D %~dp0
 echo You will now publish version $(AssemblyVersion) to NuGet
 pause
 "..\Utils\NuGet\NuGet.exe" push "*.$(AssemblyVersion).nupkg" -Source https://api.nuget.org/v3/index.json
-"..\Utils\NuGet\NuGet.exe" push "*.$(AssemblyVersion).snupkg" -Source https://api.nuget.org/v3/index.json
 ]]></PublishScript>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(JdenticonKeyFile)' == '' ">
