@@ -7,7 +7,7 @@
     <authors>Daniel Mester Pirttijärvi</authors>
     <license type="expression">MIT</license>
     <projectUrl>http://jdenticon.com/</projectUrl>
-    <repository type="git" url="https://github.com/dmester/jdenticon-net.git" />
+    <repository type="git" url="https://github.com/dmester/jdenticon-net.git" commit="$SourceRevisionId$" />
     <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Generates identicons as SVG or PNG files on the .NET Framework and .NET Standard platforms.
