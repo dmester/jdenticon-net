@@ -143,7 +143,10 @@ namespace Jdenticon
         /// <summary>
         /// Generates a hash for a specified value and creates an <see cref="Identicon"/> instance from the generated hash.
         /// </summary>
+        /// <param name="value">Value that will be converted to a string and then hashed. Null 
+        /// values are supported and handled as empty strings.</param>
         /// <param name="size">The size of the icon in pixels (the icon is quadratic).</param>
+        /// <param name="hashAlgorithmName">The name of the hash algorithm to be used for hashing.</param>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="size"/> is less than 1 pixel.</exception>
         /// <returns>An <see cref="Identicon"/> instance for the hash of <paramref name="value"/>.</returns>
         public static Identicon FromValue(object? value, int size, string hashAlgorithmName = "SHA1")
