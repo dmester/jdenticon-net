@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <Content Include="images\WinFormsStyle.png" />
     <Content Include="images\WpfIcons.png" />
     <Content Include="images\WpfStyled.png" />
     <Content Include="images\WpfValueBinding.png" />

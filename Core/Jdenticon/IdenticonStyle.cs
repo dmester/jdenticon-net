@@ -36,6 +36,108 @@ namespace Jdenticon
     /// <summary>
     /// Specifies the color style of an identicon.
     /// </summary>
+    /// <remarks>
+    /// <para>
+    ///     This class is used to customize the colors of generated icons. You can use the 
+    ///     <a href="https://jdenticon.com/icon-designer.html">icon designer</a>
+    ///     to simplify finding good values.
+    /// </para>
+    /// 
+    /// <h4>Individual icons</h4>
+    /// <para>
+    ///     Individual icons are styled by setting the <see cref="Identicon.Style"/> property of an <see cref="Identicon"/> instance.
+    /// </para>
+    /// <code language="csharp" title="Styling an individual icon">
+    /// var icon = Identicon.FromValue("string to hash", size: 100);
+    /// icon.Style = new IdenticonStyle 
+    /// {
+    ///     Hues = new HueCollection { { 207, HueUnit.Degrees } },
+    ///     BackColor = Color.FromRgba(42, 71, 102, 255),
+    ///     ColorLightness = Range.Create(0.84f, 0.84f),
+    ///     GrayscaleLightness = Range.Create(0.84f, 0.84f),
+    ///     ColorSaturation = 0.48f,
+    ///     GrayscaleSaturation = 0.48f
+    /// };
+    /// icon.SaveAsPng("test.png");
+    /// </code>
+    /// 
+    /// <h4>Default style</h4>
+    /// <para>
+    ///     A default style can be created by setting the <see cref="Identicon.DefaultStyle">Identicon.DefaultStyle</see> property.
+    ///     You can still override the style of individual icons with <see cref="Identicon.Style">Identicon.Style</see>.
+    ///     This approach is suitable for most cases, including ASP.NET.
+    /// </para>
+    /// <note type="note">
+    ///     The <see cref="Identicon.DefaultStyle">Identicon.DefaultStyle</see> property is not supported by
+    ///     <see cref="T:Jdenticon.Wpf.IdenticonElement"/>. Instead create a WPF style setting the correspnding style properties
+    ///     directly on <see cref="T:Jdenticon.Wpf.IdenticonElement"/>.
+    /// </note>
+    /// <code language="csharp" title="Setting a default style">
+    /// Identicon.DefaultStyle = new IdenticonStyle 
+    /// {
+    ///     Hues = new HueCollection { { 207, HueUnit.Degrees } },
+    ///     BackColor = Color.FromRgba(42, 71, 102, 255),
+    ///     ColorLightness = Range.Create(0.84f, 0.84f),
+    ///     GrayscaleLightness = Range.Create(0.84f, 0.84f),
+    ///     ColorSaturation = 0.48f,
+    ///     GrayscaleSaturation = 0.48f
+    /// };
+    /// 
+    /// Identicon.FromValue("string to hash", size: 100).SaveAsPng("test.png");
+    /// </code>
+    /// 
+    /// <h4>WPF</h4>
+    /// <para>
+    ///     In WPF the recommended way of styling an icon is by creating a 
+    ///     <a href="https://docs.microsoft.com/en-us/dotnet/desktop/wpf/fundamentals/styles-templates-create-apply-style">WPF style</a>
+    ///     setting style properties on <see cref="T:Jdenticon.Wpf.IdenticonElement"/>. You can also set an <see cref="IdenticonStyle"/>
+    ///     by using the <see cref="P:Jdenticon.Wpf.IdenticonElement.IdenticonStyle">IdenticonElement.IdenticonStyle</see>
+    ///     property.
+    /// </para>
+    /// <code language="xml" title="WPF identicon with custom style">
+    /// &lt;Window x:Class="SampleApp.MainWindow"
+    ///         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    ///         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    ///         xmlns:jd="clr-namespace:Jdenticon.Wpf;assembly=Jdenticon.Wpf"
+    ///         Title="MainWindow" Height="250" Width="600"&gt;
+    ///     &lt;Window.Resources&gt;
+    ///         &lt;Style TargetType="{x:Type jd:IdenticonElement}"&gt;
+    ///             &lt;Setter Property="Width" Value="100" /&gt;
+    ///             &lt;Setter Property="Height" Value="100" /&gt;
+    ///             &lt;Setter Property="Margin" Value="10" /&gt;
+    ///             
+    ///             &lt;!-- Custom identicon style --&gt;
+    ///             &lt;!-- https://jdenticon.com/icon-designer.html?config=2a4766ff10cf303054545454 --&gt;
+    ///             &lt;Setter Property="Hues" Value="207deg"/&gt;
+    ///             &lt;Setter Property="Background" Value="#2a4766"/&gt;
+    ///             &lt;Setter Property="ColorLightness" Value="0.84, 0.84"/&gt;
+    ///             &lt;Setter Property="GrayscaleLightness" Value="0.84, 0.84"/&gt;
+    ///             &lt;Setter Property="ColorSaturation" Value="0.48"/&gt;
+    ///             &lt;Setter Property="GrayscaleSaturation" Value="0.48"/&gt;
+    ///         &lt;/Style&gt;
+    ///     &lt;/Window.Resources&gt;
+    ///     &lt;StackPanel Orientation="Horizontal" HorizontalAlignment="Center"&gt;
+    ///         &lt;jd:IdenticonElement Value="icon1" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon2" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon3" /&gt;
+    ///         &lt;jd:IdenticonElement Value="icon4" /&gt;
+    ///     &lt;/StackPanel&gt;
+    /// &lt;/Window&gt;
+    /// </code>
+    /// <para>
+    ///     Here is what the icons above look like:
+    /// </para>
+    /// <img src="../images/WpfStyled.png" alt="Identicons with custom style"/>
+    /// 
+    /// <h4>Windows Forms</h4>
+    /// <para>
+    ///     You can affect the style by setting the style properties directly on <see cref="T:Jdenticon.WinForms.IdenticonView"/>.
+    /// </para>
+    /// <img src="../images/WinFormsStyle.png" alt="Styling Windows Forms"/>
+    /// <para>
+    ///     Another option is to use the <see cref="P:Jdenticon.WinForms.IdenticonView.Style">IdenticonView.Style</see> property.
+    /// </para>
+    /// </remarks>
     public class IdenticonStyle : IEquatable<IdenticonStyle?>
     {
         #region Fields
