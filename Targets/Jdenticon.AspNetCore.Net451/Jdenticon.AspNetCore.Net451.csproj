@@ -29,8 +29,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Release\Jdenticon.AspNetCore.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +51,9 @@
       <Version>1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime">
+      <Version>1.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles">
       <Version>1.0.4</Version>
     </PackageReference>
   </ItemGroup>
