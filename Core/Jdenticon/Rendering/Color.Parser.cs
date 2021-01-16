@@ -131,7 +131,7 @@ namespace Jdenticon.Rendering
         ///     <item>
         ///         <term>hwb(hue, whiteness, blackness[, alpha])</term>
         ///         <term>hwb(120, 75%, 75%, 0.5)</term>
-        ///         <term>Hue-Whiteness-Blackness color with optional alpha value. Hue specified in degress, or in any of the units available for hsl(), the whiteness and blackness in percent.</term>
+        ///         <term>Hue-Whiteness-Blackness color with optional alpha value. Hue specified in degrees, or in any of the units available for hsl(), the whiteness and blackness in percent.</term>
         ///     </item>
         /// </list>
         /// </remarks>
