@@ -71,7 +71,7 @@ namespace Jdenticon.WinForms
         /// </summary>
         public IdenticonView()
         {
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            SetStyle(ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor, true);
 
             // Initialize with default style
             style = Identicon.DefaultStyle.Clone();
