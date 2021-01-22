@@ -6,7 +6,7 @@
     <title>Jdenticon ASP.NET WebApi Extensions</title>
     <authors>Daniel Mester Pirttijärvi</authors>
     <license type="expression">MIT</license>
-    <projectUrl>http://jdenticon.com/</projectUrl>
+    <projectUrl>https://jdenticon.com/</projectUrl>
     <repository type="git" url="https://github.com/dmester/jdenticon-net.git" commit="$SourceRevisionId$" />
     <icon>images\jdenticon-logo-net.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
