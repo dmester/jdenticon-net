@@ -1,6 +1,7 @@
 ﻿using Jdenticon.Rendering;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Globalization;
 
 namespace Jdenticon.Tests
 {
@@ -60,6 +61,23 @@ namespace Jdenticon.Tests
 
             Assert.AreEqual(expectedTurns, collection[0], 0.01f);
             Assert.AreEqual(expectedString, collection.ToString());
+        }
+
+        [TestMethod]
+        public void Stringify()
+        {
+            using (new CustomCulture())
+            {
+                var collection = new HueCollection
+                {
+                    { 14.5f, HueUnit.Degrees },
+                    { 15.5f, HueUnit.Degrees },
+                };
+
+                Assert.AreEqual("14.5deg, 15.5deg", collection.ToString());
+                Assert.AreEqual("14/5deg, 15/5deg", collection.ToString(null));
+                Assert.AreEqual("14,5deg; 15,5deg", collection.ToString(new CultureInfo("sv-se")));
+            }
         }
     }
 }

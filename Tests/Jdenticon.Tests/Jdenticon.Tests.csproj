@@ -52,7 +52,9 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomCulture.cs" />
     <Compile Include="HexStringTests.cs" />
+    <Compile Include="HueStringTests.cs" />
     <Compile Include="IdenticonExtensionTests.cs" />
     <Compile Include="MachineKeyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

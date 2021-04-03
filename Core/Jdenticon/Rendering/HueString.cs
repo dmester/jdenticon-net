@@ -345,7 +345,9 @@ namespace Jdenticon.Rendering
         /// <param name="formatProvider">Format provider used for formatting numbers in the hue string.</param>
         public string ToString(IFormatProvider formatProvider)
         {
-            return NumericList.Join(hues, formatProvider);
+            // IFormattable should default to current culture when null is specified as formatProvider
+            // https://docs.microsoft.com/en-us/dotnet/api/system.iformattable.tostring
+            return NumericList.Join(hues, formatProvider ?? CultureInfo.CurrentCulture);
         }
 
         string IFormattable.ToString(string format, IFormatProvider formatProvider)
