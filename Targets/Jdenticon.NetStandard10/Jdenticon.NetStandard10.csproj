@@ -30,7 +30,7 @@
   <Import Project="$(SolutionDir)\Build\Target.props" />
 
   <ItemGroup>
-    <PackageReference Include="SharpCompress" Version="0.24.0" />
+    <PackageReference Include="SharpCompress" Version="0.29.0" />
   </ItemGroup>
 
 </Project>
