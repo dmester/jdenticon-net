@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Jdenticon.NuGet</RootNamespace>
     <AssemblyName>Jdenticon.NuGet</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />

@@ -47,6 +47,13 @@
       <Name>Jdenticon.Net40</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net40">
+      <Version>1.0.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="..\..\Extensions\Jdenticon.Wpf\Jdenticon.Wpf.projitems" Label="Shared" />
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
   <Import Project="..\..\Polyfills\NullableReferenceTypes\NullableReferenceTypes.projitems" Label="Shared" />

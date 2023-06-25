@@ -53,6 +53,11 @@
     <PackageReference Include="Microsoft.AspNet.Mvc">
       <Version>4.0.20505</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net40">
+      <Version>1.0.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="..\..\Extensions\Jdenticon.AspNet.Mvc\Jdenticon.AspNet.Mvc.projitems" Label="Shared" />
   <Import Project="..\..\Core\AssemblyInfo\AssemblyInfo.projitems" Label="Shared" />
