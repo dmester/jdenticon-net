@@ -3,7 +3,7 @@
 
 ![Sample identicons](https://jdenticon.com/hosted/github-samples.png)
 
-[![Build Status](https://img.shields.io/github/workflow/status/dmester/jdenticon-net/Build/master)](https://github.com/dmester/jdenticon-net/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/dmester/jdenticon-net/build.yml?branch=master)](https://github.com/dmester/jdenticon-net/actions)
 [![Downloads](https://img.shields.io/nuget/dt/Jdenticon-net.svg)](https://www.nuget.org/packages/Jdenticon-net/)
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/dmester/jdenticon-net/blob/master/LICENSE.txt)
 
